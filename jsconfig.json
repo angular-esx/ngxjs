@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "lib": ["es2017", "dom"],
+    "target": "es5",
+    "sourceMap": true
+  },
+  "include": [
+    "_configs",
+    "packages/infrastructure",
+    "packages/core",
+    "packages/application"
+  ],
+  "exclude": [
+    "node_modules",
+    "packages/core/node_modules",
+    "packages/application/node_modules"
+  ]
+}
