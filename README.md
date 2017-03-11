@@ -14,17 +14,17 @@ Run this command to cross link packages before working on source code.
 `eslint` && `stylelint` are enabled for the source code.
 Because they take more time for executing, I don't integrate them into `webpack`. It mean `lint` won't run every `webpack` re-build, it help you to save times for development.
 
-I setup `pre-commit` to only execute `lint` for staged files when you do commit. 
+I setup `pre-commit` to only execute `lint` for staged files when you do commit.
 **Recommend** you run `lint-staged` yourself to check lint errors, because errors will be printed in console, it's easier for reading.
 
-In order to get the best environment for development, you also need editor extensions for `lint` and I **recommend you should use Visual Code** becauce I'm working on it, so I only suggest you useful extensions for it. 
+In order to get the best environment for development, you also need editor extensions for `lint` and I **recommend you should use Visual Code** becauce I'm working on it, so I only suggest you useful extensions for it.
 If you like working on other editor, try to find out correct extensions for it yourself :)
 You need to install these extensions for `Visual Code`:
 - ESLint (Dirk Baeumer)
 - styleLint (Shinnosuke Watanabe)
 
 Config for those extensions is written in shared `.vscode/settings.json`.
-If you setup as I remcommend, `stylelint` will run every you type, `eslint` will run and try to fix error every you save.
+If you setup as I recommend, `stylelint` will run every you type, `eslint` will run and try to fix error every you save.
 
 ### Npm Scripts
 - **build:** Build source code for develop environment without starting `webpack-dev-server`. It's useful to review code  in built files.
