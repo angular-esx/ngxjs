@@ -30,6 +30,10 @@ import { ngxApp } from './app';
   bootstrap: [ngxApp],
 })
 class ngxAppModule {
+  static parameters = [
+    [new Inject(ApplicationRef)],
+  ]
+
   constructor(appRef) {
     this._appRef = appRef;
   }
@@ -49,10 +53,6 @@ class ngxAppModule {
     delete store.disposeOldHosts;
   }
 }
-
-ngxAppModule.parameters = [
-  [new Inject(ApplicationRef)],
-];
 
 
 export { ngxAppModule };
