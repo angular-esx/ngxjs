@@ -9,7 +9,6 @@
     "color-no-invalid-hex": true,
     "font-family-name-quotes": "always-where-recommended",
     "font-family-no-duplicate-names": true,
-    "number-leading-zero": "never",
     "string-quotes": "single",
     "length-zero-no-unit": true,
     "unit-case": "lower",
