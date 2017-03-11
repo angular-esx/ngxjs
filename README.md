@@ -1,24 +1,24 @@
 ### Installation
-You need to install `lerna` in global, it's used to cross link packages under `packages` folder.
+You need to install `lerna` in global, it's used to cross-link packages under `packages` folder.
 ```
 npm i lerna@2.0.0-beta.31 -g && npm i
 ```
 
 ### Bootstrap
-Run this command to cross link packages before working on source code.
+Run this command to cross-link packages before working on source code.
 ```
  lerna bootstrap
 ```
 
 ### Lint
 `eslint` && `stylelint` are enabled for the source code.
-Because they take more time for executing, I don't integrate them into `webpack`. It mean `lint` won't run every `webpack` re-build, it help you to save times for development.
+Because they take more time for executing, I don't integrate them into `webpack`. It mean `lint` won't run every `webpack` re-build, it helps you to save times for development.
 
 I setup `pre-commit` to only execute `lint` for staged files when you do commit.
-**Recommend** you run `lint-staged` yourself to check lint errors, because errors will be printed in console, it's easier for reading.
+**Recommend** you run `lint-staged` yourself to check lint errors because errors will be printed in the console, it's easier for reading.
 
-In order to get the best environment for development, you also need editor extensions for `lint` and I **recommend you should use Visual Code** becauce I'm working on it, so I only suggest you useful extensions for it.
-If you like working on other editor, try to find out correct extensions for it yourself :)
+In order to get the best environment for development, you also need editor extensions for `lint` and I **recommend you should use Visual Code** because I'm working on it, so I only suggest you useful extensions for it.
+If you like working on another editor, try to find out correct extensions for it yourself :)
 You need to install these extensions for `Visual Code`:
 - ESLint (Dirk Baeumer)
 - styleLint (Shinnosuke Watanabe)
@@ -27,7 +27,7 @@ Config for those extensions is written in shared `.vscode/settings.json`.
 If you setup as I recommend, `stylelint` will run every you type, `eslint` will run and try to fix error every you save.
 
 ### Npm Scripts
-- **build:** Build source code for develop environment without starting `webpack-dev-server`. It's useful to review code  in built files.
+- **build:** Build source code for develop environment without starting `webpack-dev-server`. It's useful to review code in built files.
 
 - **start:** Start `webpack-dev-server` with enabled `HotModuleReplacement` without `WebpackDashboard`. You have no other choice to start `webpack-dev-server` if you're working on windows :)
 
