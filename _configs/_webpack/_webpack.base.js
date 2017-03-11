@@ -318,8 +318,8 @@ class BaseWebpackConfig {
   _getRelativePath(currentPath, outputPath) {
     let relativePath = currentPath.replace(outputPath || this._CONTEXT, '');
 
-    if (relativePath.indexOf('/') === 0) {
-      relativePath = relativePath.replace('/', '');
+    if (relativePath.indexOf('/') === 0 || relativePath.indexOf('\\') === 0) {
+      relativePath = relativePath.replace('/', '').replace('\\', '');
     }
 
     return relativePath;
