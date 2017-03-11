@@ -10,7 +10,7 @@
     "build-dll": "cross-env BUILD_ENV=development webpack --config $npm_package_envts_webpack_dll_config --progress",
     "build": "npm run build-dll && cross-env BUILD_ENV=development webpack --config $npm_package_envts_webpack_config --progress",
     "start": "npm run build-dll && cross-env BUILD_ENV=development webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline",
-    "start-dashboard": "npm run build-dll && cross-env BUILD_ENV=development:dashboard webpack-dashboard -- webpack-dev-server --config $npm_package_envts_webpack_config",
+    "start-dashboard": "npm run build-dll && cross-env BUILD_ENV=development:dashboard webpack-dashboard -- webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline",
     "lint-staged": "lint-staged"
   },
   "pre-commit": "lint-staged",
