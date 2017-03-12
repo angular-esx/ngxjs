@@ -1,0 +1,139 @@
+@function ngx-to-number($value) {
+  $_error: 'Can not cast `#{inspect($value)}` to number';
+  $_type: type-of($value);
+  $_value: $value;
+
+  @if ($_type == 'number') {
+    @return $_value;
+  }
+  @if ($_value == true)  {
+    @return 1;
+  }
+  @if ($_value == false) {
+    @return 0;
+  }
+  @if ($_type != 'string') {
+    @error $_error;
+    @return 0;
+  }
+
+  $result: 0;
+  $_pointer: 1;
+  $_first-character: str-slice($_value, $_pointer, $_pointer);
+  $_allowed-first-character: join(('-', '.'), $_ngx-decimals);
+
+  @if not index($_allowed-first-character, $_first-character) {
+    @error $_error;
+    @return 0;
+  }
+
+  @if ($_first-character == '.') {
+    $_value: '0' + $_value;
+  }
+
+  $_found-integer: _ngx-find-integer($_value, $_pointer);
+  $_pointer: nth($_found-integer, 1);
+  $result: nth($_found-integer, 2);
+
+  // If there still is a dot, it means we have to check for the digits part of the value.
+  @if (str-slice($_value, $_pointer, $_pointer) == '.') {
+    $_found-digits: _ngx-find-digits($_value, $_pointer);
+    $_pointer: nth($_found-digits, 1);
+    $_digits: nth($_found-digits, 2);
+    $result: $result + $_digits;
+  }
+
+  // If the first character is a minus symbol, it means the number is negative.
+  @if ($_first-character == '-') {
+    $result: $result * -1;
+  }
+
+  // If we are still not done with the evaluation, it means there could be a CSS unit.
+  @if ($_pointer <= str-length($_value)) {
+    $result: _ngx-unit($result, str-slice($_value, $_pointer));
+
+    @if not $result {
+      @error $_error;
+      @return 0;
+    }
+  }
+
+  @return $result;
+}
+
+@function ngx-to-rem($font-size, $root-font-size) {
+  @if unit($font-size) != unit($root-font-size) {
+    @error '$font-size need to have same unit with $root-font-size';
+    @return 0;
+  }
+
+  $_font-size: ngx-strip-unit($font-size);
+  $_root-font-size: ngx-strip-unit($root-font-size);
+
+  @return ($_font-size / $_root-font-size) * 1rem;
+}
+
+@function ngx-strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+
+@function _ngx-find-digits($source, $pointer) {
+  $_source: to-lower-case($source);
+  $_length: str-length($source);
+  $_result: 0;
+  $_runs: 1;
+  $result_pointer: $pointer;
+
+  @while ($result_pointer <= $_length) {
+    $_token: str-slice($_source, $result_pointer, $result_pointer);
+    $_index: index($_ngx-decimals, $_token);
+
+    @if ($_index and $_index > 0) {
+      $_runs: ($_runs * 10);
+      $_result: ($_result * 10) + ($_index - 1);
+    }
+    @else {
+      @return $result_pointer, ($_result / $_runs);
+    }
+
+    $result_pointer: ($result_pointer + 1);
+  }
+
+  @return $result_pointer, ($_result / $_runs);
+}
+
+@function _ngx-find-integer($source, $pointer) {
+  $_source: to-lower-case($source);
+  $_length: str-length($source);
+  $result_pointer: $pointer;
+  $result_value: 0;
+
+  @while ($result_pointer <= $_length) {
+    $_token: str-slice($_source, $result_pointer, $result_pointer);
+    $_index: index($_ngx-decimals, $_token);
+
+    @if $_index {
+      $result: ($result_value * 10) + ($_index - 1);
+    }
+    @else {
+      @return $result_pointer, $result_value;
+    }
+
+    $result_pointer: ($result_pointer + 1);
+  }
+
+  @return $result_pointer, $result_value;
+}
+
+@function _ngx-unit($number, $unit) {
+  @if map-has-key($_ngx-units, $unit) {
+    @return ($number * map-get($_ngx-units, $unit));
+  }
+
+  @return null;
+}
