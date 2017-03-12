@@ -1,0 +1,9 @@
+@function ngx-str-replace($string, $search, $replace: '') {
+  $_index: str-index($string, $search);
+
+  @if $_index {
+    @return str-slice($string, 1, $_index - 1) + $replace + ngx-str-replace(str-slice($string, $_index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
