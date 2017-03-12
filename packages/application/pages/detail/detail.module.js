@@ -6,7 +6,6 @@ import { DetailPage } from './detail.page';
 
 
 @NgModule({
-  id: 'ngx-detail-page',
   imports: [
     DetailPageRouteModule,
   ],
