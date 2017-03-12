@@ -19,7 +19,6 @@ import { ngxApp } from './app';
 
 
 @NgModule({
-  id: 'ngx-app',
   imports: [
     BrowserModule,
     DetailPageModule,

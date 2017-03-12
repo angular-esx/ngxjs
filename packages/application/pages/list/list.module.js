@@ -6,7 +6,6 @@ import { ListPage } from './list.page';
 
 
 @NgModule({
-  id: 'ngx-list-page',
   imports: [
     ListPageRouteModule,
   ],
