@@ -12,6 +12,20 @@ $ngx-white-12-opacity: rgba(#ffffff, 0.12);
 $ngx-black-6-opacity: rgba(#000000, 0.06);
 $ngx-white-6-opacity: rgba(#ffffff, 0.06);
 
+$ngx-black: (
+  500: #000000,
+  contrast: (
+    500: $ngx-white-87-opacity,
+  )
+);
+
+$ngx-white: (
+  500: #ffffff,
+  contrast: (
+    500: $ngx-black-87-opacity,
+  )
+);
+
 $ngx-red: (
   50: #ffebee,
   100: #ffcdd2,
@@ -231,7 +245,7 @@ $ngx-light-blue: (
     200: $ngx-black-87-opacity,
     300: $ngx-black-87-opacity,
     400: $ngx-black-87-opacity,
-    500: #ffffff,
+    500: $ngx-black-87-opacity,
     600: #ffffff,
     700: #ffffff,
     800: #ffffff,
@@ -264,8 +278,8 @@ $ngx-cyan: (
     200: $ngx-black-87-opacity,
     300: $ngx-black-87-opacity,
     400: $ngx-black-87-opacity,
-    500: #ffffff,
-    600: #ffffff,
+    500: $ngx-black-87-opacity,
+    600: $ngx-black-87-opacity,
     700: #ffffff,
     800: #ffffff,
     900: $ngx-white-87-opacity,
@@ -300,8 +314,8 @@ $ngx-teal: (
     500: #ffffff,
     600: #ffffff,
     700: #ffffff,
-    800: $ngx-white-87-opacity,
-    900: $ngx-white-87-opacity,
+    800: #ffffff,
+    900: #ffffff,
     A100: $ngx-black-87-opacity,
     A200: $ngx-black-87-opacity,
     A400: $ngx-black-87-opacity,
@@ -574,7 +588,6 @@ $ngx-brown: (
 );
 
 $ngx-grey: (
-  0: #ffffff,
   50: #fafafa,
   100: #f5f5f5,
   200: #eeeeee,
@@ -591,7 +604,6 @@ $ngx-grey: (
   A400: #bdbdbd,
   A700: #616161,
   contrast: (
-    0: $ngx-black-87-opacity,
     50: $ngx-black-87-opacity,
     100: $ngx-black-87-opacity,
     200: $ngx-black-87-opacity,
