@@ -1,0 +1,93 @@
+.ngx-ColorPage {
+  display: block;
+}
+
+.color-group {
+  float: left;
+  width: 30%;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  padding-bottom: 40px;
+}
+
+.color-group span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.color-group:nth-of-type(3n+1) {
+  clear: left;
+}
+
+.main-color {
+  padding: 10px 15px 11px;
+  margin: 0;
+}
+
+.main-color .name {
+  display: block;
+  margin-bottom: 53px;
+}
+
+.light-strong {
+  color: #ffffff;
+}
+
+.color {
+  padding: 10px 15px 11px;
+  margin: 0;
+}
+
+.color .hex {
+  float: right;
+  text-transform: uppercase;
+  display: block;
+}
+
+.divide {
+  border-top: 4px solid #fafafa;
+}
+
+/** Test Palettes **/
+
+$ngx-colors-list: (
+  ngx-black: $ngx-black,
+  ngx-white: $ngx-white,
+  ngx-red: $ngx-red,
+  ngx-pink: $ngx-pink,
+  ngx-purple: $ngx-purple,
+  ngx-deep-purple: $ngx-deep-purple,
+  ngx-indigo: $ngx-indigo,
+  ngx-blue: $ngx-blue,
+  ngx-light-blue: $ngx-light-blue,
+  ngx-cyan: $ngx-cyan,
+  ngx-teal: $ngx-teal,
+  ngx-green: $ngx-green,
+  ngx-light-green: $ngx-light-green,
+  ngx-lime: $ngx-lime,
+  ngx-yellow: $ngx-yellow,
+  ngx-amber: $ngx-amber,
+  ngx-orange: $ngx-orange,
+  ngx-deep-orange: $ngx-deep-orange,
+  ngx-brown: $ngx-brown,
+  ngx-grey: $ngx-grey,
+  ngx-blue-grey: $ngx-blue-grey
+);
+
+@each $ngx-color-name, $ngx-color-variable in $ngx-colors-list {
+  @each $hue, $color in $ngx-color-variable {
+    @if $hue == 500 {
+      .#{$ngx-color-name}-primary {
+        background: ngx-color($ngx-color-variable, $hue);
+        color: ngx-contrast($ngx-color-variable, $hue);
+      }
+    }
+    @if $hue != 'contrast' {
+      .#{$ngx-color-name}-#{$hue} {
+        background: ngx-color($ngx-color-variable, $hue);
+        color: ngx-contrast($ngx-color-variable, $hue);
+      }
+    }
+  }
+}
+
