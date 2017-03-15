@@ -1,0 +1,34 @@
+@import './_variables.scss';
+@import './_functions.scss';
+
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin ngx-media-breakpoint-down($name, $breakpoints: $ngx-grid-breakpoints) {
+  $max: ngx-breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Media that spans multiple breakpoint widths.
+// Makes the @content apply between the min and max breakpoints
+@mixin ngx-media-breakpoint-between($lower, $upper, $breakpoints: $ngx-grid-breakpoints) {
+  @include ngx-media-breakpoint-up($lower, $breakpoints) {
+    @include ngx-media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+// Media between the breakpoint's minimum and maximum widths.
+// No minimum for the smallest breakpoint, and no maximum for the largest one.
+// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+@mixin ngx-media-breakpoint-only($name, $breakpoints: $ngx-grid-breakpoints) {
+  @include ngx-media-breakpoint-between($name, $name, $breakpoints) {
+    @content;
+  }
+}
