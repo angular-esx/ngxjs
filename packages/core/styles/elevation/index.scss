@@ -1,0 +1,24 @@
+// A collection of mixins and CSS classes that can be used to apply elevation to a material
+// element.
+// See: https://www.google.com/design/spec/what-is-material/elevation-shadows.html
+// Examples:
+//
+//
+// .ngx-button-z2 {
+//   @include ngx-elevation(2);
+// }
+//
+// <div class="ngx-elevation-z2"><p>Some content</p></div>
+//
+// For an explanation of the design behind how elevation is implemented, see the design doc at
+// https://goo.gl/Kq0k9Z.
+
+// Colors for umbra, penumbra, and ambient shadows. As described in the design doc, each elevation
+// level is created using a set of 3 shadow values, one for umbra (the shadow representing the
+// space completely obscured by an object relative to its light source), one for penumbra (the
+// space partially obscured by an object), and one for ambient (the space which contains the object
+// itself). For a further explanation of these terms and their meanings, see
+// https://en.wikipedia.org/wiki/Umbra,_penumbra_and_antumbra.
+
+@import './_functions.scss';
+@import './_mixin.scss';
