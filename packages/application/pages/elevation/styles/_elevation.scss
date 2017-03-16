@@ -10,6 +10,10 @@
   @include ngx-elevation(2);
 }
 
+.ngx-card_active {
+  @include ngx-elevation(8);
+}
+
 .ngx-button-floating {
   width: 56px;
   height: 56px;
