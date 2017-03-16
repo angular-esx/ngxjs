@@ -1,0 +1,22 @@
+// The default animation curves used by material design.
+$ngx-linear-out-slow-in-timing-function: cubic-bezier(0, 0, 0.2, 0.1) !default;
+$ngx-fast-out-slow-in-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$ngx-fast-out-linear-in-timing-function: cubic-bezier(0.4, 0, 1, 1) !default;
+
+$ngx-ease-in-out-curve-function: cubic-bezier(0.35, 0, 0.25, 1) !default;
+
+$ngx-ease-out-swift-duration: 400ms !default;
+$ngx-ease-out-swift-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1) !default;
+$ngx-ease-out-swift: all $ngx-ease-out-swift-duration $ngx-ease-out-swift-timing-function !default;
+
+$ngx-ease-in-swift-duration: 300ms !default;
+$ngx-ease-in-swift-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2) !default;
+$ngx-ease-in-swift: all $ngx-ease-in-swift-duration $ngx-ease-in-swift-timing-function !default;
+
+$ngx-ease-in-out-swift-duration: 500ms !default;
+$ngx-ease-in-out-swift-timing-function: $ngx-ease-in-out-curve-function !default;
+$ngx-ease-in-out-swift: all $ngx-ease-in-out-swift-duration $ngx-ease-in-out-swift-timing-function !default;
+
+$ngx-linear-swift-duration: 80ms !default;
+$ngx-linear-swift-timing-function: linear !default;
+$ngx-linear-swift: all $ngx-linear-swift-duration $ngx-linear-swift-timing-function !default;
