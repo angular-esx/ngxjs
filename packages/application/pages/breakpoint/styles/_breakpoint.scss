@@ -4,11 +4,7 @@
 
 .title {
   /**
-  @media (max-width: 479px) {
-    .title {
-      color: #008000;
-    }
-  }
+  @media (max-width: 479px) { .title { color: #008000; } }
   **/
   // media max-width sm
   @include ngx-media-breakpoint-down('xs') {
@@ -16,11 +12,7 @@
   }
 
   /**
-  @media (min-width: 480px) {
-    .title {
-      color: #ff0000;
-    }
-  }
+  @media (min-width: 480px) { .title { color: #ff0000; } }
   **/
   // media min-width sm
   @include ngx-media-breakpoint-up('sm') {
@@ -28,11 +20,7 @@
   }
 
   /**
-  @media (min-width: 600px) {
-    .title {
-      color: #0000ff;
-    }
-  }
+  @media (min-width: 600px) { .title { color: #0000ff; } }
   **/
   // media min-width next(sm) => media min-width md
   @include ngx-media-breakpoint-up(ngx-breakpoint-next('sm')) {
@@ -41,11 +29,7 @@
 }
 
 /**
-@media (min-width: 600px) {
-  .title {
-    color: #ff0000;
-  }
-}
+@media (min-width: 600px) { .title { color: #ff0000; } }
 **/
 // get min(md)
 @media (min-width: ngx-breakpoint-min('md')) {
@@ -87,5 +71,67 @@
 @include ngx-media-breakpoint-only('md') {
   .title {
     font-size: 24px;
+  }
+}
+
+
+/** Responsive Utilities **/
+.ngx-hidden-xs-down {
+  @include ngx-media-breakpoint-down('xs') {
+    display: none;
+  }
+}
+
+.ngx-hidden-sm-down {
+  @include ngx-media-breakpoint-down('sm') {
+    display: none;
+  }
+}
+
+.ngx-hidden-md-down {
+  @include ngx-media-breakpoint-down('md') {
+    display: none;
+  }
+}
+
+.ngx-hidden-lg-down {
+  @include ngx-media-breakpoint-down('lg') {
+    display: none;
+  }
+}
+
+.ngx-hidden-xl-down {
+  @include ngx-media-breakpoint-down('xl') {
+    display: none;
+  }
+}
+
+.ngx-hidden-xs-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next('xs')) {
+    display: none;
+  }
+}
+
+.ngx-hidden-sm-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next('sm')) {
+    display: none;
+  }
+}
+
+.ngx-hidden-md-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next('md')) {
+    display: none;
+  }
+}
+
+.ngx-hidden-lg-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next('lg')) {
+    display: none;
+  }
+}
+
+.ngx-hidden-xl-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next('xl')) {
+    display: none;
   }
 }
