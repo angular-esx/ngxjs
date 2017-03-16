@@ -1,132 +1,32 @@
-<div class="ngx-typo-container">
-  <div class="ngx-display-1">Display 1</div>
-</div>
+<div class="ngx-ListPage__AppBar">
+  <div class="ngx-ListPage__AppBarTitle">List Page</div>
+  <div class="ngx-ListPage__AvailableLists">
+    <div
+      class="ngx-ListPage__AvailableList"
+      [class.ngx-ListPage__AvailableList_state_active]="_activeList === 'dense-list'"
+      (click)="_display('dense-list')"
+    >
+      Dense List
+    </div>
 
-<hr/>
+    <div
+      class="ngx-ListPage__AvailableList"
+      [class.ngx-ListPage__AvailableList_state_active]="_activeList === 'english-list'"
+      (click)="_display('english-list')"
+    >
+      English List
+    </div>
 
-<div class="ngx-typo-container">
-  <div class="ngx-display-2">Display 2</div>
-</div>
-
-<hr/>
-
-<div class="ngx-typo-container">
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-3">Display 3</div>
-    <div class="ngx-display-4">Display 4</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-3">Display 3</div>
-    <div class="ngx-headline">Headline</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-3">Display 3</div>
-    <div class="ngx-subheading-1">Subheading 1</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-3">Display 3</div>
-    <div class="ngx-subheading-2">Subheading 2</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-3">Display 3</div>
-    <div class="ngx-body-1">Body 1</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-3">Display 3</div>
-    <div class="ngx-body-2">Body 2</div>
+    <div
+      class="ngx-ListPage__AvailableList"
+      [class.ngx-ListPage__AvailableList_state_active]="_activeList === 'tall-list'"
+      (click)="_display('tall-list')"
+    >
+      Tall List
+    </div>
   </div>
 </div>
 
-<hr/>
+<div class="ngx-ListPage__Heading">ListView Example</div>
 
-<div class="ngx-typo-container">
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-4">Display 4</div>
-    <div class="ngx-headline">Headline</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-4">Display 4</div>
-    <div class="ngx-subheading-1">Subheading 1</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-4">Display 4</div>
-    <div class="ngx-subheading-2">Subheading 2</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-4">Display 4</div>
-    <div class="ngx-body-1">Body 1</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-display-4">Display 4</div>
-    <div class="ngx-body-2">Body 2</div>
-  </div>
-</div>
-
-<hr/>
-
-<div class="ngx-typo-container">
-  <div class="ngx-headline">Headline</div>
-</div>
-
-<hr/>
-
-<div class="ngx-typo-container">
-  <div class="ngx-title">Title</div>
-</div>
-
-<hr/>
-
-<div class="ngx-typo-container">
-  <div class="ngx-typo-leading">
-    <div class="ngx-subheading-1">Subheading 1</div>
-    <div class="ngx-subheading-2">Subheading 2</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-subheading-1">Subheading 1</div>
-    <div class="ngx-body-1">Body 1</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-subheading-1">Subheading 1</div>
-    <div class="ngx-body-2">Body 2</div>
-  </div>
-</div>
-
-<hr/>
-
-<div class="ngx-typo-container">
-  <div class="ngx-typo-leading">
-    <div class="ngx-subheading-2">Subheading 2</div>
-    <div class="ngx-body-1">Body 1</div>
-  </div>
-
-  <div class="ngx-typo-leading">
-    <div class="ngx-subheading-2">Subheading 2</div>
-    <div class="ngx-body-2">Body 2</div>
-  </div>
-</div>
-
-<hr/>
-
-<div class="ngx-typo-container">
-  <div class="ngx-typo-leading">
-    <div class="ngx-body-1">Body 1</div>
-    <div class="ngx-body-2">Body 2</div>
-  </div>
-</div>
-
-<hr/>
-
-<div class="ngx-typo-container">
-  <div class="ngx-caption">Caption</div>
-</div>
+<div #listContainer></div>
