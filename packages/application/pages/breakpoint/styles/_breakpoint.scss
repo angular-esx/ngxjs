@@ -1,0 +1,91 @@
+.ngx-DetailPage {
+  display: block;
+}
+
+.title {
+  /**
+  @media (max-width: 479px) {
+    .title {
+      color: #008000;
+    }
+  }
+  **/
+  // media max-width sm
+  @include ngx-media-breakpoint-down('xs') {
+    color: #008000;
+  }
+
+  /**
+  @media (min-width: 480px) {
+    .title {
+      color: #ff0000;
+    }
+  }
+  **/
+  // media min-width sm
+  @include ngx-media-breakpoint-up('sm') {
+    color: #ff0000;
+  }
+
+  /**
+  @media (min-width: 600px) {
+    .title {
+      color: #0000ff;
+    }
+  }
+  **/
+  // media min-width next(sm) => media min-width md
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next('sm')) {
+    color: #0000ff;
+  }
+}
+
+/**
+@media (min-width: 600px) {
+  .title {
+    color: #ff0000;
+  }
+}
+**/
+// get min(md)
+@media (min-width: ngx-breakpoint-min('md')) {
+  .title {
+    background: #ff0000;
+  }
+}
+
+/**
+@media (max-width: 839px) {
+  .title { color: #ff0000; }
+}
+**/
+// get max(md)
+@media (max-width: ngx-breakpoint-max('md')) {
+  .title {
+    background: #ffff00;
+  }
+}
+
+/**
+@media (min-width: 600px) and (max-width: 959px) {
+  .title { font-size: 20px; }
+}
+**/
+// @media min-width md and max-width lg
+@include ngx-media-breakpoint-between('md', 'lg') {
+  .title {
+    font-size: 36px;
+  }
+}
+
+/**
+@media (min-width: 600px) and (max-width: 839px) {
+  .title { font-size: 16px; }
+}
+**/
+// @media min-width md and max-width md
+@include ngx-media-breakpoint-only('md') {
+  .title {
+    font-size: 24px;
+  }
+}
