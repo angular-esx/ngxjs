@@ -1,0 +1,12 @@
+@mixin ngx-typos($script-type, $prefix: 'ngx') {
+  $_typos: ngx-typos($script-type);
+  $_keys: map-keys($_typos);
+  $_prefix: if($prefix, #{$prefix}-, '');
+
+  @each $_key in $_keys {
+    .#{$_prefix}#{$_key} {
+      @include ngx-typo($_key, $script-type);
+      @include ngx-typo-leading($_key, $script-type, $prefix);
+    }
+  }
+}
