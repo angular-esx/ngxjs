@@ -1,34 +1,61 @@
-@mixin ngx-typo($typo-key, $typos: $ngx-typos, $prefix: 'ngx') {
-  $_leading: null;
-  $_leading-keys: null;
-  $_typo: map-get($typos, $typo-key);
+@mixin ngx-typo(
+  $typo-key,
+  $script-type,
+  $include: null,
+  $exclude: null
+) {
+  $_typo: ngx-typo($typo-key, $script-type);
   $_typo-keys: map-keys($_typo);
-  $_prefix: if($prefix, #{$prefix}-, '');
 
   @each $_typo-key in $_typo-keys {
-    @if $_typo-key == 'leading' {
-      $_leading: map-get($_typo, $_typo-key);
-      $_leading-keys: map-keys($_leading);
+    @if ($exclude and index($exclude, $_typo-key)) or ($include and (not index($include, $_typo-key))) {
+      $_typo: map-remove($_typo, $_typo-key);
+    }
+  }
 
-      @each $_leading-key in $_leading-keys {
-        + .#{$_prefix}#{$_leading-key} {
-          margin-top: map-get($_leading, $_leading-key);
-        }
-      }
-    }
-    @else {
-      #{$_typo-key}: map-get($_typo, $_typo-key);
-    }
+  $_typo-keys: map-keys($_typo);
+
+  @each $_typo-key in $_typo-keys {
+    #{$_typo-key}: map-get($_typo, $_typo-key);
   }
 }
 
-@mixin ngx-typos($typos: $ngx-typos, $prefix: 'ngx') {
-  $_keys: map-keys($typos);
-  $_prefix: if($prefix, #{$prefix}-, '');
+@mixin ngx-typo-leading($typo-key, $script-type, $prefix: 'ngx') {
+  $_typos: ngx-typos($script-type);
 
-  @each $_key in $_keys {
-    .#{$_prefix}#{$_key} {
-      @include ngx-typo($_key, $typos, $prefix);
+  @if $_typos {
+    $_prefix: if($prefix, #{$prefix}-, '');
+    $_typo-keys: map-keys($_typos);
+    $_typo: map-get($_typos, $typo-key);
+
+    @if map-has-key($_typo, 'line-height') {
+      $_index: index($_typo-keys, $typo-key);
+      $_typo_: null;
+
+      @each $_typo-key in $_typo-keys {
+        $_typo_: map-get($_typos, $_typo-key);
+
+        @if (index($_typo-keys, $_typo-key) <= $_index) or (not map-has-key($_typo_, 'line-height')) {
+          $_typos: map-remove($_typos , $_typo-key);
+        }
+      }
+
+      $_typo-keys: map-keys($_typos);
+      $_typo-keys-length: length($_typo-keys);
+      $_margin-top: 0;
+
+      @if $_typo-keys-length > 0 {
+        @each $_typo-key in $_typo-keys {
+          $_typo_: map-get($_typos, $_typo-key);
+          $_margin-top: (ngx-strip-unit(map-get($_typo, 'line-height')) - ngx-strip-unit(map-get($_typo_, 'line-height')));
+
+          @if $_margin-top > 0 {
+            + .#{$_prefix}#{$_typo-key} {
+              margin-top: $_margin-top * 1rem;
+            }
+          }
+        }
+      }
     }
   }
 }

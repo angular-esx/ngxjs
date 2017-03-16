@@ -1,4 +1,4 @@
-$ngx-root-font-family: 'Roboto', sans-serif !default;
+$ngx-root-font-family: 'Roboto', 'Noto Sans', sans-serif !default;
 $ngx-root-font-size: 14px !default;
 $ngx-baseline-height: 4px !default;
 
@@ -6,4 +6,14 @@ $ngx-font-weights: (
   light: 300,
   regular: 400,
   medium: 500,
+  bold: 700,
+) !default;
+
+$ngx-font-trackings: (
+  -10: -10,
+  -5: -5,
+  0: 0,
+  5: 5,
+  10: 10,
+  20: 20,
 ) !default;
