@@ -1,11 +1,11 @@
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: $ngx-root-font-size;
 }
 
 body {
-  line-height: 1;
-  font-family: 'Roboto', sans-serif;
+  font-family: $ngx-root-font-family;
+  font-size: 1rem;
 }
 
 *, *:before, *:after {
