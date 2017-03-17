@@ -1,8 +1,10 @@
 $ngx-grid-breakpoints: (
-  xs: 0,
-  sm: 480px,
-  md: 600px,
-  lg: 840px,
-  xl: 960px,
-  xxl: 1280px
+  0: 0,
+  480: 480px,
+  600: 600px,
+  840: 840px,
+  960: 960px,
+  1280: 1280px,
+  1440: 1440px,
+  1600: 1600px
 ) !default;
