@@ -1,6 +1,20 @@
 @import './_variables.scss';
 @import './_functions.scss';
 
+
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin ngx-media-breakpoint-up($name, $breakpoints: $ngx-grid-breakpoints) {
+  $min: ngx-breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
 // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
 // Makes the @content apply to the given breakpoint and narrower.
 @mixin ngx-media-breakpoint-down($name, $breakpoints: $ngx-grid-breakpoints) {
