@@ -4,26 +4,26 @@
 
 .title {
   /**
-  @media (max-width: 479px) { .title { color: #008000; } }
+  @media (max-width: 599px) { .title { color: #008000; } }
   **/
-  // media max-width sm
-  @include ngx-media-breakpoint-down('xs') {
+  // media max-width 480
+  @include ngx-media-breakpoint-down(480) {
     color: #008000;
   }
 
   /**
   @media (min-width: 480px) { .title { color: #ff0000; } }
   **/
-  // media min-width sm
-  @include ngx-media-breakpoint-up('sm') {
+  // media min-width 480
+  @include ngx-media-breakpoint-up(480) {
     color: #ff0000;
   }
 
   /**
   @media (min-width: 600px) { .title { color: #0000ff; } }
   **/
-  // media min-width next(sm) => media min-width md
-  @include ngx-media-breakpoint-up(ngx-breakpoint-next('sm')) {
+  // media min-width next(480) => media min-width 600
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next(480)) {
     color: #0000ff;
   }
 }
@@ -31,8 +31,8 @@
 /**
 @media (min-width: 600px) { .title { color: #ff0000; } }
 **/
-// get min(md)
-@media (min-width: ngx-breakpoint-min('md')) {
+// get min(600)
+@media (min-width: ngx-breakpoint-min(600)) {
   .title {
     background: #ff0000;
   }
@@ -43,8 +43,8 @@
   .title { color: #ff0000; }
 }
 **/
-// get max(md)
-@media (max-width: ngx-breakpoint-max('md')) {
+// get max(600)
+@media (max-width: ngx-breakpoint-max(600)) {
   .title {
     background: #ffff00;
   }
@@ -55,8 +55,8 @@
   .title { font-size: 20px; }
 }
 **/
-// @media min-width md and max-width lg
-@include ngx-media-breakpoint-between('md', 'lg') {
+// @media min-width 600 and max-width 840
+@include ngx-media-breakpoint-between(600, 840) {
   .title {
     font-size: 36px;
   }
@@ -67,8 +67,8 @@
   .title { font-size: 16px; }
 }
 **/
-// @media min-width md and max-width md
-@include ngx-media-breakpoint-only('md') {
+// @media min-width 600 and max-width 600
+@include ngx-media-breakpoint-only(600) {
   .title {
     font-size: 24px;
   }
@@ -76,62 +76,62 @@
 
 
 /** Responsive Utilities **/
-.ngx-hidden-xs-down {
-  @include ngx-media-breakpoint-down('xs') {
+.ngx-hidden-480-down {
+  @include ngx-media-breakpoint-down(0) {
     display: none;
   }
 }
 
-.ngx-hidden-sm-down {
-  @include ngx-media-breakpoint-down('sm') {
+.ngx-hidden-600-down {
+  @include ngx-media-breakpoint-down(480) {
     display: none;
   }
 }
 
-.ngx-hidden-md-down {
-  @include ngx-media-breakpoint-down('md') {
+.ngx-hidden-840-down {
+  @include ngx-media-breakpoint-down(600) {
     display: none;
   }
 }
 
-.ngx-hidden-lg-down {
-  @include ngx-media-breakpoint-down('lg') {
+.ngx-hidden-960-down {
+  @include ngx-media-breakpoint-down(840) {
     display: none;
   }
 }
 
-.ngx-hidden-xl-down {
-  @include ngx-media-breakpoint-down('xl') {
+.ngx-hidden-1280-down {
+  @include ngx-media-breakpoint-down(960) {
     display: none;
   }
 }
 
-.ngx-hidden-xs-up {
-  @include ngx-media-breakpoint-up(ngx-breakpoint-next('xs')) {
+.ngx-hidden-480-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next(0)) {
     display: none;
   }
 }
 
-.ngx-hidden-sm-up {
-  @include ngx-media-breakpoint-up(ngx-breakpoint-next('sm')) {
+.ngx-hidden-600-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next(480)) {
     display: none;
   }
 }
 
-.ngx-hidden-md-up {
-  @include ngx-media-breakpoint-up(ngx-breakpoint-next('md')) {
+.ngx-hidden-840-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next(600)) {
     display: none;
   }
 }
 
-.ngx-hidden-lg-up {
-  @include ngx-media-breakpoint-up(ngx-breakpoint-next('lg')) {
+.ngx-hidden-960-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next(840)) {
     display: none;
   }
 }
 
-.ngx-hidden-xl-up {
-  @include ngx-media-breakpoint-up(ngx-breakpoint-next('xl')) {
+.ngx-hidden-1280-up {
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next(960)) {
     display: none;
   }
 }
