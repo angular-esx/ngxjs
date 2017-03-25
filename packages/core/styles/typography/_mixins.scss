@@ -4,15 +4,7 @@
   $include: null,
   $exclude: null
 ) {
-  $_typo: ngx-typo($typo-key, $script-type);
-  $_typo-keys: map-keys($_typo);
-
-  @each $_typo-key in $_typo-keys {
-    @if ($exclude and index($exclude, $_typo-key)) or ($include and (not index($include, $_typo-key))) {
-      $_typo: map-remove($_typo, $_typo-key);
-    }
-  }
-
+  $_typo: ngx-map-clone(ngx-typo($typo-key, $script-type), $include, $exclude);
   $_typo-keys: map-keys($_typo);
 
   @each $_typo-key in $_typo-keys {
@@ -20,11 +12,16 @@
   }
 }
 
-@mixin ngx-typo-leading($typo-key, $script-type, $prefix: 'ngx') {
-  $_typos: ngx-typos($script-type);
+@mixin ngx-typo-leading(
+  $typo-key,
+  $script-type,
+  $include: null,
+  $exclude: null,
+  $func-selector: null
+) {
+  $_typos: ngx-map-clone(ngx-typos($script-type), $include, $exclude);
 
-  @if $_typos {
-    $_prefix: if($prefix, #{$prefix}-, '');
+  @if $_typos and map-has-key($_typos, $typo-key) {
     $_typo-keys: map-keys($_typos);
     $_typo: map-get($_typos, $typo-key);
 
@@ -49,8 +46,8 @@
           $_typo_: map-get($_typos, $_typo-key);
           $_margin-top: (ngx-strip-unit(map-get($_typo, 'line-height')) - ngx-strip-unit(map-get($_typo_, 'line-height')));
 
-          @if $_margin-top > 0 {
-            + .#{$_prefix}#{$_typo-key} {
+          @if $func-selector and $_margin-top > 0 {
+            + #{call($func-selector, $_typo-key)} {
               margin-top: $_margin-top * 1rem;
             }
           }

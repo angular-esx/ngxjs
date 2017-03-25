@@ -42,12 +42,14 @@ $ngx-english-script-typos: (
     font-weight: ngx-font-weight(regular),
   ),
   body-1: (
+    max-width: ngx-space(110),
     line-height: ngx-line-height(body-1, english),
     letter-spacing: ngx-letter-spacing(10),
     font-size: ngx-font-size(13px),
     font-weight: ngx-font-weight(medium),
   ),
   body-2: (
+    max-width: ngx-space(110),
     line-height: ngx-line-height(body-2, english),
     letter-spacing: ngx-letter-spacing(10),
     font-size: ngx-font-size(14px),
@@ -104,12 +106,14 @@ $ngx-dense-script-typos: (
     font-weight: ngx-font-weight(regular),
   ),
   body-1: (
+    max-width: ngx-space(110),
     line-height: ngx-line-height(body-1, dense),
     letter-spacing: ngx-letter-spacing(10),
     font-size: ngx-font-size(14px),
     font-weight: ngx-font-weight(medium),
   ),
   body-2: (
+    max-width: ngx-space(110),
     line-height: ngx-line-height(body-2, dense),
     letter-spacing: ngx-letter-spacing(10),
     font-size: ngx-font-size(14px),
@@ -166,12 +170,14 @@ $ngx-tall-script-typos: (
     font-weight: ngx-font-weight(regular),
   ),
   body-1: (
+    max-width: ngx-space(110),
     line-height: ngx-line-height(body-1, tall),
     letter-spacing: ngx-letter-spacing(10),
     font-size: ngx-font-size(14px),
     font-weight: ngx-font-weight(bold),
   ),
   body-2: (
+    max-width: ngx-space(110),
     line-height: ngx-line-height(body-2, tall),
     letter-spacing: ngx-letter-spacing(10),
     font-size: ngx-font-size(14px),
