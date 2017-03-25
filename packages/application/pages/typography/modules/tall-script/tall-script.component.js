@@ -1,7 +1,4 @@
-import {
-  Component,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -11,7 +8,6 @@ import {
   host: {
     '[class.ngx-TallScriptComponent]': 'true',
   },
-  encapsulation: ViewEncapsulation.None,
 })
 class TallScriptComponent {}
 

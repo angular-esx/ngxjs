@@ -1,4 +1,8 @@
 .ngx-TallListComponent {
   display: block;
   font-family: 'Noto Sans';
+
+  .ngx-ListPage__ListLine:not(:first-child) {
+    font-family: $ngx-root-font-family-serif;
+  }
 }

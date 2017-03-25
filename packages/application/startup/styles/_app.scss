@@ -10,7 +10,3 @@ body {
   display: block;
   height: auto;
 }
-
-@include ngx-typos(english);
-@include ngx-typos(dense, 'ngx-dense');
-@include ngx-typos(tall, 'ngx-tall');
