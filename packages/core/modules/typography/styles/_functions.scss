@@ -1,0 +1,10 @@
+@function ngx-typo-selector($typo-key) {
+  $selector: 'ngx';
+  $_strings: ngx-str-split($typo-key, '-');
+
+  @each $_string in $_strings {
+    $selector: $selector + ngx-str-upper-case-first($_string);
+  }
+
+  @return '[' + $selector + ']';
+}
