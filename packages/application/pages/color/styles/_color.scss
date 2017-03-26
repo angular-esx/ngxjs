@@ -1,0 +1,94 @@
+.ngx-ColorPage {
+  display: block;
+  overflow: auto;
+}
+
+.color-group {
+  float: left;
+  width: 30%;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  padding-bottom: 40px;
+}
+
+.color-group span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.color-group:nth-of-type(3n+1) {
+  clear: left;
+}
+
+.main-color {
+  padding: 10px 15px 11px;
+  margin: 0;
+}
+
+.main-color .name {
+  display: block;
+  margin-bottom: 53px;
+}
+
+.light-strong {
+  color: #ffffff;
+}
+
+.color {
+  padding: 10px 15px 11px;
+  margin: 0;
+}
+
+.color .hex {
+  float: right;
+  text-transform: uppercase;
+  display: block;
+}
+
+.divide {
+  border-top: 4px solid #fafafa;
+}
+
+/** Test Palettes **/
+
+$ngx-colors-list: (
+  ngx-black: $ngx-palette-black,
+  ngx-white: $ngx-palette-white,
+  ngx-red: $ngx-palette-red,
+  ngx-pink: $ngx-palette-pink,
+  ngx-purple: $ngx-palette-purple,
+  ngx-deep-purple: $ngx-palette-deep-purple,
+  ngx-indigo: $ngx-palette-indigo,
+  ngx-blue: $ngx-palette-blue,
+  ngx-light-blue: $ngx-palette-light-blue,
+  ngx-cyan: $ngx-palette-cyan,
+  ngx-teal: $ngx-palette-teal,
+  ngx-green: $ngx-palette-green,
+  ngx-light-green: $ngx-palette-light-green,
+  ngx-lime: $ngx-palette-lime,
+  ngx-yellow: $ngx-palette-yellow,
+  ngx-amber: $ngx-palette-amber,
+  ngx-orange: $ngx-palette-orange,
+  ngx-deep-orange: $ngx-palette-deep-orange,
+  ngx-brown: $ngx-palette-brown,
+  ngx-grey: $ngx-palette-grey,
+  ngx-blue-grey: $ngx-palette-blue-grey
+);
+
+@each $ngx-color-name, $ngx-color-variable in $ngx-colors-list {
+  @each $hue, $color in $ngx-color-variable {
+    @if $hue == 500 {
+      .#{$ngx-color-name}-primary {
+        background: ngx-color($ngx-color-variable, $hue);
+        color: ngx-color-contrast($ngx-color-variable, $hue);
+      }
+    }
+    @if $hue != 'contrast' {
+      .#{$ngx-color-name}-#{$hue} {
+        background: ngx-color($ngx-color-variable, $hue);
+        color: ngx-color-contrast($ngx-color-variable, $hue);
+      }
+    }
+  }
+}
+
