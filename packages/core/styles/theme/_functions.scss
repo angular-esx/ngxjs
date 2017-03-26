@@ -9,15 +9,15 @@
     lighter: map-get($base-palette, $lighter),
     darker: map-get($base-palette, $darker),
 
-    default-contrast: ngx-contrast($base-palette, $default),
-    lighter-contrast: ngx-contrast($base-palette, $lighter),
-    darker-contrast: ngx-contrast($base-palette, $darker)
+    default-contrast: ngx-color-contrast($base-palette, $default),
+    lighter-contrast: ngx-color-contrast($base-palette, $lighter),
+    darker-contrast: ngx-color-contrast($base-palette, $darker)
   ));
 
   // For each hue in the palette, add a "-contrast" color to the map.
   @each $hue, $color in $base-palette {
     $result: map_merge($result, (
-      '#{$hue}-contrast': ngx-contrast($base-palette, $hue)
+      '#{$hue}-contrast': ngx-color-contrast($base-palette, $hue)
     ));
   }
 
@@ -25,7 +25,7 @@
 }
 
 // Creates a container object for a light theme to be given to individual component theme mixins.
-@function ngx-light-theme($primary, $accent, $warn: ngx-palette($ngx-red)) {
+@function ngx-light-theme($primary, $accent, $warn: ngx-palette($ngx-palette-red)) {
   @return (
     primary: $primary,
     accent: $accent,
@@ -38,7 +38,7 @@
 
 
 // Creates a container object for a dark theme to be given to individual component theme mixins.
-@function ngx-dark-theme($primary, $accent, $warn: ngx-palette($ngx-red)) {
+@function ngx-dark-theme($primary, $accent, $warn: ngx-palette($ngx-palette-red)) {
   @return (
     primary: $primary,
     accent: $accent,

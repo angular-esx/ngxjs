@@ -1,8 +1,8 @@
 // Background palette for light themes.
 $ngx-light-theme-background: (
-  status-bar: map_get($ngx-grey, 300),
-  app-bar:    map_get($ngx-grey, 100),
-  background: map_get($ngx-grey, 50),
+  status-bar: map_get($ngx-palette-grey, 300),
+  app-bar:    map_get($ngx-palette-grey, 100),
+  background: map_get($ngx-palette-grey, 50),
   hover:      rgba(black, 0.04), // TODO(kara): check style with Material Design UX
   card:       white,
   dialog:     white,
@@ -13,13 +13,13 @@ $ngx-light-theme-background: (
 // Background palette for dark themes.
 $ngx-dark-theme-background: (
   status-bar: black,
-  app-bar:    map_get($ngx-grey, 900),
+  app-bar:    map_get($ngx-palette-grey, 900),
   background: #303030,
   hover:      rgba(white, 0.04), // TODO(kara): check style with Material Design UX
-  card:       map_get($ngx-grey, 800),
-  dialog:     map_get($ngx-grey, 800),
+  card:       map_get($ngx-palette-grey, 800),
+  dialog:     map_get($ngx-palette-grey, 800),
   disabled-button: rgba(white, 0.12),
-  raised-button: map-get($ngx-grey, 800),
+  raised-button: map_get($ngx-palette-grey, 800),
 );
 
 // Foreground palette for light themes.
