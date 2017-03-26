@@ -1,14 +1,18 @@
-@import './../animations/_variables.scss';
+$_ngx-umbra-color: ngx-color($ngx-palette-black, 900, 0.2);
+$_ngx-penumbra-color: ngx-color($ngx-palette-black, 900, 0.14);
+$_ngx-ambient-color: ngx-color($ngx-palette-black, 900, 0.12);
 
-$_ngx-umbra-color: rgba(#000000, 0.2);
-$_ngx-penumbra-color: rgba(#000000, 0.14);
-$_ngx-ambient-color: rgba(#000000, 0.12);
+// The default duration value for elevation transitions.
+$ngx-elevation-transition-duration: 280ms !default;
+
+// The default easing value for elevation transitions.
+$ngx-elevation-transition-timing-function: $ngx-fast-out-slow-in-timing-function;
 
 // Maps for the different shadow sets and their values within each z-space. These values were
 // created by taking a few reference shadow sets created by Google's Designers and interpolating
 // all of the values between them.
 
-$_ngx-elevation-umbra-map: (
+$ngx-elevation-umbra-map: (
   0: '0px 0px 0px 0px #{$_ngx-umbra-color}',
   1: '0px 2px 1px -1px #{$_ngx-umbra-color}',
   2: '0px 3px 1px -2px #{$_ngx-umbra-color}',
@@ -36,7 +40,7 @@ $_ngx-elevation-umbra-map: (
   24: '0px 11px 15px -7px #{$_ngx-umbra-color}'
 );
 
-$_ngx-elevation-penumbra-map: (
+$ngx-elevation-penumbra-map: (
   0: '0px 0px 0px 0px #{$_ngx-penumbra-color}',
   1: '0px 1px 1px 0px #{$_ngx-penumbra-color}',
   2: '0px 2px 2px 0px #{$_ngx-penumbra-color}',
@@ -64,7 +68,7 @@ $_ngx-elevation-penumbra-map: (
   24: '0px 24px 38px 3px #{$_ngx-penumbra-color}'
 );
 
-$_ngx-elevation-ambient-map: (
+$ngx-elevation-ambient-map: (
   0: '0px 0px 0px 0px #{$_ngx-ambient-color}',
   1: '0px 1px 3px 0px #{$_ngx-ambient-color}',
   2: '0px 1px 5px 0px #{$_ngx-ambient-color}',
@@ -91,15 +95,3 @@ $_ngx-elevation-ambient-map: (
   23: '0px 9px 44px 8px #{$_ngx-ambient-color}',
   24: '0px 9px 46px 8px #{$_ngx-ambient-color}'
 );
-
-
-// The css property used for elevation. In most cases this should not be changed. It is exposed
-// as a variable for abstraction / easy use when needing to reference the property directly, for
-// example in a will-change rule.
-$ngx-elevation-property: box-shadow !default;
-
-// The default duration value for elevation transitions.
-$ngx-elevation-transition-duration: 280ms !default;
-
-// The default easing value for elevation transitions.
-$ngx-elevation-transition-timing-function: $ngx-fast-out-slow-in-timing-function;
