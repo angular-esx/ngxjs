@@ -13,6 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {
   DetailPageModule,
   ListPageModule,
+  ColorPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { ngxApp } from './app';
@@ -23,6 +24,7 @@ import { ngxApp } from './app';
     BrowserModule,
     DetailPageModule,
     ListPageModule,
+    ColorPageModule,
     AppRouteModule,
   ],
   declarations: [ngxApp],

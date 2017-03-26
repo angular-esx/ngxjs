@@ -1,0 +1,17 @@
+// For a given hue in a palette, return the contrast color from the map of contrast palettes.
+@function ngx-color-contrast($palette, $hue) {
+  @return map-get(map-get($palette, contrast), $hue);
+}
+
+// The hue can be one of the standard values (500, A400, etc.), one of the three preconfigured
+// hues (default, lighter, darker), or any of the aforementioned prefixed with "-contrast".
+//
+// @param $palette The palette (base palettes or output of @function ngx-palette).
+// @param $hue The hue from the palette to use. If this is a value between 0 and 1, it will be treated as opacity.
+// @param $opacity The alpha channel value for the color.
+@function ngx-color($palette, $hue: default, $opacity: 1) {
+  $color: map-get($palette, $hue);
+  $opacity: if(opacity($color) < 1, opacity($color), $opacity);
+
+  @return rgba($color, $opacity);
+}
