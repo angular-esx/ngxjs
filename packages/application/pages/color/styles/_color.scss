@@ -1,5 +1,6 @@
 .ngx-ColorPage {
   display: block;
+  overflow: auto;
 }
 
 .color-group {
@@ -51,27 +52,27 @@
 /** Test Palettes **/
 
 $ngx-colors-list: (
-  ngx-black: $ngx-black,
-  ngx-white: $ngx-white,
-  ngx-red: $ngx-red,
-  ngx-pink: $ngx-pink,
-  ngx-purple: $ngx-purple,
-  ngx-deep-purple: $ngx-deep-purple,
-  ngx-indigo: $ngx-indigo,
-  ngx-blue: $ngx-blue,
-  ngx-light-blue: $ngx-light-blue,
-  ngx-cyan: $ngx-cyan,
-  ngx-teal: $ngx-teal,
-  ngx-green: $ngx-green,
-  ngx-light-green: $ngx-light-green,
-  ngx-lime: $ngx-lime,
-  ngx-yellow: $ngx-yellow,
-  ngx-amber: $ngx-amber,
-  ngx-orange: $ngx-orange,
-  ngx-deep-orange: $ngx-deep-orange,
-  ngx-brown: $ngx-brown,
-  ngx-grey: $ngx-grey,
-  ngx-blue-grey: $ngx-blue-grey
+  ngx-black: $ngx-palette-black,
+  ngx-white: $ngx-palette-white,
+  ngx-red: $ngx-palette-red,
+  ngx-pink: $ngx-palette-pink,
+  ngx-purple: $ngx-palette-purple,
+  ngx-deep-purple: $ngx-palette-deep-purple,
+  ngx-indigo: $ngx-palette-indigo,
+  ngx-blue: $ngx-palette-blue,
+  ngx-light-blue: $ngx-palette-light-blue,
+  ngx-cyan: $ngx-palette-cyan,
+  ngx-teal: $ngx-palette-teal,
+  ngx-green: $ngx-palette-green,
+  ngx-light-green: $ngx-palette-light-green,
+  ngx-lime: $ngx-palette-lime,
+  ngx-yellow: $ngx-palette-yellow,
+  ngx-amber: $ngx-palette-amber,
+  ngx-orange: $ngx-palette-orange,
+  ngx-deep-orange: $ngx-palette-deep-orange,
+  ngx-brown: $ngx-palette-brown,
+  ngx-grey: $ngx-palette-grey,
+  ngx-blue-grey: $ngx-palette-blue-grey
 );
 
 @each $ngx-color-name, $ngx-color-variable in $ngx-colors-list {
@@ -79,13 +80,13 @@ $ngx-colors-list: (
     @if $hue == 500 {
       .#{$ngx-color-name}-primary {
         background: ngx-color($ngx-color-variable, $hue);
-        color: ngx-contrast($ngx-color-variable, $hue);
+        color: ngx-color-contrast($ngx-color-variable, $hue);
       }
     }
     @if $hue != 'contrast' {
       .#{$ngx-color-name}-#{$hue} {
         background: ngx-color($ngx-color-variable, $hue);
-        color: ngx-contrast($ngx-color-variable, $hue);
+        color: ngx-color-contrast($ngx-color-variable, $hue);
       }
     }
   }
