@@ -13,6 +13,7 @@
       "ignoreComments": true
     }],
     "class-methods-use-this": "off",
+    "default-case": "off",
     "no-plusplus": "off",
     "no-nested-ternary": "off",
     "no-underscore-dangle": "off",

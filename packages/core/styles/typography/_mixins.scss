@@ -1,0 +1,40 @@
+@mixin ngx-typo($typo-key, $typos: $ngx-typos, $prefix: 'ngx') {
+  $_leading: null;
+  $_leading-keys: null;
+  $_typo: map-get($typos, $typo-key);
+  $_typo-keys: map-keys($_typo);
+  $_prefix: if($prefix, #{$prefix}-, '');
+
+  @each $_typo-key in $_typo-keys {
+    @if $_typo-key == 'leading' {
+      $_leading: map-get($_typo, $_typo-key);
+      $_leading-keys: map-keys($_leading);
+
+      @each $_leading-key in $_leading-keys {
+        + .#{$_prefix}#{$_leading-key} {
+          margin-top: map-get($_leading, $_leading-key);
+        }
+      }
+    }
+    @else {
+      #{$_typo-key}: map-get($_typo, $_typo-key);
+    }
+  }
+}
+
+@mixin ngx-typos($typos: $ngx-typos, $prefix: 'ngx') {
+  $_keys: map-keys($typos);
+  $_prefix: if($prefix, #{$prefix}-, '');
+
+  @each $_key in $_keys {
+    .#{$_prefix}#{$_key} {
+      @include ngx-typo($_key, $typos, $prefix);
+    }
+  }
+}
+
+@mixin ngx-truncate-line() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

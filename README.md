@@ -4,6 +4,12 @@ You need to install `lerna` in global, it's used to cross-link packages under `p
 npm i lerna@2.0.0-beta.31 -g && npm i
 ```
 
+### git
+If you're working on Windows, **you must setup git autocrlf to false**
+```
+git config --global core.autocrlf false
+```
+
 ### Bootstrap
 Run this command to cross-link packages before working on source code.
 ```
@@ -12,7 +18,7 @@ Run this command to cross-link packages before working on source code.
 
 ### Lint
 `eslint` && `stylelint` are enabled for the source code.
-Because they take more time for executing, I don't integrate them into `webpack`. It mean `lint` won't run every `webpack` re-build, it helps you to save times for development.
+Because they take many time for executing, I don't integrate them into `webpack`. It mean `lint` won't run every `webpack` re-build, it helps you to save times for development.
 
 I setup `pre-commit` to only execute `lint` for staged files when you do commit.
 **Recommend** you run `lint-staged` yourself to check lint errors because errors will be printed in the console, it's easier for reading.

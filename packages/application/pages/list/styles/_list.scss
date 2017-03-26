@@ -1,3 +1,13 @@
 .ngx-ListPage {
   display: block;
 }
+
+.ngx-typo-container, .ngx-typo-leading {
+  display: flex;
+}
+
+.ngx-typo-leading {
+  flex-flow: column;
+  padding: 0 1.5rem;
+  border-right: 1px solid;
+}
