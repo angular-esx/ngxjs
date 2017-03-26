@@ -1,0 +1,16 @@
+
+// build theme button
+@mixin ngx-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .ngx-component {
+    background-color: ngx-color($accent);
+    color: ngx-color($accent, default-contrast);
+  }
+}
+
+

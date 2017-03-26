@@ -14,6 +14,7 @@ import {
   DetailPageModule,
   ListPageModule,
   ColorPageModule,
+  ThemePageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { ngxApp } from './app';
@@ -25,6 +26,7 @@ import { ngxApp } from './app';
     DetailPageModule,
     ListPageModule,
     ColorPageModule,
+    ThemePageModule,
     AppRouteModule,
   ],
   declarations: [ngxApp],
