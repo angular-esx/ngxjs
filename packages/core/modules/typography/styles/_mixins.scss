@@ -3,9 +3,12 @@
   $_keys: map-keys($_typos);
 
   @each $_key in $_keys {
-    #{ngx-typo-selector($_key)} {
+    #{ngx-typo-variant($_key)} {
       @include ngx-typo($_key, $script-type);
-      @include ngx-typo-leading($_key, $script-type, $func-selector: 'ngx-typo-selector');
+
+      &:not([ngxTypography_type_no-leading]) {
+        @include ngx-typo-leading($_key, $script-type, $func-selector: 'ngx-typo-variant');
+      }
     }
   }
 }
