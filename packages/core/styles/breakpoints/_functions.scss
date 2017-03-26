@@ -1,12 +1,6 @@
-@import './_variables.scss';
-
-// Breakpoint viewport sizes and media queries.
-//
-// Breakpoints are defined as a map of (name: minimum width), order from small to large:
-//
-//    (480: 480px, 600: 600px, 840: 840px)
-//
-// The map defined in the `$ngx-grid-breakpoints` global variable is used as the `$breakpoints` argument by default.
+@function ngx-breakpoint($key, $breakpoints: $ngx-breakpoints) {
+  @return map_get($breakpoints, $key);
+}
 
 // Name of the next breakpoint, or null for the last breakpoint.
 //
@@ -16,26 +10,7 @@
 //    600
 //    >> ngx-breakpoint-next(480, $breakpoint-names: (480 600 840))
 //    600
-@function ngx-breakpoint-next($name, $breakpoints: $ngx-grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
-  $n: index($breakpoint-names, $name);
+@function ngx-breakpoint-next($key, $breakpoints: $ngx-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $key);
   @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
-}
-
-// Minimum breakpoint width. Null for the smallest (first) breakpoint.
-//
-//    >> ngx-breakpoint-min(480, (480: 480px, 600: 600px, 840: 840px))
-//    600px
-@function ngx-breakpoint-min($name, $breakpoints: $ngx-grid-breakpoints) {
-  $min: map-get($breakpoints, $name);
-  @return if($min != 0, $min, null);
-}
-
-// Maximum breakpoint width. Null for the largest (last) breakpoint.
-// The maximum value is calculated as the minimum of the next one less 0.1.
-//
-//    >> ngx-breakpoint-max(480, (480: 480px, 600: 600px, 840: 840px))
-//    840px
-@function ngx-breakpoint-max($name, $breakpoints: $ngx-grid-breakpoints) {
-  $next: ngx-breakpoint-next($name, $breakpoints);
-  @return if($next, ngx-breakpoint-min($next, $breakpoints) - 1px, null);
 }

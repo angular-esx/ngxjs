@@ -1,11 +1,9 @@
-@import './_variables.scss';
-@import './_functions.scss';
-
-
 // Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
 // Makes the @content apply to the given breakpoint and wider.
-@mixin ngx-media-breakpoint-up($name, $breakpoints: $ngx-grid-breakpoints) {
-  $min: ngx-breakpoint-min($name, $breakpoints);
+//    >> ngx-media-breakpoint-up(480, (480: 480px, 600: 600px, 840: 840px))
+//    @media (min-width: 480px) { }
+@mixin ngx-media-breakpoint-up($name, $breakpoints: $ngx-breakpoints) {
+  $min: ngx-breakpoint($name, $breakpoints);
   @if $min {
     @media (min-width: $min) {
       @content;
@@ -17,10 +15,12 @@
 
 // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
 // Makes the @content apply to the given breakpoint and narrower.
-@mixin ngx-media-breakpoint-down($name, $breakpoints: $ngx-grid-breakpoints) {
-  $max: ngx-breakpoint-max($name, $breakpoints);
+//    >> ngx-media-breakpoint-down(480, (480: 480px, 600: 600px, 840: 840px))
+//    @media (max-width: 599px) { }
+@mixin ngx-media-breakpoint-down($name, $breakpoints: $ngx-breakpoints) {
+  $max: ngx-breakpoint($name, $breakpoints);
   @if $max {
-    @media (max-width: $max) {
+    @media (max-width: $max - 1) {
       @content;
     }
   } @else {
@@ -30,19 +30,12 @@
 
 // Media that spans multiple breakpoint widths.
 // Makes the @content apply between the min and max breakpoints
-@mixin ngx-media-breakpoint-between($lower, $upper, $breakpoints: $ngx-grid-breakpoints) {
+//    >> ngx-media-breakpoint-between(480, 600, (480: 480px, 600: 600px, 840: 840px))
+//    @media (min-width: 480px) and (max-width: 839px) { }
+@mixin ngx-media-breakpoint-between($lower, $upper, $breakpoints: $ngx-breakpoints) {
   @include ngx-media-breakpoint-up($lower, $breakpoints) {
     @include ngx-media-breakpoint-down($upper, $breakpoints) {
       @content;
     }
-  }
-}
-
-// Media between the breakpoint's minimum and maximum widths.
-// No minimum for the smallest breakpoint, and no maximum for the largest one.
-// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
-@mixin ngx-media-breakpoint-only($name, $breakpoints: $ngx-grid-breakpoints) {
-  @include ngx-media-breakpoint-between($name, $name, $breakpoints) {
-    @content;
   }
 }
