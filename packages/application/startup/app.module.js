@@ -14,6 +14,7 @@ import {
   DetailPageModule,
   ListPageModule,
   ElevationPageModule,
+  BreakpointPageModule,
   ColorPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
@@ -28,6 +29,7 @@ import { ngxApp } from './app';
     ColorPageModule,
     AppRouteModule,
     ElevationPageModule,
+    BreakpointPageModule,
   ],
   declarations: [ngxApp],
   bootstrap: [ngxApp],
