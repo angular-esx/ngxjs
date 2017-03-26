@@ -1,0 +1,23 @@
+@function ngx-space($increase, $root-font-size: $ngx-root-font-size, $baseline-height: $ngx-baseline-height) {
+  @return ngx-to-rem(ngx-strip-unit($baseline-height) * $increase, ngx-strip-unit($root-font-size));
+}
+
+@function ngx-letter-spacing($tracking){
+  @return ($tracking / 1000) * 1em;
+}
+
+@function ngx-font-size($font-size, $root-font-size: $ngx-root-font-size) {
+  @return ngx-to-rem($font-size, $root-font-size);
+}
+
+@function ngx-font-weight($font-weight-key, $font-weights: $ngx-font-weights) {
+  @return map-get($font-weights, $font-weight-key);
+}
+
+@function ngx-line-height($line-height, $line-heights: $ngx-line-heights) {
+  @return map-get($line-heights, $line-height);
+}
+
+@function ngx-typo($typo-key, $typos: $ngx-typos) {
+  @return map-get($typos, $typo-key);
+}

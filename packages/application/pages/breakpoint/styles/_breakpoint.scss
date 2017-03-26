@@ -1,0 +1,102 @@
+.ngx-DetailPage {
+  display: block;
+}
+
+.title {
+  /**
+  @media (max-width: 479px) { .title { color: #008000; } }
+  **/
+  // media max-width 480
+  @include ngx-media-breakpoint-down(480) {
+    color: #008000;
+  }
+
+  /**
+  @media (min-width: 480px) { .title { color: #ff0000; } }
+  **/
+  // media min-width 480
+  @include ngx-media-breakpoint-up(480) {
+    color: #ff0000;
+  }
+
+  /**
+  @media (min-width: 600px) { .title { color: #0000ff; } }
+  **/
+  // media min-width next(480) => media min-width 600
+  @include ngx-media-breakpoint-up(ngx-breakpoint-next(480)) {
+    color: #0000ff;
+  }
+}
+
+/**
+@media (min-width: 600px) and (max-width: 839px) {
+  .title { font-size: 20px; }
+}
+**/
+// @media min-width 600 and max-width 840
+@include ngx-media-breakpoint-between(600, 840) {
+  .title {
+    font-size: 36px;
+  }
+}
+
+/** Responsive Utilities **/
+.ngx-hidden-480-down {
+  @include ngx-media-breakpoint-down(480) {
+    display: none;
+  }
+}
+
+.ngx-hidden-600-down {
+  @include ngx-media-breakpoint-down(600) {
+    display: none;
+  }
+}
+
+.ngx-hidden-840-down {
+  @include ngx-media-breakpoint-down(840) {
+    display: none;
+  }
+}
+
+.ngx-hidden-960-down {
+  @include ngx-media-breakpoint-down(960) {
+    display: none;
+  }
+}
+
+.ngx-hidden-1280-down {
+  @include ngx-media-breakpoint-down(1280) {
+    display: none;
+  }
+}
+
+.ngx-hidden-480-up {
+  @include ngx-media-breakpoint-up(480) {
+    display: none;
+  }
+}
+
+.ngx-hidden-600-up {
+  @include ngx-media-breakpoint-up(600) {
+    display: none;
+  }
+}
+
+.ngx-hidden-840-up {
+  @include ngx-media-breakpoint-up(840) {
+    display: none;
+  }
+}
+
+.ngx-hidden-960-up {
+  @include ngx-media-breakpoint-up(960) {
+    display: none;
+  }
+}
+
+.ngx-hidden-1280-up {
+  @include ngx-media-breakpoint-up(1280) {
+    display: none;
+  }
+}

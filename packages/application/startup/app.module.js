@@ -13,6 +13,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {
   DetailPageModule,
   ListPageModule,
+  ElevationPageModule,
+  BreakpointPageModule,
   ColorPageModule,
   ThemePageModule,
 } from '../pages';
@@ -28,6 +30,8 @@ import { ngxApp } from './app';
     ColorPageModule,
     ThemePageModule,
     AppRouteModule,
+    ElevationPageModule,
+    BreakpointPageModule,
   ],
   declarations: [ngxApp],
   bootstrap: [ngxApp],
