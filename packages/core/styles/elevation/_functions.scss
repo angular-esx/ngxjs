@@ -1,0 +1,13 @@
+// Returns a string that can be used as the value for a transition property for elevation.
+// Calling this function directly is useful in situations where a component needs to transition
+// more than one property.
+//
+// .foo {
+//   transition: ngx-elevation-transition-property-value(), opacity 100ms ease;
+//   will-change: box-shadow, opacity;
+// }
+@function ngx-elevation-transition-property-value(
+    $duration: $ngx-elevation-transition-duration,
+    $easing: $ngx-elevation-transition-timing-function) {
+  @return box-shadow #{$duration} #{$easing};
+}
