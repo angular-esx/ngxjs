@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 
-import { ngxTypographyModule } from 'ngx-core';
+import { NgxTypographyModule } from 'ngx-core';
 
 import { DenseScriptComponent } from './dense-script.component';
 
 
 @NgModule({
-  imports: [ngxTypographyModule],
+  imports: [NgxTypographyModule],
   declarations: [DenseScriptComponent],
   entryComponents: [DenseScriptComponent],
   exports: [DenseScriptComponent],

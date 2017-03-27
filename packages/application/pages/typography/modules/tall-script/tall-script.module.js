@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 
-import { ngxTypographyModule } from 'ngx-core';
+import { NgxTypographyModule } from 'ngx-core';
 
 import { TallScriptComponent } from './tall-script.component';
 
 
 @NgModule({
-  imports: [ngxTypographyModule],
+  imports: [NgxTypographyModule],
   declarations: [TallScriptComponent],
   entryComponents: [TallScriptComponent],
   exports: [TallScriptComponent],

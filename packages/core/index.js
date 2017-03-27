@@ -1,4 +1,4 @@
 export {
-  ngxTypographyDirective,
-  ngxTypographyModule,
+  NgxTypographyDirective,
+  NgxTypographyModule,
 } from './modules';

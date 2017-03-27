@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 
-import { ngxTypographyDirective } from './typography.directive';
+import { NgxTypographyDirective } from './typography.directive';
 
 
 const _DIRECTIVES = [
-  ngxTypographyDirective,
+  NgxTypographyDirective,
 ];
 
 @NgModule({
   declarations: _DIRECTIVES,
   exports: _DIRECTIVES,
 })
-class ngxTypographyModule {}
+class NgxTypographyModule {}
 
 
-export { ngxTypographyModule };
+export { NgxTypographyModule };

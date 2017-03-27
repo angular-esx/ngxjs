@@ -23,7 +23,7 @@ import { isObject } from 'ngx-infrastructure';
     '[attr.ngxTypography_type_no-leading]': '_isNoLeading',
   },
 })
-class ngxTypographyDirective {
+class NgxTypographyDirective {
   get _isNoLeading() {
     return (isObject(this.options) && this.options.isNoLeading) ? '' : null;
   }
@@ -42,4 +42,4 @@ class ngxTypographyDirective {
 }
 
 
-export { ngxTypographyDirective };
+export { NgxTypographyDirective };

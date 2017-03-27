@@ -19,7 +19,7 @@ import {
   ColorPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
-import { ngxApp } from './app';
+import { NgxApp } from './app';
 
 
 @NgModule({
@@ -33,10 +33,10 @@ import { ngxApp } from './app';
     ElevationPageModule,
     BreakpointPageModule,
   ],
-  declarations: [ngxApp],
-  bootstrap: [ngxApp],
+  declarations: [NgxApp],
+  bootstrap: [NgxApp],
 })
-class ngxAppModule {
+class NgxAppModule {
   static parameters = [
     [new Inject(ApplicationRef)],
   ]
@@ -62,4 +62,4 @@ class ngxAppModule {
 }
 
 
-export { ngxAppModule };
+export { NgxAppModule };

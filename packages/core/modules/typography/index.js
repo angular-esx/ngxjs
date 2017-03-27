@@ -1,3 +1,3 @@
-export { ngxTypographyDirective } from './typography.directive';
+export { NgxTypographyDirective } from './typography.directive';
 
-export { ngxTypographyModule } from './typography.module';
+export { NgxTypographyModule } from './typography.module';
