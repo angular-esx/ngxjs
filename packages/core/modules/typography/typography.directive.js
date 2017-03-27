@@ -3,6 +3,8 @@ import {
   Input,
 } from '@angular/core';
 
+import { isObject } from 'ngx-infrastructure';
+
 
 @Directive({
   selector: '[ngxTypography]',
@@ -23,13 +25,19 @@ import {
 })
 class ngxTypographyDirective {
   get _isNoLeading() {
-    return (this.options && this.options.isNoLeading) || null;
+    return (isObject(this.options) && this.options.isNoLeading) ? '' : null;
   }
 
   @Input('ngxTypography') options;
 
   _isVariant(variant) {
-    return (this.options && this.options.variant === variant) || null;
+    if (!this.options) { return null; }
+
+    if (isObject(this.options)) {
+      return this.options.variant === variant ? '' : null;
+    }
+
+    return this.options === variant ? '' : null;
   }
 }
 
