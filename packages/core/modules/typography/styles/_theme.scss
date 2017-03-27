@@ -1,0 +1,31 @@
+$_ngx-typo-primary: ngx-color($ngx-palette-black, 900, .87);
+$_ngx-typo-secondary: ngx-color($ngx-palette-black, 900, .54);
+
+$ngx-typo-theme: (
+  foreground: (
+    ngx-typo-display-1: $_ngx-typo-secondary,
+    ngx-typo-display-2: $_ngx-typo-secondary,
+    ngx-typo-display-3: $_ngx-typo-secondary,
+    ngx-typo-display-4: $_ngx-typo-secondary,
+    ngx-typo-headline: $_ngx-typo-primary,
+    ngx-typo-title: $_ngx-typo-primary,
+    ngx-typo-subheading-1: $_ngx-typo-primary,
+    ngx-typo-subheading-2: $_ngx-typo-primary,
+    ngx-typo-body-1: $_ngx-typo-primary,
+    ngx-typo-body-2: $_ngx-typo-primary,
+    ngx-typo-caption: $_ngx-typo-secondary,
+  )
+) !default;
+
+@mixin ngx-typo-theme($typo-key, $current-theme: null) {
+  $_foreground: map-get($ngx-typo-theme, foreground);
+  @if $current-theme {
+    $_foreground: map-merge($_foreground, map-get($current-theme, foreground));
+  }
+
+  $_typo-color: map-get($_foreground, ngx-typo-#{$typo-key});
+
+  @if $_typo-color {
+    color: $_typo-color;
+  }
+}
