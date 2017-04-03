@@ -11,3 +11,11 @@ body {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+
+label {
+  overflow: hidden;
+}
+
+li {
+  outline: none;
+}
