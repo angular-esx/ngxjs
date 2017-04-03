@@ -219,11 +219,16 @@ class BaseWebpackConfig {
           postcss: [autoprefixer],
           sassLoader: {
             data: `
+              @import 'themes/default/index.scss';
+              $CURRENT_THEME: $ngx-default-theme;
               $ASSET_HOST: '${environment.assetHost}';
               $IMAGE_HOST: '${environment.imageHost}';
               $FONT_HOST: '${environment.fontHost}';
             `,
-            includePaths: [PATHS.APPLICATION_NODE_MODULES],
+            includePaths: [
+              PATHS.APPLICATION_NODE_MODULES,
+              PATHS.APPLICATION,
+            ],
           },
         },
       }),
