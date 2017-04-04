@@ -1,0 +1,15 @@
+// This mixin help to ensure that specific theme has enough neccessary keys.
+@mixin ngx-theme-component-validate($component-name, $component, $validate-keys) {
+  $_error: '`#{inspect($component-name)}` is invalid.';
+
+  @if not $component {
+    @error $_error;
+  }
+  @else {
+    @each $_key in $validate-keys {
+      @if not map-has-key($component, $_key) {
+        @error $_error + ' `#{inspect($_key)}` is missing.';
+      }
+    }
+  }
+}

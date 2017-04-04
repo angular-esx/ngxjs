@@ -1,0 +1,28 @@
+@if not $CURRENT_THEME {
+  @error '`$ngx-current-theme` is null. You must set a theme to it.';
+}
+// This is a global variable which hold all component theme declarations.
+// $CURRENT_THEME is passed from sassLoader
+// $CURRENT_THEME must follow structure below
+// $[theme-name]: (
+//   palettes: (
+//     primary: map,
+//     accent: map,
+//     success: map,
+//     warn: map,
+//     danger: map,
+//   ),
+//   foreground: (
+//     text-primary: color,
+//     text-secondary: color,
+//     text-hint: color,
+//     divider: color,
+//   ),
+//   background: (
+//     body: color,
+//   ),
+//   components: (
+//     // Declare component theme at here
+//   ),
+// );
+$ngx-current-theme: $CURRENT_THEME;
