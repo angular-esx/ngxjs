@@ -1,0 +1,7 @@
+@import './_dependencies.scss';
+@import './_theme.scss';
+
+@include ngx-background-theme-validate();
+
+@import './_mixins.scss';
+@import './_background.scss';

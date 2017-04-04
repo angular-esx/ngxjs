@@ -1,0 +1,17 @@
+// Get specific theme from $ngx-current-theme.
+// ngx-theme-page: (
+//   header-color: color,
+// )
+$ngx-theme-page-theme: ngx-theme-component(ngx-theme-page);
+
+// Must write this function to ensure the theme has enough neccessary keys.
+// It's useful for development to find out missing declaration.
+@mixin ngx-theme-page-theme-validate() {
+  @include ngx-theme-component-validate(
+    'ngx-theme-page',
+    $ngx-theme-page-theme,
+    (
+      'header-color',
+    )
+  );
+}

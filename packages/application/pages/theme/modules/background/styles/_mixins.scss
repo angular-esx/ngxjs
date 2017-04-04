@@ -1,0 +1,17 @@
+// Get defined color from $ngx-background-theme to build variant for BackgroundComponent
+@mixin ngx-background-variant($variant-name){
+  &.ngx-BackgroundComponent_variant_#{$variant-name} {
+    color: map-get($ngx-background-theme, 'variant-#{$variant-name}-foreground-default');
+    background-color: map-get($ngx-background-theme, 'variant-#{$variant-name}-background-default');
+
+    &.ngx-BackgroundComponent_state_active {
+      color: map-get($ngx-background-theme, 'variant-#{$variant-name}-foreground-active');
+      background-color: map-get($ngx-background-theme, 'variant-#{$variant-name}-background-active');
+    }
+
+    &.ngx-BackgroundComponent_state_disabled {
+      color: map-get($ngx-background-theme, 'variant-#{$variant-name}-foreground-disabled');
+      background-color: map-get($ngx-background-theme, 'variant-#{$variant-name}-background-disabled');
+    }
+  }
+}

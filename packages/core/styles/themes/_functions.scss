@@ -1,0 +1,38 @@
+// Build a palette which is used in theme bases on a base palette defined in core/styles/palettes
+// The palette which is used in theme has only 3 shades of color chose from base palette
+@function ngx-theme-palette($base-palette, $default: 500, $light: 100, $dark: 700) {
+  @return (
+    light: ngx-color($base-palette, $light),
+    default: ngx-color($base-palette, $default),
+    dark: ngx-color($base-palette, $dark),
+    contrasts: (
+      light: map-get(map-get($base-palette, contrasts), $light),
+      default: map-get(map-get($base-palette, contrasts), $default),
+      dark: map-get(map-get($base-palette, contrasts), $dark),
+    ),
+  );
+}
+// Help to get a defined color from specific palette in $ngx-current-theme
+@function ngx-theme-color($palette-key, $hue, $opacity: 1, $current-theme: $ngx-current-theme) {
+  $_palette: map-get(map-get($current-theme, palettes), $palette-key);
+
+  @return ngx-color($_palette, $hue, $opacity);
+}
+// Help to get a defined contrast from specific palette in $ngx-current-theme
+@function ngx-theme-color-contrast($palette-key, $hue, $opacity: null, $current-theme: $ngx-current-theme) {
+  $_palette: map-get(map-get($current-theme, palettes), $palette-key);
+
+  @return ngx-color-contrast($_palette, $hue, $opacity);
+}
+// Help to get a defined value from foreground in $ngx-current-theme
+@function ngx-theme-foreground($foreground-key, $current-theme: $ngx-current-theme) {
+  @return map-get(map-get($current-theme, foreground), $foreground-key);
+}
+// Help to get a defined value from background in $ngx-current-theme
+@function ngx-theme-background($background-key, $current-theme: $ngx-current-theme) {
+  @return map-get(map-get($current-theme, background), $background-key);
+}
+// Help to get a defined component's theme from components in $ngx-current-theme
+@function ngx-theme-component($component-key, $current-theme: $ngx-current-theme) {
+  @return map-get(map-get($current-theme, components), $component-key);
+}
