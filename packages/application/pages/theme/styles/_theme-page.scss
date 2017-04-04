@@ -1,0 +1,16 @@
+// Get defined color from $ngx-theme-page-theme to style ThemePage
+.ngx-ThemePage {
+  display: block;
+  height: 100%;
+  background-color: map-get($ngx-theme-page-theme, background-color);
+
+  .ngx-BackgroundComponent + .ngx-BackgroundComponent {
+    margin-top: 1rem;
+  }
+}
+
+.ngx-ThemePage__Header {
+  font-size: 2rem;
+  color: map-get($ngx-theme-page-theme, header-color);
+}
+

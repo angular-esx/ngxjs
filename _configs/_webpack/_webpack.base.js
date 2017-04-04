@@ -19,26 +19,9 @@ import { environment } from '../../packages/infrastructure';
 class BaseWebpackConfig {
   constructor() {
     this._CONSTANTS = null;
+    this._POLYFILLS = null;
+    this._VENDORS = null;
     this._CONTEXT = path.resolve(__dirname, '../..');
-
-    const { PATHS } = this._getConstants();
-
-    this._POLYFILLS = [
-      this._joinPaths(PATHS.NODE_MODULES, 'zone.js'),
-      this._joinPaths(PATHS.NODE_MODULES, 'core-js/es6/reflect'),
-      this._joinPaths(PATHS.NODE_MODULES, 'core-js/es7/reflect'),
-    ];
-
-    this._VENDORS = [
-      this._joinPaths(PATHS.NODE_MODULES, 'rxjs'),
-      this._joinPaths(PATHS.NODE_MODULES, '@angular/common'),
-      this._joinPaths(PATHS.NODE_MODULES, '@angular/compiler'),
-      this._joinPaths(PATHS.NODE_MODULES, '@angular/core'),
-      this._joinPaths(PATHS.NODE_MODULES, '@angular/forms'),
-      this._joinPaths(PATHS.NODE_MODULES, '@angular/http'),
-      this._joinPaths(PATHS.NODE_MODULES, '@angular/platform-browser'),
-      this._joinPaths(PATHS.NODE_MODULES, '@angular/platform-browser-dynamic'),
-    ];
   }
 
   build() {
@@ -154,10 +137,10 @@ class BaseWebpackConfig {
     const plugins = [
       /*
         This plugin is used temporarily to solve the issue:
-        WARNING in ./~/@angular/core/src/linker/system_js_ng_module_factory_loader.js
+        WARNING in /~/@angular/core/@angular/core.es5.js
         Critical dependency: the request of a dependency is an expression
       */
-      new ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/, __dirname),
+      new ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/, __dirname),
     ];
 
     return { plugins };
@@ -236,11 +219,16 @@ class BaseWebpackConfig {
           postcss: [autoprefixer],
           sassLoader: {
             data: `
+              @import 'themes/default/index.scss';
+              $CURRENT_THEME: $ngx-default-theme;
               $ASSET_HOST: '${environment.assetHost}';
               $IMAGE_HOST: '${environment.imageHost}';
               $FONT_HOST: '${environment.fontHost}';
             `,
-            includePaths: [PATHS.APPLICATION_NODE_MODULES],
+            includePaths: [
+              PATHS.APPLICATION_NODE_MODULES,
+              PATHS.APPLICATION,
+            ],
           },
         },
       }),
@@ -263,6 +251,7 @@ class BaseWebpackConfig {
           CORE_IMAGES: this._getAbsolutePath('packages/core/images'),
           CORE_FONTS: this._getAbsolutePath('packages/core/fonts'),
 
+          APPLICATION: this._getAbsolutePath('packages/application'),
           APPLICATION_FAVICON: this._getAbsolutePath('packages/application/favicon.ico'),
           APPLICATION_NODE_MODULES: this._getAbsolutePath('packages/application/node_modules'),
           APPLICATION_PAGES: this._getAbsolutePath('packages/application/pages'),
@@ -305,6 +294,42 @@ class BaseWebpackConfig {
     }
 
     return this._CONSTANTS;
+  }
+
+  _getPolyfills() {
+    if (!this._POLYFILLS) {
+      const { PATHS } = this._getConstants();
+
+      this._POLYFILLS = [
+        this._joinPaths(PATHS.NODE_MODULES, 'zone.js'),
+        this._joinPaths(PATHS.NODE_MODULES, 'core-js/es6/reflect'),
+        this._joinPaths(PATHS.NODE_MODULES, 'core-js/es7/reflect'),
+      ];
+    }
+
+    return this._POLYFILLS;
+  }
+
+  _getVendors() {
+    if (!this._VENDORS) {
+      const { PATHS } = this._getConstants();
+
+      this._VENDORS = [
+        this._joinPaths(PATHS.NODE_MODULES, 'rxjs'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angular/animations'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angular/common'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angular/compiler'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angular/core'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angular/forms'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angular/http'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angular/platform-browser'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angular/platform-browser-dynamic'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angular/router'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angularclass/hmr'),
+      ];
+    }
+
+    return this._VENDORS;
   }
 
   _joinPaths(...paths) {

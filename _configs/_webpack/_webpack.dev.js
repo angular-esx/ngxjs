@@ -25,7 +25,7 @@ class DevelopmentWebpackConfig extends BaseWebpackConfig {
     const { PATHS } = this._getConstants();
 
     const entry = [
-      ...this._POLYFILLS,
+      ...this._getPolyfills(),
       PATHS.APPLICATION_STARTUP_MAIN,
     ];
 
@@ -38,7 +38,7 @@ class DevelopmentWebpackConfig extends BaseWebpackConfig {
     return {
       output: {
         path: PATHS.DIST_OUTPUT,
-        filename: 'index.js',
+        filename: 'main.js',
       },
     };
   }
