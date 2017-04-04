@@ -1,75 +1,17 @@
-@mixin ngx-build-theme($theme) {
-  @include ngx-component-theme($theme);
-}
+// Get specific theme from $ngx-current-theme.
+// ngx-theme-page: (
+//   header-color: color,
+// )
+$ngx-theme-page-theme: ngx-theme-component(ngx-theme-page);
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue.
-$ngx-app-primary: ngx-palette($ngx-palette-indigo);
-$ngx-app-accent:  ngx-palette($ngx-palette-pink, 'A200', 'A100', 'A400');
-
-// The warn palette is optional (defaults to red).
-$ngx-app-warn: ngx-palette($ngx-palette-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$ngx-app-theme: ngx-light-theme($ngx-app-primary, $ngx-app-accent, $ngx-app-warn);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include ngx-build-theme($ngx-app-theme);
-
-
-// Build Another Theme: New App Theme
-
-// Define a theme.
-$ngx-new-app-primary: ngx-palette($ngx-palette-purple, 700, 500, 800);
-$ngx-new-app-accent:  ngx-palette($ngx-palette-green, 'A200', 'A100', 'A400');
-$ngx-new-app-theme: ngx-dark-theme($ngx-new-app-primary, $ngx-new-app-accent);
-
-.new-app {
-  // Include all theme styles for the components.
-  @include ngx-build-theme($ngx-new-app-theme);
-}
-
-
-
-// Define a theme.
-$ngx-component-primary: ngx-palette($ngx-palette-deep-purple);
-$ngx-component-accent:  ngx-palette($ngx-palette-amber, 'A200', 'A100', 'A400');
-$ngx-component-theme: ngx-light-theme($ngx-component-primary, $ngx-component-accent);
-
-// Include all theme styles for the components.
-.ngx-component-theme {
-  @include ngx-component-theme($ngx-component-theme);
-
-  .ngx-component {
-    width: 300px;
-  }
-}
-
-
-.ngx-light-theme {
-  $primary: ngx-palette($ngx-palette-deep-purple);
-  $accent:  ngx-palette($ngx-palette-amber, 'A200', 'A100', 'A400');
-
-  $theme: ngx-light-theme($primary, $accent);
-
-  @include ngx-build-theme($theme);
-}
-
-.ngx-dark-theme {
-  $ngx-dark-primary: ngx-palette($ngx-palette-pink, 700, 500, 900);
-  $ngx-dark-accent: ngx-palette($ngx-palette-blue-grey, 'A200', 'A100', 'A400');
-  $ngx-dark-warn: ngx-palette($ngx-palette-deep-orange);
-
-  $ngx-dark-theme: ngx-dark-theme($ngx-dark-primary, $ngx-dark-accent, $ngx-dark-warn);
-
-  @include ngx-build-theme($ngx-dark-theme);
-}
-
-.ngx-component {
-  padding: 40px;
-  width: 400px;
-  margin: 0 auto;
+// Must write this function to ensure the theme has enough neccessary keys.
+// It's useful for development to find out missing declaration.
+@mixin ngx-theme-page-theme-validate() {
+  @include ngx-theme-component-validate(
+    'ngx-theme-page',
+    $ngx-theme-page-theme,
+    (
+      'header-color',
+    )
+  );
 }

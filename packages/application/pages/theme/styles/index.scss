@@ -1,3 +1,7 @@
 @import './_dependencies.scss';
-@import './_component.scss';
 @import './_theme.scss';
+
+@include ngx-theme-page-theme-validate();
+
+
+@import './_theme-page.scss';
