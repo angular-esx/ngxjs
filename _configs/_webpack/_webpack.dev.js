@@ -25,7 +25,7 @@ class DevelopmentWebpackConfig extends BaseWebpackConfig {
     const { PATHS } = this._getConstants();
 
     const entry = [
-      ...this._POLYFILLS,
+      ...this._getPolyfills(),
       PATHS.APPLICATION_STARTUP_MAIN,
     ];
 

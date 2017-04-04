@@ -83,7 +83,7 @@ $ngx-colors-list: (
         color: ngx-color-contrast($ngx-color-variable, $hue);
       }
     }
-    @if $hue != 'contrast' {
+    @if $hue != 'contrasts' {
       .#{$ngx-color-name}-#{$hue} {
         background: ngx-color($ngx-color-variable, $hue);
         color: ngx-color-contrast($ngx-color-variable, $hue);

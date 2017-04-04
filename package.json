@@ -9,24 +9,25 @@
   "scripts": {
     "build-dll": "cross-env BUILD_ENV=development webpack --config $npm_package_envts_webpack_dll_config --progress",
     "build": "npm run build-dll && cross-env BUILD_ENV=development webpack --config $npm_package_envts_webpack_config --progress",
-    "start": "npm run build-dll && cross-env BUILD_ENV=development webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline",
-    "start-dashboard": "npm run build-dll && cross-env BUILD_ENV=development:dashboard webpack-dashboard -- webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline",
+    "start": "npm run build-dll && cross-env BUILD_ENV=development webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline --open",
+    "start-dashboard": "npm run build-dll && cross-env BUILD_ENV=development:dashboard webpack-dashboard -- webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline --open",
     "lint-staged": "lint-staged"
   },
   "pre-commit": "lint-staged",
   "dependencies": {
-    "@angular/common": "2.4.9",
-    "@angular/compiler": "2.4.9",
-    "@angular/core": "2.4.9",
-    "@angular/forms": "2.4.9",
-    "@angular/http": "2.4.9",
-    "@angular/platform-browser": "2.4.9",
-    "@angular/platform-browser-dynamic": "2.4.9",
-    "@angular/router": "3.4.9",
+    "@angular/animations": "4.0.1",
+    "@angular/common": "4.0.1",
+    "@angular/compiler": "4.0.1",
+    "@angular/core": "4.0.1",
+    "@angular/forms": "4.0.1",
+    "@angular/http": "4.0.1",
+    "@angular/platform-browser": "4.0.1",
+    "@angular/platform-browser-dynamic": "4.0.1",
+    "@angular/router": "4.0.1",
     "@angularclass/hmr": "1.2.2",
     "core-js": "2.4.1",
     "rxjs": "5.2.0",
-    "zone.js": "0.7.7"
+    "zone.js": "0.8.5"
   },
   "peerDependencies": {
     "lerna": "2.0.0-beta.31"

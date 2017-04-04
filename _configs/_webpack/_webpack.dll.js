@@ -19,8 +19,8 @@ class DllWebpackConfig extends BaseWebpackConfig {
 
   _getEntryConfig() {
     const entry = {
-      polyfills: this._POLYFILLS,
-      vendors: this._VENDORS,
+      polyfills: this._getPolyfills(),
+      vendors: this._getVendors(),
     };
 
     return { entry };
