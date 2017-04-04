@@ -38,7 +38,7 @@ class DevelopmentWebpackConfig extends BaseWebpackConfig {
     return {
       output: {
         path: PATHS.DIST_OUTPUT,
-        filename: 'index.js',
+        filename: 'main.js',
       },
     };
   }
