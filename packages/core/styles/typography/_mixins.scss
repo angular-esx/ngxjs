@@ -1,3 +1,33 @@
+// Used to get values from a specific typo in a specific language
+// For example, we have english script contains a typo as below:
+// $ngx-english-script-typos: (
+//   display-1: (
+//     letter-spacing: ngx-letter-spacing(-10),
+//     font-size: ngx-font-size(112px),
+//     font-weight: ngx-font-weight(regular),
+//   ),
+// )
+//
+// Then we call ngx-typo(display-1, english)
+// The result will be:
+// .my-display-1 {
+//   letter-spacing: -0.01em;
+//   font-size: 8rem;
+//   font-weight: 300;
+// }
+//
+// We can use $include & $exclude to control which properties we want to get
+// For examples:
+// ngx-typo(display-1, english, $include: (font-size));
+// .my-display-1 {
+//   font-size: 8rem;
+// }
+//
+// ngx-typo(display-1, english, $exclude: (letter-spacing));
+// .my-display-1 {
+//   font-size: 8rem;
+//   font-weight: 300;
+// }
 @mixin ngx-typo(
   $typo-key,
   $script-type,
@@ -11,7 +41,10 @@
     #{$_typo-key}: map-get($_typo, $_typo-key);
   }
 }
-
+// Follow order of typos in a specific language script,
+// If 2 nearby typos have line-height, leading will be result from subtraction of them.
+// We can use $include & $exclude to control which typos we want to get for leading calculation.
+// $func-selector is function name which is used to generate css class for typo.
 @mixin ngx-typo-leading(
   $typo-key,
   $script-type,

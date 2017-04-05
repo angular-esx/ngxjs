@@ -1,7 +1,8 @@
+// Increse spaces base on $ngx-baseline-height then convert result to rem
 @function ngx-space($increase, $root-font-size: $ngx-root-font-size, $baseline-height: $ngx-baseline-height) {
   @return ngx-to-rem(ngx-strip-unit($baseline-height) * $increase, ngx-strip-unit($root-font-size));
 }
-
+// Convert specific font-size to rem base on $ngx-root-font-size
 @function ngx-font-size($font-size, $root-font-size: $ngx-root-font-size) {
   @return ngx-to-rem($font-size, $root-font-size);
 }
@@ -9,7 +10,7 @@
 @function ngx-font-weight($font-weight-key, $font-weights: $ngx-font-weights) {
   @return map-get($font-weights, $font-weight-key);
 }
-
+// Calculate letter-spacing from specific tracking in $ngx-font-trackings
 @function ngx-letter-spacing($tracking, $font-trackings: $ngx-font-trackings) {
   $_tracking: map-get($font-trackings, $tracking);
 
