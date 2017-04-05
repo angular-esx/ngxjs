@@ -1,7 +1,9 @@
 @import './_dependencies.scss';
+@import './_theme.scss';
+
+@include ngx-typogarphy-theme-validate();
 
 @import './_functions.scss';
 @import './_mixins.scss';
-@import './_theme.scss';
 
 @import './_typography.scss';
