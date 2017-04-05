@@ -1,11 +1,8 @@
+// Increse spaces base on $ngx-baseline-height then convert result to rem
 @function ngx-space($increase, $root-font-size: $ngx-root-font-size, $baseline-height: $ngx-baseline-height) {
   @return ngx-to-rem(ngx-strip-unit($baseline-height) * $increase, ngx-strip-unit($root-font-size));
 }
-
-@function ngx-letter-spacing($tracking){
-  @return ($tracking / 1000) * 1em;
-}
-
+// Convert specific font-size to rem base on $ngx-root-font-size
 @function ngx-font-size($font-size, $root-font-size: $ngx-root-font-size) {
   @return ngx-to-rem($font-size, $root-font-size);
 }
@@ -13,11 +10,41 @@
 @function ngx-font-weight($font-weight-key, $font-weights: $ngx-font-weights) {
   @return map-get($font-weights, $font-weight-key);
 }
+// Calculate letter-spacing from specific tracking in $ngx-font-trackings
+@function ngx-letter-spacing($tracking, $font-trackings: $ngx-font-trackings) {
+  $_tracking: map-get($font-trackings, $tracking);
 
-@function ngx-line-height($line-height, $line-heights: $ngx-line-heights) {
-  @return map-get($line-heights, $line-height);
+  @return if( $_tracking,  ($_tracking / 1000) * 1em, null);
 }
 
-@function ngx-typo($typo-key, $typos: $ngx-typos) {
-  @return map-get($typos, $typo-key);
+@function ngx-line-height(
+  $line-height-key,
+  $script-type,
+  $line-heights: (english: $ngx-english-script-line-heights, dense: $ngx-dense-script-line-heights, tall: $ngx-tall-script-line-heights)
+) {
+  $_line-heights: map-get($line-heights, $script-type);
+  @if not $_line-heights { @return null; }
+
+  $line-height: map-get($_line-heights, $line-height-key);
+
+  @return if($line-height, $line-height, null);
+}
+
+@function ngx-typos(
+  $script-type,
+  $typos: (english: $ngx-english-script-typos, dense: $ngx-dense-script-typos, tall: $ngx-tall-script-typos)
+) {
+  @return map-get($typos , $script-type);
+}
+
+@function ngx-typo(
+  $typo-key,
+  $script-type,
+  $typos: ngx-typos($script-type)
+) {
+  @if not $typos { @return null; }
+
+  $typo: map-get($typos, $typo-key);
+
+  @return if($typo, $typo, null);
 }

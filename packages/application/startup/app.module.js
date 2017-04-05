@@ -13,13 +13,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import {
   DetailPageModule,
   ListPageModule,
+  TypographyPageModule,
   ElevationPageModule,
   BreakpointPageModule,
   ColorPageModule,
   ThemePageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
-import { ngxApp } from './app';
+import { NgxApp } from './app';
 
 
 @NgModule({
@@ -27,16 +28,17 @@ import { ngxApp } from './app';
     BrowserModule,
     DetailPageModule,
     ListPageModule,
+    TypographyPageModule,
     ColorPageModule,
     ThemePageModule,
     ElevationPageModule,
     BreakpointPageModule,
     AppRouteModule,
   ],
-  declarations: [ngxApp],
-  bootstrap: [ngxApp],
+  declarations: [NgxApp],
+  bootstrap: [NgxApp],
 })
-class ngxAppModule {
+class NgxAppModule {
   static parameters = [
     [new Inject(ApplicationRef)],
   ]
@@ -62,4 +64,4 @@ class ngxAppModule {
 }
 
 
-export { ngxAppModule };
+export { NgxAppModule };

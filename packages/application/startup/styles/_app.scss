@@ -1,5 +1,12 @@
-.ngx-App {
-  display: block;
+html, body {
+  height: 100%;
 }
 
-@include ngx-typos();
+body {
+  background-color: #eceff1;
+}
+
+.ngx-App {
+  display: block;
+  height: auto;
+}

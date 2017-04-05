@@ -1,0 +1,35 @@
+// ngx-typogarphy: (
+//   ngx-typogarphy-display-1: color,
+//   ngx-typogarphy-display-2: color,
+//   ngx-typogarphy-display-3: color,
+//   ngx-typogarphy-display-4: color,
+//   ngx-typogarphy-headline: color,
+//   ngx-typogarphy-title: color,
+//   ngx-typogarphy-subheading-1: color,
+//   ngx-typogarphy-subheading-2: color,
+//   ngx-typogarphy-body-1: color,
+//   ngx-typogarphy-body-2: color,
+//   ngx-typogarphy-caption: color,
+// )
+$ngx-typogarphy-theme: ngx-theme-component(ngx-typogarphy);
+
+
+@mixin ngx-typogarphy-theme-validate() {
+  @include ngx-theme-component-validate(
+    'ngx-typogarphy',
+    $ngx-typogarphy-theme,
+    (
+      'ngx-typogarphy-display-1',
+      'ngx-typogarphy-display-2',
+      'ngx-typogarphy-display-3',
+      'ngx-typogarphy-display-4',
+      'ngx-typogarphy-headline',
+      'ngx-typogarphy-title',
+      'ngx-typogarphy-subheading-1',
+      'ngx-typogarphy-subheading-2',
+      'ngx-typogarphy-body-1',
+      'ngx-typogarphy-body-2',
+      'ngx-typogarphy-caption',
+    )
+  );
+}

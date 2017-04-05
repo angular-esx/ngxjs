@@ -1,13 +1,134 @@
 .ngx-ListPage {
   display: block;
+  margin: auto;
+  padding-top: ngx-space(12);
 }
 
-.ngx-typo-container, .ngx-typo-leading {
+.ngx-ListPage__AppBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: ngx-space(12);
+  padding: ngx-space(4);
+  background-color: #4caf50;
 }
 
-.ngx-typo-leading {
-  flex-flow: column;
-  padding: 0 1.5rem;
-  border-right: 1px solid;
+.ngx-ListPage__AppBarTitle {
+  color: #ffffff;
+
+  @include ngx-typo(title, english);
+}
+
+.ngx-ListPage__AvailableLists {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-width: ngx-space(75);
+}
+
+.ngx-ListPage__AvailableList {
+  color: rgba(255, 255, 255, .54);
+  cursor: pointer;
+
+  @include ngx-typo(body-2, english);
+
+  &:hover, &.ngx-ListPage__AvailableList_state_active {
+    color: #ffffff;
+  }
+}
+
+.ngx-ListPage__Heading {
+  margin: ngx-space(4) 0;
+  text-align: center;
+  color: rgba(0, 0, 0, .87);
+
+  @include ngx-typo(display-4, english);
+}
+
+.ngx-ListPage__List {
+  padding: ngx-space(4) 0;
+  background-color: #ffffff;
+}
+
+.ngx-ListPage__ListItem {
+  display: flex;
+  min-height: ngx-space(12);
+  max-height: ngx-space(25);
+  padding: ngx-space(4) ngx-space(4) ngx-space(5) ngx-space(4);
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.ngx-ListPage__ListLeftSection {
+  width: ngx-space(14);
+}
+
+.ngx-ListPage__ListMainSection {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ngx-ListPage__ListRightSection {
+  padding-left: ngx-space(4);
+}
+
+.ngx-ListPage__ListAvatar {
+  display: inline-block;
+  padding: ngx-space(5);
+  background-color: rgba(0, 0, 0, .54);
+}
+
+.ngx-ListPage__ListIcon {
+  display: inline-block;
+  padding: ngx-space(3);
+  background-color: rgba(0, 0, 0, .54);
+}
+
+.ngx-ListPage__ListLine {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:first-child {
+    line-height: ngx-space(5);
+    color: rgba(0, 0, 0, .87);
+
+    @include ngx-typo(subheading-1, english, $exclude: 'line-height');
+  }
+
+  &:nth-child(n+2) {
+    line-height: ngx-space(6);
+    color: rgba(0, 0, 0, .54);
+
+    @include ngx-typo(body-2, english, $exclude: 'line-height');
+  }
+}
+
+@media (min-width: ngx-breakpoint(600)) {
+  .ngx-ListPage {
+    padding-top: ngx-space(14);
+  }
+
+  .ngx-ListPage__AppBar {
+    height: ngx-space(14);
+  }
+}
+
+@media (min-width: ngx-breakpoint(840)) {
+  .ngx-ListPage {
+    width: 90%;
+    max-width: ngx-breakpoint(840);
+    padding-top: ngx-space(16);
+  }
+
+  .ngx-ListPage__AppBar {
+    height: ngx-space(16);
+  }
+
+  .ngx-ListPage__Heading {
+    @include ngx-typo(display-3, english);
+  }
 }

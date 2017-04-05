@@ -1,34 +1,91 @@
-@mixin ngx-typo($typo-key, $typos: $ngx-typos, $prefix: 'ngx') {
-  $_leading: null;
-  $_leading-keys: null;
-  $_typo: map-get($typos, $typo-key);
+// Used to get values from a specific typo in a specific language
+// For example, we have english script contains a typo as below:
+// $ngx-english-script-typos: (
+//   display-1: (
+//     letter-spacing: ngx-letter-spacing(-10),
+//     font-size: ngx-font-size(112px),
+//     font-weight: ngx-font-weight(regular),
+//   ),
+// )
+//
+// Then we call ngx-typo(display-1, english)
+// The result will be:
+// .my-display-1 {
+//   letter-spacing: -0.01em;
+//   font-size: 8rem;
+//   font-weight: 300;
+// }
+//
+// We can use $include & $exclude to control which properties we want to get
+// For examples:
+// ngx-typo(display-1, english, $include: (font-size));
+// .my-display-1 {
+//   font-size: 8rem;
+// }
+//
+// ngx-typo(display-1, english, $exclude: (letter-spacing));
+// .my-display-1 {
+//   font-size: 8rem;
+//   font-weight: 300;
+// }
+@mixin ngx-typo(
+  $typo-key,
+  $script-type,
+  $include: null,
+  $exclude: null
+) {
+  $_typo: ngx-map-clone(ngx-typo($typo-key, $script-type), $include, $exclude);
   $_typo-keys: map-keys($_typo);
-  $_prefix: if($prefix, #{$prefix}-, '');
 
   @each $_typo-key in $_typo-keys {
-    @if $_typo-key == 'leading' {
-      $_leading: map-get($_typo, $_typo-key);
-      $_leading-keys: map-keys($_leading);
-
-      @each $_leading-key in $_leading-keys {
-        + .#{$_prefix}#{$_leading-key} {
-          margin-top: map-get($_leading, $_leading-key);
-        }
-      }
-    }
-    @else {
-      #{$_typo-key}: map-get($_typo, $_typo-key);
-    }
+    #{$_typo-key}: map-get($_typo, $_typo-key);
   }
 }
+// Follow order of typos in a specific language script,
+// If 2 nearby typos have line-height, leading will be result from subtraction of them.
+// We can use $include & $exclude to control which typos we want to get for leading calculation.
+// $func-selector is function name which is used to generate css class for typo.
+@mixin ngx-typo-leading(
+  $typo-key,
+  $script-type,
+  $include: null,
+  $exclude: null,
+  $func-selector: null
+) {
+  $_typos: ngx-map-clone(ngx-typos($script-type), $include, $exclude);
 
-@mixin ngx-typos($typos: $ngx-typos, $prefix: 'ngx') {
-  $_keys: map-keys($typos);
-  $_prefix: if($prefix, #{$prefix}-, '');
+  @if $_typos and map-has-key($_typos, $typo-key) {
+    $_typo-keys: map-keys($_typos);
+    $_typo: map-get($_typos, $typo-key);
 
-  @each $_key in $_keys {
-    .#{$_prefix}#{$_key} {
-      @include ngx-typo($_key, $typos, $prefix);
+    @if map-has-key($_typo, 'line-height') {
+      $_index: index($_typo-keys, $typo-key);
+      $_typo_: null;
+
+      @each $_typo-key in $_typo-keys {
+        $_typo_: map-get($_typos, $_typo-key);
+
+        @if (index($_typo-keys, $_typo-key) <= $_index) or (not map-has-key($_typo_, 'line-height')) {
+          $_typos: map-remove($_typos , $_typo-key);
+        }
+      }
+
+      $_typo-keys: map-keys($_typos);
+      $_typo-keys-length: length($_typo-keys);
+      $_margin-top: 0;
+
+      @if $_typo-keys-length > 0 {
+        @each $_typo-key in $_typo-keys {
+          $_typo_: map-get($_typos, $_typo-key);
+          $_margin-top: (ngx-strip-unit(map-get($_typo, 'line-height')) - ngx-strip-unit(map-get($_typo_, 'line-height')));
+
+          @if $func-selector and $_margin-top > 0 {
+            + #{call($func-selector, $_typo-key)} {
+              margin-top: $_margin-top * 1rem;
+            }
+          }
+        }
+      }
     }
   }
 }

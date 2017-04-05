@@ -1,0 +1,19 @@
+@mixin ngx-typography($script-type) {
+  $_typos: ngx-typos($script-type);
+  $_keys: map-keys($_typos);
+
+  @each $_key in $_keys {
+    #{ngx-typography-variant($_key)} {
+      @include ngx-typo($_key, $script-type);
+
+      $_typo-color: map-get($ngx-typogarphy-theme, ngx-typogarphy-#{$_key});
+      @if $_typo-color {
+        color: $_typo-color;
+      }
+
+      &:not([ngxTypography_type_no-leading]) {
+        @include ngx-typo-leading($_key, $script-type, $func-selector: 'ngx-typography-variant');
+      }
+    }
+  }
+}

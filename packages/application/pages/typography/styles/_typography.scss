@@ -1,0 +1,35 @@
+.ngx-TypographyPage {
+  display: block;
+  background-color: #ffffff;
+}
+
+.ngx-TypographyPage__Scripts {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0 ,0, .54);
+}
+
+.ngx-TypographyPage__Script {
+  flex: 1;
+  padding: ngx-space(4);
+  text-align: center;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    border-right: 1px solid rgba(0, 0 ,0, .54);
+  }
+
+  &:hover, &.ngx-TypographyPage__Script_state_active {
+    color: #ffffff;
+    background-color: rgba(0, 0 ,0, .54);
+  }
+}
+
+.ngx-typo-container, .ngx-typo-leading {
+  display: flex;
+}
+
+.ngx-typo-leading {
+  flex-flow: column;
+  padding: 0 ngx-space(4);
+  border-right: 1px solid;
+}

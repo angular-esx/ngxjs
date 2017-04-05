@@ -14,7 +14,7 @@ import {
   },
   encapsulation: ViewEncapsulation.None,
 })
-class ngxApp {}
+class NgxApp {}
 
 
-export { ngxApp };
+export { NgxApp };
