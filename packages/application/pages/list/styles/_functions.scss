@@ -1,3 +1,0 @@
-@function ngx-breakpoint($breakpoint-key, $breakpoints: $ngx-breakpoints) {
-  @return map-get($breakpoints, $breakpoint-key);
-}
