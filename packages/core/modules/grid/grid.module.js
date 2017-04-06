@@ -12,7 +12,7 @@ import { NgxGridComponent } from './grid.component';
     NgxGridRowComponent,
     NgxGridComponent,
   ],
-  exports:  [
+  exports: [
     NgxGridColumnComponent,
     NgxGridRowComponent,
     NgxGridComponent,
