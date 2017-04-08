@@ -7,7 +7,7 @@ import {
 
 
 @Component({
-  selector: 'ngx-grid-column',
+  selector: 'ngx-col',
   template: '<ng-content></ng-content>',
   host: {
     '[class]': '_getClass()',

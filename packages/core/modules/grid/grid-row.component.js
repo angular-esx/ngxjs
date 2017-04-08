@@ -7,8 +7,8 @@ import {
 
 
 @Component({
-  selector: 'ngx-grid-row',
-  template: '<ng-content select="ngx-grid-column"></ng-content>',
+  selector: 'ngx-row',
+  template: '<ng-content select="ngx-col"></ng-content>',
   host: {
     '[class]': '_getClass()',
   },
