@@ -18,6 +18,7 @@ import {
   BreakpointPageModule,
   ColorPageModule,
   ThemePageModule,
+  GridPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { NgxApp } from './app';
@@ -33,6 +34,7 @@ import { NgxApp } from './app';
     ThemePageModule,
     ElevationPageModule,
     BreakpointPageModule,
+    GridPageModule,
     AppRouteModule,
   ],
   declarations: [NgxApp],

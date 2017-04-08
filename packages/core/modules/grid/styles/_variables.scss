@@ -1,0 +1,18 @@
+$ngx-grid-columns: 12;
+
+$ngx-grid-gutter-width-base: 4 * $ngx-baseline-height;
+$ngx-grid-gutter-widths: (
+  xs: $ngx-grid-gutter-width-base,
+  sm: $ngx-grid-gutter-width-base,
+  md: $ngx-grid-gutter-width-base,
+  lg: $ngx-grid-gutter-width-base,
+  xl: $ngx-grid-gutter-width-base,
+);
+
+$ngx-grid-breakpoints: (
+  xs: 0,
+  sm: ngx-breakpoint(600),
+  md: ngx-breakpoint(960),
+  lg: ngx-breakpoint(1280),
+  xl: ngx-breakpoint(1920),
+);
