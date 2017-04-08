@@ -4,7 +4,7 @@
 //    @media (min-width: 480px) { }
 @mixin ngx-media-breakpoint-up($name, $breakpoints: $ngx-breakpoints) {
   $min: ngx-breakpoint($name, $breakpoints);
-  @if $min {
+  @if $min and ngx-strip-unit($min) > 0 {
     @media (min-width: $min) {
       @content;
     }
