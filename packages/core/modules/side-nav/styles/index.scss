@@ -1,0 +1,8 @@
+@import './_dependencies.scss';
+@import './_theme.scss';
+
+@include ngx-side-nav-theme-validate();
+
+@import './_variables.scss';
+
+@import './_side-nav.scss';

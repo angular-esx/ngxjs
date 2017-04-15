@@ -1,0 +1,18 @@
+// ngx-side-nav: (
+//   background: color,
+
+//   navigation-foreground: color,
+// )
+$ngx-side-nav-theme: ngx-theme-component(ngx-side-nav);
+
+
+@mixin ngx-side-nav-theme-validate() {
+  @include ngx-theme-component-validate(
+    'ngx-side-nav',
+    $ngx-side-nav-theme,
+    (
+      'background',
+      'navigation-foreground',
+    )
+  );
+}

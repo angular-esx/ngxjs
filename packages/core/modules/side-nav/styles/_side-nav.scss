@@ -1,0 +1,29 @@
+.ngx-SideNavComponent{
+  display: block;
+  width: ngx-space($ngx-side-nav-width-increase);
+  height: 100%;
+  background-color: map-get($ngx-side-nav-theme, background);
+
+  @include ngx-media-breakpoint-down(960) {
+    display: none;
+  }
+}
+
+.ngx-SideNavComponent__Account {
+  height: ngx-space($ngx-side-nav-width-increase/(16/9));
+  padding: ngx-space($ngx-side-nav-padding-increase);
+  background-color: rgba(0, 0, 0, .38);
+}
+
+.ngx-SideNavComponent__Navigations {
+  height: 100%;
+  padding: ngx-space($ngx-side-nav-padding-increase);
+}
+
+.ngx-SideNavComponent__Navigation {
+  padding: ngx-space(3) 0;
+  color: map-get($ngx-side-nav-theme, ngx-side-nav-foreground-default);
+  cursor: pointer;
+
+  @include ngx-typo(body-1, english);
+}
