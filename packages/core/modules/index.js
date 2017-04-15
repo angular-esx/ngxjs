@@ -6,6 +6,10 @@ export {
 } from './grid';
 
 export {
+export {
+  NgxToolbarComponent,
+  NgxToolbarModule,
+} from './toolbar';
   NgxTypographyDirective,
   NgxTypographyModule,
 } from './typography';

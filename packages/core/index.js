@@ -4,6 +4,9 @@ export {
   NgxGridComponent,
   NgxGridModule,
 
+  NgxToolbarComponent,
+  NgxToolbarModule,
+
   NgxTypographyDirective,
   NgxTypographyModule,
 } from './modules';

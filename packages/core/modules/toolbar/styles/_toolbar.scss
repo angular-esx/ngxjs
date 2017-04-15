@@ -1,0 +1,32 @@
+.ngx-ToolbarComponent{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: ngx-space(12);
+  padding: ngx-space(4);
+  background-color: map-get($ngx-toolbar-theme, background);
+}
+
+.ngx-ToolbarComponent__Brand {
+  color: map-get($ngx-toolbar-theme, foreground-active);
+
+  @include ngx-typo(title, english);
+}
+
+.ngx-ToolbarComponent__Actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-width: ngx-space(75);
+}
+
+.ngx-ToolbarComponent__Action {
+  color: map-get($ngx-toolbar-theme, foreground-default);
+  cursor: pointer;
+
+  @include ngx-typo(body-2, english);
+
+  &:hover, &.ngx-ToolbarComponent__Action_state_active {
+    color: map-get($ngx-toolbar-theme, foreground-active);
+  }
+}

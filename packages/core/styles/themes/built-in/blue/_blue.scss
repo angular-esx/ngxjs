@@ -48,5 +48,11 @@ $ngx-blue-theme: (
       ngx-typogarphy-body-2: $ngx-theme-color-black-87,
       ngx-typogarphy-caption: $ngx-theme-color-black-54,
     ),
+    ngx-toolbar: (
+      background: ngx-color($ngx-theme-palette-primary, default),
+
+      foreground-default: ngx-color-contrast($ngx-theme-palette-primary, default, .87),
+      foreground-active: ngx-color-contrast($ngx-theme-palette-primary, default),
+    ),
   ),
 );
