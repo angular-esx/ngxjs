@@ -7,6 +7,9 @@ export {
   NgxSideNavComponent,
   NgxSideNavModule,
 
+  NgxTabsComponent,
+  NgxTabsModule,
+
   NgxToolbarComponent,
   NgxToolbarModule,
 

@@ -11,6 +11,11 @@ export {
 } from './side-nav';
 
 export {
+  NgxTabsComponent,
+  NgxTabsModule,
+} from './tabs';
+
+export {
   NgxToolbarComponent,
   NgxToolbarModule,
 } from './toolbar';

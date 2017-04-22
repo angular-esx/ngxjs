@@ -1,0 +1,20 @@
+// ngx-tabs: (
+//   background: color,
+
+//   foreground-default: color,
+//   foreground-active: color,
+// )
+$ngx-tabs-theme: ngx-theme-component(ngx-tabs);
+
+
+@mixin ngx-tabs-theme-validate() {
+  @include ngx-theme-component-validate(
+    'ngx-tabs',
+    $ngx-tabs-theme,
+    (
+      'background',
+      'foreground-default',
+      'foreground-active',
+    )
+  );
+}

@@ -53,6 +53,12 @@ $ngx-blue-theme: (
 
       navigation-foreground: $ngx-theme-color-black-87,
     ),
+    ngx-tabs: (
+      background: ngx-color($ngx-theme-palette-primary, default),
+
+      foreground-default: ngx-color-contrast($ngx-theme-palette-primary, default, .87),
+      foreground-active: ngx-color-contrast($ngx-theme-palette-primary, default),
+    ),
     ngx-toolbar: (
       background: ngx-color($ngx-theme-palette-primary, default),
 
