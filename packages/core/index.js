@@ -1,4 +1,7 @@
 export {
+  NgxCardComponent,
+  NgxCardModule,
+
   NgxGridColumnComponent,
   NgxGridRowComponent,
   NgxGridComponent,

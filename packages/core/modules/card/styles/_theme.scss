@@ -1,0 +1,19 @@
+// ngx-card: (
+//   foreground: color;
+//   background: color;
+//   subtitle-foreground: color;
+// )
+$ngx-card-theme: ngx-theme-component(ngx-card);
+
+
+@mixin ngx-card-theme-validate() {
+  @include ngx-theme-component-validate(
+    ngx-card,
+    $ngx-card-theme,
+    (
+      'foreground',
+      'background',
+      'subtitle-foreground'
+    )
+  );
+}

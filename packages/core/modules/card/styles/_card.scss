@@ -1,0 +1,114 @@
+.ngx-CardComponent {
+  display: block;
+  position: relative;
+  padding: ngx-space(6);
+  border-radius: 2px;
+  color: map-get($ngx-card-theme, foreground);
+  background-color: map-get($ngx-card-theme, background);
+
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  > .ngx-CardComponent__CardActionsComponent:last-child {
+    margin-bottom: -(ngx-space(4));
+  }
+
+  @include ngx-elevation(2);
+  @include ngx-elevation-transition();
+}
+
+.ngx-CardComponent__CardHeaderComponent {
+  display: flex;
+  flex-direction: row;
+  height: ngx-space(10);
+  margin: -(ngx-space(2)) 0 ngx-space(4) 0;
+
+  .ngx-CardComponent__CardTitleComponent {
+    @include ngx-typo(title, english, $exclude: ('font-weight'));
+  }
+
+  .ngx-CardComponent__CardSubtitleComponent {
+    &:not(:first-child) {
+      margin-top: -(ngx-space(2));
+    }
+  }
+}
+
+.ngx-CardComponent__CardHeaderText {
+  height: ngx-space(10);
+  margin: 0 ngx-space(4);
+}
+
+.ngx-CardComponent__CardTitleGroupComponent {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -(ngx-space(2));
+}
+
+.ngx-CardComponent__CardAvatarComponent {
+  height: ngx-space(10);
+  width: ngx-space(10);
+  border-radius: 50%;
+}
+
+.ngx-CardComponent__CardTitleComponent {
+  @extend %ngx-card-section-base;
+  @include ngx-typo(headline, english, $include: ('font-size', 'font-weight'));
+
+  &:not(:first-child) {
+    margin-top: -(ngx-space(1));
+  }
+}
+
+.ngx-CardComponent__CardSubtitleComponent {
+  @extend %ngx-card-section-base;
+  @include ngx-typo(subheading-2, english, $include: ('font-size'));
+
+  color: map-get($ngx-card-theme, subtitle-foreground);
+
+  &:not(:first-child) {
+    margin-top: -(ngx-space(1));
+  }
+}
+
+.ngx-CardComponent__CardContentComponent {
+  @extend %ngx-card-section-base;
+  @include ngx-typo(body-2, english);
+  margin-bottom: 0;
+
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+[ngxCardImage] {
+  // must add 3rem becauce we set -ngx-space(6) for margin
+  width: calc(100% + 1.71429rem * 2);
+  margin-top: 0;
+  margin-left: -(ngx-space(6));
+  margin-bottom: ngx-space(4);
+
+  &:first-child {
+    margin-top: -(ngx-space(6));
+  }
+}
+
+.ngx-CardComponent__CardActionsComponent {
+  display: flex;
+  justify-content: space-around;
+  padding-top: ngx-space(4);
+  padding-bottom: ngx-space(4);
+
+  @extend %ngx-card-section-base;
+
+  &.ngx-CardComponent__CardActionsComponent_align_end {
+    justify-content: flex-end;
+  }
+}
