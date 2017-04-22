@@ -4,6 +4,9 @@ export {
   NgxGridComponent,
   NgxGridModule,
 
+  NgxListComponent,
+  NgxListModule,
+
   NgxSideNavComponent,
   NgxSideNavModule,
 

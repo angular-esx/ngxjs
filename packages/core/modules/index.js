@@ -6,6 +6,11 @@ export {
 } from './grid';
 
 export {
+  NgxListComponent,
+  NgxListModule,
+} from './list';
+
+export {
   NgxSideNavComponent,
   NgxSideNavModule,
 } from './side-nav';
