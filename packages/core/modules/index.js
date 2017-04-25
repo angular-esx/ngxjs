@@ -34,3 +34,5 @@ export {
   NgxTypographyDirective,
   NgxTypographyModule,
 } from './typography';
+
+export { NgxjsModule } from './ngxjs.module';

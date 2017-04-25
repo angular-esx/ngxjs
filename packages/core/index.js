@@ -21,4 +21,6 @@ export {
 
   NgxTypographyDirective,
   NgxTypographyModule,
+
+  NgxjsModule,
 } from './modules';
