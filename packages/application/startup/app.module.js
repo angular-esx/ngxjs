@@ -19,10 +19,13 @@ import {
   ColorPageModule,
   ThemePageModule,
   GridPageModule,
+  LayoutGridModule,
+  LayoutListModule,
+  LayoutCardModule,
+  LayoutTabsModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { NgxApp } from './app';
-
 
 @NgModule({
   imports: [
@@ -35,6 +38,11 @@ import { NgxApp } from './app';
     ElevationPageModule,
     BreakpointPageModule,
     GridPageModule,
+    LayoutGridModule,
+    LayoutListModule,
+    LayoutCardModule,
+    LayoutTabsModule,
+    // import your module above this AppRouteModule
     AppRouteModule,
   ],
   declarations: [NgxApp],

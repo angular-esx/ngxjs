@@ -6,3 +6,7 @@ export { BreakpointPageModule } from './breakpoint';
 export { ColorPageModule } from './color';
 export { ThemePageModule } from './theme';
 export { GridPageModule } from './grid';
+export { LayoutGridModule } from './layout-grid';
+export { LayoutListModule } from './layout-list';
+export { LayoutCardModule } from './layout-card';
+export { LayoutTabsModule } from './layout-tabs';
