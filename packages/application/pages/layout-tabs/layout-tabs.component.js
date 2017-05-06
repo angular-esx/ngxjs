@@ -10,5 +10,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   },
 })
 export class LayoutTabsComponent {
+  open = false;
 
+  toggle() {
+    this.open = !this.open;
+  }
 }
