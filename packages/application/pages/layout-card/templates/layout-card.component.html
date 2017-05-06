@@ -1,5 +1,43 @@
-<ngx-toolbar></ngx-toolbar>
+<ngx-toolbar (click)="toggle()"></ngx-toolbar>
 
 <ngx-side-nav></ngx-side-nav>
 
-<ngx-card></ngx-card>
+<div class="container">
+
+  <ngx-side-nav mode="push" [opened]="open"></ngx-side-nav>
+
+  <div class="main">
+
+    <ngx-grid type="fluid">
+      <ngx-row>
+        <ngx-col size="xs sm-6 md-4 lg-3">
+          <ngx-card></ngx-card>
+        </ngx-col>
+        <ngx-col size="xs sm-6 md-4 lg-3">
+          <ngx-card></ngx-card>
+        </ngx-col>
+        <ngx-col size="xs sm-6 md-4 lg-3">
+          <ngx-card></ngx-card>
+        </ngx-col>
+        <ngx-col size="xs sm-6 md-4 lg-3">
+          <ngx-card></ngx-card>
+        </ngx-col>
+      </ngx-row>
+      <ngx-row>
+        <ngx-col size="xs sm-6 md-4 lg-3">
+          <ngx-card></ngx-card>
+        </ngx-col>
+        <ngx-col size="xs sm-6 md-4 lg-3">
+          <ngx-card></ngx-card>
+        </ngx-col>
+        <ngx-col size="xs sm-6 md-4 lg-3">
+          <ngx-card></ngx-card>
+        </ngx-col>
+        <ngx-col size="xs sm-6 md-4 lg-3">
+          <ngx-card></ngx-card>
+        </ngx-col>
+      </ngx-row>
+    </ngx-grid>
+  </div>
+
+</div>

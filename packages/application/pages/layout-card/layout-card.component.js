@@ -9,4 +9,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
     class: 'layout-card',
   },
 })
-export class LayoutCardComponent { }
+export class LayoutCardComponent {
+  open = false;
+
+  toggle() {
+    this.open = !this.open;
+  }
+}
