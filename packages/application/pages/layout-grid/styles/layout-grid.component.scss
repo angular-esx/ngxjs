@@ -1,15 +1,15 @@
-$ngx-SideNav-width: 20em;
-
 .layout-grid {
   display: block;
 }
 
-.ngx-SideNavComponent {
-  position: absolute;
-  width: $ngx-SideNav-width;
+.container {
+  display: flex;
 }
 
-.container {
-  margin-left: $ngx-SideNav-width;
-  padding: 1rem 2rem;
+.container .main {
+  flex: 1;
+}
+
+.content {
+  padding: 16px 0;
 }

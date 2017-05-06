@@ -9,4 +9,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
     class: 'layout-grid',
   },
 })
-export class LayoutGridComponent { }
+export class LayoutGridComponent {
+  open = false;
+
+  toggle() {
+    this.open = !this.open;
+  }
+}

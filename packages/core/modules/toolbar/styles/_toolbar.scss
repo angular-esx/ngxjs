@@ -5,6 +5,8 @@
   height: ngx-space(12);
   padding: ngx-space(4);
   background-color: map-get($ngx-toolbar-theme, background);
+  position: relative;
+  z-index: 1000;
 }
 
 .ngx-ToolbarComponent__Brand {
