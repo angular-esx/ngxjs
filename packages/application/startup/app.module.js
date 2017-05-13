@@ -24,6 +24,7 @@ import {
   LayoutListModule,
   LayoutCardModule,
   LayoutTabsModule,
+  ViewPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { NgxApp } from './app';
@@ -44,6 +45,7 @@ import { NgxApp } from './app';
     LayoutListModule,
     LayoutCardModule,
     LayoutTabsModule,
+    ViewPageModule,
     // import your module above this AppRouteModule
     AppRouteModule,
   ],

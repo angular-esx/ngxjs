@@ -42,4 +42,9 @@ export {
   NgxTypographyModule,
 } from './typography';
 
+export {
+  NgxViewComponent,
+  NgxViewModule,
+} from './view';
+
 export { NgxjsModule } from './ngxjs.module';

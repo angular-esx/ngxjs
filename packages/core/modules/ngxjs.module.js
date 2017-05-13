@@ -10,6 +10,7 @@ import { NgxSideNavModule } from './side-nav';
 import { NgxTabsModule } from './tabs';
 import { NgxToolbarModule } from './toolbar';
 import { NgxTypographyModule } from './typography';
+import { NgxViewModule } from './view';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { NgxTypographyModule } from './typography';
     NgxTabsModule,
     NgxToolbarModule,
     NgxTypographyModule,
+    NgxViewModule,
   ],
   exports: [
     NgxCardModule,
@@ -31,6 +33,7 @@ import { NgxTypographyModule } from './typography';
     NgxTabsModule,
     NgxToolbarModule,
     NgxTypographyModule,
+    NgxViewModule,
   ],
 })
 export class NgxjsModule {}

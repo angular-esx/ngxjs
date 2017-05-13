@@ -11,3 +11,4 @@ export { LayoutGridModule } from './layout-grid';
 export { LayoutListModule } from './layout-list';
 export { LayoutCardModule } from './layout-card';
 export { LayoutTabsModule } from './layout-tabs';
+export { ViewPageModule } from './view';

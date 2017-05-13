@@ -1,0 +1,38 @@
+.ngx-ViewPage {
+  display: block;
+}
+
+.ngx-ViewPage__Item {
+  padding: ngx-space(6);
+  border: 1px solid rgba(0, 0, 0, .12);
+  text-align: center;
+  cursor: pointer;
+
+  + .ngx-ViewPage__Item {
+    margin-top: ngx-space(4);
+  }
+}
+
+.ngx-ViewPage__Alert {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .54);
+
+  &.ngx-ViewPage__Alert_state_active {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.ngx-ViewPage__AlertContent {
+  width: 30%;
+  padding: ngx-space(4);
+  background-color: #ffffff;
+  text-align: center;
+}
