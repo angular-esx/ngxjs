@@ -1,41 +1,60 @@
-$ngx-side-nav-index: 100;
+.ngx-SideNavContainerComponent {
+  display: block;
+  position: relative;
+}
 
 .ngx-SideNavComponent {
-  width: 0;
-  height: 100vh;
-  transition: transform .4s, width .4s cubic-bezier(.25,.8,.25,1);
-  transform: translate3d(-100%,0,0);
-  position: relative;
+  width: ngx-space($ngx-side-nav-width-increase);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  transition: transform .4s cubic-bezier(.25, .8, .25, 1);
+  z-index: $ngx-side-nav-index;
+  background: rgb(255, 255, 255);
+}
 
-  @include ngx-media-breakpoint-down(960) {
-    display: none;
-  }
+.ngx-SideNavComponent_side_left {
+  left: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+
+.ngx-SideNavComponent_side_right {
+  right: 0;
+  transform: translate3d(100%, 0, 0);
 }
 
 .ngx-SideNavComponent_opened_true {
-  transform: translate3d(0,0,0);
-  width: ngx-space($ngx-side-nav-width-increase);
+  transform: translate3d(0, 0, 0);
+}
 
-  .ngx-SideNavComponent__Container {
-    width: ngx-space($ngx-side-nav-width-increase);
+.ngx-SideNavContentComponent {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 0;
+  transition: transform .4s, margin .4s cubic-bezier(.25, .8, .25, 1);
+  transform: translate3d(0, 0, 0);
+}
+
+.ngx-SideNavContentComponent_mode_push_side_left {
+  transform: translate3d(ngx-space($ngx-side-nav-width-increase), 0, 0);
+}
+
+.ngx-SideNavContentComponent_mode_push_side_right {
+  transform: translate3d(ngx-space(-$ngx-side-nav-width-increase), 0, 0);
+}
+
+.ngx-SideNavContentComponent_mode_side_side_left {
+  @include ngx-media-breakpoint-up(960) {
+    margin-left: ngx-space($ngx-side-nav-width-increase);
   }
 }
 
-.ngx-SideNavComponent_mode_over {
-  position: fixed;
-  z-index: $ngx-side-nav-index;
-}
-
-.ngx-SideNavComponent__Container {
-  display: block;
-  background-color: map-get($ngx-side-nav-theme, background);
-  transition: transform .4s, width .4s cubic-bezier(.25,.8,.25,1);
-  width: 0;
-  position: fixed;
-  z-index: $ngx-side-nav-index;
-  overflow-y: auto;
-  height: 100%;
-  top: 0;
+.ngx-SideNavContentComponent_mode_side_side_right {
+  @include ngx-media-breakpoint-up(960) {
+    margin-right: ngx-space($ngx-side-nav-width-increase);
+  }
 }
 
 .ngx-SideNavComponent__Account {
@@ -52,6 +71,5 @@ $ngx-side-nav-index: 100;
   padding: ngx-space(3) 0;
   color: map-get($ngx-side-nav-theme, ngx-side-nav-foreground-default);
   cursor: pointer;
-
   @include ngx-typo(body-1, english);
 }

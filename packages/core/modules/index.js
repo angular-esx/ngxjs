@@ -17,6 +17,8 @@ export {
 
 export {
   NgxSideNavComponent,
+  NgxSideNavContainerComponent,
+  NgxSideNavContentComponent,
   NgxSideNavModule,
 } from './side-nav';
 
