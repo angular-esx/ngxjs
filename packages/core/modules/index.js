@@ -4,6 +4,11 @@ export {
 } from './card';
 
 export {
+  NgxContainerComponent,
+  NgxContainerModule,
+} from './container';
+
+export {
   NgxGridColumnComponent,
   NgxGridRowComponent,
   NgxGridComponent,

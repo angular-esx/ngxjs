@@ -4,6 +4,7 @@ export { TypographyPageModule } from './typography';
 export { ElevationPageModule } from './elevation';
 export { BreakpointPageModule } from './breakpoint';
 export { ColorPageModule } from './color';
+export { ContainerPageModule } from './container';
 export { ThemePageModule } from './theme';
 export { GridPageModule } from './grid';
 export { LayoutGridModule } from './layout-grid';

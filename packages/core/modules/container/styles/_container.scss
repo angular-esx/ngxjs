@@ -1,0 +1,17 @@
+.ngx-Container {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: ngx-space(4);
+  padding-left: ngx-space(4);
+
+  @each $_breakpoint, $_width in $ngx-container-breakpoints {
+    @if $_width and $_width > 0 {
+      @include ngx-media-breakpoint-up($_breakpoint, $ngx-container-breakpoints) {
+        width: $_width;
+        max-width: 100%;
+      }
+    }
+  }
+}

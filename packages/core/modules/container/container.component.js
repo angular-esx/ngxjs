@@ -6,16 +6,16 @@ import {
 
 
 @Component({
-  selector: 'ngx-grid',
-  template: '<ng-content select="ngx-row"></ng-content>',
+  selector: 'ngx-container',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./styles/index.scss'],
   host: {
-    '[class.ngx-GridComponent]': 'true',
+    '[class.ngx-Container]': 'true',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-class NgxGridComponent {}
+class NgxContainerComponent {}
 
 
-export { NgxGridComponent };
+export { NgxContainerComponent };

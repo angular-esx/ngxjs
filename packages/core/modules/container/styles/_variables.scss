@@ -1,0 +1,7 @@
+$ngx-container-breakpoints: (
+  xs: 0,
+  sm: ngx-breakpoint(600),
+  md: ngx-breakpoint(960),
+  lg: ngx-breakpoint(1280),
+  xl: ngx-breakpoint(1920),
+);

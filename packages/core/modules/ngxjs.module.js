@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { NgxCardModule } from './card';
+import { NgxContainerModule } from './container';
 import { NgxGridModule } from './grid';
 import { NgxListModule } from './list';
 import { NgxSideNavModule } from './side-nav';
@@ -14,6 +15,7 @@ import { NgxTypographyModule } from './typography';
   imports: [
     BrowserModule,
     NgxCardModule,
+    NgxContainerModule,
     NgxGridModule,
     NgxListModule,
     NgxSideNavModule,
