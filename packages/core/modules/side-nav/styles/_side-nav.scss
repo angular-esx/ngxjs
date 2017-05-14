@@ -1,16 +1,19 @@
 .ngx-SideNavContainerComponent {
   display: block;
+  height: 100vh;
+  overflow: hidden;
   position: relative;
 }
 
 .ngx-SideNavComponent {
   width: ngx-space($ngx-side-nav-width-increase);
-  height: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
+  bottom: 0;
   transition: transform .4s cubic-bezier(.25, .8, .25, 1);
   z-index: $ngx-side-nav-index;
   background: rgb(255, 255, 255);
+  overflow-y: auto;
 }
 
 .ngx-SideNavComponent_side_left {
@@ -29,29 +32,28 @@
 
 .ngx-SideNavContentComponent {
   display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
+  height: 100%;
+  overflow-y: auto;
   margin-left: 0;
   transition: transform .4s, margin .4s cubic-bezier(.25, .8, .25, 1);
   transform: translate3d(0, 0, 0);
 }
 
-.ngx-SideNavContentComponent_mode_push_side_left {
+.ngx-SideNavContentComponent_mode_push-left {
   transform: translate3d(ngx-space($ngx-side-nav-width-increase), 0, 0);
 }
 
-.ngx-SideNavContentComponent_mode_push_side_right {
+.ngx-SideNavContentComponent_mode_push-right {
   transform: translate3d(ngx-space(-$ngx-side-nav-width-increase), 0, 0);
 }
 
-.ngx-SideNavContentComponent_mode_side_side_left {
+.ngx-SideNavContentComponent_mode_side-left {
   @include ngx-media-breakpoint-up(960) {
     margin-left: ngx-space($ngx-side-nav-width-increase);
   }
 }
 
-.ngx-SideNavContentComponent_mode_side_side_right {
+.ngx-SideNavContentComponent_mode_side-right {
   @include ngx-media-breakpoint-up(960) {
     margin-right: ngx-space($ngx-side-nav-width-increase);
   }
