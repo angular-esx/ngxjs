@@ -17,15 +17,15 @@ import {
 })
 class NgxSideNavComponent {
   // 'over', 'push', 'side'
-  @Input() mode = 'over';
+  @Input() type = 'over';
   @Input() opened = false;
   @Input() side = 'left';
 
   _getClass() {
     const _classes = ['ngx-SideNavComponent'];
 
-    if (this.mode) {
-      _classes.push(`ngx-SideNavComponent_mode_${this.mode}`);
+    if (this.type) {
+      _classes.push(`ngx-SideNavComponent_type_${this.type}`);
     }
 
     if (this.opened) {

@@ -36,7 +36,7 @@ class NgxSideNavContainerComponent {
     this.modes = [];
     this.sideNavs.forEach((sideNav) => {
       if (sideNav.opened === true) {
-        this.modes.push(`mode_${sideNav.mode}_side_${sideNav.side}`);
+        this.modes.push(`mode_${sideNav.type}-${sideNav.side}`);
       }
     });
   }
