@@ -1,17 +1,5 @@
 .ngx-GridComponent {
   @include ngx-grid();
-
-  &:not(.ngx-GridComponent_type_fluid) {
-    // For each breakpoint, define the maximum width of the container in a media query
-    @each $_breakpoint, $_width in $ngx-grid-breakpoints {
-      @if $_width and $_width > 0 {
-        @include ngx-media-breakpoint-up($_breakpoint, $ngx-grid-breakpoints) {
-          width: $_width;
-          max-width: 100%;
-        }
-      }
-    }
-  }
 }
 
 .ngx-GridComponent__GridRowComponent {

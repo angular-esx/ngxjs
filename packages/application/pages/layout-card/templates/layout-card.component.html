@@ -1,0 +1,37 @@
+<ngx-side-nav-container>
+  <ngx-side-nav [type]="mode1" [opened]="open" side="left"></ngx-side-nav>
+
+  <ngx-side-nav [type]="mode2" [opened]="open" side="right"></ngx-side-nav>
+
+  <main class="main">
+    <ngx-grid type="fluid">
+      <ngx-row>
+        <ngx-col size="xs sm-6">
+          <ngx-card></ngx-card>
+          <p style="text-align: center">
+            <button (click)="sideSide()">Side - Side</button>
+          </p>
+        </ngx-col>
+        <ngx-col size="xs sm-6">
+          <ngx-card></ngx-card>
+          <p style="text-align: center">
+            <button (click)="overOver()">Over - Over</button>
+          </p>
+        </ngx-col>
+        <ngx-col size="xs sm-6">
+          <ngx-card></ngx-card>
+          <p style="text-align: center">
+            <button (click)="sideOver()">Side - Over</button>
+          </p>
+        </ngx-col>
+        <ngx-col size="xs sm-6">
+          <ngx-card></ngx-card>
+          <p style="text-align: center">
+            <button (click)="pushOver()">Push - Over</button>
+          </p>
+        </ngx-col>
+      </ngx-row>
+    </ngx-grid>
+  </main>
+
+</ngx-side-nav-container>

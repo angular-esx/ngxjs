@@ -1,6 +1,5 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
@@ -11,27 +10,12 @@ import {
   template: '<ng-content select="ngx-row"></ng-content>',
   styleUrls: ['./styles/index.scss'],
   host: {
-    '[class]': '_getClass()',
+    '[class.ngx-GridComponent]': 'true',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-class NgxGridComponent {
-  /*
-    Only accept 'fluid'
-  */
-  @Input() type;
-
-  _getClass() {
-    const _classes = ['ngx-GridComponent'];
-
-    if (this.type) {
-      _classes.push(`ngx-GridComponent_type_${this.type}`);
-    }
-
-    return _classes.join(' ');
-  }
-}
+class NgxGridComponent {}
 
 
 export { NgxGridComponent };

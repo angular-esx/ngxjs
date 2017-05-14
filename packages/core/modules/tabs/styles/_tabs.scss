@@ -1,0 +1,28 @@
+.ngx-TabsComponent {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: ngx-space(12);
+  background-color: map-get($ngx-tabs-theme, background);
+}
+
+.ngx-TabsComponent__Tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  padding: 0 ngx-space(3);
+  color: map-get($ngx-tabs-theme, foreground-default);
+  cursor: pointer;
+
+  @include ngx-typo(body-2, english);
+
+  &:hover, &.ngx-TabsComponent__Tab_state_active {
+    color: map-get($ngx-tabs-theme, foreground-active);
+  }
+
+  &.ngx-TabsComponent__Tab_state_active {
+    border-bottom: 2px solid map-get($ngx-tabs-theme, foreground-default);
+  }
+}

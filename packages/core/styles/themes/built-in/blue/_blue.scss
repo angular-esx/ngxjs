@@ -35,6 +35,12 @@ $ngx-blue-theme: (
     body: ngx-color($ngx-palette-grey, 100),
   ),
   components: (
+    ngx-card: (
+      foreground: $ngx-theme-color-black-87,
+      background: $ngx-theme-color-white,
+
+      subtitle-foreground: $ngx-theme-color-black-54,
+    ),
     ngx-typogarphy: (
       ngx-typogarphy-display-1: $ngx-theme-color-black-54,
       ngx-typogarphy-display-2: $ngx-theme-color-black-54,
@@ -47,6 +53,23 @@ $ngx-blue-theme: (
       ngx-typogarphy-body-1: $ngx-theme-color-black-87,
       ngx-typogarphy-body-2: $ngx-theme-color-black-87,
       ngx-typogarphy-caption: $ngx-theme-color-black-54,
+    ),
+    ngx-side-nav: (
+      background: $ngx-theme-color-white,
+
+      navigation-foreground: $ngx-theme-color-black-87,
+    ),
+    ngx-tabs: (
+      background: ngx-color($ngx-theme-palette-primary, default),
+
+      foreground-default: ngx-color-contrast($ngx-theme-palette-primary, default, .87),
+      foreground-active: ngx-color-contrast($ngx-theme-palette-primary, default),
+    ),
+    ngx-toolbar: (
+      background: ngx-color($ngx-theme-palette-primary, default),
+
+      foreground-default: ngx-color-contrast($ngx-theme-palette-primary, default, .87),
+      foreground-active: ngx-color-contrast($ngx-theme-palette-primary, default),
     ),
   ),
 );

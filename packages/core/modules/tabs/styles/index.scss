@@ -1,0 +1,6 @@
+@import './_dependencies.scss';
+@import './_theme.scss';
+
+@include ngx-tabs-theme-validate();
+
+@import './_tabs.scss';

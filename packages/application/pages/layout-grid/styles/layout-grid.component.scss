@@ -1,0 +1,15 @@
+.layout-grid {
+  display: block;
+}
+
+.container {
+  display: flex;
+}
+
+.container .main {
+  flex: 1;
+}
+
+.content {
+  padding: 16px 0;
+}

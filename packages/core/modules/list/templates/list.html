@@ -1,0 +1,18 @@
+<div class="ngx-ListComponent">
+  <div class="ngx-ListComponent__ListItem" *ngFor="let item of _dataSource">
+    <div class="ngx-ListComponent__ListLeftSection">
+      <div class="ngx-ListComponent__ListAvatar"></div>
+    </div>
+
+    <div class="ngx-ListComponent__ListMainSection">
+      <div class="ngx-ListComponent__ListLine">{{ item.name }}</div>
+      <div class="ngx-ListComponent__ListLine" *ngFor="let content of item.contents">
+        {{ content }}
+      </div>
+    </div>
+
+    <div class="ngx-ListComponent__ListRightSection">
+      <div class="ngx-ListComponent__ListIcon"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+// base styles for each card section preset (ngx-card-content, etc)
+%ngx-card-section-base {
+  display: block;
+  margin-bottom: ngx-space(4);
+}
+
+// images grouped with title in title-group layout
+%ngx-card-title-image {
+  margin: -(ngx-space(2)) 0;
+}

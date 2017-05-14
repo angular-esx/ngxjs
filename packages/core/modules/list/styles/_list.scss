@@ -1,0 +1,58 @@
+.ngx-ListComponent {
+  display: block;
+  padding: ngx-space(4) 0;
+}
+
+.ngx-ListComponent__ListItem {
+  display: flex;
+  min-height: ngx-space(12);
+  max-height: ngx-space(25);
+  padding: ngx-space(4) ngx-space(4) ngx-space(5) ngx-space(4);
+  border-bottom: 1px solid ngx-theme-foreground(divider);
+}
+
+.ngx-ListComponent__ListLeftSection {
+  width: ngx-space(14);
+}
+
+.ngx-ListComponent__ListMainSection {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ngx-ListComponent__ListRightSection {
+  padding-left: ngx-space(4);
+}
+
+.ngx-ListComponent__ListAvatar {
+  display: inline-block;
+  padding: ngx-space(5);
+  background-color: ngx-theme-foreground('text-secondary');
+}
+
+.ngx-ListComponent__ListIcon {
+  display: inline-block;
+  padding: ngx-space(3);
+  background-color: ngx-theme-foreground('text-secondary');
+}
+
+.ngx-ListComponent__ListLine {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:first-child {
+    line-height: ngx-space(5);
+    color: ngx-theme-foreground('text-primary');
+
+    @include ngx-typo(subheading-1, english, $exclude: 'line-height');
+  }
+
+  &:nth-child(n+2) {
+    font-family: $ngx-root-font-family-serif;
+    line-height: ngx-space(6);
+    color: ngx-theme-foreground('text-secondary');
+
+    @include ngx-typo(body-2, english, $exclude: 'line-height');
+  }
+}
