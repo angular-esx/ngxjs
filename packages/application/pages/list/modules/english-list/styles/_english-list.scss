@@ -1,0 +1,7 @@
+.ngx-EnglishListComponent {
+  display: block;
+
+  .ngx-ListPage__ListLine:not(:first-child) {
+    font-family: $ngx-root-font-family-serif;
+  }
+}

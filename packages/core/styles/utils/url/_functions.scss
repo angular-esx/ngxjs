@@ -1,0 +1,9 @@
+// $FONT_HOST is injected from sassLoader config
+@function ngx-font-url($url, $fontHost: $FONT_HOST) {
+  @return '#{$fontHost}/#{$url}';
+}
+
+// $IMAGE_HOST is injected from sassLoader config
+@function ngx-image-url($url, $imageHost: $IMAGE_HOST) {
+  @return '#{$imageHost}/#{$url}';
+}

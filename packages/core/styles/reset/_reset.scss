@@ -1,0 +1,21 @@
+html {
+  box-sizing: border-box;
+  font-size: $ngx-root-font-size;
+}
+
+body {
+  font-family: $ngx-root-font-family;
+  font-size: 1rem;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+label {
+  overflow: hidden;
+}
+
+li {
+  outline: none;
+}

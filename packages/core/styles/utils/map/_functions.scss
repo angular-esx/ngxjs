@@ -1,0 +1,18 @@
+@function ngx-map-clone(
+  $target,
+  $include: null,
+  $exclude: null
+) {
+  @if not $include and not $exclude { @return $target; }
+
+  $result: map-merge((), $target);
+  $_keys: map-keys($result);
+
+  @each $_key in $_keys {
+    @if ($exclude and index($exclude, $_key)) or ($include and (not index($include, $_key))) {
+      $result: map-remove($result, $_key);
+    }
+  }
+
+  @return $result;
+}

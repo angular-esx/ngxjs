@@ -1,0 +1,20 @@
+.ngx-GridComponent {
+  @include ngx-grid();
+}
+
+.ngx-GridComponent__GridRowComponent {
+  @include ngx-grid-row();
+  // Remove the negative margin from default .row, then the horizontal padding
+  // from all immediate children columns (to prevent runaway style inheritance).
+  &.ngx-GridComponent__GridRowComponent_type_no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+    /* stylelint-disable string-quotes */
+    > [class*="ngx-GridComponent__GridColumnComponent"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+@include ngx-grid-columns();

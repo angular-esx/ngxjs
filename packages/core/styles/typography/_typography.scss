@@ -1,0 +1,191 @@
+$ngx-english-script-typos: (
+  display-1: (
+    letter-spacing: ngx-letter-spacing(-10),
+    font-size: ngx-font-size(112px),
+    font-weight: ngx-font-weight(light),
+  ),
+  display-2: (
+    letter-spacing: ngx-letter-spacing(-5),
+    font-size: ngx-font-size(56px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  display-3: (
+    line-height: ngx-line-height(display-3, english),
+    font-size: ngx-font-size(45px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  display-4: (
+    line-height: ngx-line-height(display-4, english),
+    font-size: ngx-font-size(34px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  headline: (
+    line-height: ngx-line-height(headline, english),
+    font-size: ngx-font-size(24px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  title: (
+    letter-spacing: ngx-letter-spacing(5),
+    font-size: ngx-font-size(20px),
+    font-weight: ngx-font-weight(medium),
+  ),
+  subheading-1: (
+    line-height: ngx-line-height(subheading-1, english),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(15px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  subheading-2: (
+    line-height: ngx-line-height(subheading-2, english),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(15px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  body-1: (
+    max-width: ngx-space(110),
+    line-height: ngx-line-height(body-1, english),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(13px),
+    font-weight: ngx-font-weight(medium),
+  ),
+  body-2: (
+    max-width: ngx-space(110),
+    line-height: ngx-line-height(body-2, english),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(14px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  caption: (
+    letter-spacing: ngx-letter-spacing(20),
+    font-size: ngx-font-size(12px),
+    font-weight: ngx-font-weight(regular),
+  ),
+) !default;
+
+$ngx-dense-script-typos: (
+  display-1: (
+    letter-spacing: ngx-letter-spacing(-10),
+    font-size: ngx-font-size(112px),
+    font-weight: ngx-font-weight(light),
+  ),
+  display-2: (
+    letter-spacing: ngx-letter-spacing(-5),
+    font-size: ngx-font-size(56px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  display-3: (
+    line-height: ngx-line-height(display-3, dense),
+    font-size: ngx-font-size(45px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  display-4: (
+    line-height: ngx-line-height(display-4, dense),
+    font-size: ngx-font-size(34px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  headline: (
+    line-height: ngx-line-height(headline, dense),
+    font-size: ngx-font-size(24px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  title: (
+    letter-spacing: ngx-letter-spacing(5),
+    font-size: ngx-font-size(21px),
+    font-weight: ngx-font-weight(medium),
+  ),
+  subheading-1: (
+    line-height: ngx-line-height(subheading-1, dense),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(16px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  subheading-2: (
+    line-height: ngx-line-height(subheading-2, dense),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(16px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  body-1: (
+    max-width: ngx-space(110),
+    line-height: ngx-line-height(body-1, dense),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(14px),
+    font-weight: ngx-font-weight(medium),
+  ),
+  body-2: (
+    max-width: ngx-space(110),
+    line-height: ngx-line-height(body-2, dense),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(14px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  caption: (
+    letter-spacing: ngx-letter-spacing(20),
+    font-size: ngx-font-size(13px),
+    font-weight: ngx-font-weight(regular),
+  ),
+) !default;
+
+$ngx-tall-script-typos: (
+  display-1: (
+    letter-spacing: ngx-letter-spacing(-10),
+    font-size: ngx-font-size(112px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  display-2: (
+    letter-spacing: ngx-letter-spacing(-5),
+    font-size: ngx-font-size(56px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  display-3: (
+    line-height: ngx-line-height(display-3, tall),
+    font-size: ngx-font-size(45px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  display-4: (
+    line-height: ngx-line-height(display-4, tall),
+    font-size: ngx-font-size(34px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  headline: (
+    line-height: ngx-line-height(headline, tall),
+    font-size: ngx-font-size(24px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  title: (
+    letter-spacing: ngx-letter-spacing(5),
+    font-size: ngx-font-size(21px),
+    font-weight: ngx-font-weight(bold),
+  ),
+  subheading-1: (
+    line-height: ngx-line-height(subheading-1, tall),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(16px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  subheading-2: (
+    line-height: ngx-line-height(subheading-2, tall),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(16px),
+    font-weight: ngx-font-weight(regular),
+  ),
+  body-1: (
+    max-width: ngx-space(110),
+    line-height: ngx-line-height(body-1, tall),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(14px),
+    font-weight: ngx-font-weight(bold),
+  ),
+  body-2: (
+    max-width: ngx-space(110),
+    line-height: ngx-line-height(body-2, tall),
+    letter-spacing: ngx-letter-spacing(10),
+    font-size: ngx-font-size(14px),
+    font-weight: ngx-font-weight(bold),
+  ),
+  caption: (
+    letter-spacing: ngx-letter-spacing(20),
+    font-size: ngx-font-size(15px),
+    font-weight: ngx-font-weight(bold),
+  ),
+) !default;

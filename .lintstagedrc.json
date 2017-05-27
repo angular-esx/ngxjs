@@ -1,0 +1,4 @@
+{
+  "*.ts": "tslint --fix --exclude packages/infrastructure/types/**",
+  "*.scss": "stylelint --syntax scss"
+}

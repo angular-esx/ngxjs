@@ -1,0 +1,8 @@
+{
+  "name": "ngx-infrastructure",
+  "version": "1.0.0",
+  "license": "MIT",
+  "peerDependencies": {
+    "@types/webpack": "2.1.0"
+  }
+}

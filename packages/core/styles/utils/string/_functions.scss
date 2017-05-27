@@ -1,0 +1,67 @@
+@function ngx-str-replace($string, $search, $replace: '') {
+  $_index: str-index($string, $search);
+
+  @if $_index {
+    @return str-slice($string, 1, $_index - 1) + $replace + ngx-str-replace(str-slice($string, $_index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function ngx-str-split($string, $delimiter: '') {
+  $result: ();
+  $_length: str-length($string);
+
+  @if str-length($delimiter) == 0 {
+    @for $_index from 1 through $_length {
+      $result: append($result, str-slice($string, $_index, $_index));
+    }
+
+    @return $result;
+  }
+
+  $_canLoop: true;
+  $_remaining: $string;
+
+  @while $_canLoop {
+    $_index: str-index($_remaining, $delimiter);
+
+    @if $_index {
+      $result: append($result, str-slice($_remaining, 1, $_index - 1));
+      $_remaining: str-slice($_remaining, $_index + str-length($delimiter));
+    }
+    @else {
+      $_canLoop: false;
+    }
+  }
+
+  @return append($result, $_remaining);
+}
+
+@function ngx-str-trim($string) {
+  $_start: 1;
+  $_end: str-length($string);
+
+  @for $_index from 1 through str-length($string) {
+    $_first: str-slice($string, $_index, $_index);
+    $_last: str-slice($string, -$_index, -$_index);
+
+    @if $_first == ' ' and $_index + 1 == $_start + 1 {
+      $_start: $_index + 1;
+    }
+
+    @if $_last == ' ' and str-length($string) - $_index == $_end - 1 {
+      $_end: str-length($string) - $_index;
+    }
+  }
+
+  @return str-slice($string, $_start, $_end);
+}
+
+@function ngx-str-upper-case-first($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+@function ngx-str-lower-case-first($string) {
+  @return to-lower-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}

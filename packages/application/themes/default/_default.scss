@@ -1,0 +1,47 @@
+// _ngx-theme-components contains theme declarations for ThemePage & BackgroundComponent
+$_ngx-theme-components: (
+  ngx-theme-page: (
+    background-color: $ngx-theme-color-black-12,
+    header-color: $ngx-theme-color-white,
+
+    ngx-background: (
+      variant-primary-foreground-default: ngx-color-contrast($ngx-theme-palette-primary, default),
+      variant-primary-foreground-active: ngx-color-contrast($ngx-theme-palette-primary, dark),
+      variant-primary-foreground-disabled: ngx-color-contrast($ngx-theme-palette-primary, light, .87),
+
+      variant-success-foreground-default: ngx-color-contrast($ngx-theme-palette-success, default),
+      variant-success-foreground-active: ngx-color-contrast($ngx-theme-palette-success, dark),
+      variant-success-foreground-disabled: ngx-color-contrast($ngx-theme-palette-success, light, .87),
+
+      variant-warn-foreground-default: ngx-color-contrast($ngx-theme-palette-warn, default),
+      variant-warn-foreground-active: ngx-color-contrast($ngx-theme-palette-warn, dark),
+      variant-warn-foreground-disabled: ngx-color-contrast($ngx-theme-palette-warn, light, .87),
+
+      variant-danger-foreground-default: ngx-color-contrast($ngx-theme-palette-danger, default),
+      variant-danger-foreground-active: ngx-color-contrast($ngx-theme-palette-danger, dark),
+      variant-danger-foreground-disabled: ngx-color-contrast($ngx-theme-palette-danger, light, .87),
+
+
+      variant-primary-background-default: ngx-color($ngx-theme-palette-primary, default),
+      variant-primary-background-active: ngx-color($ngx-theme-palette-primary, dark),
+      variant-primary-background-disabled: ngx-color($ngx-theme-palette-primary, light),
+
+      variant-success-background-default: ngx-color($ngx-theme-palette-success, default),
+      variant-success-background-active: ngx-color($ngx-theme-palette-success, dark),
+      variant-success-background-disabled: ngx-color($ngx-theme-palette-success, light),
+
+      variant-warn-background-default: ngx-color($ngx-theme-palette-warn, default),
+      variant-warn-background-active: ngx-color($ngx-theme-palette-warn, dark),
+      variant-warn-background-disabled: ngx-color($ngx-theme-palette-warn, light),
+
+      variant-danger-background-default: ngx-color($ngx-theme-palette-danger, default),
+      variant-danger-background-active: ngx-color($ngx-theme-palette-danger, dark),
+      variant-danger-background-disabled: ngx-color($ngx-theme-palette-danger, light),
+    )
+  ),
+);
+
+// Extend component theme decleration of ngx theme.
+$_ngx-theme-components: map-merge(map-get($ngx-blue-theme, components), $_ngx-theme-components);
+// Merge component theme decleration above into ngx theme.
+$ngx-default-theme: map-merge($ngx-blue-theme, (components: $_ngx-theme-components));

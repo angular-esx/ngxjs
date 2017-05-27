@@ -1,0 +1,16 @@
+@function ngx-breakpoint($key, $breakpoints: $ngx-breakpoints) {
+  @return map_get($breakpoints, $key);
+}
+
+// Name of the next breakpoint, or null for the last breakpoint.
+//
+//    >> ngx-breakpoint-next(480)
+//    600
+//    >> ngx-breakpoint-next(480, (480: 480px, 600: 600px, 840: 840px))
+//    600
+//    >> ngx-breakpoint-next(480, $breakpoint-names: (480 600 840))
+//    600
+@function ngx-breakpoint-next($key, $breakpoints: $ngx-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $key);
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}

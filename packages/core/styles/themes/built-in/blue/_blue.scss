@@ -1,0 +1,52 @@
+$ngx-theme-color-white: ngx-color($ngx-palette-white, 900);
+$ngx-theme-color-white-87: ngx-color($ngx-palette-white, 900, .87);
+$ngx-theme-color-white-54: ngx-color($ngx-palette-white, 900, .54);
+$ngx-theme-color-white-38: ngx-color($ngx-palette-white, 900, .38);
+$ngx-theme-color-white-12: ngx-color($ngx-palette-white, 900, .12);
+
+$ngx-theme-color-black: ngx-color($ngx-palette-black, 900);
+$ngx-theme-color-black-87: ngx-color($ngx-palette-black, 900, .87);
+$ngx-theme-color-black-54: ngx-color($ngx-palette-black, 900, .54);
+$ngx-theme-color-black-38: ngx-color($ngx-palette-black, 900, .38);
+$ngx-theme-color-black-12: ngx-color($ngx-palette-black, 900, .12);
+
+$ngx-theme-palette-primary: ngx-theme-palette($ngx-palette-blue, 500, 100, 700);
+$ngx-theme-palette-accent: ngx-theme-palette($ngx-palette-blue, 'A200', 'A100', 'A400');
+$ngx-theme-palette-success: ngx-theme-palette($ngx-palette-green, 500, 100, 700);
+$ngx-theme-palette-warn: ngx-theme-palette($ngx-palette-yellow, 500, 100, 700);
+$ngx-theme-palette-danger: ngx-theme-palette($ngx-palette-red, 500, 100, 700);
+
+
+$ngx-blue-theme: (
+  palettes: (
+    primary: $ngx-theme-palette-primary,
+    accent: $ngx-theme-palette-accent,
+    success: $ngx-theme-palette-success,
+    warn: $ngx-theme-palette-warn,
+    danger: $ngx-theme-palette-danger,
+  ),
+  foreground: (
+    text-primary: $ngx-theme-color-black-87,
+    text-secondary: $ngx-theme-color-black-54,
+    text-hint: $ngx-theme-color-black-38,
+    divider: $ngx-theme-color-black-12,
+  ),
+  background: (
+    body: ngx-color($ngx-palette-grey, 100),
+  ),
+  components: (
+    ngx-typogarphy: (
+      ngx-typogarphy-display-1: $ngx-theme-color-black-54,
+      ngx-typogarphy-display-2: $ngx-theme-color-black-54,
+      ngx-typogarphy-display-3: $ngx-theme-color-black-54,
+      ngx-typogarphy-display-4: $ngx-theme-color-black-54,
+      ngx-typogarphy-headline: $ngx-theme-color-black-87,
+      ngx-typogarphy-title: $ngx-theme-color-black-87,
+      ngx-typogarphy-subheading-1: $ngx-theme-color-black-87,
+      ngx-typogarphy-subheading-2: $ngx-theme-color-black-87,
+      ngx-typogarphy-body-1: $ngx-theme-color-black-87,
+      ngx-typogarphy-body-2: $ngx-theme-color-black-87,
+      ngx-typogarphy-caption: $ngx-theme-color-black-54,
+    ),
+  ),
+);

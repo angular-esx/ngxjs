@@ -1,0 +1,32 @@
+<div class="ngx-ListPage__AppBar">
+  <div class="ngx-ListPage__AppBarTitle">List Page</div>
+  <div class="ngx-ListPage__AvailableLists">
+    <div
+      class="ngx-ListPage__AvailableList"
+      [class.ngx-ListPage__AvailableList_state_active]="_activeList === 'dense-list'"
+      (click)="_display('dense-list')"
+    >
+      Dense List
+    </div>
+
+    <div
+      class="ngx-ListPage__AvailableList"
+      [class.ngx-ListPage__AvailableList_state_active]="_activeList === 'english-list'"
+      (click)="_display('english-list')"
+    >
+      English List
+    </div>
+
+    <div
+      class="ngx-ListPage__AvailableList"
+      [class.ngx-ListPage__AvailableList_state_active]="_activeList === 'tall-list'"
+      (click)="_display('tall-list')"
+    >
+      Tall List
+    </div>
+  </div>
+</div>
+
+<div class="ngx-ListPage__Heading">ListView Example</div>
+
+<div #listContainer></div>
