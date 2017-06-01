@@ -7,7 +7,7 @@ import {
   TallListModule,
 } from './modules';
 import { ListPageRouteModule } from './route';
-import { ListPageComponent } from './list.page';
+import { ListPage } from './list.page';
 
 
 @NgModule({
@@ -18,8 +18,8 @@ import { ListPageComponent } from './list.page';
     TallListModule,
     ListPageRouteModule,
   ],
-  declarations: [ListPageComponent],
-  exports: [ListPageComponent],
+  declarations: [ListPage],
+  exports: [ListPage],
 })
 class ListPageModule {}
 

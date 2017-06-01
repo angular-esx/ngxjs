@@ -1,3 +1,4 @@
+/* tslint:disable: component-class-suffix */
 import {
   Component,
   AfterViewInit,
@@ -26,7 +27,7 @@ import {
   },
   encapsulation: ViewEncapsulation.None,
 })
-class ListPageComponent implements AfterViewInit {
+class ListPage implements AfterViewInit {
   private _activeList: string;
   private _listComponentRef: ComponentRef<any>;
 
@@ -68,4 +69,4 @@ class ListPageComponent implements AfterViewInit {
 }
 
 
-export { ListPageComponent };
+export { ListPage };
