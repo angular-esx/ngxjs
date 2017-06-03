@@ -12,6 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import {
   ContainerPageModule,
+  DetailPageModule,
   GridPageModule,
   ListPageModule,
   ThemePageModule,
@@ -26,6 +27,7 @@ import { NgxApp } from './_app';
   imports: [
     BrowserModule,
     ContainerPageModule,
+    DetailPageModule,
     GridPageModule,
     ListPageModule,
     ThemePageModule,

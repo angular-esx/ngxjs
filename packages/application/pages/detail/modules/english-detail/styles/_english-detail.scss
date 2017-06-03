@@ -1,0 +1,9 @@
+:host(.ngx-EnglishDetailComponent) {
+  display: block;
+
+  .ngx-Container [ngxtypo_variant_body-1] {
+    line-height: ngx-space(7);
+    font-size: ngx-font-size(16px);
+    color: ngx-theme-foreground('text-secondary');
+  }
+}

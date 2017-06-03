@@ -1,0 +1,30 @@
+<div class="ngx-DetailPage__AppBar">
+  <div class="ngx-DetailPage__AppBarTitle">Detail Page</div>
+  <div class="ngx-DetailPage__AvailableDetails">
+    <div
+      class="ngx-DetailPage__AvailableDetail"
+      [class.ngx-DetailPage__AvailableDetail_state_active]="_activeDetail === 'dense-detail'"
+      (click)="_display('dense-detail')"
+    >
+      Dense Detail
+    </div>
+
+    <div
+      class="ngx-DetailPage__AvailableDetail"
+      [class.ngx-DetailPage__AvailableDetail_state_active]="_activeDetail === 'english-detail'"
+      (click)="_display('english-detail')"
+    >
+      English Detail
+    </div>
+
+    <div
+      class="ngx-DetailPage__AvailableDetail"
+      [class.ngx-DetailPage__AvailableDetail_state_active]="_activeDetail === 'tall-detail'"
+      (click)="_display('tall-detail')"
+    >
+      Tall Detail
+    </div>
+  </div>
+</div>
+
+<div #detailContainer></div>

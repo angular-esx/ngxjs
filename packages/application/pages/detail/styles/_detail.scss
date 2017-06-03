@@ -1,0 +1,54 @@
+.ngx-DetailPage {
+  display: block;
+  margin: auto;
+  padding-top: ngx-space(12);
+  background-color: #ffffff;
+}
+
+.ngx-DetailPage__AppBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: ngx-space(12);
+  padding: ngx-space(4);
+  background-color: #4caf50;
+  z-index: 1000;
+}
+
+.ngx-DetailPage__AppBarTitle {
+  color: #ffffff;
+
+  @include ngx-typo(title, english);
+}
+
+.ngx-DetailPage__AvailableDetails {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-width: ngx-space(75);
+}
+
+.ngx-DetailPage__AvailableDetail {
+  color: rgba(255, 255, 255, .54);
+  cursor: pointer;
+
+  @include ngx-typo(body-2, english);
+
+  &:hover, &.ngx-DetailPage__AvailableDetail_state_active {
+    color: #ffffff;
+  }
+}
+
+.ngx-DetailPage__jumbotron {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  background-color: ngx-theme-background(body);
+}
