@@ -1,0 +1,19 @@
+<ngx-view>
+  <div
+    class="ngx-ViewPage__Item"
+    *ngFor="let item of _items"
+    (click)="_select(item)"
+  >
+    {{ item.name }}
+  </div>
+</ngx-view>
+
+<div
+  class="ngx-ViewPage__Alert"
+  [class.ngx-ViewPage__Alert_state_active]="!!_selectedItem"
+  (click)="_select()"
+>
+  <div class="ngx-ViewPage__AlertContent">
+    {{ _selectedItem?.name }}
+  </div>
+</div>

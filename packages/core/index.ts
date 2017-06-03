@@ -9,4 +9,7 @@ export {
 
   NgxTypographyDirective,
   NgxTypographyModule,
+
+  NgxViewComponent,
+  NgxViewModule,
 } from './modules';

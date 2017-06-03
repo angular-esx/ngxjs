@@ -14,3 +14,8 @@ export {
   NgxTypographyDirective,
   NgxTypographyModule,
 } from './typography';
+
+export {
+  NgxViewComponent,
+  NgxViewModule,
+} from './view';
