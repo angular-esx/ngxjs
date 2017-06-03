@@ -13,6 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {
   GridPageModule,
   ListPageModule,
+  ThemePageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { NgxApp } from './_app';
@@ -23,6 +24,7 @@ import { NgxApp } from './_app';
     BrowserModule,
     GridPageModule,
     ListPageModule,
+    ThemePageModule,
     AppRouteModule,
   ],
   declarations: [NgxApp],

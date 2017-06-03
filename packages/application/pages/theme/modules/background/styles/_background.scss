@@ -1,0 +1,10 @@
+.ngx-BackgroundComponent {
+  display: block;
+  padding: 1rem;
+  text-align: center;
+
+  @each $_variant in (primary, success, warn, danger) {
+    @include ngx-background-variant($_variant);
+  }
+}
+

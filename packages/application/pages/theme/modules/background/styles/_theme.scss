@@ -1,0 +1,79 @@
+// Get specific theme from $ngx-current-theme.
+// ngx-background: (
+//   variant-primary-foreground-default: color,
+//   variant-primary-foreground-active: color,
+//   variant-primary-foreground-disabled: color,
+
+//   variant-success-foreground-default: color,
+//   variant-success-foreground-active: color,
+//   variant-success-foreground-disabled: color,
+
+//   variant-warn-foreground-default: color,
+//   variant-warn-foreground-active: color,
+//   variant-warn-foreground-disabled: color,
+
+//   variant-danger-foreground-default: color,
+//   variant-danger-foreground-active: color,
+//   variant-danger-foreground-disabled: color,
+
+
+//   variant-primary-background-default: color,
+//   variant-primary-background-active: color,
+//   variant-primary-background-disabled: color,
+
+//   variant-success-background-default: color,
+//   variant-success-background-active: color,
+//   variant-success-background-disabled: color,
+
+//   variant-warn-background-default: color,
+//   variant-warn-background-active: color,
+//   variant-warn-background-disabled: color,
+
+//   variant-danger-background-default: color,
+//   variant-danger-background-active: color,
+//   variant-danger-background-disabled: color,
+// )
+$ngx-background-theme: map-get(ngx-theme-component(ngx-theme-page), ngx-background);
+
+// Must write this function to ensure the theme has enough neccessary keys.
+// It's useful for development to find out missing declaration.
+@mixin ngx-background-theme-validate() {
+  @include ngx-theme-component-validate(
+    'ngx-background',
+    $ngx-background-theme,
+    (
+      'variant-primary-foreground-default',
+      'variant-primary-foreground-active',
+      'variant-primary-foreground-disabled',
+
+      'variant-success-foreground-default',
+      'variant-success-foreground-active',
+      'variant-success-foreground-disabled',
+
+      'variant-warn-foreground-default',
+      'variant-warn-foreground-active',
+      'variant-warn-foreground-disabled',
+
+      'variant-danger-foreground-default',
+      'variant-danger-foreground-active',
+      'variant-danger-foreground-disabled',
+
+
+      'variant-primary-background-default',
+      'variant-primary-background-active',
+      'variant-primary-background-disabled',
+
+      'variant-success-background-default',
+      'variant-success-background-active',
+      'variant-success-background-disabled',
+
+      'variant-warn-background-default',
+      'variant-warn-background-active',
+      'variant-warn-background-disabled',
+
+      'variant-danger-background-default',
+      'variant-danger-background-active',
+      'variant-danger-background-disabled',
+    )
+  );
+}
