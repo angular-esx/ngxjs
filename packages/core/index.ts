@@ -1,4 +1,7 @@
 export {
+  NgxContainerComponent,
+  NgxContainerModule,
+
   NgxGridColumnComponent,
   NgxGridRowComponent,
   NgxGridComponent,
