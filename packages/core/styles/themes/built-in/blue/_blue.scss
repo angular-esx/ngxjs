@@ -30,9 +30,13 @@ $ngx-blue-theme: (
     text-secondary: $ngx-theme-color-black-54,
     text-hint: $ngx-theme-color-black-38,
     divider: $ngx-theme-color-black-12,
+    code: ngx-color($ngx-palette-pink, 700),
   ),
   background: (
     body: ngx-color($ngx-palette-grey, 100),
+    mark: ngx-color($ngx-palette-amber, 50),
+    code: ngx-color($ngx-palette-pink, 50, .5),
+    pre: ngx-color($ngx-palette-grey, 100),
   ),
   components: (
     ngx-typogarphy: (

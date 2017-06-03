@@ -16,6 +16,69 @@ h1, h2, h3, h4, h5, h6, p {
   margin-bottom: ngx-space(4);
 }
 
+a {
+  color: ngx-theme-color(primary, default);
+  text-decoration: underline;
+  cursor: pointer;
+
+  @include ngx-state(a, 'hover, visited') {
+    color: ngx-theme-color(primary, dark);
+  }
+}
+
+small {
+  font-size: 65%;
+}
+
+strong {
+  font-weight: ngx-font-weight(bold);
+}
+
+em, var,  {
+  font-style: italic;
+}
+
+mark {
+  padding: .2em;
+  background-color: ngx-theme-background(mark);
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: ngx-theme-foreground(code);
+  background-color: ngx-theme-background(code);
+}
+
+pre {
+  display: block;
+  padding: ngx-space(3);
+  margin: 0px 0px ngx-space(5);
+  border: 1px solid ngx-theme-foreground(divider);
+  background-color: ngx-theme-background(pre);
+  word-break: break-all;
+  word-wrap: break-word;
+
+  &[pre-scrollable] {
+    max-height: ngx-space(80);
+    overflow-y: scroll;
+  }
+}
+
+blockquote {
+  padding: ngx-space(3) ngx-space(5);
+  margin: 0px 0px ngx-space(5);
+  border-left: ngx-space(1) solid ngx-theme-foreground(divider);
+
+  &[blockquote-reverse] {
+    padding-right: ngx-space(3);
+    padding-left: 0;
+    border-right: ngx-space(1) solid ngx-theme-foreground(divider);
+    border-left: 0;
+    text-align: right;
+  }
+}
+
 label {
   overflow: hidden;
 }
