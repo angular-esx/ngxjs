@@ -11,6 +11,22 @@ export {
 } from './grid';
 
 export {
+  INgxPortal,
+  INgxPortalHost,
+  INgxTemplatePortal,
+  INgxComponentPortal,
+  NgxBasePortalHost,
+  NgxBasePortal,
+  NgxPortalHost,
+  NgxDomPortalHost,
+  NgxComponentPortal,
+  NgxTemplatePortal,
+  NgxTemplatePortalDirective,
+  NgxPortalHostDirective,
+  NgxPortalModule,
+} from './portal';
+
+export {
   NgxTypographyDirective,
   NgxTypographyModule,
 } from './typography';

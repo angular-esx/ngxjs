@@ -1,0 +1,11 @@
+.ngx-PortalPage {
+  display: block;
+  padding: ngx-space(5) ngx-space(10);
+}
+
+.ngx-PortalPage__Example {
+  padding: ngx-space(4);
+  background: #ffffff;
+
+  @include ngx-elevation(2);
+}

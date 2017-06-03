@@ -7,6 +7,20 @@ export {
   NgxGridComponent,
   NgxGridModule,
 
+  INgxPortal,
+  INgxPortalHost,
+  INgxTemplatePortal,
+  INgxComponentPortal,
+  NgxBasePortalHost,
+  NgxBasePortal,
+  NgxPortalHost,
+  NgxDomPortalHost,
+  NgxComponentPortal,
+  NgxTemplatePortal,
+  NgxTemplatePortalDirective,
+  NgxPortalHostDirective,
+  NgxPortalModule,
+
   NgxTypographyDirective,
   NgxTypographyModule,
 
