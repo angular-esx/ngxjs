@@ -14,6 +14,7 @@ import {
   GridPageModule,
   ListPageModule,
   ThemePageModule,
+  TypographyPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { NgxApp } from './_app';
@@ -25,6 +26,7 @@ import { NgxApp } from './_app';
     GridPageModule,
     ListPageModule,
     ThemePageModule,
+    TypographyPageModule,
     AppRouteModule,
   ],
   declarations: [NgxApp],

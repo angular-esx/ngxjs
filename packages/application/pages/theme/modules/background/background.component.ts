@@ -20,7 +20,7 @@ class BackgroundComponent {
   @Input() variant;
   @Input() state;
 
-  _getClass() {
+  _getClass () {
     const _classes = ['ngx-BackgroundComponent'];
 
     if (['primary', 'success', 'warn', 'danger'].indexOf(this.variant) > -1) {

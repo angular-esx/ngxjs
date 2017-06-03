@@ -10,10 +10,46 @@
       @if $_typo-color {
         color: $_typo-color;
       }
-
-      &:not([ngxTypography_type_no-leading]) {
-        @include ngx-typo-leading($_key, $script-type, $func-selector: 'ngx-typography-variant');
-      }
     }
+  }
+
+  @each $_align in $ngx-typography-aligns {
+    #{'[ngxTypo_align_' + $_align + ']'} {
+      text-align: #{$_align};
+    }
+  }
+
+  @each $_decorator in $ngx-typography-decorators {
+    #{'[ngxTypo_decorator_' + $_decorator + ']'} {
+      text-decoration: #{$_decorator};
+    }
+  }
+
+  @each $_transform in $ngx-typography-transforms {
+    #{'[ngxTypo_transform_' + $_transform + ']'} {
+      text-transform: #{$_transform};
+    }
+  }
+
+  @each $_overflow in $ngx-typography-overflows {
+    #{'[ngxTypo_overflow_' + $_overflow + ']'} {
+      text-overflow: #{$_overflow};
+    }
+  }
+
+  @each $_white-space in $ngx-typography-white-spaces {
+    #{'[ngxTypo_white-space_' + $_white-space + ']'} {
+      white-space: #{$_white-space};
+    }
+  }
+
+  @each $_word-break in $ngx-typography-word-breaks {
+    #{'[ngxTypo_word-break_' + $_word-break + ']'} {
+      word-break: #{$_word-break};
+    }
+  }
+
+  [ngxTypo_word-wrap_break-word] {
+    word-wrap: break-word;
   }
 }

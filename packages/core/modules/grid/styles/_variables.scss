@@ -1,6 +1,6 @@
 $ngx-grid-columns: 12;
 
-$ngx-grid-gutter-width-base: 4 * $ngx-baseline-height;
+$ngx-grid-gutter-width-base: 4 * $ngx-baseline-space;
 $ngx-grid-gutter-widths: (
   xs: $ngx-grid-gutter-width-base,
   sm: $ngx-grid-gutter-width-base,

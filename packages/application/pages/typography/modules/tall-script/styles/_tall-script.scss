@@ -1,0 +1,7 @@
+:host(.ngx-TallScriptComponent) {
+  display: block;
+  padding: ngx-space(4);
+  font-family: 'Noto Sans';
+}
+
+@include ngx-typography(tall);

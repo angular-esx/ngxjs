@@ -96,7 +96,7 @@
     line-height: ngx-space(5);
     color: rgba(0, 0, 0, .87);
 
-    @include ngx-typo(subheading-1, english, $exclude: 'line-height');
+    @include ngx-typo(subheading, english, $exclude: 'line-height');
   }
 
   &:nth-child(n+2) {

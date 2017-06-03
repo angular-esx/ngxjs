@@ -2,6 +2,7 @@
 // For example, we have english script contains a typo as below:
 // $ngx-english-script-typos: (
 //   display-1: (
+//     line-height: ngx-line-height(display-1, english),
 //     letter-spacing: ngx-letter-spacing(-10),
 //     font-size: ngx-font-size(112px),
 //     font-weight: ngx-font-weight(regular),
@@ -11,6 +12,7 @@
 // Then we call ngx-typo(display-1, english)
 // The result will be:
 // .my-display-1 {
+//   line-height: 11.42857rem;
 //   letter-spacing: -0.01em;
 //   font-size: 8rem;
 //   font-weight: 300;
@@ -25,6 +27,7 @@
 //
 // ngx-typo(display-1, english, $exclude: (letter-spacing));
 // .my-display-1 {
+//   line-height: 11.42857rem;
 //   font-size: 8rem;
 //   font-weight: 300;
 // }
@@ -39,54 +42,6 @@
 
   @each $_typo-key in $_typo-keys {
     #{$_typo-key}: map-get($_typo, $_typo-key);
-  }
-}
-// Follow order of typos in a specific language script,
-// If 2 nearby typos have line-height, leading will be result from subtraction of them.
-// We can use $include & $exclude to control which typos we want to get for leading calculation.
-// $func-selector is function name which is used to generate css class for typo.
-@mixin ngx-typo-leading(
-  $typo-key,
-  $script-type,
-  $include: null,
-  $exclude: null,
-  $func-selector: null
-) {
-  $_typos: ngx-map-clone(ngx-typos($script-type), $include, $exclude);
-
-  @if $_typos and map-has-key($_typos, $typo-key) {
-    $_typo-keys: map-keys($_typos);
-    $_typo: map-get($_typos, $typo-key);
-
-    @if map-has-key($_typo, 'line-height') {
-      $_index: index($_typo-keys, $typo-key);
-      $_typo_: null;
-
-      @each $_typo-key in $_typo-keys {
-        $_typo_: map-get($_typos, $_typo-key);
-
-        @if (index($_typo-keys, $_typo-key) <= $_index) or (not map-has-key($_typo_, 'line-height')) {
-          $_typos: map-remove($_typos , $_typo-key);
-        }
-      }
-
-      $_typo-keys: map-keys($_typos);
-      $_typo-keys-length: length($_typo-keys);
-      $_margin-top: 0;
-
-      @if $_typo-keys-length > 0 {
-        @each $_typo-key in $_typo-keys {
-          $_typo_: map-get($_typos, $_typo-key);
-          $_margin-top: (ngx-strip-unit(map-get($_typo, 'line-height')) - ngx-strip-unit(map-get($_typo_, 'line-height')));
-
-          @if $func-selector and $_margin-top > 0 {
-            + #{call($func-selector, $_typo-key)} {
-              margin-top: $_margin-top * 1rem;
-            }
-          }
-        }
-      }
-    }
   }
 }
 

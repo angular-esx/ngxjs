@@ -61,7 +61,7 @@
   @return $result;
 }
 
-@function ngx-to-rem($font-size, $root-font-size) {
+@function ngx-to-rem($font-size, $root-font-size, $scale-ratio: 1) {
   @if unit($font-size) != unit($root-font-size) {
     @error '$font-size need to have same unit with $root-font-size';
     @return 0;
@@ -70,7 +70,7 @@
   $_font-size: ngx-strip-unit($font-size);
   $_root-font-size: ngx-strip-unit($root-font-size);
 
-  @return ($_font-size / $_root-font-size) * 1rem;
+  @return ($_font-size / $_root-font-size) * $scale-ratio * 1rem;
 }
 
 @function ngx-strip-unit($number) {

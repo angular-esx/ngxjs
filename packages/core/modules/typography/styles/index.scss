@@ -3,6 +3,7 @@
 
 @include ngx-typogarphy-theme-validate();
 
+@import './_variables.scss';
 @import './_functions.scss';
 @import './_mixins.scss';
 
