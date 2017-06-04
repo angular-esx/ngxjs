@@ -9,16 +9,16 @@ import { isObject } from 'ngx-infrastructure';
 @Directive({
   selector: '[ngxTypo]',
   host: {
-    '[attr.ngxTypo_variant_display-1]': '_hasOption("variant", "display-1")',
-    '[attr.ngxTypo_variant_display-2]': '_hasOption("variant", "display-2")',
-    '[attr.ngxTypo_variant_display-3]': '_hasOption("variant", "display-3")',
-    '[attr.ngxTypo_variant_display-4]': '_hasOption("variant", "display-4")',
-    '[attr.ngxTypo_variant_headline]': '_hasOption("variant", "headline")',
-    '[attr.ngxTypo_variant_title]': '_hasOption("variant", "title")',
-    '[attr.ngxTypo_variant_subheading]': '_hasOption("variant", "subheading")',
-    '[attr.ngxTypo_variant_body-1]': '_hasOption("variant", "body-1")',
-    '[attr.ngxTypo_variant_body-2]': '_hasOption("variant", "body-2")',
-    '[attr.ngxTypo_variant_caption]': '_hasOption("variant", "caption")',
+    '[attr.ngxTypo_type_display-1]': '_hasOption("type", "display-1")',
+    '[attr.ngxTypo_type_display-2]': '_hasOption("type", "display-2")',
+    '[attr.ngxTypo_type_display-3]': '_hasOption("type", "display-3")',
+    '[attr.ngxTypo_type_display-4]': '_hasOption("type", "display-4")',
+    '[attr.ngxTypo_type_headline]': '_hasOption("type", "headline")',
+    '[attr.ngxTypo_type_title]': '_hasOption("type", "title")',
+    '[attr.ngxTypo_type_subheading]': '_hasOption("type", "subheading")',
+    '[attr.ngxTypo_type_body-1]': '_hasOption("type", "body-1")',
+    '[attr.ngxTypo_type_body-2]': '_hasOption("type", "body-2")',
+    '[attr.ngxTypo_type_caption]': '_hasOption("type", "caption")',
 
     '[attr.ngxTypo_align_left]': '_hasOption("align", "left")',
     '[attr.ngxTypo_align_right]': '_hasOption("align", "right")',
@@ -50,7 +50,7 @@ import { isObject } from 'ngx-infrastructure';
 })
 class NgxTypographyDirective {
   @Input('ngxTypo') options: string | {
-    variant: 'display-1' | 'display-2' | 'display-3' | 'display-4' | 'headline' | 'title' | 'subheading' | 'body-1' | 'body-2' | 'caption';
+    type: 'display-1' | 'display-2' | 'display-3' | 'display-4' | 'headline' | 'title' | 'subheading' | 'body-1' | 'body-2' | 'caption';
     align?: 'left' | 'right' | 'center' | 'justify' | null;
     decorator?: 'underline' | 'overline' | 'line-through' | null;
     transform?: 'capitalize' | 'uppercase' | 'lowercase' | null;

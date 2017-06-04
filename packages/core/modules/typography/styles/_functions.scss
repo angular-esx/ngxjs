@@ -1,3 +1,3 @@
-@function ngx-typography-variant($variant) {
-  @return '[ngxTypo_variant_'+ $variant + ']';
+@function ngx-typography-type($type) {
+  @return '[ngxTypo_type_'+ $type + ']';
 }
