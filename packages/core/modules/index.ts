@@ -42,4 +42,4 @@ export {
 } from './renderer';
 
 
-export { NgxjsModule } from './ngxjs.module';
+export { NgxUIModule } from './ngx-ui.module';
