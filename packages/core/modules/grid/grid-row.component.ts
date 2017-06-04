@@ -9,7 +9,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { NgxRendererService } from '../renderer';
+import { NgxRendererService } from '../../services';
+
 
 @Component({
   selector: 'ngx-row',
@@ -21,6 +22,10 @@ import { NgxRendererService } from '../renderer';
   encapsulation: ViewEncapsulation.None
 })
 class NgxGridRowComponent implements OnChanges {
+  private get _nativeElement(): any {
+    return this._elementRef.nativeElement;
+  }
+
   @Input() type: 'no-gutters' | null;
 
   @Input() verticalAlign:
@@ -37,12 +42,24 @@ class NgxGridRowComponent implements OnChanges {
     'lg-start' | 'lg-center' | 'lg-end' | 'lg-around' | 'lg-between' |
     'xl-start' | 'xl-center' | 'xl-end' | 'xl-around' | 'xl-between';
 
-  constructor (@Inject(ElementRef) private _elementRef, @Inject(NgxRendererService) private _renderer) { }
+
+  constructor (
+    @Inject(ElementRef) private _elementRef: ElementRef,
+    @Inject(NgxRendererService) private _renderer: NgxRendererService
+  ) { }
+
 
   ngOnChanges (changes: SimpleChanges) {
-    Object.keys(changes).map((input) => {
-      this._renderer.replaceClass(this._elementRef.nativeElement, 'GridRow', input, changes[input].previousValue, changes[input].currentValue, 'ngx-Grid__');
-    });
+    this._renderer.changeClass(
+      this._elementRef.nativeElement,
+      changes,
+      (propName, change) => change.previousValue.split(' ').map(value => this._getClass(propName, value)),
+      (propName, change) => change.currentValue.split(' ').map(value => this._getClass(propName, value)),
+    );
+  }
+
+  private _getClass (propName: string, value: any): string {
+    return  propName && value ? `ngx-Grid__GridRow_${propName}_${value}` : '';
   }
 }
 

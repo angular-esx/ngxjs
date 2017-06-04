@@ -36,10 +36,4 @@ export {
   NgxViewModule,
 } from './view';
 
-export {
-  NgxRendererService,
-  NgxRendererModule,
-} from './renderer';
-
-
 export { NgxUIModule } from './ngx-ui.module';

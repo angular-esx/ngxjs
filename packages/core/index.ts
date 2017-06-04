@@ -30,6 +30,8 @@ export {
   NgxUIModule,
 } from './modules';
 
+export {
   NgxRendererService,
-  NgxRendererModule,
 
+  NgxServiceModule,
+} from './services';
