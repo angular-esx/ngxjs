@@ -11,7 +11,7 @@ import {
   template: '<ng-content select="ngx-row"></ng-content>',
   styleUrls: ['./styles/index.scss'],
   host: {
-    '[class.ngx-GridComponent]': 'true',
+    '[class.ngx-Grid]': 'true',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

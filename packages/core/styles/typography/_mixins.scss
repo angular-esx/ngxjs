@@ -33,7 +33,7 @@
 // }
 @mixin ngx-typo(
   $typo-key,
-  $script-type,
+  $script-type: $ngx-default-script-type,
   $include: null,
   $exclude: null
 ) {

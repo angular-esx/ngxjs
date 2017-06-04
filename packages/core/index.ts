@@ -27,11 +27,14 @@ export {
   NgxViewComponent,
   NgxViewModule,
 
-  NgxRendererService,
-  NgxRendererModule,
-
   NgxCardComponent,
   NgxCardModule,
 
-  NgxjsModule,
+  NgxUIModule,
 } from './modules';
+
+export {
+  NgxRendererService,
+
+  NgxServiceModule,
+} from './services';

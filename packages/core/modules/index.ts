@@ -37,14 +37,8 @@ export {
 } from './view';
 
 export {
-  NgxRendererService,
-  NgxRendererModule,
-} from './renderer';
-
-export {
   NgxCardModule,
   NgxCardComponent,
 } from './card';
 
-
-export { NgxjsModule } from './ngxjs.module';
+export { NgxUIModule } from './ngx-ui.module';

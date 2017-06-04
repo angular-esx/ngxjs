@@ -3,7 +3,7 @@
   $_keys: map-keys($_typos);
 
   @each $_key in $_keys {
-    #{ngx-typography-variant($_key)} {
+    #{ngx-typography-type($_key)} {
       @include ngx-typo($_key, $script-type);
 
       $_typo-color: map-get($ngx-typogarphy-theme, ngx-typogarphy-#{$_key});

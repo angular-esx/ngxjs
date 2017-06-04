@@ -37,7 +37,7 @@ class PortalPage implements OnInit {
   selector: 'ngx-component-portal-example',
   template: `
     <div class="ngx-PortalPage__Example">
-      <div [ngxTypo]="{ variant: 'headline', align: 'center' }">Component Portal</div>
+      <div [ngxTypo]="{ type: 'headline', align: 'center' }">Component Portal</div>
     </div>
   `,
   encapsulation: ViewEncapsulation.None,

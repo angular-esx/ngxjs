@@ -10,6 +10,8 @@ import {
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { NgxServiceModule } from 'ngx-core';
+
 import {
   ContainerPageModule,
   DetailPageModule,
@@ -28,6 +30,7 @@ import { NgxApp } from './_app';
 @NgModule({
   imports: [
     BrowserModule,
+    NgxServiceModule,
     ContainerPageModule,
     DetailPageModule,
     GridPageModule,
