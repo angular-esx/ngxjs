@@ -1,8 +1,5 @@
 import { Injectable, Inject, RendererFactory2, Renderer2 } from '@angular/core';
 
-import { isArray } from 'ngx-infrastructure';
-
-
 @Injectable()
 export class NgxRendererService {
   private _renderer: Renderer2;
