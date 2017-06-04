@@ -26,4 +26,12 @@ export {
 
   NgxViewComponent,
   NgxViewModule,
+
+  NgxUIModule,
 } from './modules';
+
+export {
+  NgxRendererService,
+
+  NgxServiceModule,
+} from './services';

@@ -35,3 +35,5 @@ export {
   NgxViewComponent,
   NgxViewModule,
 } from './view';
+
+export { NgxUIModule } from './ngx-ui.module';
