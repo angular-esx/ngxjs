@@ -37,9 +37,9 @@ class NgxGridRowComponent implements OnChanges {
     'lg-start' | 'lg-center' | 'lg-end' | 'lg-around' | 'lg-between' |
     'xl-start' | 'xl-center' | 'xl-end' | 'xl-around' | 'xl-between';
 
-  constructor(@Inject(ElementRef) private _elementRef, @Inject(NgxRendererService) private _renderer) { }
+  constructor (@Inject(ElementRef) private _elementRef, @Inject(NgxRendererService) private _renderer) { }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges (changes: SimpleChanges) {
     Object.keys(changes).map((input) => {
       this._renderer.replaceClass(this._elementRef.nativeElement, 'GridRow', input, changes[input].previousValue, changes[input].currentValue, 'ngx-Grid__');
     });

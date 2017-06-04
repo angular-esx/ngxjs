@@ -64,9 +64,9 @@ class NgxGridColumnComponent implements OnChanges {
     'lg-0' | 'lg-1' | 'lg-2' | 'lg-3' | 'lg-4' | 'lg-5' | 'lg-6' | 'lg-7' | 'lg-8' | 'lg-9' | 'lg-10' | 'lg-11' | 'lg-12' |
     'xl-0' | 'xl-1' | 'xl-2' | 'xl-3' | 'xl-4' | 'xl-5' | 'xl-6' | 'xl-7' | 'xl-8' | 'xl-9' | 'xl-10' | 'xl-11' | 'xl-12';
 
-  constructor(@Inject(ElementRef) private _elementRef, @Inject(NgxRendererService) private _renderer) { }
+  constructor (@Inject(ElementRef) private _elementRef, @Inject(NgxRendererService) private _renderer) { }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges (changes: SimpleChanges) {
     Object.keys(changes).map((input) => {
       this._renderer.replaceClass(this._elementRef.nativeElement, 'GridColumn', input, changes[input].previousValue, changes[input].currentValue, 'ngx-Grid__');
     });
