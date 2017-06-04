@@ -3,26 +3,33 @@ import {
   Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  Inject,
+  ElementRef,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 
+import { NgxRendererService } from '../renderer';
 
 @Component({
   selector: 'ngx-row',
   template: '<ng-content select="ngx-col"></ng-content>',
   host: {
-    '[class]': '_getClass()',
+    '[class.ngx-Grid__GridRow]': 'true'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
-class NgxGridRowComponent {
+class NgxGridRowComponent implements OnChanges {
   @Input() type: 'no-gutters' | null;
+
   @Input() verticalAlign:
     'xs-start' | 'xs-center' | 'xs-end' |
     'sm-start' | 'sm-center' | 'sm-end' |
     'md-start' | 'md-center' | 'md-end' |
     'lg-start' | 'lg-center' | 'lg-end' |
     'xl-start' | 'xl-center' | 'xl-end';
+
   @Input() horizontalAlign:
     'xs-start' | 'xs-center' | 'xs-end' | 'xs-around' | 'xs-between' |
     'sm-start' | 'sm-center' | 'sm-end' | 'sm-around' | 'sm-between' |
@@ -30,26 +37,12 @@ class NgxGridRowComponent {
     'lg-start' | 'lg-center' | 'lg-end' | 'lg-around' | 'lg-between' |
     'xl-start' | 'xl-center' | 'xl-end' | 'xl-around' | 'xl-between';
 
+  constructor(@Inject(ElementRef) private _elementRef, @Inject(NgxRendererService) private _renderer) { }
 
-  _getClass (): string {
-    const _classes = ['ngx-GridComponent__GridRowComponent'];
-    let _items;
-
-    if (this.type) {
-      _classes.push(`ngx-GridComponent__GridRowComponent_type_${this.type}`);
-    }
-    if (this.verticalAlign) {
-      _items = this.verticalAlign.split(' ');
-
-      _items.forEach(item => _classes.push(`ngx-GridComponent__GridRowComponent_align-vertical_${item}`));
-    }
-    if (this.horizontalAlign) {
-      _items = this.horizontalAlign.split(' ');
-
-      _items.forEach(item => _classes.push(`ngx-GridComponent__GridRowComponent_align-horizontal_${item}`));
-    }
-
-    return _classes.join(' ');
+  ngOnChanges(changes: SimpleChanges) {
+    Object.keys(changes).map((input) => {
+      this._renderer.replaceClass(this._elementRef.nativeElement, 'GridRow', input, changes[input].previousValue, changes[input].currentValue, 'ngx-Grid__');
+    });
   }
 }
 
