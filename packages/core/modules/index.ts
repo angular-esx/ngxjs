@@ -41,5 +41,10 @@ export {
   NgxRendererModule,
 } from './renderer';
 
+export {
+  NgxCardModule,
+  NgxCardComponent,
+} from './card';
+
 
 export { NgxjsModule } from './ngxjs.module';

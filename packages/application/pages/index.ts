@@ -6,3 +6,4 @@ export { PortalPageModule } from './portal';
 export { ThemePageModule } from './theme';
 export { TypographyPageModule } from './typography';
 export { ViewPageModule } from './view';
+export { CardPageModule } from './card';

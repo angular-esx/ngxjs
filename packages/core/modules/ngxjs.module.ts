@@ -5,6 +5,7 @@ import { NgxPortalModule } from './portal';
 import { NgxTypographyModule } from './typography';
 import { NgxViewModule } from './view';
 import { NgxRendererModule } from './renderer';
+import { NgxCardModule } from './card';
 
 const MODULES = [
   NgxContainerModule,
@@ -13,6 +14,7 @@ const MODULES = [
   NgxTypographyModule,
   NgxViewModule,
   NgxRendererModule,
+  NgxCardModule,
 ];
 
 @NgModule({

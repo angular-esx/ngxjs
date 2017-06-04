@@ -19,6 +19,7 @@ import {
   ThemePageModule,
   TypographyPageModule,
   ViewPageModule,
+  CardPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { NgxApp } from './_app';
@@ -36,6 +37,7 @@ import { NgxApp } from './_app';
     TypographyPageModule,
     ViewPageModule,
     AppRouteModule,
+    CardPageModule,
   ],
   declarations: [NgxApp],
   bootstrap: [NgxApp],
