@@ -35,3 +35,11 @@ export {
   NgxViewComponent,
   NgxViewModule,
 } from './view';
+
+export {
+  NgxRendererService,
+  NgxRendererModule,
+} from './renderer';
+
+
+export { NgxjsModule } from './ngxjs.module';

@@ -1,16 +1,18 @@
+import { NgModule } from '@angular/core';
 import { NgxContainerModule } from './container';
 import { NgxGridModule } from './grid';
 import { NgxPortalModule } from './portal';
 import { NgxTypographyModule } from './typography';
 import { NgxViewModule } from './view';
-import { NgModule } from '@angular/core';
+import { NgxRendererModule } from './renderer';
 
 const MODULES = [
   NgxContainerModule,
   NgxGridModule,
   NgxPortalModule,
   NgxTypographyModule,
-  NgxViewModule
+  NgxViewModule,
+  NgxRendererModule,
 ];
 
 @NgModule({
