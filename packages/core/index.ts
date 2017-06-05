@@ -30,6 +30,9 @@ export {
   NgxCardComponent,
   NgxCardModule,
 
+  NgxSidenavComponent,
+  NgxSidenavModule,
+
   NgxUIModule,
 } from './modules';
 

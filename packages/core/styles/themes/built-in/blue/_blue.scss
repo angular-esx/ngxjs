@@ -45,6 +45,11 @@ $ngx-blue-theme: (
 
       subtitle-foreground: $ngx-theme-color-black-54,
     ),
+    ngx-sidenav: (
+      background: $ngx-theme-color-white,
+
+      navigation-foreground: $ngx-theme-color-black-87,
+    ),
     ngx-typogarphy: (
       ngx-typogarphy-display-1: $ngx-theme-color-black-54,
       ngx-typogarphy-display-2: $ngx-theme-color-black-54,
