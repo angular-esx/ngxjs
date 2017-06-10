@@ -39,17 +39,17 @@ $ngx-blue-theme: (
     pre: ngx-color($ngx-palette-grey, 100),
   ),
   components: (
-    ngx-typogarphy: (
-      ngx-typogarphy-display-1: $ngx-theme-color-black-54,
-      ngx-typogarphy-display-2: $ngx-theme-color-black-54,
-      ngx-typogarphy-display-3: $ngx-theme-color-black-54,
-      ngx-typogarphy-display-4: $ngx-theme-color-black-54,
-      ngx-typogarphy-headline: $ngx-theme-color-black-87,
-      ngx-typogarphy-title: $ngx-theme-color-black-87,
-      ngx-typogarphy-subheading: $ngx-theme-color-black-87,
-      ngx-typogarphy-body-1: $ngx-theme-color-black-87,
-      ngx-typogarphy-body-2: $ngx-theme-color-black-87,
-      ngx-typogarphy-caption: $ngx-theme-color-black-54,
+    ngx-typography: (
+      ngx-typography-display-1: $ngx-theme-color-black-54,
+      ngx-typography-display-2: $ngx-theme-color-black-54,
+      ngx-typography-display-3: $ngx-theme-color-black-54,
+      ngx-typography-display-4: $ngx-theme-color-black-54,
+      ngx-typography-headline: $ngx-theme-color-black-87,
+      ngx-typography-title: $ngx-theme-color-black-87,
+      ngx-typography-subheading: $ngx-theme-color-black-87,
+      ngx-typography-body-1: $ngx-theme-color-black-87,
+      ngx-typography-body-2: $ngx-theme-color-black-87,
+      ngx-typography-caption: $ngx-theme-color-black-54,
     ),
   ),
 );

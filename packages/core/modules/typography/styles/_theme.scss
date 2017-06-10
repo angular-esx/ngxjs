@@ -1,33 +1,33 @@
-// ngx-typogarphy: (
-//   ngx-typogarphy-display-1: color,
-//   ngx-typogarphy-display-2: color,
-//   ngx-typogarphy-display-3: color,
-//   ngx-typogarphy-display-4: color,
-//   ngx-typogarphy-headline: color,
-//   ngx-typogarphy-title: color,
-//   ngx-typogarphy-subheading: color,
-//   ngx-typogarphy-body-1: color,
-//   ngx-typogarphy-body-2: color,
-//   ngx-typogarphy-caption: color,
+// ngx-typography: (
+//   ngx-typography-display-1: color,
+//   ngx-typography-display-2: color,
+//   ngx-typography-display-3: color,
+//   ngx-typography-display-4: color,
+//   ngx-typography-headline: color,
+//   ngx-typography-title: color,
+//   ngx-typography-subheading: color,
+//   ngx-typography-body-1: color,
+//   ngx-typography-body-2: color,
+//   ngx-typography-caption: color,
 // )
-$ngx-typogarphy-theme: ngx-theme-component(ngx-typogarphy);
+$ngx-typography-theme: ngx-theme-component(ngx-typography);
 
 
-@mixin ngx-typogarphy-theme-validate() {
+@mixin ngx-typography-theme-validate() {
   @include ngx-theme-component-validate(
-    'ngx-typogarphy',
-    $ngx-typogarphy-theme,
+    'ngx-typography',
+    $ngx-typography-theme,
     (
-      'ngx-typogarphy-display-1',
-      'ngx-typogarphy-display-2',
-      'ngx-typogarphy-display-3',
-      'ngx-typogarphy-display-4',
-      'ngx-typogarphy-headline',
-      'ngx-typogarphy-title',
-      'ngx-typogarphy-subheading',
-      'ngx-typogarphy-body-1',
-      'ngx-typogarphy-body-2',
-      'ngx-typogarphy-caption',
+      'ngx-typography-display-1',
+      'ngx-typography-display-2',
+      'ngx-typography-display-3',
+      'ngx-typography-display-4',
+      'ngx-typography-headline',
+      'ngx-typography-title',
+      'ngx-typography-subheading',
+      'ngx-typography-body-1',
+      'ngx-typography-body-2',
+      'ngx-typography-caption',
     )
   );
 }

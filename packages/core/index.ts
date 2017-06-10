@@ -21,6 +21,7 @@ export {
   NgxPortalHostDirective,
   NgxPortalModule,
 
+  NgxTypographyOptionType,
   NgxTypographyDirective,
   NgxTypographyModule,
 
