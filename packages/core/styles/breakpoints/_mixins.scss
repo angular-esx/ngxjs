@@ -16,7 +16,7 @@
 // Media of at most the maximum breakpoint width. No query for the largest breakpoint.
 // Makes the @content apply to the given breakpoint and narrower.
 //    >> ngx-media-breakpoint-down(480, (480: 480px, 600: 600px, 840: 840px))
-//    @media (max-width: 599px) { }
+//    @media (max-width: 479px) { }
 @mixin ngx-media-breakpoint-down($name, $breakpoints: $ngx-breakpoints) {
   $max: ngx-breakpoint($name, $breakpoints);
   @if $max {
