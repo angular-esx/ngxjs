@@ -31,7 +31,7 @@ export {
 } from './modules';
 
 export {
-  NgxRendererService,
+  NgxRenderService,
 
   NgxServiceModule,
 } from './services';

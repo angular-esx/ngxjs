@@ -7,11 +7,14 @@ import {
   SimpleChange,
 } from '@angular/core';
 
-import { isArray } from 'ngx-infrastructure';
+import {
+  isArray,
+  isObject,
+} from 'ngx-infrastructure';
 
 
 @Injectable()
-class NgxRendererService {
+class NgxRenderService {
   private _renderer: Renderer2;
 
   constructor (@Inject(RendererFactory2) rendererFactory: RendererFactory2) {
@@ -19,7 +22,7 @@ class NgxRendererService {
   }
 
 
-  addClass (element: any, className: string | Array<string>): NgxRendererService {
+  addClass (element: any, className: string | Array<string>): NgxRenderService {
     if (!className){ return; }
 
     if (isArray(className)) {
@@ -34,7 +37,7 @@ class NgxRendererService {
     return this;
   }
 
-  removeClass (element: any, className: string | Array<string>): NgxRendererService {
+  removeClass (element: any, className: string | Array<string>): NgxRenderService {
     if (!className){ return; }
 
     if (isArray(className)) {
@@ -54,7 +57,7 @@ class NgxRendererService {
     changes: SimpleChanges,
     onRemoveClass: (propName: string, change: SimpleChange) => (string | Array<string>),
     onAddCLass: (propName: string, change: SimpleChange) => (string | Array<string>)
-  ): NgxRendererService {
+  ): NgxRenderService {
     if (!changes) { return; }
 
     let _simpleChange: SimpleChange;
@@ -63,10 +66,24 @@ class NgxRendererService {
       _simpleChange = changes[propName];
 
       if (onRemoveClass && _simpleChange.previousValue) {
-        this.removeClass(element, onRemoveClass(propName, _simpleChange));
+        if (isObject(_simpleChange.previousValue)) {
+          Object.keys(_simpleChange.previousValue).forEach(simpleChangePropName => {
+            this.removeClass(element, onRemoveClass(`${propName}.${simpleChangePropName}`, _simpleChange));
+          });
+        }
+        else {
+          this.removeClass(element, onRemoveClass(propName, _simpleChange));
+        }
       }
       if (onAddCLass && _simpleChange.currentValue) {
-        this.addClass(element, onAddCLass(propName, _simpleChange));
+        if (isObject(_simpleChange.currentValue)) {
+          Object.keys(_simpleChange.currentValue).forEach(simpleChangePropName => {
+            this.addClass(element, onAddCLass(`${propName}.${simpleChangePropName}`, _simpleChange));
+          });
+        }
+        else {
+          this.addClass(element, onAddCLass(propName, _simpleChange));
+        }
       }
     });
 
@@ -75,4 +92,4 @@ class NgxRendererService {
 }
 
 
-export { NgxRendererService };
+export { NgxRenderService };
