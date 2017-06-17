@@ -38,7 +38,7 @@ class NgxSidenavContainerComponent implements AfterContentChecked {
     this.mode = [];
     this.sidenavs.forEach((sidenav) => {
       if (sidenav.opened === true) {
-        this.mode.push(`${sidenav.type}-${sidenav.side}`);
+        this.mode.push(`${sidenav.type}-${sidenav.align}`);
       }
     });
 

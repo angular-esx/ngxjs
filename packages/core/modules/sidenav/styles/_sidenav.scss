@@ -16,12 +16,12 @@
   overflow-y: auto;
 }
 
-.ngx-Sidenav_side_left {
+.ngx-Sidenav_align_left {
   left: 0;
   transform: translate3d(-100%, 0, 0);
 }
 
-.ngx-Sidenav_side_right {
+.ngx-Sidenav_align_right {
   right: 0;
   transform: translate3d(100%, 0, 0);
 }

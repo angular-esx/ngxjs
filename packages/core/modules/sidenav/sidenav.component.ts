@@ -24,9 +24,9 @@ import { NgxRendererService } from '../../services';
 })
 class NgxSidenavComponent implements OnChanges {
   // 'over', 'push', 'side'
-  @Input() type: string = 'over';
+  @Input() type: 'over' | 'push' | 'side' = 'over';
   @Input() opened: boolean = false;
-  @Input() side: string = 'left';
+  @Input() align: 'left' | 'right' = 'left';
 
   constructor (
     @Inject(ElementRef) private _elementRef: ElementRef,
