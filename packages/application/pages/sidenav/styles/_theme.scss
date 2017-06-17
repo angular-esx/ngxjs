@@ -1,0 +1,19 @@
+// ngx-sidenav: (
+//   background: color,
+
+//   navigation-foreground: color,
+// )
+$ngx-sidenav-theme: ngx-theme-component(ngx-sidenav);
+
+
+@mixin ngx-sidenav-theme-validate() {
+  @include ngx-theme-component-validate(
+    'ngx-sidenav',
+    $ngx-sidenav-theme,
+    (
+      'background',
+      'navigation-foreground',
+    )
+  );
+}
+

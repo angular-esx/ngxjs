@@ -1,0 +1,70 @@
+<ngx-sidenav-container>
+  <ngx-sidenav [type]="mode1" [opened]="open" side="left">
+    <div class="ngx-Sidenav__Account"></div>
+
+    <div class="ngx-Sidenav__Navigations">
+      <div class="ngx-Sidenav__Navigation">
+        Navigation Left - 01
+      </div>
+
+      <div class="ngx-Sidenav__Navigation">
+        Navigation Left - 02
+      </div>
+
+      <div class="ngx-Sidenav__Navigation">
+        Navigation Left - 03
+      </div>
+    </div>
+  </ngx-sidenav>
+
+  <ngx-sidenav [type]="mode2" [opened]="open" side="right">
+    <div class="ngx-Sidenav__Account"></div>
+
+    <div class="ngx-Sidenav__Navigations">
+      <div class="ngx-Sidenav__Navigation">
+        Navigation Right - 01
+      </div>
+
+      <div class="ngx-Sidenav__Navigation">
+        Navigation Right - 02
+      </div>
+
+      <div class="ngx-Sidenav__Navigation">
+        Navigation Right - 03
+      </div>
+    </div>
+
+  </ngx-sidenav>
+
+  <main class="main">
+    <ngx-grid type="fluid">
+      <ngx-row>
+        <ngx-col size="xs sm-6">
+          <ngx-card></ngx-card>
+          <p style="text-align: center">
+            <button (click)="sideSide()">Side - Side</button>
+          </p>
+        </ngx-col>
+        <ngx-col size="xs sm-6">
+          <ngx-card></ngx-card>
+          <p style="text-align: center">
+            <button (click)="overOver()">Over - Over</button>
+          </p>
+        </ngx-col>
+        <ngx-col size="xs sm-6">
+          <ngx-card></ngx-card>
+          <p style="text-align: center">
+            <button (click)="sideOver()">Side - Over</button>
+          </p>
+        </ngx-col>
+        <ngx-col size="xs sm-6">
+          <ngx-card></ngx-card>
+          <p style="text-align: center">
+            <button (click)="pushOver()">Push - Over</button>
+          </p>
+        </ngx-col>
+      </ngx-row>
+    </ngx-grid>
+  </main>
+
+</ngx-sidenav-container>

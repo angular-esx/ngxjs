@@ -1,46 +1,49 @@
 import {
   Component,
-  // ChangeDetectionStrategy,
+  ChangeDetectionStrategy,
   ViewEncapsulation,
   ContentChildren,
+  SimpleChanges,
+  ChangeDetectorRef,
+  Inject,
+  AfterContentChecked,
 } from '@angular/core';
 
-import {
-  NgxSidenavComponent,
-} from './sidenav.component';
+import { NgxSidenavComponent } from './sidenav.component';
 
 @Component({
   selector: 'ngx-sidenav-container',
   templateUrl: './templates/sidenav-container.html',
   styleUrls: ['./styles/index.scss'],
   host: {
-    class: 'ngx-SideNavContainer',
+    class: 'ngx-SidenavContainer',
   },
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-class NgxSidenavContainerComponent {
-  modes = [];
+class NgxSidenavContainerComponent implements AfterContentChecked {
+  mode = [];
 
-  @ContentChildren(NgxSidenavComponent) sideNavs;
+  @ContentChildren(NgxSidenavComponent) sidenavs;
 
-  // ngAfterContentInit () {
-  //   this.checkChangeState();
-  // }
+  constructor (
+    @Inject(ChangeDetectorRef) private cd: ChangeDetectorRef
+  ) { }
 
-  // ngAfterContentChecked () {
-  //   this.checkChangeState();
-  // }
-
-  checkChangeState () {
-    this.modes = [];
-    this.sideNavs.forEach((sideNav) => {
-      if (sideNav.opened === true) {
-        this.modes.push(`mode_${sideNav.type}-${sideNav.side}`);
-      }
-    });
+  ngAfterContentChecked () {
+    this.checkChangeState();
   }
 
+  checkChangeState () {
+    this.mode = [];
+    this.sidenavs.forEach((sidenav) => {
+      if (sidenav.opened === true) {
+        this.mode.push(`${sidenav.type}-${sidenav.side}`);
+      }
+    });
+
+    this.cd.markForCheck();
+  }
 }
 
 

@@ -3,33 +3,46 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Input,
+  ElementRef,
+  Inject,
+  SimpleChanges,
+  OnChanges,
 } from '@angular/core';
 
 import { isArray } from 'ngx-infrastructure';
+
+import { NgxRendererService } from '../../services';
+
 
 @Component({
   selector: 'ngx-sidenav-content',
   templateUrl: './templates/sidenav-content.html',
   styleUrls: ['./styles/index.scss'],
   host: {
-    '[class]': '_getClass()',
+    '[class.ngx-SidenavContent]': 'true',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-class NgxSidenavContentComponent {
-  @Input() modes;
+class NgxSidenavContentComponent implements OnChanges {
+  @Input() mode: Array<string>;
 
-  _getClass () {
-    const _classes = ['ngx-SidenavContent'];
+  constructor (
+    @Inject(ElementRef) private _elementRef: ElementRef,
+    @Inject(NgxRendererService) private _renderer: NgxRendererService
+  ) { }
 
-    if (this.modes && isArray(this.modes) && this.modes.length > 0) {
-      this.modes.forEach((mode) => {
-        _classes.push(`ngx-SidenavContent_${mode}`);
-      });
-    }
+  ngOnChanges (changes: SimpleChanges) {
+    this._renderer.changeClass(
+      this._elementRef.nativeElement,
+      changes,
+      (propName, change) => change.previousValue.map(value => this._getClass(propName, value)),
+      (propName, change) => change.currentValue.map(value => this._getClass(propName, value)),
+    );
+  }
 
-    return _classes.join(' ');
+  private _getClass (propName: string, value: any): string {
+    return propName && value ? `ngx-SidenavContent_${propName}_${value}` : '';
   }
 }
 

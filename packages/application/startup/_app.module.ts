@@ -23,6 +23,7 @@ import {
   ViewPageModule,
   CardPageModule,
   SidenavPageModule,
+  LayoutCardPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { NgxApp } from './_app';
@@ -43,6 +44,7 @@ import { NgxApp } from './_app';
     AppRouteModule,
     CardPageModule,
     SidenavPageModule,
+    LayoutCardPageModule,
   ],
   declarations: [NgxApp],
   bootstrap: [NgxApp],
