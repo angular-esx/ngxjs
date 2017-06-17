@@ -5,3 +5,5 @@
 </ngx-sidenav-content>
 
 <ng-content select="ngx-sidenav[align=right]"></ng-content>
+
+<div class="ngx-Sidenav__Backdrop" *ngIf="backdrop" (click)="close()"></div>

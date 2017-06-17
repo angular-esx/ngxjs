@@ -45,6 +45,11 @@ class NgxSidenavComponent implements OnChanges {
   private _getClass (propName: string, value: any): string {
     return propName && value ? `ngx-Sidenav_${propName}_${value}` : '';
   }
+
+  close() {
+    this.opened = false;
+    this._renderer.removeClass(this._elementRef.nativeElement, 'ngx-Sidenav_opened_true');
+  }
 }
 
 

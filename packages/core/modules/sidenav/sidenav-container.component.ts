@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   ContentChildren,
-  SimpleChanges,
   ChangeDetectorRef,
   Inject,
   AfterContentChecked,
@@ -22,12 +21,13 @@ import { NgxSidenavComponent } from './sidenav.component';
   encapsulation: ViewEncapsulation.None,
 })
 class NgxSidenavContainerComponent implements AfterContentChecked {
-  mode = [];
+  mode: Array<string> = [];
+  backdrop: boolean = false;
 
   @ContentChildren(NgxSidenavComponent) sidenavs;
 
   constructor (
-    @Inject(ChangeDetectorRef) private cd: ChangeDetectorRef
+    @Inject(ChangeDetectorRef) private _changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngAfterContentChecked () {
@@ -36,13 +36,26 @@ class NgxSidenavContainerComponent implements AfterContentChecked {
 
   checkChangeState () {
     this.mode = [];
+    this.backdrop = false;
+
     this.sidenavs.forEach((sidenav) => {
       if (sidenav.opened === true) {
+
+        if(sidenav.type === 'over' || sidenav.type === 'push') {
+          this.backdrop = true;
+        }
+
         this.mode.push(`${sidenav.type}-${sidenav.align}`);
       }
     });
 
-    this.cd.markForCheck();
+    this._changeDetectorRef.markForCheck();
+  }
+
+  close() {
+    this.sidenavs.forEach((sidenav) => {
+      sidenav.close();
+    });
   }
 }
 
