@@ -16,7 +16,7 @@ import {
     '[class.ngx-Sidenav]': 'true',
   },
 })
-class NgxSidenavComponent {}
+class NgxSidenavComponent { }
 
 
 export { NgxSidenavComponent };
