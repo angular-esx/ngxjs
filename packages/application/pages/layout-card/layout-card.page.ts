@@ -2,8 +2,10 @@
 import {
   Component,
   ViewEncapsulation,
+  ViewChild
 } from '@angular/core';
 
+import { NgxSidenavComponent } from 'ngx-core';
 
 @Component({
   selector: 'ngx-layout-card-page',
@@ -15,32 +17,39 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 class LayoutCardPage {
-  open = false;
-  mode1 = 'over';
-  mode2 = 'over';
+  @ViewChild('sidenavLeft') sidenavLeft: NgxSidenavComponent;
+  @ViewChild('sidenavRight') sidenavRight: NgxSidenavComponent;
+
+  mode1: string;
+  mode2: string;
+
+  toggle() {
+    this.sidenavLeft.toggle();
+    this.sidenavRight.toggle();
+  }
 
   sideSide () {
-    this.open = !this.open;
     this.mode1 = 'side';
     this.mode2 = 'side';
+    this.toggle();
   }
 
   overOver () {
-    this.open = !this.open;
     this.mode1 = 'over';
     this.mode2 = 'over';
+    this.toggle();
   }
 
   sideOver () {
-    this.open = !this.open;
     this.mode1 = 'side';
     this.mode2 = 'over';
+    this.toggle();
   }
 
   pushOver () {
-    this.open = !this.open;
     this.mode1 = 'push';
     this.mode2 = 'over';
+    this.toggle();
   }
 }
 

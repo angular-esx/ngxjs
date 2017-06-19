@@ -6,6 +6,7 @@ import {
   ChangeDetectorRef,
   Inject,
   AfterContentChecked,
+  QueryList,
 } from '@angular/core';
 
 import { NgxSidenavComponent } from './sidenav.component';
@@ -24,7 +25,7 @@ class NgxSidenavContainerComponent implements AfterContentChecked {
   mode: Array<string> = [];
   backdrop: boolean = false;
 
-  @ContentChildren(NgxSidenavComponent) sidenavs;
+  @ContentChildren(NgxSidenavComponent) sidenavs: QueryList<NgxSidenavComponent>;
 
   constructor (
     @Inject(ChangeDetectorRef) private _changeDetectorRef: ChangeDetectorRef
@@ -39,7 +40,7 @@ class NgxSidenavContainerComponent implements AfterContentChecked {
     this.backdrop = false;
 
     this.sidenavs.forEach((sidenav) => {
-      if (sidenav.opened === true) {
+      if (sidenav.isOpen()) {
 
         if (sidenav.type === 'over' || sidenav.type === 'push') {
           this.backdrop = true;

@@ -14,7 +14,7 @@ import {
   },
   encapsulation: ViewEncapsulation.None,
 })
-class CardPage {}
+class CardPage { }
 
 
 export { CardPage };

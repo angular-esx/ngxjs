@@ -1,5 +1,5 @@
 <ngx-sidenav-container>
-  <ngx-sidenav [type]="mode1" [opened]="open" align="left">
+  <ngx-sidenav #sidenavLeft [type]="mode1" align="left">
     <div class="ngx-Sidenav__Account"></div>
 
     <div class="ngx-Sidenav__Navigations">
@@ -17,7 +17,7 @@
     </div>
   </ngx-sidenav>
 
-  <ngx-sidenav [type]="mode2" [opened]="open" align="right">
+  <ngx-sidenav #sidenavRight [type]="mode2" align="right">
     <div class="ngx-Sidenav__Account"></div>
 
     <div class="ngx-Sidenav__Navigations">

@@ -7,10 +7,13 @@ import {
   ElementRef,
   OnChanges,
   SimpleChanges,
+  Attribute,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 
 import { NgxRendererService } from '../../services';
-
+import { parseBoolean } from 'ngx-infrastructure';
 
 @Component({
   selector: 'ngx-sidenav',
@@ -21,17 +24,31 @@ import { NgxRendererService } from '../../services';
   host: {
     '[class.ngx-Sidenav]': 'true',
   },
+  exportAs: 'ngxSidenav'
 })
 class NgxSidenavComponent implements OnChanges {
-  // 'over', 'push', 'side'
-  @Input() type: 'over' | 'push' | 'side' = 'over';
-  @Input() opened: boolean = false;
-  @Input() align: 'left' | 'right' = 'left';
+  private _opened: boolean;
+
+  @Input() type: string;
+  @Input() align: string;
+
+  @Output() onAfterOpen = new EventEmitter();
+  @Output() onAfterClose = new EventEmitter();
 
   constructor (
+    @Attribute('opened') private opened: string,
+    @Inject(NgxRendererService) private _renderer: NgxRendererService,
     @Inject(ElementRef) private _elementRef: ElementRef,
-    @Inject(NgxRendererService) private _renderer: NgxRendererService
-  ) { }
+  ) {
+
+    this._opened = parseBoolean(opened);
+
+    if (this._opened) {
+      this.open();
+    } else {
+      this.close();
+    }
+  }
 
   ngOnChanges (changes: SimpleChanges) {
     this._renderer.changeClass(
@@ -46,9 +63,30 @@ class NgxSidenavComponent implements OnChanges {
     return propName && value ? `ngx-Sidenav_${propName}_${value}` : '';
   }
 
-  close () {
-    this.opened = false;
+  open (): void {
+    this._opened = true;
+    this._renderer.addClass(this._elementRef.nativeElement, 'ngx-Sidenav_opened_true');
+
+    this.onAfterOpen.next('opened');
+  }
+
+  close (): void {
+    this._opened = false;
     this._renderer.removeClass(this._elementRef.nativeElement, 'ngx-Sidenav_opened_true');
+
+    this.onAfterClose.next('closed');
+  }
+
+  toggle (): void {
+    if (this.isOpen()) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+
+  isOpen (): boolean {
+    return this._opened ? true : false;
   }
 }
 
