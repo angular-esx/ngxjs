@@ -23,7 +23,7 @@ class LayoutCardPage {
   mode1: string;
   mode2: string;
 
-  toggle() {
+  toggle () {
     this.sidenavLeft.toggle();
     this.sidenavRight.toggle();
   }
