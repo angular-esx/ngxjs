@@ -25,7 +25,7 @@ import { NgxRenderService } from '../../services';
   encapsulation: ViewEncapsulation.None,
 })
 class NgxSidenavContentComponent implements OnChanges {
-  @Input() mode: Array<string>;
+  @Input() mode: Array<string> | string;
 
   constructor (
     @Inject(ElementRef) private _elementRef: ElementRef,

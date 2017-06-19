@@ -30,8 +30,7 @@ class LayoutCardPage {
 
   sideSide () {
     this.mode1 = 'side';
-    this.mode2 = 'side';
-    this.toggle();
+    this.sidenavLeft.toggle();
   }
 
   overOver () {
@@ -51,6 +50,11 @@ class LayoutCardPage {
     this.mode2 = 'over';
     this.toggle();
   }
+
+  onHideSide (event) {
+    console.log(event);
+  }
+
 }
 
 

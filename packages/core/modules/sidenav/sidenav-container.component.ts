@@ -42,11 +42,13 @@ class NgxSidenavContainerComponent implements AfterContentChecked {
     this.sidenavs.forEach((sidenav) => {
       if (sidenav.isOpen()) {
 
-        if (sidenav.type === 'over' || sidenav.type === 'push') {
+        const type = sidenav.getType();
+
+        if (type === 'over' || type === 'push') {
           this.backdrop = true;
         }
 
-        this.mode.push(`${sidenav.type}-${sidenav.align}`);
+        this.mode.push(`${type}-${sidenav.align}`);
       }
     });
 

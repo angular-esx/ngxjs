@@ -5,15 +5,17 @@ import {
   ViewEncapsulation,
   Inject,
   ElementRef,
+  OnInit,
   OnChanges,
   SimpleChanges,
   Attribute,
   EventEmitter,
   Output,
+  HostListener,
 } from '@angular/core';
 
 import { NgxRenderService } from '../../services';
-import { parseBoolean } from 'ngx-infrastructure';
+import { parseBoolean, parseNumber } from 'ngx-infrastructure';
 
 @Component({
   selector: 'ngx-sidenav',
@@ -26,12 +28,17 @@ import { parseBoolean } from 'ngx-infrastructure';
   },
   exportAs: 'ngxSidenav'
 })
-class NgxSidenavComponent implements OnChanges {
+class NgxSidenavComponent implements OnInit, OnChanges {
   private _opened: boolean;
+  private _type: 'over' | 'push' | 'side' | string;
+  private _windowSize: number;
 
-  @Input() type: string;
-  @Input() align: string;
+  @Input() type: 'over' | 'push' | 'side' | string;
+  @Input() align: 'left' | 'right' | string;
+  @Input() whenHideSide: string;
+  @Input() typeWhenHideSide: 'over' | 'push' | string;
 
+  @Output() onHideSide = new EventEmitter();
   @Output() onAfterOpen = new EventEmitter();
   @Output() onAfterClose = new EventEmitter();
 
@@ -50,7 +57,32 @@ class NgxSidenavComponent implements OnChanges {
     }
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize (event) {
+    this.handleResize(event.target.innerWidth);
+  }
+
+  ngOnInit () {
+    if (window) {
+      this.handleResize(window.innerWidth);
+    }
+  }
+
   ngOnChanges (changes: SimpleChanges) {
+    this._type = this.type;
+
+    if (this.type === 'side' && changes.type) {
+      delete changes.type;
+    }
+
+    if (changes.whenHideSide) {
+      delete changes.whenHideSide;
+    }
+
+    if (changes.typeWhenHideSide) {
+      delete changes.typeWhenHideSide;
+    }
+
     this._renderer.changeClass(
       this._elementRef.nativeElement,
       changes,
@@ -61,6 +93,28 @@ class NgxSidenavComponent implements OnChanges {
 
   private _getClass (propName: string, value: any): string {
     return propName && value ? `ngx-Sidenav_${propName}_${value}` : '';
+  }
+
+  handleResize (windowSize) {
+    if (this.type === 'side') {
+      const whenHideSide = this.whenHideSide ? parseNumber(this.whenHideSide) : 960;
+
+      if (whenHideSide >= windowSize) {
+        this._type = this.typeWhenHideSide;
+        this.onHideSide.emit('hided');
+        this._renderer.removeClass(this._elementRef.nativeElement, `ngx-Sidenav_type_${this.type}`);
+      } else {
+        this._type = this.type;
+        this.onHideSide.emit('showed');
+        this._renderer.removeClass(this._elementRef.nativeElement, `ngx-Sidenav_type_${this.typeWhenHideSide}`);
+      }
+
+      this._renderer.addClass(this._elementRef.nativeElement, `ngx-Sidenav_type_${this._type}`);
+    }
+  }
+
+  getType () {
+    return this._type;
   }
 
   open (): void {

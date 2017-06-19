@@ -1,5 +1,5 @@
 <ngx-sidenav-container>
-  <ngx-sidenav #sidenavLeft [type]="mode1" align="left">
+  <ngx-sidenav #sidenavLeft typeWhenHideSide="over" (onHideSide)="onHideSide($event)" [type]="mode1" align="left">
     <div class="ngx-Sidenav__Account"></div>
 
     <div class="ngx-Sidenav__Navigations">
@@ -42,7 +42,7 @@
         <ngx-col size="xs sm-6">
           <ngx-card></ngx-card>
           <p style="text-align: center">
-            <button (click)="sideSide()">Side - Side</button>
+            <button (click)="sideSide()">Side</button>
           </p>
         </ngx-col>
         <ngx-col size="xs sm-6">
