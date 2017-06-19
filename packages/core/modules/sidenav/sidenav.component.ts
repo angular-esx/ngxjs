@@ -12,7 +12,7 @@ import {
   Output,
 } from '@angular/core';
 
-import { NgxRendererService } from '../../services';
+import { NgxRenderService } from '../../services';
 import { parseBoolean } from 'ngx-infrastructure';
 
 @Component({
@@ -37,7 +37,7 @@ class NgxSidenavComponent implements OnChanges {
 
   constructor (
     @Attribute('opened') private opened: string,
-    @Inject(NgxRendererService) private _renderer: NgxRendererService,
+    @Inject(NgxRenderService) private _renderer: NgxRenderService,
     @Inject(ElementRef) private _elementRef: ElementRef,
   ) {
 
