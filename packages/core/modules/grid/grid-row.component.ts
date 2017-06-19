@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { NgxRendererService } from '../../services';
+import { NgxRenderService } from '../../services';
 
 
 @Component({
@@ -45,7 +45,7 @@ class NgxGridRowComponent implements OnChanges {
 
   constructor (
     @Inject(ElementRef) private _elementRef: ElementRef,
-    @Inject(NgxRendererService) private _renderer: NgxRendererService
+    @Inject(NgxRenderService) private _renderer: NgxRenderService
   ) { }
 
 

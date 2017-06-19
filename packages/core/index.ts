@@ -21,6 +21,7 @@ export {
   NgxPortalHostDirective,
   NgxPortalModule,
 
+  NgxTypographyOptionType,
   NgxTypographyDirective,
   NgxTypographyModule,
 
@@ -37,7 +38,7 @@ export {
 } from './modules';
 
 export {
-  NgxRendererService,
+  NgxRenderService,
 
   NgxServiceModule,
 } from './services';

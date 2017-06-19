@@ -27,6 +27,7 @@ export {
 } from './portal';
 
 export {
+  NgxTypographyOptionType,
   NgxTypographyDirective,
   NgxTypographyModule,
 } from './typography';
