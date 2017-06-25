@@ -30,7 +30,7 @@ import { parseBoolean, parseNumber } from 'ngx-infrastructure';
 })
 class NgxSidenavComponent implements OnInit, OnChanges {
   private _opened: boolean;
-  private _type: 'over' | 'push' | 'side' | string;
+  private _currentType: 'over' | 'push' | 'side' | string;
   private _windowSize: number;
 
   @Input() type: 'over' | 'push' | 'side' | string;
@@ -41,6 +41,14 @@ class NgxSidenavComponent implements OnInit, OnChanges {
   @Output() onHideSide = new EventEmitter();
   @Output() onAfterOpen = new EventEmitter();
   @Output() onAfterClose = new EventEmitter();
+
+  get currentType(): string {
+    return this._currentType;
+  }
+
+  get isOpen (): boolean {
+    return this._opened ? true : false;
+  }
 
   constructor (
     @Attribute('opened') private opened: string,
@@ -57,19 +65,8 @@ class NgxSidenavComponent implements OnInit, OnChanges {
     }
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize (event) {
-    this.handleResize(event.target.innerWidth);
-  }
-
-  ngOnInit () {
-    if (window) {
-      this.handleResize(window.innerWidth);
-    }
-  }
-
   ngOnChanges (changes: SimpleChanges) {
-    this._type = this.type;
+    this._currentType = this.type;
 
     if (this.type === 'side' && changes.type) {
       delete changes.type;
@@ -91,8 +88,15 @@ class NgxSidenavComponent implements OnInit, OnChanges {
     );
   }
 
-  private _getClass (propName: string, value: any): string {
-    return propName && value ? `ngx-Sidenav_${propName}_${value}` : '';
+  ngOnInit () {
+    if (window) {
+      this.handleResize(window.innerWidth);
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize (event) {
+    this.handleResize(event.target.innerWidth);
   }
 
   handleResize (windowSize) {
@@ -100,21 +104,25 @@ class NgxSidenavComponent implements OnInit, OnChanges {
       const whenHideSide = this.whenHideSide ? parseNumber(this.whenHideSide) : 960;
 
       if (whenHideSide >= windowSize) {
-        this._type = this.typeWhenHideSide;
+        this._currentType = this.typeWhenHideSide;
         this.onHideSide.emit('hided');
-        this._renderer.removeClass(this._elementRef.nativeElement, `ngx-Sidenav_type_${this.type}`);
+        this._renderer.removeClass(this._elementRef.nativeElement, `ngx-ScurrentTdenav_type_${this.type}`);
       } else {
-        this._type = this.type;
+        this._currentType = this.type;
         this.onHideSide.emit('showed');
-        this._renderer.removeClass(this._elementRef.nativeElement, `ngx-Sidenav_type_${this.typeWhenHideSide}`);
+        this._renderer.removeClass(this._elementRef.nativeElement, `ngx-ScurrentTdenav_type_${this.typeWhenHideSide}`);
       }
 
       this._renderer.addClass(this._elementRef.nativeElement, `ngx-Sidenav_type_${this._type}`);
     }
   }
 
-  getType () {
-    return this._type;
+  toggle (): void {
+    if (this.isOpen) {
+      this.close();
+    } else {
+      this.open();
+    }
   }
 
   open (): void {
@@ -131,16 +139,8 @@ class NgxSidenavComponent implements OnInit, OnChanges {
     this.onAfterClose.next('closed');
   }
 
-  toggle (): void {
-    if (this.isOpen()) {
-      this.close();
-    } else {
-      this.open();
-    }
-  }
-
-  isOpen (): boolean {
-    return this._opened ? true : false;
+  private _getClass (propName: string, value: any): string {
+    return propName && value ? `ngx-Sidenav_${propName}_${value}` : '';
   }
 }
 
