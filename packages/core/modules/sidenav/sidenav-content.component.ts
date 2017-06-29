@@ -9,14 +9,12 @@ import {
   OnChanges,
 } from '@angular/core';
 
-import { isArray } from 'ngx-infrastructure';
-
 import { NgxRenderService } from '../../services';
 
 
 @Component({
   selector: 'ngx-sidenav-content',
-  templateUrl: './templates/sidenav-content.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./styles/index.scss'],
   host: {
     '[class.ngx-SidenavContent]': 'true',

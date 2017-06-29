@@ -15,11 +15,11 @@ import {
 } from '@angular/core';
 
 import { NgxRenderService } from '../../services';
-import { parseBoolean, parseNumber } from 'ngx-infrastructure';
+import { parseBoolean, parseNumber, isNumber } from 'ngx-infrastructure';
 
 @Component({
   selector: 'ngx-sidenav',
-  templateUrl: './templates/sidenav.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./styles/index.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -32,11 +32,18 @@ class NgxSidenavComponent implements OnInit, OnChanges {
   private _opened: boolean;
   private _currentType: 'over' | 'push' | 'side' | string;
   private _windowSize: number;
+  private _whenHideSide: number = 960;
 
   @Input() type: 'over' | 'push' | 'side' | string;
   @Input() align: 'left' | 'right' | string;
-  @Input() whenHideSide: string;
   @Input() typeWhenHideSide: 'over' | 'push' | string;
+  @Input()
+  get whenHideSide() {
+    return this._whenHideSide;
+  }
+  set whenHideSide(value: number) {
+    this._whenHideSide = isNumber(value) ? value : parseNumber(value);
+  }
 
   @Output() onHideSide = new EventEmitter();
   @Output() onAfterOpen = new EventEmitter();
@@ -101,7 +108,7 @@ class NgxSidenavComponent implements OnInit, OnChanges {
 
   handleResize (windowSize) {
     if (this.type === 'side') {
-      const whenHideSide = this.whenHideSide ? parseNumber(this.whenHideSide) : 960;
+      const whenHideSide = this.whenHideSide;
 
       if (whenHideSide >= windowSize) {
         this._currentType = this.typeWhenHideSide;
@@ -113,7 +120,7 @@ class NgxSidenavComponent implements OnInit, OnChanges {
         this._renderer.removeClass(this._elementRef.nativeElement, `ngx-ScurrentTdenav_type_${this.typeWhenHideSide}`);
       }
 
-      this._renderer.addClass(this._elementRef.nativeElement, `ngx-Sidenav_type_${this._type}`);
+      this._renderer.addClass(this._elementRef.nativeElement, `ngx-Sidenav_type_${this._currentType}`);
     }
   }
 
