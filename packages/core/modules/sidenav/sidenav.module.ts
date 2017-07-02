@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NgxSidenavComponent } from './sidenav.component';
 import { NgxSidenavContainerComponent } from './sidenav-container.component';
-import { NgxSidenavContentComponent } from './sidenav-content.component';
+import { NgxSidenavComponent } from './sidenav.component';
+
 
 const DIRECTIVES = [
-  NgxSidenavComponent,
   NgxSidenavContainerComponent,
-  NgxSidenavContentComponent,
+  NgxSidenavComponent,
 ];
 
 @NgModule({

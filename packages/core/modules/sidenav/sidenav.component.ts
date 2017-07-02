@@ -8,19 +8,20 @@ import {
   OnInit,
   OnChanges,
   SimpleChanges,
-  Attribute,
   EventEmitter,
   Output,
   HostListener,
 } from '@angular/core';
 
+import { parseBoolean } from 'ngx-infrastructure';
+
 import { NgxRenderService } from '../../services';
-import { parseBoolean, parseNumber, isNumber } from 'ngx-infrastructure';
+
 
 @Component({
   selector: 'ngx-sidenav',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./styles/index.scss'],
+  styleUrls: ['./styles/sidenav/index.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -28,66 +29,29 @@ import { parseBoolean, parseNumber, isNumber } from 'ngx-infrastructure';
   },
   exportAs: 'ngxSidenav'
 })
-class NgxSidenavComponent implements OnInit, OnChanges {
-  private _opened: boolean;
-  private _currentType: 'over' | 'push' | 'side' | string;
-  private _windowSize: number;
-  private _whenHideSide: number = 960;
+class NgxSidenavComponent implements OnChanges, OnInit {
+  private _isActive: boolean;
 
-  @Input() type: 'over' | 'push' | 'side' | string;
-  @Input() align: 'left' | 'right' | string;
-  @Input() typeWhenHideSide: 'over' | 'push' | string;
+  @Input() type: 'over' | 'push' | 'side' = 'side';
+  @Input() align: 'left' | 'right' = 'left';
   @Input()
-  get whenHideSide() {
-    return this._whenHideSide;
+  get isActive(): boolean {
+    return this._isActive;
   }
-  set whenHideSide(value: number) {
-    this._whenHideSide = isNumber(value) ? value : parseNumber(value);
-  }
-
-  @Output() onHideSide = new EventEmitter();
-  @Output() onAfterOpen = new EventEmitter();
-  @Output() onAfterClose = new EventEmitter();
-
-  get currentType(): string {
-    return this._currentType;
+  set isActive(value: boolean) {
+    this._isActive = parseBoolean(value);
   }
 
-  get isOpen (): boolean {
-    return this._opened ? true : false;
-  }
+  @Output('onResize') resizeEmitter = new EventEmitter<{ width: number, height: number }>();
+
 
   constructor (
-    @Attribute('opened') private opened: string,
-    @Inject(NgxRenderService) private _renderer: NgxRenderService,
     @Inject(ElementRef) private _elementRef: ElementRef,
-  ) {
+    @Inject(NgxRenderService) private _renderService: NgxRenderService,
+  ) {}
 
-    this._opened = parseBoolean(opened);
-
-    if (this._opened) {
-      this.open();
-    } else {
-      this.close();
-    }
-  }
-
-  ngOnChanges (changes: SimpleChanges) {
-    this._currentType = this.type;
-
-    if (this.type === 'side' && changes.type) {
-      delete changes.type;
-    }
-
-    if (changes.whenHideSide) {
-      delete changes.whenHideSide;
-    }
-
-    if (changes.typeWhenHideSide) {
-      delete changes.typeWhenHideSide;
-    }
-
-    this._renderer.changeClass(
+  ngOnChanges (changes: SimpleChanges): void {
+    this._renderService.changeClass(
       this._elementRef.nativeElement,
       changes,
       (propName, change) => change.previousValue.toString().split(' ').map(value => this._getClass(propName, value)),
@@ -95,59 +59,47 @@ class NgxSidenavComponent implements OnInit, OnChanges {
     );
   }
 
-  ngOnInit () {
-    if (window) {
-      this.handleResize(window.innerWidth);
-    }
-  }
+  ngOnInit (): void {
+    if (this.isActive) { this.open(); }
 
-  @HostListener('window:resize', ['$event'])
-  onResize (event) {
-    this.handleResize(event.target.innerWidth);
-  }
-
-  handleResize (windowSize) {
-    if (this.type === 'side') {
-      const whenHideSide = this.whenHideSide;
-
-      if (whenHideSide >= windowSize) {
-        this._currentType = this.typeWhenHideSide;
-        this.onHideSide.emit('hided');
-        this._renderer.removeClass(this._elementRef.nativeElement, `ngx-ScurrentTdenav_type_${this.type}`);
-      } else {
-        this._currentType = this.type;
-        this.onHideSide.emit('showed');
-        this._renderer.removeClass(this._elementRef.nativeElement, `ngx-ScurrentTdenav_type_${this.typeWhenHideSide}`);
-      }
-
-      this._renderer.addClass(this._elementRef.nativeElement, `ngx-Sidenav_type_${this._currentType}`);
-    }
+    this._emitWindowResizedEvent();
   }
 
   toggle (): void {
-    if (this.isOpen) {
-      this.close();
-    } else {
-      this.open();
-    }
+    return this._isActive ? this.close() : this.open();
   }
 
   open (): void {
-    this._opened = true;
-    this._renderer.addClass(this._elementRef.nativeElement, 'ngx-Sidenav_opened_true');
-
-    this.onAfterOpen.next('opened');
+    this._isActive = true;
+    this._renderService.addClass(this._elementRef.nativeElement, 'ngx-Sidenav_state_active');
   }
 
   close (): void {
-    this._opened = false;
-    this._renderer.removeClass(this._elementRef.nativeElement, 'ngx-Sidenav_opened_true');
+    this._isActive = false;
+    this._renderService.removeClass(this._elementRef.nativeElement, 'ngx-Sidenav_state_active');
+  }
 
-    this.onAfterClose.next('closed');
+  @HostListener('window:resize')
+  private _emitWindowResizedEvent (): void {
+    if (window) {
+      this.resizeEmitter.next({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
   }
 
   private _getClass (propName: string, value: any): string {
-    return propName && value ? `ngx-Sidenav_${propName}_${value}` : '';
+    if (propName && value) {
+      switch (propName) {
+        case 'isActive':
+          return parseBoolean(value) ? 'ngx-Sidenav_state_active' : '';
+        default:
+          return `ngx-Sidenav_${propName}_${value}`;
+      }
+    }
+
+    return '';
   }
 }
 

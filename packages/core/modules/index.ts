@@ -43,9 +43,8 @@ export {
 } from './card';
 
 export {
-  NgxSidenavComponent,
   NgxSidenavContainerComponent,
-  NgxSidenavContentComponent,
+  NgxSidenavComponent,
   NgxSidenavModule,
 } from './sidenav';
 

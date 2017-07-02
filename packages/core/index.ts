@@ -31,6 +31,7 @@ export {
   NgxCardComponent,
   NgxCardModule,
 
+  NgxSidenavContainerComponent,
   NgxSidenavComponent,
   NgxSidenavModule,
 
