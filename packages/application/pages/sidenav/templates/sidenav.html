@@ -1,5 +1,10 @@
 <ngx-sidenav-container>
-  <ngx-sidenav type="side" opened="true" align="left">
+  <ngx-sidenav
+    type="side"
+    align="left"
+    [isActive]="_isActiveLeftSidenav"
+    (onResize)="_resizeLeftSidenav($event)"
+  >
     <div class="ngx-Sidenav__Account"></div>
 
     <div class="ngx-Sidenav__Navigations">
@@ -17,7 +22,9 @@
     </div>
   </ngx-sidenav>
 
-  <ngx-sidenav type="over" opened="true" align="right">
+  <main class="main"></main>
+
+  <ngx-sidenav type="over" isActive="true" align="right">
     <div class="ngx-Sidenav__Account"></div>
 
     <div class="ngx-Sidenav__Navigations">
@@ -33,11 +40,5 @@
         Navigation Right - 03
       </div>
     </div>
-
   </ngx-sidenav>
-
-  <main class="main">
-
-  </main>
-
 </ngx-sidenav-container>

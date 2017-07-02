@@ -14,7 +14,18 @@ import {
   },
   encapsulation: ViewEncapsulation.None,
 })
-class SidenavPage {}
+class SidenavPage {
+  private _isActiveLeftSidenav = true;
+
+  private _resizeLeftSidenav (event: { width: number, height: number }): void {
+    if (event.width <= 960 && this._isActiveLeftSidenav) {
+      this._isActiveLeftSidenav = false;
+    }
+    else if (event.width > 960 && !this._isActiveLeftSidenav) {
+      this._isActiveLeftSidenav = true;
+    }
+  }
+}
 
 
 export { SidenavPage };
