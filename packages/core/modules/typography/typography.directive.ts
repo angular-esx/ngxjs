@@ -9,25 +9,28 @@ import {
 
 import { isObject } from 'ngx-infrastructure';
 
-import { NgxRenderService } from '../../services';
+import { NgxRenderService, NgxRenderer } from '../../services';
 import { NgxTypographyOptionType } from './models';
 
 @Directive({
   selector: '[ngxTypo]',
 })
 class NgxTypographyDirective implements OnChanges {
+  private _renderer: NgxRenderer;
+
   @Input('ngxTypo') options: NgxTypographyOptionType | string;
 
-
   constructor (
-    @Inject(ElementRef) private _elementRef: ElementRef,
-    @Inject(NgxRenderService) private _rendererService: NgxRenderService
-  ) {}
+    @Inject(ElementRef) elementRef: ElementRef,
+    @Inject(NgxRenderService) rendererService: NgxRenderService
+  ) {
 
+    this._renderer = rendererService.createRenderer(elementRef.nativeElement);
+
+  }
 
   ngOnChanges (changes: SimpleChanges) {
-    this._rendererService.changeClass(
-      this._elementRef.nativeElement,
+    this._renderer.changeClass(
       changes,
       (propName, change) => this._getClass(propName, change.previousValue),
       (propName, change) => this._getClass(propName, change.currentValue),
