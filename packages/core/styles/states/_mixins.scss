@@ -1,10 +1,10 @@
 // $target: Is html element or class of component
-// $states: Is a string which is combined from states 'self', 'disabled', 'focus', 'hover', 'active', 'visisted', 'ng-invalid', 'ng-touched'
-// $exclude: Is a atrribute or a class of target which make state cannot apply to target
+// $states: Is a array which is combined from states 'self', 'disabled', 'focus', 'hover', 'active', 'visisted', 'ng-invalid', 'ng-touched'
+// $exclude: Is a array which contains classes of target which make state cannot apply to target
 //
 // Example:
 // .my-component {
-//   @include ngx-state('.my-component', 'hover, active', 'disabled') {
+//   @include ngx-state('.my-component', ('hover', 'active'), ('disabled')) {
 //     color: #ff6d00;
 //   }
 // }
@@ -16,78 +16,89 @@
 // }
 @mixin ngx-state($prefix-class, $states, $exclude: null) {
   $_properties: '';
-  $_exclude: $exclude;
 
-  @if $exclude == disabled {
-    $_exclude: '#{$prefix-class}_state_disabled';
-  }
-
-  @if str-index($states, self) != null {
-    @if $_exclude {
-      $_properties: $_properties + '&:not(#{$_exclude}),';
+  @if index($states, self) {
+    @if $exclude {
+      @each $_value in $exclude {
+        $_properties: $_properties + '&:not(#{$prefix-class}_state_#{$_value}),';
+      }
     }
     @else {
       $_properties: $_properties + '&,';
     }
   }
 
-  @if str-index($states, focus) != null {
-    @if $_exclude {
-      $_properties: $_properties + '&:focus:not(#{$_exclude}),';
+  @if index($states, focus) {
+    @if $exclude {
+      @each $_value in $exclude {
+        $_properties: $_properties + '&:focus:not(#{$prefix-class}_state_#{$_value}),';
+      }
     }
     @else {
       $_properties: $_properties + '&:focus,';
     }
   }
 
-  @if str-index($states, hover) != null {
-    @if $_exclude {
-      $_properties: $_properties + '&:hover:not(#{$_exclude}),';
+  @if index($states, hover) {
+    @if $exclude {
+      @each $_value in $exclude {
+        $_properties: $_properties + '&:hover:not(#{$prefix-class}_state_#{$_value}),';
+      }
     }
     @else {
       $_properties: $_properties + '&:hover,';
     }
   }
 
-  @if str-index($states, visited) != null {
-    @if $_exclude {
-      $_properties: $_properties + '&:visited:not(#{$_exclude}),';
+  @if index($states, visited) {
+    @if $exclude {
+      @each $_value in $exclude {
+        $_properties: $_properties + '&:visited:not(#{$prefix-class}_state_#{$_value}),';
+      }
     }
     @else {
       $_properties: $_properties + '&:visited,';
     }
   }
 
-  @if str-index($states, active) != null {
-    @if $_exclude {
-      $_properties: $_properties + '&#{$prefix-class}_state_active:not(#{$_exclude}),';
+  @if index($states, active) {
+    @if $exclude {
+      @each $_value in $exclude {
+        $_properties: $_properties + '&#{$prefix-class}_state_active:not(#{$prefix-class}_state_#{$_value}),';
+      }
     }
     @else {
       $_properties: $_properties + '&#{$prefix-class}_state_active,';
     }
   }
 
-  @if str-index($states, disabled) != null {
-    @if $_exclude {
-      $_properties: $_properties + '&#{$prefix-class}_state_disabled:not(#{$_exclude}),';
+  @if index($states, disabled) {
+    @if $exclude {
+      @each $_value in $exclude {
+        $_properties: $_properties + '&#{$prefix-class}_state_disabled:not(#{$prefix-class}_state_#{$_value}),';
+      }
     }
     @else {
       $_properties: $_properties + '&#{$prefix-class}_state_disabled,';
     }
   }
 
-  @if str-index($states, ng-invalid) != null {
-    @if $_exclude {
-      $_properties: $_properties + '&.ng-invalid:not(#{$_exclude}),';
+  @if index($states, ng-invalid) {
+    @if $exclude {
+      @each $_value in $exclude {
+        $_properties: $_properties + '&.ng-invalid:not(#{$prefix-class}_state_#{$_value}),';
+      }
     }
     @else {
       $_properties: $_properties + '&.ng-invalid,';
     }
   }
 
-  @if str-index($states, ng-touched) != null {
-    @if $_exclude {
-      $_properties: $_properties + '&.ng-touched:not(#{$_exclude}),';
+  @if index($states, ng-touched) {
+    @if $exclude {
+      @each $_value in $exclude {
+        $_properties: $_properties + '&.ng-touched:not(#{$prefix-class}_state_#{$_value}),';
+      }
     }
     @else {
       $_properties: $_properties + '&.ng-touched,';

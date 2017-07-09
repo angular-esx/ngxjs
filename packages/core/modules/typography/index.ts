@@ -1,4 +1,4 @@
-export { NgxTypographyOptionType } from './models';
+export { NgxTypographyConfig } from './models';
 
 export { NgxTypographyDirective } from './typography.directive';
 

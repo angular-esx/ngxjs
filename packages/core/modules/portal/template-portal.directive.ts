@@ -10,9 +10,13 @@ import { NgxTemplatePortal } from './models';
 
 @Directive({
   selector: 'ng-template[ngxPortal]',
+  exportAs: 'ngxPortal',
 })
 class NgxTemplatePortalDirective extends NgxTemplatePortal {
-  constructor (@Inject(TemplateRef) public templateRef, @Inject(ViewContainerRef) public viewContainerRef) {
+  constructor (
+    @Inject(TemplateRef) templateRef: TemplateRef<any>,
+    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef
+  ) {
     super(templateRef, viewContainerRef);
   }
 }

@@ -2,11 +2,13 @@
 import {
   Component,
   OnInit,
+  AfterViewInit,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 
 import {
+  NgxPortalHostDirective,
   NgxTemplatePortalDirective,
   NgxComponentPortal,
 } from 'ngx-core';
@@ -21,8 +23,11 @@ import {
   },
   encapsulation: ViewEncapsulation.None,
 })
-class PortalPage implements OnInit {
+class PortalPage implements OnInit, AfterViewInit {
   private _componentPortal: NgxComponentPortal<PortalComponentExample>;
+
+  @ViewChild(NgxPortalHostDirective)
+  private _portalHost: NgxPortalHostDirective;
 
   @ViewChild(NgxTemplatePortalDirective)
   private _templatePortal: NgxTemplatePortalDirective;
@@ -30,6 +35,16 @@ class PortalPage implements OnInit {
 
   ngOnInit (): void {
     this._componentPortal = new NgxComponentPortal(PortalComponentExample);
+  }
+
+  ngAfterViewInit (): void {
+    setTimeout(() => {
+      this._portalHost.detach();
+    }, 5 * 1000);
+
+    setTimeout(() => {
+      this._componentPortal = new NgxComponentPortal(PortalComponentExample);
+    }, 10 * 1000);
   }
 }
 

@@ -11,6 +11,47 @@ export {
 } from './grid';
 
 export {
+  MenuPositionXType,
+  MenuPositionYType,
+  MenuItemDirective,
+  MenuTriggerDirective,
+  MenuComponent,
+  MenuModule,
+} from './menu';
+
+export {
+  NgxPointType,
+  NgxOverlayPointType,
+  NgxElementBoundingPositionsType,
+  NgxHorizontalConnectionPositionType,
+  NgxVerticalConnectionPositionType,
+  NgxConnectionPositionType,
+  NgxConnectionPositionPairType,
+  NgxConnectedOverlayPositionChangedType,
+  INgxPositionStrategy,
+  NgxConnectedPositionStrategy,
+  NgxGlobalPositionStrategy,
+  NgxScrollableViewType,
+  INgxScrollable,
+  INgxScrollStrategy,
+  NgxBlockScrollStrategy,
+  NgxCloseScrollStrategy,
+  NgxNoopScrollStrategy,
+  NgxRepositionScrollStrategy,
+  NgxRepositionScrollStrategyConfig,
+  NGX_OVERLAY,
+  NgxOverlayConfig,
+  NgxOverlayRef,
+  NgxViewportService,
+  NgxScrollService,
+  NgxOverlayService,
+  NgxScrollableDirective,
+  NgxOriginOverlayDirective,
+  NgxConnectedOverlayDirective,
+  NgxOverlayModule,
+} from './overlay';
+
+export {
   INgxPortal,
   INgxPortalHost,
   INgxTemplatePortal,
@@ -27,7 +68,7 @@ export {
 } from './portal';
 
 export {
-  NgxTypographyOptionType,
+  NgxTypographyConfig,
   NgxTypographyDirective,
   NgxTypographyModule,
 } from './typography';
