@@ -32,6 +32,7 @@ export {
 } from './modules';
 
 export {
+  NgxRenderer,
   NgxRenderService,
 
   NgxServiceModule,

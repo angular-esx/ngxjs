@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { NgxRenderService } from '../../services';
+import { NgxRenderService, NgxRenderer } from '../../services';
 
 
 @Component({
@@ -22,6 +22,8 @@ import { NgxRenderService } from '../../services';
   encapsulation: ViewEncapsulation.None,
 })
 class NgxGridColumnComponent implements OnChanges {
+  private _renderer: NgxRenderer;
+
   @Input() align:
     'xs-start' | 'xs-center' | 'xs-end' |
     'sm-start' | 'sm-center' | 'sm-end' |
@@ -66,14 +68,15 @@ class NgxGridColumnComponent implements OnChanges {
 
 
   constructor (
-    @Inject(ElementRef) private _elementRef: ElementRef,
-    @Inject(NgxRenderService) private _renderer: NgxRenderService
-  ) { }
+    @Inject(ElementRef) elementRef: ElementRef,
+    @Inject(NgxRenderService) rendererService: NgxRenderService
+  ) {
+    this._renderer = rendererService.createRenderer(elementRef.nativeElement);
+  }
 
 
   ngOnChanges (changes: SimpleChanges) {
     this._renderer.changeClass(
-      this._elementRef.nativeElement,
       changes,
       (propName, change) => change.previousValue.split(' ').map(value => this._getClass(propName, value)),
       (propName, change) => change.currentValue.split(' ').map(value => this._getClass(propName, value)),
