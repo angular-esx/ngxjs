@@ -15,7 +15,7 @@ import {
 
 import { parseBoolean } from 'ngx-infrastructure';
 
-import { NgxRenderService } from '../../services';
+import { NgxRenderService, NgxRenderer } from '../../services';
 
 
 @Component({
@@ -30,6 +30,7 @@ import { NgxRenderService } from '../../services';
   exportAs: 'ngxSidenav'
 })
 class NgxSidenavComponent implements OnChanges, OnInit {
+  private _renderer: NgxRenderer;
   private _isActive: boolean;
 
   @Input() type: 'over' | 'push' | 'side' = 'side';
@@ -46,13 +47,14 @@ class NgxSidenavComponent implements OnChanges, OnInit {
 
 
   constructor (
-    @Inject(ElementRef) private _elementRef: ElementRef,
-    @Inject(NgxRenderService) private _renderService: NgxRenderService,
-  ) {}
+    @Inject(ElementRef) elementRef: ElementRef,
+    @Inject(NgxRenderService) renderService: NgxRenderService,
+  ) {
+    this._renderer = renderService.createRenderer(elementRef.nativeElement);
+  }
 
   ngOnChanges (changes: SimpleChanges): void {
-    this._renderService.changeClass(
-      this._elementRef.nativeElement,
+    this._renderer.changeClass(
       changes,
       (propName, change) => change.previousValue.toString().split(' ').map(value => this._getClass(propName, value)),
       (propName, change) => change.currentValue.toString().split(' ').map(value => this._getClass(propName, value)),
@@ -71,12 +73,12 @@ class NgxSidenavComponent implements OnChanges, OnInit {
 
   open (): void {
     this._isActive = true;
-    this._renderService.addClass(this._elementRef.nativeElement, 'ngx-Sidenav_state_active');
+    this._renderer.addClass('ngx-Sidenav_state_active');
   }
 
   close (): void {
     this._isActive = false;
-    this._renderService.removeClass(this._elementRef.nativeElement, 'ngx-Sidenav_state_active');
+    this._renderer.removeClass('ngx-Sidenav_state_active');
   }
 
   @HostListener('window:resize')
