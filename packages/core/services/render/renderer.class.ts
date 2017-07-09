@@ -17,11 +17,11 @@ class NgxRenderer {
 
   /** Extend Renderer2 **/
 
-  constructor(protected _nativeElement: any, protected _renderer: Renderer2) {
+  constructor (protected _nativeElement: any, protected _renderer: Renderer2) {
 
   }
 
-  addClass(className: string | Array<string>): NgxRenderer {
+  addClass (className: string | Array<string>): NgxRenderer {
     if (!className) { return; }
 
     if (isArray(className)) {
@@ -36,7 +36,7 @@ class NgxRenderer {
     return this;
   }
 
-  removeClass(className: string | Array<string>): NgxRenderer {
+  removeClass (className: string | Array<string>): NgxRenderer {
     if (!className) { return; }
 
     if (isArray(className)) {
@@ -51,7 +51,7 @@ class NgxRenderer {
     return this;
   }
 
-  changeClass(
+  changeClass (
     changes: SimpleChanges,
     onRemoveClass: (propName: string, change: SimpleChange) => (string | Array<string>),
     onAddCLass: (propName: string, change: SimpleChange) => (string | Array<string>)
@@ -94,19 +94,19 @@ class NgxRenderer {
     return this._renderer.data;
   }
 
-  destroy(): void {
+  destroy (): void {
     return this._renderer.destroy();
   }
 
-  createElement(name: string, namespace?: string|null): any {
+  createElement (name: string, namespace?: string|null): any {
     return this._renderer.createElement(name, namespace);
   }
 
-  createComment(value: string): any {
+  createComment (value: string): any {
     return this._renderer.createComment(value);
   }
 
-  createText(value: string): any {
+  createText (value: string): any {
     return this._renderer.createText(value);
   }
 
@@ -114,71 +114,71 @@ class NgxRenderer {
     return this._renderer.destroyNode;
   }
 
-  appendChild(parent: any, newChild: any): NgxRenderer {
+  appendChild (parent: any, newChild: any): NgxRenderer {
     this._renderer.appendChild(parent, newChild);
 
     return this;
   }
 
-  insertBefore(parent: any, newChild: any, refChild: any): NgxRenderer {
+  insertBefore (parent: any, newChild: any, refChild: any): NgxRenderer {
     this._renderer.insertBefore(parent, newChild, refChild);
 
     return this;
   }
 
-  removeChild(parent: any, oldChild: any): NgxRenderer {
+  removeChild (parent: any, oldChild: any): NgxRenderer {
     this._renderer.removeChild(parent, oldChild);
 
     return this;
   }
 
-  selectRootElement(selectorOrNode: string|any): any {
+  selectRootElement (selectorOrNode: string|any): any {
     return this._renderer.selectRootElement(selectorOrNode);
   }
 
-  parentNode(node: any): any {
+  parentNode (node: any): any {
     return this._renderer.parentNode(node);
   }
 
-  nextSibling(node: any): any {
+  nextSibling (node: any): any {
     return this._renderer.nextSibling(node);
   }
 
-  setAttribute(name: string, value: string, namespace?: string|null): NgxRenderer {
+  setAttribute (name: string, value: string, namespace?: string|null): NgxRenderer {
     this._renderer.setAttribute(this._nativeElement, name, value, namespace);
 
     return this;
   }
 
-  removeAttribute(name: string, namespace?: string|null): NgxRenderer {
+  removeAttribute (name: string, namespace?: string|null): NgxRenderer {
     this._renderer.removeAttribute(this._nativeElement, name, namespace);
 
     return this;
   }
 
-  setStyle(style: string, value: any, flags?: RendererStyleFlags2): NgxRenderer {
+  setStyle (style: string, value: any, flags?: RendererStyleFlags2): NgxRenderer {
     this._renderer.setStyle(this._nativeElement, style, value, flags);
 
     return this;
   }
 
-  removeStyle(style: string, flags?: RendererStyleFlags2): NgxRenderer {
+  removeStyle (style: string, flags?: RendererStyleFlags2): NgxRenderer {
     this._renderer.removeStyle(this._nativeElement, style, flags);
 
     return this;
   }
-  setProperty(name: string, value: any): NgxRenderer {
+  setProperty (name: string, value: any): NgxRenderer {
     this._renderer.setProperty(this._nativeElement, name, value);
 
     return this;
   }
-  setValue(node: any, value: string): NgxRenderer {
+  setValue (node: any, value: string): NgxRenderer {
     this._renderer.setValue(node, value);
 
     return this;
   }
 
-  listen(target: 'window'|'document'|'body'|any, eventName: string, callback: (event: any) => boolean | void): () => void {
+  listen (target: 'window'|'document'|'body'|any, eventName: string, callback: (event: any) => boolean | void): () => void {
     return this._renderer.listen(target, eventName, callback);
   }
 }

@@ -15,8 +15,8 @@ class NgxRenderService {
     this._renderer = rendererFactory.createRenderer(null, null);
   }
 
-  createRenderer(nativeElement: any): NgxRenderer {
-    return new NgxRenderer(nativeElement, this._renderer)
+  createRenderer (nativeElement: any): NgxRenderer {
+    return new NgxRenderer(nativeElement, this._renderer);
   }
 }
 
