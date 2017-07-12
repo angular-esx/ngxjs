@@ -1,0 +1,23 @@
+.ngx-OverlayPage {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: ngx-space(5);
+}
+
+.ngx-OverlayPage__MenuContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ngx-OverlayPage__MenuTrigger {
+  display: inline-block;
+  padding: ngx-space(4);
+  border: 1px solid;
+}
+
+.ngx-OverlayPage__MenuItem {
+  min-width: ngx-space(50);
+  padding: ngx-space(4);
+}

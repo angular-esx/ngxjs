@@ -1,0 +1,19 @@
+// ngx-menu: (
+//   background-color: color,
+//   menuitem-foreground-disabled: color,
+//   menuitem-background-active: color,
+// )
+$ngx-menu-theme: ngx-theme-component(ngx-menu);
+
+
+@mixin ngx-menu-theme-validate() {
+  @include ngx-theme-component-validate(
+    ngx-menu,
+    $ngx-menu-theme,
+    (
+      'background-color',
+      'menuitem-foreground-disabled',
+      'menuitem-background-active',
+    )
+  );
+}

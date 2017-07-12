@@ -18,26 +18,34 @@ class NgxTemplatePortal
   extends NgxBasePortal
   implements INgxTemplatePortal
 {
-  get elementRef(): ElementRef {
-    return this.templateRef.elementRef;
-  }
-
   /**
    * Additional locals for the instantiated embedded view.
    * These locals can be seen as "exports" for the template, such as how ngFor has
    * index / event / odd.
    * See https://angular.io/docs/ts/latest/api/core/EmbeddedViewRef-class.html
    */
-  private _locals: Map<string, any> = new Map<string, any>();
+  protected _locals: Map<string, any> = new Map<string, any>();
+
+  get templateRef(): TemplateRef<any> {
+    return this._templateRef;
+  }
+
+  get viewContainerRef(): ViewContainerRef {
+    return this._viewContainerRef;
+  }
+
   get locals(): Map<string, any> {
     return this._locals;
   }
 
-  /*
-    template: The embedded template that will be used to instantiate an embedded View in the host.
-    viewContainerRef: Reference to the ViewContainer into which the template will be stamped out.
-  */
-  constructor (public templateRef: TemplateRef<any>, public viewContainerRef: ViewContainerRef) {
+  /**
+   * template: The embedded template that will be used to instantiate an embedded View in the host.
+   * viewContainerRef: Reference to the ViewContainer into which the template will be stamped out.
+   */
+  constructor (
+    protected _templateRef: TemplateRef<any>,
+    protected _viewContainerRef: ViewContainerRef
+  ) {
     super();
   }
 

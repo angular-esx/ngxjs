@@ -21,7 +21,7 @@ a {
   text-decoration: underline;
   cursor: pointer;
 
-  @include ngx-state(a, 'hover, visited') {
+  @include ngx-state(a, ('hover', 'visited')) {
     color: ngx-theme-color(primary, dark);
   }
 }

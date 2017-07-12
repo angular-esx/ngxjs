@@ -1,1 +1,1 @@
-export { NgxTypographyOptionType } from './typography-option.type';
+export { NgxTypographyConfig } from './typography-config.class';
