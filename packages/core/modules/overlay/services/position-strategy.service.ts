@@ -17,7 +17,7 @@ import { NgxViewportService } from './viewport.service';
  */
 @Injectable()
 class NgxPositionStrategyService {
-  constructor(
+  constructor (
     @Inject(NgxViewportService) protected _viewportService: NgxViewportService,
     @Inject(NgxBrowserPlatformService) protected _browserPlatformService: NgxBrowserPlatformService
   ){}
@@ -27,7 +27,7 @@ class NgxPositionStrategyService {
     return new NgxGlobalPositionStrategy(this._browserPlatformService);
   }
 
-  createConnectedPositionStrategy(
+  createConnectedPositionStrategy (
     originElement: HTMLElement,
     originPosition: NgxConnectionPositionType,
     overlayPosition: NgxConnectionPositionType
