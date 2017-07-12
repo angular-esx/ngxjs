@@ -3,10 +3,10 @@
   $_keys: map-keys($_typos);
 
   @each $_key in $_keys {
-    .ngx-Typogrphy_type_#{$_key} {
+    .ngx-Typography_type_#{$_key} {
       @include ngx-typo($_key, $script-type);
 
-      $_typo-color: map-get($ngx-typography-theme, ngx-typography-#{$_key});
+      $_typo-color: map-get($ngx-typography-theme, ngx-Typography-#{$_key});
       @if $_typo-color {
         color: $_typo-color;
       }
@@ -14,42 +14,42 @@
   }
 
   @each $_align in $ngx-typography-aligns {
-    .ngx-Typogrphy_align_#{$_align} {
+    .ngx-Typography_align_#{$_align} {
       text-align: #{$_align};
     }
   }
 
   @each $_decorator in $ngx-typography-decorators {
-    .ngx-Typogrphy_decorator_#{$_decorator} {
+    .ngx-Typography_decorator_#{$_decorator} {
       text-decoration: #{$_decorator};
     }
   }
 
   @each $_transform in $ngx-typography-transforms {
-    .ngx-Typogrphy_transform_#{$_transform} {
+    .ngx-Typography_transform_#{$_transform} {
       text-transform: #{$_transform};
     }
   }
 
   @each $_overflow in $ngx-typography-overflows {
-    .ngx-Typogrphy_overflow_#{$_overflow} {
+    .ngx-Typography_overflow_#{$_overflow} {
       text-overflow: #{$_overflow};
     }
   }
 
   @each $_white-space in $ngx-typography-white-spaces {
-    .ngx-Typogrphy_white-space_#{$_white-space} {
+    .ngx-Typography_white-space_#{$_white-space} {
       white-space: #{$_white-space};
     }
   }
 
   @each $_word-break in $ngx-typography-word-breaks {
-    .ngx-Typogrphy_word-break_#{$_word-break} {
+    .ngx-Typography_word-break_#{$_word-break} {
       word-break: #{$_word-break};
     }
   }
 
-  .ngx-Typogrphy_word-wrap_break-word {
+  .ngx-Typography_word-wrap_break-word {
     word-wrap: break-word;
   }
 }
