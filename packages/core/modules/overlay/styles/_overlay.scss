@@ -1,0 +1,49 @@
+ .ngx-OverlayContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: ngx-z-index(above-max);
+  pointer-events: none;
+}
+
+// We use an extra wrapper element in order to use make the overlay itself a flex item.
+// This makes centering the overlay easy without running into the subpixel rendering
+// problems tied to using `transform` and without interfering with the other position
+// strategies.
+.ngx-OverlayContainer_type_global {
+  position: absolute;
+  display: flex;
+}
+
+.ngx-Overlay {
+  position: absolute;
+  z-index: ngx-z-index(above-max);
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.ngx-Overlay__Backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: ngx-z-index(above-max);
+
+  transition: opacity $ngx-ease-in-out-swift-duration $ngx-ease-in-out-swift-timing-function;
+  opacity: 0;
+  pointer-events: auto;
+
+  &.ngx-Overlay__Backdrop_state_active {
+    opacity: .54;
+  }
+
+  &.ngx-Overlay__Backdrop_variant_dark {
+    background-color: map-get($ngx-overlay-theme, backdrop-background-dark);
+  }
+  &.ngx-Overlay__Backdrop_variant_transparent {
+    background-color: none;
+  }
+}
