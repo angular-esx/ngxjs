@@ -1,0 +1,50 @@
+.ngx-MenuComponent__MenuPanel {
+  min-width: ngx-space(28);
+  max-width: ngx-space(70);
+  // max height must be 100% of the viewport height + $ngx-menu-item-height
+  max-height: calc(100vh + 3rem);
+
+  overflow: auto;
+
+  @include ngx-menu-positions();
+
+  @include ngx-elevation(8);
+}
+
+.ngx-MenuComponent__MenuContent {
+  padding: ngx-space(2) 0;
+
+  background-color: map-get($ngx-menu-theme, background-color);
+}
+
+.ngx-MenuComponent__MenuItemDirective {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: $ngx-menu-item-height;
+  padding: 0 ngx-space(4);
+
+  text-align: start;
+  text-decoration: none;
+
+  background-color: initial;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+
+  @include ngx-typo(body-1, $exclude: ('line-height'));
+  @include ngx-truncate-line();
+
+  @include ngx-state('.ngx-MenuComponent__MenuItemDirective', 'hover focus', 'disabled') {
+    background-color: map-get($ngx-menu-theme, menuitem-background-active);
+  }
+
+  @include ngx-state('.ngx-MenuComponent__MenuItemDirective', 'disabled') {
+    color: map-get($ngx-menu-theme, menuitem-foreground-disabled);
+    cursor: not-allowed;
+  }
+}
