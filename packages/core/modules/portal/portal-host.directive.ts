@@ -19,6 +19,7 @@ import {
 
 @Directive({
   selector: 'ng-template[ngxPortalHost]',
+  exportAs: 'ngxPortalHost',
 })
 class NgxPortalHostDirective
   extends NgxPortalHost
@@ -31,19 +32,19 @@ class NgxPortalHostDirective
 
     if (isNotNull(portal)) {
       if (portal instanceof NgxTemplatePortal) {
-        this._attachTemplatePortal(portal);
+        this.attachTemplate(portal);
       }
       else if (portal instanceof NgxComponentPortal) {
-        this._attachComponentPortal(portal);
+        this.attachComponent(portal);
       }
     }
   }
 
   constructor (
-    @Inject(ComponentFactoryResolver) protected _componentFactoryResolver,
-    @Inject(ViewContainerRef) protected _viewContainerRef
+    @Inject(ComponentFactoryResolver) componentFactoryResolver: ComponentFactoryResolver,
+    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef
   ) {
-    super(_componentFactoryResolver, _viewContainerRef);
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   ngOnDestroy () {

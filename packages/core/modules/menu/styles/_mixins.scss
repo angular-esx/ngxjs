@@ -1,0 +1,14 @@
+@mixin ngx-menu-positions() {
+  &.ngx-MenuComponent__MenuPanel_position_after.ngx-MenuComponent__MenuPanel_position_below {
+    transform-origin: left top;
+  }
+  &.ngx-MenuComponent__MenuPanel_position_after.ngx-MenuComponent__MenuPanel_position_above {
+    transform-origin: left bottom;
+  }
+  &.ngx-MenuComponent__MenuPanel_position_before.ngx-MenuComponent__MenuPanel_position_below {
+    transform-origin: right top;
+  }
+  &.ngx-MenuComponent__MenuPanel_position_before.ngx-MenuComponent__MenuPanel_position_above {
+    transform-origin: right bottom;
+  }
+}

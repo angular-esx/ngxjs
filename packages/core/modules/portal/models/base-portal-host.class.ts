@@ -13,17 +13,18 @@ import {
 } from './portal.interface';
 
 
+/**
+ * Partial implementation of NgxPortalHost that only deals with attaching either a
+ * NgxComponentPortal or a NgxTemplatePortal.
+ */
 abstract class NgxBasePortalHost implements INgxPortalHost {
+  protected _isDisposed: boolean = false;
+  protected _disposeFunc: () => void;
+
   protected _attachedPortal: INgxPortal;
-  private _isDisposed: boolean = false;
-  private _disposeFunc: () => void;
 
   get hasAttached(): boolean {
     return isNotNull(this._attachedPortal);
-  }
-
-  setDisposeFunc (func: () => void) {
-    this._disposeFunc = func;
   }
 
   attachTemplate (portal: INgxTemplatePortal): Map<string, any> {
@@ -39,11 +40,10 @@ abstract class NgxBasePortalHost implements INgxPortalHost {
   }
 
   detach (): void {
-    if (isNotNull(this._attachedPortal)) {
+    if (this.hasAttached) {
       this._attachedPortal.detachedByHost(this);
+      this._attachedPortal = null;
     }
-
-    this._attachedPortal = null;
 
     if (isNotNull(this._disposeFunc)) {
       this._disposeFunc();
@@ -54,6 +54,10 @@ abstract class NgxBasePortalHost implements INgxPortalHost {
   dispose (): void {
     if (this.hasAttached) {
       this.detach();
+    }
+    else if (isNotNull(this._disposeFunc)) {
+      this._disposeFunc();
+      this._disposeFunc = null;
     }
 
     this._isDisposed = true;

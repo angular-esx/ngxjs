@@ -13,13 +13,10 @@ import {
   isObject,
 } from 'ngx-infrastructure';
 
+
 class NgxRenderer {
+  constructor (protected _nativeElement: any, protected _renderer: Renderer2) {}
 
-  /** Extend Renderer2 **/
-
-  constructor (protected _nativeElement: any, protected _renderer: Renderer2) {
-
-  }
 
   addClass (className: string | Array<string>): NgxRenderer {
     if (!className) { return; }
@@ -88,8 +85,16 @@ class NgxRenderer {
     return this;
   }
 
-  /** Enhance Renderer2 **/
+  listen (
+    eventName: string,
+    callback: (event: any) => boolean | void
+  ): () => void {
+    return this._renderer.listen(this._nativeElement, eventName, callback);
+  }
 
+  /**
+   * Enhance Renderer2
+   */
   get data(): {[key: string]: any} {
     return this._renderer.data;
   }
@@ -98,7 +103,7 @@ class NgxRenderer {
     return this._renderer.destroy();
   }
 
-  createElement (name: string, namespace?: string|null): any {
+  createElement (name: string, namespace?: string | null): any {
     return this._renderer.createElement(name, namespace);
   }
 
@@ -110,7 +115,7 @@ class NgxRenderer {
     return this._renderer.createText(value);
   }
 
-  get destroyNode(): ((node: any) => void)|null {
+  get destroyNode(): ((node: any) => void) | null {
     return this._renderer.destroyNode;
   }
 
@@ -132,7 +137,7 @@ class NgxRenderer {
     return this;
   }
 
-  selectRootElement (selectorOrNode: string|any): any {
+  selectRootElement (selectorOrNode: string | any): any {
     return this._renderer.selectRootElement(selectorOrNode);
   }
 
@@ -144,13 +149,13 @@ class NgxRenderer {
     return this._renderer.nextSibling(node);
   }
 
-  setAttribute (name: string, value: string, namespace?: string|null): NgxRenderer {
+  setAttribute (name: string, value: string, namespace?: string | null): NgxRenderer {
     this._renderer.setAttribute(this._nativeElement, name, value, namespace);
 
     return this;
   }
 
-  removeAttribute (name: string, namespace?: string|null): NgxRenderer {
+  removeAttribute (name: string, namespace?: string | null): NgxRenderer {
     this._renderer.removeAttribute(this._nativeElement, name, namespace);
 
     return this;
@@ -167,22 +172,19 @@ class NgxRenderer {
 
     return this;
   }
+
   setProperty (name: string, value: any): NgxRenderer {
     this._renderer.setProperty(this._nativeElement, name, value);
 
     return this;
   }
+
   setValue (node: any, value: string): NgxRenderer {
     this._renderer.setValue(node, value);
 
     return this;
   }
-
-  listen (target: 'window'|'document'|'body'|any, eventName: string, callback: (event: any) => boolean | void): () => void {
-    return this._renderer.listen(target, eventName, callback);
-  }
 }
 
-export {
-  NgxRenderer
-};
+
+export { NgxRenderer };

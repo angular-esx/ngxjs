@@ -24,19 +24,19 @@ class NgxPortalHost extends NgxBasePortalHost {
 
   protected _attachTemplatePortal (portal: INgxTemplatePortal): Map<string, any> {
     this._viewContainerRef.createEmbeddedView(portal.templateRef);
-    this.setDisposeFunc(() => this._viewContainerRef.clear());
+    this._disposeFunc = () => this._viewContainerRef.clear();
 
     return new Map<string, any>();
   }
 
   protected _attachComponentPortal<T> (portal: INgxComponentPortal<T>): ComponentRef<T> {
-    /*
-      If the portal specifies an origin, use that as the logical location of the component
-      in the application tree. Otherwise use the location of this NgxPortalHost.
-    */
+    /**
+     * If the portal specifies an origin, use that as the logical location of the component
+     * in the application tree. Otherwise use the location of this NgxPortalHost.
+     */
     const _viewContainerRef = isNull(portal.viewContainerRef) ? this._viewContainerRef : portal.viewContainerRef;
 
-    const _componentFactory = this._componentFactoryResolver.resolveComponentFactory(portal.component);
+    const _componentFactory = this._componentFactoryResolver.resolveComponentFactory(portal.componentType);
 
     const componentRef = _viewContainerRef.createComponent(
       _componentFactory,
@@ -44,7 +44,7 @@ class NgxPortalHost extends NgxBasePortalHost {
       portal.injector || _viewContainerRef.parentInjector
     );
 
-    this.setDisposeFunc(() => componentRef.destroy());
+    this._disposeFunc = () => componentRef.destroy();
 
     return componentRef;
   }

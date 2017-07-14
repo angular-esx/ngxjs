@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 
 
-interface INgxPortal {
-  isAttached: boolean;
+export interface INgxPortal {
+  readonly isAttached: boolean;
 
   attach (host: INgxPortalHost): any;
 
@@ -21,10 +21,8 @@ interface INgxPortal {
 }
 
 
-interface INgxPortalHost {
-  hasAttached: boolean;
-
-  setDisposeFunc (func: () => void);
+export interface INgxPortalHost {
+  readonly hasAttached: boolean;
 
   attachTemplate (portal: INgxTemplatePortal): Map<string, any>;
 
@@ -35,26 +33,16 @@ interface INgxPortalHost {
   dispose (): void;
 }
 
-interface INgxTemplatePortal extends INgxPortal {
-  elementRef: ElementRef;
-  templateRef: TemplateRef<Map<string, any>>;
-  viewContainerRef: ViewContainerRef;
-
-  locals: Map<string, any>;
+export interface INgxTemplatePortal extends INgxPortal {
+  readonly templateRef: TemplateRef<Map<string, any>>;
+  readonly viewContainerRef: ViewContainerRef;
+  readonly locals: Map<string, any>;
 
   attach (host: INgxPortalHost, locals?: Map<string, any>): Map<string, any>;
 }
 
-interface INgxComponentPortal<T> extends INgxPortal {
-  component: Type<T>;
-  viewContainerRef: ViewContainerRef;
-  injector: Injector;
+export interface INgxComponentPortal<T> extends INgxPortal {
+  readonly componentType: Type<T>;
+  readonly viewContainerRef: ViewContainerRef;
+  readonly injector: Injector;
 }
-
-
-export {
-  INgxPortal,
-  INgxPortalHost,
-  INgxTemplatePortal,
-  INgxComponentPortal,
-};

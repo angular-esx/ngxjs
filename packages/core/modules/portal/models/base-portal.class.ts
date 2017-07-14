@@ -11,8 +11,11 @@ import {
 } from './portal.interface';
 
 
+/**
+ * Partial implementation of NgxBasePortal that you want to render somewhere else.
+ */
 abstract class NgxBasePortal implements INgxPortal {
-  private _attachedHost: INgxPortalHost;
+  protected _attachedHost: INgxPortalHost;
 
   get isAttached(): boolean {
     return isNotNull(this._attachedHost);
@@ -53,7 +56,7 @@ abstract class NgxBasePortal implements INgxPortal {
 
   detachedByHost (host: INgxPortalHost): void {
     if (isNotNull(this._attachedHost) && this._attachedHost !== host) {
-      throw new Error('Portal host is passed into detachByHost which is not attached host of this portal');
+      throw new Error('The host from parameter is not attached host of this portal');
     }
 
     this._attachedHost = null;

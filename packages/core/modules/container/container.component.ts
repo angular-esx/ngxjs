@@ -14,6 +14,7 @@ import {
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  exportAs: 'ngxContainer',
 })
 class NgxContainerComponent {}
 

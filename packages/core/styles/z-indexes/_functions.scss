@@ -1,0 +1,3 @@
+@function ngx-z-index($index-name){
+  @return map-get($ngx-z-indexes, $index-name);
+}

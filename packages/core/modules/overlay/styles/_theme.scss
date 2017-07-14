@@ -1,0 +1,15 @@
+// ngx-overlay: (
+//   backdrop-background-dark: color;
+// )
+$ngx-overlay-theme: ngx-theme-component(ngx-overlay);
+
+
+@mixin ngx-overlay-theme-validate() {
+  @include ngx-theme-component-validate(
+    ngx-overlay,
+    $ngx-overlay-theme,
+    (
+      'backdrop-background-dark',
+    )
+  );
+}

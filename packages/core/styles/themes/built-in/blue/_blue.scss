@@ -50,6 +50,14 @@ $ngx-blue-theme: (
 
       navigation-foreground: $ngx-theme-color-black-87,
     ),
+    ngx-menu: (
+      background-color: $ngx-theme-color-white,
+      menuitem-foreground-disabled: $ngx-theme-color-black-12,
+      menuitem-background-active: $ngx-theme-color-black-12,
+    ),
+    ngx-overlay: (
+      backdrop-background-dark: $ngx-theme-color-black-54,
+    ),
     ngx-typography: (
       ngx-typography-display-1: $ngx-theme-color-black-54,
       ngx-typography-display-2: $ngx-theme-color-black-54,

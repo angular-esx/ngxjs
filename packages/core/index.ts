@@ -7,6 +7,46 @@ export {
   NgxGridComponent,
   NgxGridModule,
 
+  MenuPositionXType,
+  MenuPositionYType,
+  MenuItemDirective,
+  MenuTriggerDirective,
+  MenuComponent,
+  MenuModule,
+
+  NgxPointType,
+  NgxOverlayPointType,
+  NgxElementBoundingPositionsType,
+  NgxHorizontalConnectionPositionType,
+  NgxVerticalConnectionPositionType,
+  NgxConnectionPositionType,
+  NgxConnectionPositionPairType,
+  NgxConnectedOverlayPositionChangedType,
+  INgxPositionStrategy,
+  NgxConnectedPositionStrategy,
+  NgxGlobalPositionStrategy,
+  NgxScrollableViewType,
+  INgxScrollable,
+  INgxScrollStrategy,
+  NgxBlockScrollStrategy,
+  NgxCloseScrollStrategy,
+  NgxNoopScrollStrategy,
+  NgxRepositionScrollStrategy,
+  NgxRepositionScrollStrategyConfig,
+  NGX_OVERLAY,
+  NgxOverlayConfig,
+  NgxConnectedOverlayConfig,
+  NgxOverlayRef,
+  NgxPositionStrategyService,
+  NgxScrollStrategyService,
+  NgxScrollService,
+  NgxViewportService,
+  NgxOverlayService,
+  NgxScrollableDirective,
+  NgxOriginOverlayDirective,
+  NgxConnectedOverlayDirective,
+  NgxOverlayModule,
+
   INgxPortal,
   INgxPortalHost,
   INgxTemplatePortal,
@@ -21,7 +61,7 @@ export {
   NgxPortalHostDirective,
   NgxPortalModule,
 
-  NgxTypographyOptionType,
+  NgxTypographyConfig,
   NgxTypographyDirective,
   NgxTypographyModule,
 
@@ -39,7 +79,10 @@ export {
 } from './modules';
 
 export {
+  NgxRenderer,
   NgxRenderService,
+
+  NgxBrowserPlatformService,
 
   NgxServiceModule,
 } from './services';
