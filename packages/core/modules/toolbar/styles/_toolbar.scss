@@ -1,0 +1,21 @@
+.ngx-Toolbar {
+  display: flex;
+  width: 100%;
+  padding: 0 16px;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  height: 48px;
+}
+
+@include ngx-media-breakpoint-up(600) {
+  .ngx-Toolbar {
+    height: 56px;
+  }
+}
+
+@include ngx-media-breakpoint-up(960) {
+  .ngx-Toolbar {
+    height: 64px;
+  }
+}

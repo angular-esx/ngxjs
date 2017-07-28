@@ -44,6 +44,9 @@ $ngx-blue-theme: (
       menuitem-foreground-disabled: $ngx-theme-color-black-12,
       menuitem-background-active: $ngx-theme-color-black-12,
     ),
+    ngx-toolbar: (
+      background-color: $ngx-theme-color-white,
+    ),
     ngx-overlay: (
       backdrop-background-dark: $ngx-theme-color-black-54,
     ),

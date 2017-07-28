@@ -81,4 +81,9 @@ export {
   NgxViewModule,
 } from './view';
 
+export {
+  NgxToolbarComponent,
+  NgxToolbarModule
+} from './toolbar';
+
 export { NgxUIModule } from './ngx-ui.module';

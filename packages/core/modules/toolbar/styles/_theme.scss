@@ -1,0 +1,17 @@
+// ngx-toolbar: (
+//   background-color: color,
+//   menuitem-foreground-disabled: color,
+//   menuitem-background-active: color,
+// )
+$ngx-toolbar-theme: ngx-theme-component(ngx-toolbar);
+
+
+@mixin ngx-toolbar-theme-validate() {
+  @include ngx-theme-component-validate(
+    ngx-toolbar,
+    $ngx-toolbar-theme,
+    (
+      'background-color'
+    )
+  );
+}
