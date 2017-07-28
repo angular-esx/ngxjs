@@ -6,6 +6,9 @@
   align-items: center;
   white-space: nowrap;
   height: 48px;
+
+  background-color: map-get($ngx-toolbar-theme, background-color);
+  color: map-get($ngx-toolbar-theme, text-color);
 }
 
 @include ngx-media-breakpoint-up(600) {

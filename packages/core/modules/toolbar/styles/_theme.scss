@@ -1,7 +1,6 @@
 // ngx-toolbar: (
 //   background-color: color,
-//   menuitem-foreground-disabled: color,
-//   menuitem-background-active: color,
+//   text-color: color,
 // )
 $ngx-toolbar-theme: ngx-theme-component(ngx-toolbar);
 
@@ -11,7 +10,8 @@ $ngx-toolbar-theme: ngx-theme-component(ngx-toolbar);
     ngx-toolbar,
     $ngx-toolbar-theme,
     (
-      'background-color'
+      'background-color',
+      'text-color'
     )
   );
 }

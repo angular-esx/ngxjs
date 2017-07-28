@@ -1,6 +1,6 @@
 @import './_dependencies.scss';
-// @import './_theme.scss';
+@import './_theme.scss';
 
-// @include ngx-toolbar-theme-validate();
+@include ngx-toolbar-theme-validate();
 
 @import './_toolbar.scss';
