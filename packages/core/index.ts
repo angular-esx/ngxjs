@@ -68,6 +68,9 @@ export {
   NgxViewComponent,
   NgxViewModule,
 
+  NgxToolbarComponent,
+  NgxToolbarModule,
+
   NgxUIModule,
 } from './modules';
 
