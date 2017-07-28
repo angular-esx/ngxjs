@@ -9,6 +9,8 @@
 
   background-color: map-get($ngx-toolbar-theme, background-color);
   color: map-get($ngx-toolbar-theme, text-color);
+
+  @include ngx-elevation(4);
 }
 
 @include ngx-media-breakpoint-up(600) {
