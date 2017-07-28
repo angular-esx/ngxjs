@@ -22,6 +22,7 @@ import {
   ThemePageModule,
   TypographyPageModule,
   ViewPageModule,
+  ToolbarPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { NgxApp } from './_app';
@@ -40,6 +41,7 @@ import { NgxApp } from './_app';
     ThemePageModule,
     TypographyPageModule,
     ViewPageModule,
+    ToolbarPageModule,
     AppRouteModule,
   ],
   declarations: [NgxApp],
