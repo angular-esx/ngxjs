@@ -13,7 +13,7 @@
   user-select: none;
   cursor: pointer;
 
-  @include ngx-typo(body-2);
+  @include ngx-typo(map-get($ngx-sidenav-theme, sidenav-item-typo));
   @include ngx-truncate-line();
 
   .ngx-Icon {
