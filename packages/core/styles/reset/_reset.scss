@@ -86,3 +86,9 @@ label {
 li {
   outline: none;
 }
+
+hr {
+  display: block;
+  margin: ngx-space(1) 0;
+  border: 1px solid ngx-theme-foreground(divider);
+}
