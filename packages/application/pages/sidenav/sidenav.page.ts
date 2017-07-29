@@ -17,7 +17,7 @@ import {
 class SidenavPage {
   private _isActiveLeftSidenav = true;
 
-  private _resizeLeftSidenav (event: { width: number, height: number }): void {
+  private _resizeSidenav (event: { width: number, height: number }): void {
     if (event.width <= 960 && this._isActiveLeftSidenav) {
       this._isActiveLeftSidenav = false;
     }
