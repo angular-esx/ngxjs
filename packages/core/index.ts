@@ -73,6 +73,7 @@ export {
 
   NgxSidenavContainerComponent,
   NgxSidenavComponent,
+  NgxSidenavItemComponent,
   NgxSidenavModule,
 
   NgxUIModule,

@@ -1,16 +1,13 @@
 import {
   Component,
+  OnChanges,
+  OnInit,
   Input,
+  ElementRef,
+  SimpleChanges,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Inject,
-  ElementRef,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  EventEmitter,
-  Output,
-  HostListener,
 } from '@angular/core';
 
 import { parseBoolean } from 'ngx-infrastructure';
@@ -43,9 +40,6 @@ class NgxSidenavComponent implements OnChanges, OnInit {
     this._isActive = parseBoolean(value);
   }
 
-  @Output('onResize') resizeEmitter = new EventEmitter<{ width: number, height: number }>();
-
-
   constructor (
     @Inject(ElementRef) elementRef: ElementRef,
     @Inject(NgxRenderService) renderService: NgxRenderService,
@@ -63,8 +57,6 @@ class NgxSidenavComponent implements OnChanges, OnInit {
 
   ngOnInit (): void {
     if (this.isActive) { this.open(); }
-
-    this._emitWindowResizedEvent();
   }
 
   toggle (): void {
@@ -79,16 +71,6 @@ class NgxSidenavComponent implements OnChanges, OnInit {
   close (): void {
     this._isActive = false;
     this._renderer.removeClass('ngx-Sidenav_state_active');
-  }
-
-  @HostListener('window:resize')
-  private _emitWindowResizedEvent (): void {
-    if (window) {
-      this.resizeEmitter.next({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
   }
 
   private _getClass (propName: string, value: any): string {

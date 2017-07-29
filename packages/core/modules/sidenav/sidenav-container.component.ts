@@ -1,15 +1,22 @@
 import {
   Component,
+  OnInit,
+  AfterContentChecked,
+  Output,
+  EventEmitter,
+  QueryList,
+  ContentChildren,
+  HostListener,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  ContentChildren,
   Inject,
-  AfterContentChecked,
-  QueryList,
 } from '@angular/core';
 
+import { NgxBrowserPlatformService } from '../../services';
+
 import { NgxSidenavComponent } from './sidenav.component';
+
 
 @Component({
   selector: 'ngx-sidenav-container',
@@ -22,16 +29,25 @@ import { NgxSidenavComponent } from './sidenav.component';
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngxSidenavContainer',
 })
-class NgxSidenavContainerComponent implements AfterContentChecked {
+class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
   private _mainContentClass: string;
   private _backdropClass: string;
 
   @ContentChildren(NgxSidenavComponent)
   private _sidenavs: QueryList<NgxSidenavComponent>;
 
+  @Output('onResize') resizeEmitter = new EventEmitter<{ width: number, height: number }>();
 
-  constructor (@Inject(ChangeDetectorRef) private _changeDetectorRef: ChangeDetectorRef) {}
 
+  constructor (
+    @Inject(ChangeDetectorRef) private _changeDetectorRef: ChangeDetectorRef,
+    @Inject(NgxBrowserPlatformService) private _browserPlatformService: NgxBrowserPlatformService
+  ) {}
+
+
+  ngOnInit (): void {
+    this._emitWindowResizedEvent();
+  }
 
   ngAfterContentChecked (): void {
     const result = this._checkChanges();
@@ -48,6 +64,16 @@ class NgxSidenavContainerComponent implements AfterContentChecked {
     this._sidenavs.forEach((sidenav) => {
       sidenav.close();
     });
+  }
+
+  @HostListener('window:resize')
+  private _emitWindowResizedEvent (): void {
+    if (this._browserPlatformService.isBrowser) {
+      this.resizeEmitter.next({
+        width: this._browserPlatformService.window.innerWidth,
+        height: this._browserPlatformService.window.innerHeight,
+      });
+    }
   }
 
   private _checkChanges (): {

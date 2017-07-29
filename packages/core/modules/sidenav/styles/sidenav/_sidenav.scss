@@ -1,12 +1,44 @@
+/*
+  TODO: Need to apply spec
+
+  Maximum width: The maximum width of the nav drawer is 280dp on mobile, 320dp on tablet, 400 on desktop.
+  This is calculated by multiplying the standard increment by five
+  (the standard increment is 56dp on mobile, 64dp on tablet, 80dp on desktop).
+  https://material.io/guidelines/patterns/navigation-drawer.html#navigation-drawer-specs
+*/
 .ngx-Sidenav {
-  width: ngx-space($ngx-sidenav-width-increase);
   position: absolute;
   top: 0;
   bottom: 0;
-  transition: transform .4s cubic-bezier(.25, .8, .25, 1);
-  z-index: 1000;
-  background: rgb(255, 255, 255);
+  display: block;
+  width: 100%;
+  max-width: map-get($ngx-sidenav-theme, sidenav-max-width-mobile);
+  padding-top: map-get($ngx-sidenav-theme, sidenav-padding-top);
+  padding-left: map-get($ngx-sidenav-theme, sidenav-padding-left-right-mobile);
+  padding-right: map-get($ngx-sidenav-theme, sidenav-padding-left-right-mobile);
+  background: map-get($ngx-sidenav-theme, sidenav-background);
+  z-index: map-get($ngx-sidenav-theme, sidenav-z-index);
   overflow-y: auto;
+  transition: transform .4s cubic-bezier(.25, .8, .25, 1);
+
+  hr {
+    margin-left: -(map-get($ngx-sidenav-theme, sidenav-padding-left-right-mobile));
+    margin-right: -(map-get($ngx-sidenav-theme, sidenav-padding-left-right-mobile));
+  }
+
+  @include ngx-media-breakpoint-up(ngx-min-breakpoint-by-device($ngx-tablet-portrail-breakpoints)) {
+    max-width: map-get($ngx-sidenav-theme, sidenav-max-width-tablet);
+    padding-left: map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet);
+    padding-right: map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet);
+
+    hr {
+    margin-left: -(map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet));
+    margin-right: -(map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet));
+  }
+  }
+  @include ngx-media-breakpoint-up(ngx-max-breakpoint-by-device($ngx-tablet-landscape-breakpoints)) {
+    max-width: map-get($ngx-sidenav-theme, sidenav-max-width-desktop);
+  }
 }
 .ngx-Sidenav_align_left {
   left: 0;
@@ -16,26 +48,9 @@
   right: 0;
   transform: translate3d(100%, 0, 0);
 }
+.ngx-Sidenav_type_over {
+  @include ngx-elevation(map-get($ngx-sidenav-theme, sidenav-elevation));
+}
 .ngx-Sidenav_state_active {
   transform: translate3d(0, 0, 0);
-}
-
-
-.ngx-Sidenav__Account {
-  height: ngx-space($ngx-sidenav-width-increase/(16/9));
-  padding: ngx-space(4);
-  background-color: rgba(0, 0, 0, .38);
-}
-
-
-.ngx-Sidenav__Navigations {
-  padding: ngx-space(4);
-}
-
-
-.ngx-Sidenav__Navigation {
-  padding: ngx-space(3) 0;
-  color: map-get($ngx-sidenav-theme, ngx-sidenav-foreground-default);
-  cursor: pointer;
-  @include ngx-typo(body-1, english);
 }

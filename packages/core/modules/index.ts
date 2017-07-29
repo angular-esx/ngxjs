@@ -89,6 +89,7 @@ export {
 export {
   NgxSidenavContainerComponent,
   NgxSidenavComponent,
+  NgxSidenavItemComponent,
   NgxSidenavModule,
 } from './sidenav';
 
