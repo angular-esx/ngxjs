@@ -6,7 +6,7 @@
     .ngx-Typography_type_#{$_key} {
       @include ngx-typo($_key, $script-type);
 
-      $_typo-color: map-get($ngx-typography-theme, ngx-Typography-#{$_key});
+      $_typo-color: map-get($ngx-typography-theme, #{$_key});
       @if $_typo-color {
         color: $_typo-color;
       }

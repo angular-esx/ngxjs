@@ -1,15 +1,3 @@
-// ngx-typography: (
-//   ngx-typography-display-1: color,
-//   ngx-typography-display-2: color,
-//   ngx-typography-display-3: color,
-//   ngx-typography-display-4: color,
-//   ngx-typography-headline: color,
-//   ngx-typography-title: color,
-//   ngx-typography-subheading: color,
-//   ngx-typography-body-1: color,
-//   ngx-typography-body-2: color,
-//   ngx-typography-caption: color,
-// )
 $ngx-typography-theme: ngx-theme-component(ngx-typography);
 
 
@@ -18,16 +6,16 @@ $ngx-typography-theme: ngx-theme-component(ngx-typography);
     'ngx-typography',
     $ngx-typography-theme,
     (
-      'ngx-typography-display-1',
-      'ngx-typography-display-2',
-      'ngx-typography-display-3',
-      'ngx-typography-display-4',
-      'ngx-typography-headline',
-      'ngx-typography-title',
-      'ngx-typography-subheading',
-      'ngx-typography-body-1',
-      'ngx-typography-body-2',
-      'ngx-typography-caption',
+      'display-1',
+      'display-2',
+      'display-3',
+      'display-4',
+      'headline',
+      'title',
+      'subheading',
+      'body-1',
+      'body-2',
+      'caption',
     )
   );
 }
