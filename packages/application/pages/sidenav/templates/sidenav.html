@@ -1,0 +1,35 @@
+<ngx-sidenav-container (onResize)="_resizeSidenav($event)">
+  <ngx-sidenav
+    type="side"
+    align="left"
+    [isActive]="_isActiveLeftSidenav"
+  >
+    <ngx-sidenav-item>Navigation Left - 01</ngx-sidenav-item>
+    <ngx-sidenav-item>Navigation Left - 02</ngx-sidenav-item>
+    <ngx-sidenav-item>Navigation Left - 03</ngx-sidenav-item>
+
+    <hr/>
+
+    <ngx-sidenav-item>Navigation Left - 03</ngx-sidenav-item>
+    <ngx-sidenav-item>Navigation Left - 04</ngx-sidenav-item>
+    <ngx-sidenav-item>Navigation Left - 05</ngx-sidenav-item>
+  </ngx-sidenav>
+
+  <main class="main"></main>
+
+  <ngx-sidenav
+    type="over"
+    align="right"
+    isActive="true"
+  >
+    <ngx-sidenav-item>Navigation Right - 01</ngx-sidenav-item>
+    <ngx-sidenav-item>Navigation Right - 02</ngx-sidenav-item>
+    <ngx-sidenav-item>Navigation Right - 03</ngx-sidenav-item>
+
+    <hr/>
+
+    <ngx-sidenav-item>Navigation Right - 03</ngx-sidenav-item>
+    <ngx-sidenav-item>Navigation Right - 04</ngx-sidenav-item>
+    <ngx-sidenav-item>Navigation Right - 05</ngx-sidenav-item>
+  </ngx-sidenav>
+</ngx-sidenav-container>

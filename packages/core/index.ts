@@ -68,6 +68,14 @@ export {
   NgxViewComponent,
   NgxViewModule,
 
+  NgxCardComponent,
+  NgxCardModule,
+
+  NgxSidenavContainerComponent,
+  NgxSidenavComponent,
+  NgxSidenavItemComponent,
+  NgxSidenavModule,
+
   NgxUIModule,
 } from './modules';
 

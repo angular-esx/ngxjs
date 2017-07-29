@@ -1,0 +1,6 @@
+@import '../_dependencies.scss';
+@import '../_theme.scss';
+
+@include ngx-sidenav-theme-validate();
+
+@import './_sidenav-container.scss';

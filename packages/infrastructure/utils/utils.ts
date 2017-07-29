@@ -15,7 +15,7 @@ function isNumber (target: any): boolean {
   return isNotEmpty(target, true) && !isNaN(target);
 }
 function isObject (target: any): boolean {
-  return target && typeof (target) === 'object';
+  return target && typeof (target) === 'object' && target.length === undefined;
 }
 function isDate (target: any): boolean {
   return target && Object.prototype.toString.call(target) === '[object Date]';

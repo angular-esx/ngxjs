@@ -14,3 +14,20 @@
   $n: index($breakpoint-names, $key);
   @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
+
+
+@function ngx-min-breakpoint-by-device($device-breakpoints, $device-breakpoint-name: null) {
+  @if $device-breakpoint-name {
+    @return map-get(map-get($device-breakpoints, $device-breakpoint-name), min);
+  }
+
+  @return map-get(map-get($device-breakpoints, ngx-first(map-keys($device-breakpoints))), min);
+}
+
+@function ngx-max-breakpoint-by-device($device-breakpoints, $device-breakpoint-name: null) {
+  @if $device-breakpoint-name {
+    @return map-get(map-get($device-breakpoints, $device-breakpoint-name), max);
+  }
+
+  @return map-get(map-get($device-breakpoints, ngx-last(map-keys($device-breakpoints))), max);
+}

@@ -1,0 +1,23 @@
+$ngx-sidenav-theme: ngx-theme-component(ngx-sidenav);
+
+
+@mixin ngx-sidenav-theme-validate() {
+  @include ngx-theme-component-validate(
+    'ngx-sidenav',
+    $ngx-sidenav-theme,
+    (
+      'sidenav-max-width-mobile',
+      'sidenav-max-width-tablet',
+      'sidenav-max-width-desktop',
+      'sidenav-padding-top',
+      'sidenav-padding-left-right-mobile',
+      'sidenav-padding-left-right-tablet',
+      'sidenav-background',
+      'sidenav-z-index',
+      'sidenav-elevation',
+
+      'sidenav-item-height',
+      'sidenav-item-icon-width',
+    )
+  );
+}

@@ -81,4 +81,16 @@ export {
   NgxViewModule,
 } from './view';
 
+export {
+  NgxCardModule,
+  NgxCardComponent,
+} from './card';
+
+export {
+  NgxSidenavContainerComponent,
+  NgxSidenavComponent,
+  NgxSidenavItemComponent,
+  NgxSidenavModule,
+} from './sidenav';
+
 export { NgxUIModule } from './ngx-ui.module';

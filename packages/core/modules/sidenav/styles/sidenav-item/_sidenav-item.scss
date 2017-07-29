@@ -1,0 +1,27 @@
+.ngx-Sidenav__Item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: map-get($ngx-sidenav-theme, sidenav-item-height);
+  // TODO: Should move reset code into one place then reuse them
+  text-align: start;
+  text-decoration: none;
+  background-color: initial;
+  border: none;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+
+  @include ngx-typo(body-2);
+  @include ngx-truncate-line();
+
+  .ngx-Icon {
+    width: map-get($ngx-sidenav-theme, sidenav-item-icon-width);
+    margin-right: map-get($ngx-sidenav-theme, sidenav-padding-left-right-mobile);
+
+    @include ngx-media-breakpoint-up(ngx-min-breakpoint-by-device($ngx-tablet-portrail-breakpoints)) {
+      margin-right: map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet);
+    }
+  }
+}

@@ -1,0 +1,147 @@
+@function ngx-first($list) {
+  @return nth($list, 1);
+}
+
+@function ngx-last($list) {
+  @return nth($list, length($list));
+}
+
+@function ngx-last-index($list, $value) {
+  @for $i from length($list)*-1 through -1 {
+    @if nth($list, abs($i)) == $value {
+      @return abs($i);
+    }
+  }
+
+  @return null;
+}
+
+@function ngx-insert-nth($list, $index, $value) {
+  $result: null;
+
+  @if type-of($index) != number {
+    @error '$index: #{quote($index)} is not a number.';
+  }
+
+  @else if $index < 1 {
+    @error 'List index 0 must be a non-zero integer';
+  }
+
+  @else if $index > length($list) {
+    @error 'List index is #{$index} but list is only #{length($list)} item long.';
+  }
+
+  @else {
+    $result: ();
+
+    @for $i from 1 through length($list) {
+      @if $i == $index {
+        $result: append($result, $value);
+      }
+
+      $result: append($result, nth($list, $i));
+    }
+  }
+
+  @return $result;
+}
+
+@function ngx-replace($list, $old-value, $new-value, $recursive: false) {
+  $result: ();
+
+  @for $i from 1 through length($list) {
+    @if type-of(nth($list, $i)) == list and $recursive {
+      $result: append($result, replace(nth($list, $i), $old-value, $new-value, $recursive));
+    }
+
+    @else {
+      @if nth($list, $i) == $old-value {
+        $result: append($result, $new-value);
+      }
+
+      @else {
+        $result: append($result, nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}
+
+@function ngx-replace-nth($list, $index, $value) {
+  $result: null;
+
+  @if type-of($index) != number {
+    @error '$index: #{quote($index)} is not a number.';
+  }
+
+  @else if $index == 0 {
+    @error 'List index 0 must be a non-zero integer.';
+  }
+
+  @else if abs($index) > length($list) {
+    @error 'List index is #{$index} but list is only #{length($list)} item long.';
+  }
+
+  @else {
+    $result: ();
+    $index: if($index < 0, length($list) + $index + 1, $index);
+
+    @for $i from 1 through length($list) {
+      @if $i == $index {
+        $result: append($result, $value);
+      }
+
+      @else {
+        $result: append($result, nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}
+
+@function ngx-remove($list, $value, $recursive: false) {
+  $result: ();
+
+  @for $i from 1 through length($list) {
+    @if type-of(nth($list, $i)) == list and $recursive {
+      $result: append($result, remove(nth($list, $i), $value, $recursive));
+    }
+
+    @else if nth($list, $i) != $value {
+      $result: append($result, nth($list, $i));
+    }
+  }
+
+  @return $result;
+}
+
+@function ngx-remove-nth($list, $index) {
+  $result: null;
+
+  @if type-of($index) != number {
+    @error '$index: #{quote($index)} is not a number for "remove-nth".';
+  }
+
+  @else if $index == 0 {
+    @error 'List index 0 must be a non-zero integer for "remove-nth".';
+  }
+
+  @else if abs($index) > length($list) {
+    @error 'List index is #{$index} but list is only #{length($list)} item long for "remove-nth".';
+  }
+
+  @else {
+    $result: ();
+    $index: if($index < 0, length($list) + $index + 1, $index);
+
+    @for $i from 1 through length($list) {
+      @if $i != $index {
+        $result: append($result, nth($list, $i));
+      }
+    }
+  }
+
+  @return $result;
+}

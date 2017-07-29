@@ -1,0 +1,9 @@
+<ng-content select="ngx-sidenav[align=left]"></ng-content>
+
+<div [class]="_mainContentClass">
+  <ng-content></ng-content>
+</div>
+
+<ng-content select="ngx-sidenav[align=right]"></ng-content>
+
+<div [class]="_backdropClass" (click)="closeAllSidenavs()"></div>

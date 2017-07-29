@@ -39,6 +39,12 @@ $ngx-blue-theme: (
     pre: ngx-color($ngx-palette-grey, 100),
   ),
   components: (
+    ngx-card: (
+      foreground: $ngx-theme-color-black-87,
+      background: $ngx-theme-color-white,
+
+      subtitle-foreground: $ngx-theme-color-black-54,
+    ),
     ngx-menu: (
       background-color: $ngx-theme-color-white,
       menuitem-foreground-disabled: $ngx-theme-color-black-12,
@@ -46,6 +52,22 @@ $ngx-blue-theme: (
     ),
     ngx-overlay: (
       backdrop-background-dark: $ngx-theme-color-black-54,
+    ),
+    ngx-sidenav: (
+      sidenav-max-width-mobile: ngx-space(70),
+      sidenav-max-width-tablet: ngx-space(80),
+      sidenav-max-width-desktop: ngx-space(100),
+      sidenav-padding-top: ngx-space(6),
+      sidenav-padding-left-right-mobile: ngx-space(4),
+      sidenav-padding-left-right-tablet: ngx-space(6),
+      sidenav-background: $ngx-theme-color-white,
+      sidenav-z-index: ngx-z-index(above-max),
+      sidenav-elevation: 16,
+
+      sidenav-item-height: ngx-space(12),
+      sidenav-item-icon-width: ngx-space(14),
+
+      backdrop-background: $ngx-theme-color-black-38,
     ),
     ngx-typography: (
       ngx-typography-display-1: $ngx-theme-color-black-54,

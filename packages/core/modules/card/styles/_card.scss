@@ -1,0 +1,114 @@
+.ngx-Card {
+  display: block;
+  position: relative;
+  padding: ngx-space(6);
+  border-radius: 2px;
+  color: map-get($ngx-card-theme, foreground);
+  background-color: map-get($ngx-card-theme, background);
+
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  > .ngx-Card__CardActions:last-child {
+    margin-bottom: -(ngx-space(4));
+  }
+
+  @include ngx-elevation(2);
+  @include ngx-elevation-transition();
+}
+
+.ngx-Card__CardHeader {
+  display: flex;
+  flex-direction: row;
+  height: ngx-space(10);
+  margin: -(ngx-space(2)) 0 ngx-space(4) 0;
+
+  .ngx-Card__CardTitle {
+    @include ngx-typo(title, english, $exclude: ('font-weight'));
+  }
+
+  .ngx-Card__CardSubtitle {
+    &:not(:first-child) {
+      margin-top: -(ngx-space(2));
+    }
+  }
+}
+
+.ngx-Card__CardHeaderText {
+  height: ngx-space(10);
+  margin: 0 ngx-space(4);
+}
+
+.ngx-Card__CardTitleGroup {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -(ngx-space(2));
+}
+
+.ngx-Card__CardAvatar {
+  height: ngx-space(10);
+  width: ngx-space(10);
+  border-radius: 50%;
+}
+
+.ngx-Card__CardTitle {
+  @extend %ngx-card-section-base;
+  // @include ngx-typo(headline, english, $include: ('font-size', 'font-weight'));
+
+  &:not(:first-child) {
+    margin-top: -(ngx-space(1));
+  }
+}
+
+.ngx-Card__CardSubtitle {
+  @extend %ngx-card-section-base;
+  // @include ngx-typo(subheading-2, english, $include: ('font-size'));
+
+  color: map-get($ngx-card-theme, subtitle-foreground);
+
+  &:not(:first-child) {
+    margin-top: -(ngx-space(1));
+  }
+}
+
+.ngx-Card__CardContent {
+  @extend %ngx-card-section-base;
+  // @include ngx-typo(body-2, english);
+  margin-bottom: 0;
+
+  > :first-child {
+    margin-top: 0;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+[ngxCardImage] {
+  // must add 3rem becauce we set -ngx-space(6) for margin
+  width: calc(100% + 1.71429rem * 2);
+  margin-top: 0;
+  margin-left: -(ngx-space(6));
+  margin-bottom: ngx-space(4);
+
+  &:first-child {
+    margin-top: -(ngx-space(6));
+  }
+}
+
+.ngx-Card__CardActions {
+  display: flex;
+  justify-content: space-around;
+  padding-top: ngx-space(4);
+  padding-bottom: ngx-space(4);
+
+  @extend %ngx-card-section-base;
+
+  &.ngx-Card__CardActions_align_end {
+    justify-content: flex-end;
+  }
+}

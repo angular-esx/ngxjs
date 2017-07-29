@@ -6,7 +6,8 @@ import { NgxOverlayModule } from './overlay';
 import { NgxPortalModule } from './portal';
 import { NgxTypographyModule } from './typography';
 import { NgxViewModule } from './view';
-
+import { NgxCardModule } from './card';
+import { NgxSidenavModule } from './sidenav';
 
 const MODULES = [
   NgxContainerModule,
@@ -16,6 +17,8 @@ const MODULES = [
   NgxPortalModule,
   NgxTypographyModule,
   NgxViewModule,
+  NgxCardModule,
+  NgxSidenavModule,
 ];
 
 @NgModule({
