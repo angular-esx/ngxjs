@@ -32,9 +32,9 @@
     padding-right: map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet);
 
     hr {
-    margin-left: -(map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet));
-    margin-right: -(map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet));
-  }
+      margin-left: -(map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet));
+      margin-right: -(map-get($ngx-sidenav-theme, sidenav-padding-left-right-tablet));
+    }
   }
   @include ngx-media-breakpoint-up(ngx-max-breakpoint-by-device($ngx-tablet-landscape-breakpoints)) {
     max-width: map-get($ngx-sidenav-theme, sidenav-max-width-desktop);

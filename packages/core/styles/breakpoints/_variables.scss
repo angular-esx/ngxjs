@@ -23,22 +23,22 @@ $ngx-desktop-breakpoints: (
 
 
 $ngx-mobile-portrail-breakpoints: (
-  sm: ( min: 0, max: 360px ),
-  md: ( min: 360px, max: 400px ),
-  lg: ( min: 400px, max: 600px ),
+  sm: ( min: 0, max: 360 ),
+  md: ( min: 360, max: 400 ),
+  lg: ( min: 400, max: 600 ),
 ) !default;
 $ngx-mobile-landscape-breakpoints: (
-  sm: ( min: 480px, max: 600px ),
-  md: ( min: 600px, max: 720px ),
-  lg: ( min: 720px, max: 960px ),
+  sm: ( min: 480, max: 600 ),
+  md: ( min: 600, max: 720 ),
+  lg: ( min: 720, max: 960 ),
 ) !default;
 
 
 $ngx-tablet-portrail-breakpoints: (
-  sm: ( min: 600px, max: 720px ),
-  lg: ( min: 720px, max: 840px ),
+  sm: ( min: 600, max: 720 ),
+  lg: ( min: 720, max: 840 ),
 ) !default;
 $ngx-tablet-landscape-breakpoints: (
-  sm: ( min: 960px, max: 1024px ),
-  lg: ( min: 1024px, max: 1280px ),
+  sm: ( min: 960, max: 1024 ),
+  lg: ( min: 1024, max: 1280 ),
 ) !default;
