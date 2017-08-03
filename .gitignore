@@ -3,3 +3,4 @@ _dist
 *.log
 *.DS_Store
 package-lock.json
+_tests/custom.js
