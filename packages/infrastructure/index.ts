@@ -2,6 +2,7 @@ export {
   environment,
   IBaseEnvironment,
   IDevelopmentEnvironment,
+  ITestingEnvironment,
 } from './environments';
 
 export {
