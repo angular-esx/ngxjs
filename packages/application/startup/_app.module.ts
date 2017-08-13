@@ -13,18 +13,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxServiceModule } from 'ngx-core';
 
 import {
+  CardPageModule,
   ContainerPageModule,
   DetailPageModule,
   GridPageModule,
+  LayoutCardPageModule,
   ListPageModule,
   OverlayPageModule,
   PortalPageModule,
+  SidenavPageModule,
   ThemePageModule,
   TypographyPageModule,
   ViewPageModule,
-  CardPageModule,
-  SidenavPageModule,
-  LayoutCardPageModule,
 } from '../pages';
 import { AppRouteModule } from './route';
 import { NgxApp } from './_app';
@@ -34,19 +34,20 @@ import { NgxApp } from './_app';
   imports: [
     BrowserModule,
     NgxServiceModule,
+    CardPageModule,
     ContainerPageModule,
     DetailPageModule,
     GridPageModule,
+    LayoutCardPageModule,
     ListPageModule,
     OverlayPageModule,
     PortalPageModule,
+    SidenavPageModule,
     ThemePageModule,
     TypographyPageModule,
     ViewPageModule,
+
     AppRouteModule,
-    CardPageModule,
-    SidenavPageModule,
-    LayoutCardPageModule,
   ],
   declarations: [NgxApp],
   bootstrap: [NgxApp],

@@ -1,12 +1,12 @@
+export { CardPageModule } from './card';
 export { ContainerPageModule } from './container';
 export { DetailPageModule } from './detail';
 export { GridPageModule } from './grid';
+export { LayoutCardPageModule } from './layout-card';
 export { ListPageModule } from './list';
 export { OverlayPageModule } from './overlay';
 export { PortalPageModule } from './portal';
+export { SidenavPageModule } from './sidenav';
 export { ThemePageModule } from './theme';
 export { TypographyPageModule } from './typography';
 export { ViewPageModule } from './view';
-export { CardPageModule } from './card';
-export { SidenavPageModule } from './sidenav';
-export { LayoutCardPageModule } from './layout-card';
