@@ -27,8 +27,9 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 class DetailPage implements AfterViewInit {
-  private _activeDetail: string;
   private _detailComponentRef: ComponentRef<any>;
+
+  activeDetail: string;
 
   @ViewChild('detailContainer', { read: ViewContainerRef })
   _detailViewContainerRef: ViewContainerRef;
@@ -41,14 +42,14 @@ class DetailPage implements AfterViewInit {
   }
 
   _display (detail): void {
-    if (this._activeDetail === detail) { return; }
+    if (this.activeDetail === detail) { return; }
 
-    this._activeDetail = detail;
+    this.activeDetail = detail;
 
     if (this._detailComponentRef) { this._detailComponentRef.destroy(); }
 
     let _detailComponent;
-    switch (this._activeDetail) {
+    switch (this.activeDetail) {
       case 'dense-detail':
         _detailComponent = DenseDetailComponent;
         break;
