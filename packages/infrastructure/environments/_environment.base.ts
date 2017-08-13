@@ -10,6 +10,8 @@ abstract class BaseEnvironment implements IBaseEnvironment {
 
   get isDevelopment(): boolean { return false; }
 
+  get isTesting(): boolean { return false; }
+
   get isProduction(): boolean { return false; }
 }
 

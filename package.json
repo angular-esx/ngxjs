@@ -10,8 +10,10 @@
     "build-dll": "cross-env BUILD_ENV=development webpack --config $npm_package_envts_webpack_dll_config --progress",
     "build": "npm run build-dll && cross-env BUILD_ENV=development webpack --config $npm_package_envts_webpack_config --progress",
     "start": "npm run build-dll && cross-env BUILD_ENV=development webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline --open",
-    "start-dashboard": "npm run build-dll && cross-env BUILD_ENV=development:dashboard webpack-dashboard -- webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline --open",
-    "lint-staged": "lint-staged"
+    "start:dashboard": "npm run build-dll && cross-env BUILD_ENV=development:dashboard webpack-dashboard -- webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline --open",
+    "lint-staged": "lint-staged",
+    "test": "cross-env BUILD_ENV=testing karma start",
+    "test:custom": "cross-env BUILD_ENV=testing:custom karma start"
   },
   "pre-commit": "lint-staged",
   "dependencies": {
@@ -37,6 +39,7 @@
     "@angularclass/hmr-loader": "3.0.2",
     "@types/copy-webpack-plugin": "4.0.0",
     "@types/html-webpack-plugin": "2.11.3",
+    "@types/jasmine": "2.5.53",
     "@types/node": "7.0.0",
     "@types/webpack": "2.2.14",
     "@types/webpack-merge": "0.0.4",
@@ -50,6 +53,12 @@
     "handlebars": "4.0.6",
     "handlebars-loader": "1.4.0",
     "html-webpack-plugin": "2.24.1",
+    "jasmine": "2.7.0",
+    "karma": "1.7.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-jasmine": "1.1.0",
+    "karma-sourcemap-loader": "0.3.7",
+    "karma-webpack": "2.0.4",
     "lint-staged": "3.2.5",
     "ngx-template-loader": "0.0.1",
     "node-sass": "4.0.0",

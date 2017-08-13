@@ -31,4 +31,8 @@ If you setup as I remcommend, `stylelint` will run every you type, `eslint` will
 
 - **start:** Start `webpack-dev-server` with enabled `HotModuleReplacement` without `WebpackDashboard`. You have no other choice to start `webpack-dev-server` if you're working on windows :)
 
-- **start-dashboard:** Start `webpack-dev-server` with enabled `HotModuleReplacement` && `WebpackDashboard`. **Recommend you should use this command if you're working on Mac, Linux** to get a nice webpack console.
+- **start:dashboard:** Start `webpack-dev-server` with enabled `HotModuleReplacement` && `WebpackDashboard`. **Recommend you should use this command if you're working on Mac, Linux** to get a nice webpack console.
+
+- **test** Start `karma` for all files `spec.ts`
+
+- **test:custom** Start `karma` for required files in `_tests/custom.js`. `custom.js` is added into .gitignore, so if you need to run custom test, create it yourself then wrire code to require necessary files.
