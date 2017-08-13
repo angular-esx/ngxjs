@@ -15,7 +15,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 class TallListComponent implements OnInit {
-  private _dataSource: Array<{ name: string, contents: Array<string> }> = [];
+  dataSource: Array<{ name: string, contents: Array<string> }> = [];
 
   ngOnInit (): void {
     let _content = 'Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. ';
@@ -32,7 +32,7 @@ class TallListComponent implements OnInit {
       if (i % 2 === 0) { _item.contents.push(_content); }
       if (i % 3 === 0) { _item.contents.push(_content); }
 
-      this._dataSource.push(_item);
+      this.dataSource.push(_item);
     }
   }
 }

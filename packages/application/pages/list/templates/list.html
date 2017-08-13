@@ -3,7 +3,7 @@
   <div class="ngx-ListPage__AvailableLists">
     <div
       class="ngx-ListPage__AvailableList"
-      [class.ngx-ListPage__AvailableList_state_active]="_activeList === 'dense-list'"
+      [class.ngx-ListPage__AvailableList_state_active]="activeList === 'dense-list'"
       (click)="_display('dense-list')"
     >
       Dense List
@@ -11,7 +11,7 @@
 
     <div
       class="ngx-ListPage__AvailableList"
-      [class.ngx-ListPage__AvailableList_state_active]="_activeList === 'english-list'"
+      [class.ngx-ListPage__AvailableList_state_active]="activeList === 'english-list'"
       (click)="_display('english-list')"
     >
       English List
@@ -19,7 +19,7 @@
 
     <div
       class="ngx-ListPage__AvailableList"
-      [class.ngx-ListPage__AvailableList_state_active]="_activeList === 'tall-list'"
+      [class.ngx-ListPage__AvailableList_state_active]="activeList === 'tall-list'"
       (click)="_display('tall-list')"
     >
       Tall List

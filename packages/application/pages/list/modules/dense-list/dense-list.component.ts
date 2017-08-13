@@ -15,7 +15,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 class DenseListComponent implements OnInit {
-  private _dataSource: Array<{ name: string, contents: Array<string> }> = [];
+  dataSource: Array<{ name: string, contents: Array<string> }> = [];
 
   ngOnInit (): void {
     let _content = 'Lorem Ipsumは印刷と植字業界の単純なダミーテキストです。';
@@ -32,7 +32,7 @@ class DenseListComponent implements OnInit {
       if (i % 2 === 0) { _item.contents.push(_content); }
       if (i % 3 === 0) { _item.contents.push(_content); }
 
-      this._dataSource.push(_item);
+      this.dataSource.push(_item);
     }
   }
 }
