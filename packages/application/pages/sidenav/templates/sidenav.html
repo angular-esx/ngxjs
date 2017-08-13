@@ -1,8 +1,8 @@
-<ngx-sidenav-container (onResize)="_resizeSidenav($event)">
+<ngx-sidenav-container (onResize)="resizeSidenav($event)">
   <ngx-sidenav
     type="side"
     align="left"
-    [isActive]="_isActiveLeftSidenav"
+    [isActive]="isActiveLeftSidenav"
   >
     <ngx-sidenav-item>Navigation Left - 01</ngx-sidenav-item>
     <ngx-sidenav-item>Navigation Left - 02</ngx-sidenav-item>
