@@ -21,14 +21,21 @@ class NgxDomPortalHost extends NgxBasePortalHost {
     protected _hostDomElement: Element,
     protected _componentFactoryResolver: ComponentFactoryResolver,
     protected _appRef: ApplicationRef,
-    protected _viewContainerRef: ViewContainerRef,
     protected _defaultInjector: Injector
   ) {
     super();
   }
 
+  dispose (): void {
+    super.dispose();
+
+    if (isNotNull(this._hostDomElement.parentNode)) {
+      this._hostDomElement.parentNode.removeChild(this._hostDomElement);
+    }
+  }
+
   protected _attachTemplatePortal (portal: INgxTemplatePortal): Map<string, any> {
-    const _viewContainerRef = this._viewContainerRef;
+    const _viewContainerRef = portal.viewContainerRef;
     const _viewRef = _viewContainerRef.createEmbeddedView(portal.templateRef);
     _viewRef.detectChanges();
     /**
@@ -82,14 +89,6 @@ class NgxDomPortalHost extends NgxBasePortalHost {
     this._hostDomElement.appendChild((componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0]);
 
     return componentRef;
-  }
-
-  dispose (): void {
-    super.dispose();
-
-    if (isNotNull(this._hostDomElement.parentNode)) {
-      this._hostDomElement.parentNode.removeChild(this._hostDomElement);
-    }
   }
 }
 
