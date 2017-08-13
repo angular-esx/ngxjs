@@ -1,9 +1,9 @@
 <ng-template>
   <div
     class="ngx-MenuComponent__MenuPanel"
-    [ngClass]="_cssClass"
+    [ngClass]="cssClass"
     [@transformMenu]="'showing'"
-    (click)="_close()"
+    (click)="close()"
   >
     <div class="ngx-MenuComponent__MenuContent" [@fadeInItems]="'showing'">
       <ng-content></ng-content>
