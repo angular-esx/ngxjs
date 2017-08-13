@@ -30,11 +30,11 @@ import { NgxSidenavComponent } from './sidenav.component';
   exportAs: 'ngxSidenavContainer',
 })
 class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
-  private _mainContentClass: string;
-  private _backdropClass: string;
-
   @ContentChildren(NgxSidenavComponent)
   private _sidenavs: QueryList<NgxSidenavComponent>;
+
+  mainContentClass: string;
+  backdropClass: string;
 
   @Output('onResize') resizeEmitter = new EventEmitter<{ width: number, height: number }>();
 
@@ -53,8 +53,8 @@ class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
     const result = this._checkChanges();
 
     if (result.hasChanges) {
-      this._mainContentClass = result.mainContentClass;
-      this._backdropClass = result.backdropClass;
+      this.mainContentClass = result.mainContentClass;
+      this.backdropClass = result.backdropClass;
 
       this._changeDetectorRef.markForCheck();
     }
@@ -87,7 +87,7 @@ class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
       backdropClass: 'ngx-SidenavContainer__Backdrop',
     };
 
-    const _backdropClass = {
+    const backdropClass = {
       isActive: false,
       hasBackgroundColor: false,
     };
@@ -96,18 +96,18 @@ class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
       if (sidenav.isActive) {
         result.mainContentClass += ` ngx-SidenavContainer__MainContent_mode_${sidenav.type}-${sidenav.align}`;
 
-        _backdropClass.isActive = sidenav.type === 'over' || sidenav.type === 'push';
-        _backdropClass.hasBackgroundColor = sidenav.type === 'over';
+        backdropClass.isActive = sidenav.type === 'over' || sidenav.type === 'push';
+        backdropClass.hasBackgroundColor = sidenav.type === 'over';
       }
     });
 
-    result.hasChanges = this._mainContentClass !== result.mainContentClass;
+    result.hasChanges = this.mainContentClass !== result.mainContentClass;
 
     if (result.hasChanges) {
-      if (_backdropClass.isActive) {
+      if (backdropClass.isActive) {
         result.backdropClass += ' ngx-SidenavContainer__Backdrop_state_active';
       }
-      if (_backdropClass.hasBackgroundColor) {
+      if (backdropClass.hasBackgroundColor) {
         result.backdropClass += ' ngx-SidenavContainer__Backdrop_variant_black';
       }
     }
