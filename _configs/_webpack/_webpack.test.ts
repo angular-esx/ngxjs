@@ -1,7 +1,3 @@
-import { DefinePlugin } from 'webpack';
-import * as merge from 'webpack-merge';
-import * as AddAssetHtmlPlugin from 'add-asset-html-webpack-plugin';
-
 import { environment } from '../../packages/infrastructure';
 
 import { BaseWebpackConfig } from './_webpack.base';
