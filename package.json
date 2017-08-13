@@ -11,6 +11,7 @@
     "build": "npm run build-dll && cross-env BUILD_ENV=development webpack --config $npm_package_envts_webpack_config --progress",
     "start": "npm run build-dll && cross-env BUILD_ENV=development webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline --open",
     "start:dashboard": "npm run build-dll && cross-env BUILD_ENV=development:dashboard webpack-dashboard -- webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline --open",
+    "start:aot": "npm run build-dll && cross-env BUILD_ENV=aot webpack-dev-server --config $npm_package_envts_webpack_config --hot --inline --open",
     "lint-staged": "lint-staged",
     "test": "cross-env BUILD_ENV=testing karma start",
     "test:custom": "cross-env BUILD_ENV=testing:custom karma start"
@@ -35,8 +36,10 @@
     "lerna": "2.0.0-beta.31"
   },
   "devDependencies": {
+    "@angular/compiler-cli": "4.0.1",
     "@angularclass/hmr": "1.2.2",
     "@angularclass/hmr-loader": "3.0.2",
+    "@ngtools/webpack": "1.6.0",
     "@types/copy-webpack-plugin": "4.0.0",
     "@types/html-webpack-plugin": "2.11.3",
     "@types/jasmine": "2.5.53",
