@@ -9,7 +9,10 @@
     "lib": ["es2015", "dom"],
     "sourceMap": true,
     "skipLibCheck": true,
-    "typeRoots" : ["./node_modules/@types", "./packages/infrastructure/types"]
+    "typeRoots" : [
+      "./node_modules/@types",
+      "./packages/infrastructure/types"
+    ]
   },
   "include": [
     "packages/application",
