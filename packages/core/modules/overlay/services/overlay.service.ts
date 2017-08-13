@@ -42,13 +42,13 @@ class NgxOverlayService {
     @Inject(NgxBrowserPlatformService) protected _browserPlatformService: NgxBrowserPlatformService
   ) {}
 
-  create (viewContainerRef: ViewContainerRef, config?: NgxOverlayConfig): NgxOverlayRef {
+  create (config?: NgxOverlayConfig): NgxOverlayRef {
     if (!this._browserPlatformService.isBrowser) { return null; }
 
     const _overlay = this._createOverlayElement();
 
     return new NgxOverlayRef(
-      new NgxDomPortalHost(_overlay, this._componentFactoryResolver, this._appRef, viewContainerRef, this._injector),
+      new NgxDomPortalHost(_overlay, this._componentFactoryResolver, this._appRef, this._injector),
       _overlay,
       config,
       this._ngZone,

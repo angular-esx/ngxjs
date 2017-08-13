@@ -62,7 +62,7 @@ class NgxOverlayRef implements INgxPortalHost {
       throw new Error(`Invalid overlay. Overlay must have 'parentNode'.`);
     }
     if (!config || !config.positionStrategy || !config.scrollStrategy) {
-      throw new Error(`Invalid config. NgxOverlayConfig must have instances of IPositionStrategy and IScrollableStrategy.`);
+      throw new Error(`Invalid config. NgxOverlayConfig must have instances of INgxPositionStrategy and INgxScrollStrategy.`);
     }
 
     this._config = { ...(new NgxOverlayConfig()), ...config };

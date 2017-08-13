@@ -93,15 +93,20 @@ class NgxViewportService {
   }
 }
 
+function ngxViewportFactory (parentViewportService: NgxViewportService, scrollService: NgxScrollService, browserPlatformService: NgxBrowserPlatformService) {
+  return parentViewportService || new NgxViewportService(scrollService, browserPlatformService);
+}
 
-export { NgxViewportService };
+
+export {
+  NgxViewportService,
+  ngxViewportFactory,
+};
 /**
  * If there is already a NgxViewportService available, use that. Otherwise, provide a new one.
  */
 export const ngxViewportProvider = {
   provide: NgxViewportService,
   deps: [[new Optional(), new SkipSelf(), NgxViewportService], NgxScrollService, NgxBrowserPlatformService],
-  useFactory: (parentViewportService: NgxViewportService, scrollService: NgxScrollService, browserPlatformService: NgxBrowserPlatformService) => {
-    return parentViewportService || new NgxViewportService(scrollService, browserPlatformService);
-  },
+  useFactory: ngxViewportFactory,
 };
