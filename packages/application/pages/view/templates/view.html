@@ -1,8 +1,8 @@
 <ngx-view>
   <div
     class="ngx-ViewPage__Item"
-    *ngFor="let item of _items"
-    (click)="_select(item)"
+    *ngFor="let item of items"
+    (click)="select(item)"
   >
     {{ item.name }}
   </div>
@@ -10,10 +10,10 @@
 
 <div
   class="ngx-ViewPage__Alert"
-  [class.ngx-ViewPage__Alert_state_active]="!!_selectedItem"
-  (click)="_select()"
+  [class.ngx-ViewPage__Alert_state_active]="!!selectedItem"
+  (click)="select()"
 >
   <div class="ngx-ViewPage__AlertContent">
-    {{ _selectedItem?.name }}
+    {{ selectedItem?.name }}
   </div>
 </div>
