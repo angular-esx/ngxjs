@@ -33,6 +33,10 @@ If you setup as I remcommend, `stylelint` will run every you type, `eslint` will
 
 - **start:dashboard:** Start `webpack-dev-server` with enabled `HotModuleReplacement` && `WebpackDashboard`. **Recommend you should use this command if you're working on Mac, Linux** to get a nice webpack console.
 
+- **start:aot:** Do building aot then start `webpack-dev-server` to view result in browser. It isn't supported for HMR.
+
+- **Recommend you should use this command if you're working on Mac, Linux** to get a nice webpack console.
+
 - **test** Start `karma` for all files `spec.ts`
 
 - **test:custom** Start `karma` for required files in `_tests/custom.js`. `custom.js` is added into .gitignore, so if you need to run custom test, create it yourself then wrire code to require necessary files.
