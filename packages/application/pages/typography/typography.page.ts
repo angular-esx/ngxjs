@@ -26,11 +26,12 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 class TypographyPage implements AfterViewInit {
-  private _activeScript: string;
   private _scriptComponentRef: any;
 
   @ViewChild('scriptContainer', { read: ViewContainerRef })
   private _scriptViewContainerRef: ViewContainerRef;
+
+  activeScript: string;
 
   constructor (@Inject(ComponentFactoryResolver) private _componentResolver: ComponentFactoryResolver) {}
 
@@ -39,14 +40,14 @@ class TypographyPage implements AfterViewInit {
   }
 
   _display (script): void {
-    if (this._activeScript === script) { return; }
+    if (this.activeScript === script) { return; }
 
-    this._activeScript = script;
+    this.activeScript = script;
 
     if (this._scriptComponentRef) { this._scriptComponentRef.destroy(); }
 
     let _scriptComponent;
-    switch (this._activeScript) {
+    switch (this.activeScript) {
       case 'dense-script':
         _scriptComponent = DenseScriptComponent;
         break;

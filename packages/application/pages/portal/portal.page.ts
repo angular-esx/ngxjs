@@ -23,18 +23,17 @@ import {
   },
   encapsulation: ViewEncapsulation.None,
 })
-class PortalPage implements OnInit, AfterViewInit {
-  private _componentPortal: NgxComponentPortal<PortalComponentExample>;
-
+export class PortalPage implements OnInit, AfterViewInit {
   @ViewChild(NgxPortalHostDirective)
   private _portalHost: NgxPortalHostDirective;
 
   @ViewChild(NgxTemplatePortalDirective)
-  private _templatePortal: NgxTemplatePortalDirective;
+  templatePortal: NgxTemplatePortalDirective;
 
+  componentPortal: NgxComponentPortal<PortalComponentExample>;
 
   ngOnInit (): void {
-    this._componentPortal = new NgxComponentPortal(PortalComponentExample);
+    this.componentPortal = new NgxComponentPortal(PortalComponentExample);
   }
 
   ngAfterViewInit (): void {
@@ -43,7 +42,7 @@ class PortalPage implements OnInit, AfterViewInit {
     }, 5 * 1000);
 
     setTimeout(() => {
-      this._componentPortal = new NgxComponentPortal(PortalComponentExample);
+      this.componentPortal = new NgxComponentPortal(PortalComponentExample);
     }, 10 * 1000);
   }
 }
@@ -57,10 +56,4 @@ class PortalPage implements OnInit, AfterViewInit {
   `,
   encapsulation: ViewEncapsulation.None,
 })
-class PortalComponentExample {}
-
-
-export {
-  PortalPage,
-  PortalComponentExample,
-};
+export class PortalComponentExample {}

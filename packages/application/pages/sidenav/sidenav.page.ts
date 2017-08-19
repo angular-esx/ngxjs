@@ -15,14 +15,14 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 class SidenavPage {
-  private _isActiveLeftSidenav = true;
+  isActiveLeftSidenav = true;
 
-  private _resizeSidenav (event: { width: number, height: number }): void {
-    if (event.width <= 960 && this._isActiveLeftSidenav) {
-      this._isActiveLeftSidenav = false;
+  resizeSidenav (event: { width: number, height: number }): void {
+    if (event.width <= 960 && this.isActiveLeftSidenav) {
+      this.isActiveLeftSidenav = false;
     }
-    else if (event.width > 960 && !this._isActiveLeftSidenav) {
-      this._isActiveLeftSidenav = true;
+    else if (event.width > 960 && !this.isActiveLeftSidenav) {
+      this.isActiveLeftSidenav = true;
     }
   }
 }

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "declaration": true,
     "stripInternal": true,
     "experimentalDecorators": true,
@@ -12,7 +13,11 @@
     "typeRoots" : [
       "./node_modules/@types",
       "./packages/infrastructure/types"
-    ]
+    ],
+    "paths": {
+      "ngx-core": ["./packages/core"],
+      "ngx-infrastructure": ["./packages/infrastructure"]
+    }
   },
   "include": [
     "packages/application",

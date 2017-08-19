@@ -3,7 +3,7 @@
   <div class="ngx-DetailPage__AvailableDetails">
     <div
       class="ngx-DetailPage__AvailableDetail"
-      [class.ngx-DetailPage__AvailableDetail_state_active]="_activeDetail === 'dense-detail'"
+      [class.ngx-DetailPage__AvailableDetail_state_active]="activeDetail === 'dense-detail'"
       (click)="_display('dense-detail')"
     >
       Dense Detail
@@ -11,7 +11,7 @@
 
     <div
       class="ngx-DetailPage__AvailableDetail"
-      [class.ngx-DetailPage__AvailableDetail_state_active]="_activeDetail === 'english-detail'"
+      [class.ngx-DetailPage__AvailableDetail_state_active]="activeDetail === 'english-detail'"
       (click)="_display('english-detail')"
     >
       English Detail
@@ -19,7 +19,7 @@
 
     <div
       class="ngx-DetailPage__AvailableDetail"
-      [class.ngx-DetailPage__AvailableDetail_state_active]="_activeDetail === 'tall-detail'"
+      [class.ngx-DetailPage__AvailableDetail_state_active]="activeDetail === 'tall-detail'"
       (click)="_display('tall-detail')"
     >
       Tall Detail

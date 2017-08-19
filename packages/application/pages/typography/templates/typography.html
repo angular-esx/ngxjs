@@ -1,7 +1,7 @@
 <div class="ngx-TypographyPage__Scripts">
   <div
     class="ngx-TypographyPage__Script"
-    [class.ngx-TypographyPage__Script_state_active]="_activeScript === 'dense-script'"
+    [class.ngx-TypographyPage__Script_state_active]="activeScript === 'dense-script'"
     (click)="_display('dense-script')"
   >
     Dense Script
@@ -9,7 +9,7 @@
 
   <div
     class="ngx-TypographyPage__Script"
-    [class.ngx-TypographyPage__Script_state_active]="_activeScript === 'english-script'"
+    [class.ngx-TypographyPage__Script_state_active]="activeScript === 'english-script'"
     (click)="_display('english-script')"
   >
   English Script
@@ -17,7 +17,7 @@
 
   <div
     class="ngx-TypographyPage__Script"
-    [class.ngx-TypographyPage__Script_state_active]="_activeScript === 'tall-script'"
+    [class.ngx-TypographyPage__Script_state_active]="activeScript === 'tall-script'"
     (click)="_display('tall-script')"
   >
     Tall Script

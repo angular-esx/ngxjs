@@ -6,8 +6,6 @@ import {
 } from '@angular/core';
 
 
-type _ItemType = { name: string };
-
 @Component({
   selector: 'ngx-view-page',
   templateUrl: './templates/view.html',
@@ -18,19 +16,19 @@ type _ItemType = { name: string };
   encapsulation: ViewEncapsulation.None,
 })
 class ViewPage implements OnInit {
-  private _selectedItem: _ItemType;
-  private _items: Array<_ItemType>;
+  selectedItem: { name: string };
+  items: Array<{ name: string }>;
 
   ngOnInit (): void {
-    this._items = [];
+    this.items = [];
 
     for (let index = 0; index < 100; index++) {
-      this._items.push({ name: `Item ${index}` });
+      this.items.push({ name: `Item ${index}` });
     }
   }
 
-  _select (item) {
-    this._selectedItem = item;
+  select (item?: { name: string }) {
+    this.selectedItem = item;
   }
 }
 

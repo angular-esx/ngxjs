@@ -2,6 +2,7 @@ import { environment } from '../../packages/infrastructure';
 
 import { DevelopmentWebpackConfig } from './_webpack.dev';
 import { TesingWebpackConfig } from './_webpack.test';
+import { AotWebpackConfig } from './_webpack.aot';
 
 let _webpackConfig: Object;
 
@@ -11,6 +12,9 @@ if (environment.isDevelopment) {
 }
 else if (environment.isTesting) {
   _webpackConfig = new TesingWebpackConfig().build();
+}
+else if (environment.isAot) {
+  _webpackConfig = new AotWebpackConfig().build();
 }
 
 const webpackConfig: Object = _webpackConfig;

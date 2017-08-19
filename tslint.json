@@ -4,22 +4,25 @@
   ],
   "rules": {
     "adjacent-overload-signatures": true,
-    "member-ordering": [true,
-      "private-static-field",
-      "protected-static-field",
-      "public-static-field",
-      "public-static-method",
-      "protected-static-method",
-      "private-static-method",
-      "private-instance-field",
-      "protected-instance-field",
-      "public-instance-field",
-      "public-constructor",
-      "protected-constructor",
-      "private-constructor",
-      "public-instance-method",
-      "protected-instance-method",
-      "private-instance-method"
+    "member-ordering": [true, {
+        "order": [
+          "private-static-field",
+          "protected-static-field",
+          "public-static-field",
+          "public-static-method",
+          "protected-static-method",
+          "private-static-method",
+          "private-instance-field",
+          "protected-instance-field",
+          "public-instance-field",
+          "public-constructor",
+          "protected-constructor",
+          "private-constructor",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method"
+        ]
+      }
     ],
     "no-internal-module": true,
     "no-namespace": true,

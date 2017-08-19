@@ -132,15 +132,20 @@ class NgxScrollService {
   }
 }
 
+function ngxScrollFactory (parentScrollService: NgxScrollService, ngZone: NgZone, browserPlatformService: NgxBrowserPlatformService) {
+  return parentScrollService || new NgxScrollService(ngZone, browserPlatformService);
+}
 
-export { NgxScrollService };
+
+export {
+  NgxScrollService,
+  ngxScrollFactory,
+};
 /**
  * If there is already a NgxScrollService available, use that. Otherwise, provide a new one.
  */
 export const ngxScrollProvider = {
   provide: NgxScrollService,
   deps: [[new Optional(), new SkipSelf(), NgxScrollService], NgZone, NgxBrowserPlatformService],
-  useFactory: (parentScrollService: NgxScrollService, ngZone: NgZone, browserPlatformService: NgxBrowserPlatformService) => {
-    return parentScrollService || new NgxScrollService(ngZone, browserPlatformService);
-  },
+  useFactory: ngxScrollFactory,
 };

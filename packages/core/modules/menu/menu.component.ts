@@ -65,9 +65,10 @@ import { MenuItemDirective } from './menu-item.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class MenuComponent {
-  private _cssClass: Object;
   private _positionX: MenuPositionXType = 'after';
   private _positionY: MenuPositionYType = 'below';
+
+  cssClass: Object;
 
   get positionX() { return  this._positionX; }
   get positionY() { return  this._positionY; }
@@ -88,7 +89,7 @@ class MenuComponent {
   }
 
   setPositionClasses (positionX: MenuPositionXType, positionY: MenuPositionYType): void {
-    const _cssClass: any = {};
+    const cssClass: any = {};
 
     if (positionX) { this._positionX = positionX; }
     if (positionY) { this._positionY = positionY; }
@@ -96,21 +97,21 @@ class MenuComponent {
     if (this.initialClass) {
       this.initialClass
       .split(' ')
-      .forEach(item => { _cssClass[item] = true; });
+      .forEach(item => { cssClass[item] = true; });
     }
 
     if (['before', 'after'].some(item => item === this._positionX)) {
-      _cssClass[`ngx-MenuComponent__MenuPanel_position_${this._positionX}`] = true;
+      cssClass[`ngx-MenuComponent__MenuPanel_position_${this._positionX}`] = true;
     }
 
     if (['above', 'below'].some(item => item === this._positionY)) {
-      _cssClass[`ngx-MenuComponent__MenuPanel_position_${this._positionY}`] = true;
+      cssClass[`ngx-MenuComponent__MenuPanel_position_${this._positionY}`] = true;
     }
 
-    this._cssClass = _cssClass;
+    this.cssClass = cssClass;
   }
 
-  private _close (): void {
+  close (): void {
     this.closeEmitter.emit();
   }
 }

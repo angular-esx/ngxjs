@@ -192,13 +192,10 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
 
     this._positionStrategy = this._createPositionStrategy();
 
-    this._overlayRef = this._overlayService.create(
-      this._templatePortal.viewContainerRef,
-      {
+    this._overlayRef = this._overlayService.create({
         ...(this.config as NgxOverlayConfig),
         positionStrategy: this._positionStrategy,
-      },
-    );
+    });
   }
 
   protected _createPositionStrategy (): NgxConnectedPositionStrategy {

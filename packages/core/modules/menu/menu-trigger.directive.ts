@@ -129,7 +129,7 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
 
       const config = this._getOverlayConfig();
       this._subscribeToPositions(config.positionStrategy as NgxConnectedPositionStrategy);
-      this._overlayRef = this._overlayService.create(this._portal.viewContainerRef, config);
+      this._overlayRef = this._overlayService.create(config);
     }
   }
 

@@ -27,8 +27,9 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 class ListPage implements AfterViewInit {
-  private _activeList: string;
   private _listComponentRef: ComponentRef<any>;
+
+  activeList: string;
 
   @ViewChild('listContainer', { read: ViewContainerRef })
   _listViewContainerRef: ViewContainerRef;
@@ -41,14 +42,14 @@ class ListPage implements AfterViewInit {
   }
 
   _display (list): void {
-    if (this._activeList === list) { return; }
+    if (this.activeList === list) { return; }
 
-    this._activeList = list;
+    this.activeList = list;
 
     if (this._listComponentRef) { this._listComponentRef.destroy(); }
 
     let _listComponent;
-    switch (this._activeList) {
+    switch (this.activeList) {
       case 'dense-list':
         _listComponent = DenseListComponent;
         break;

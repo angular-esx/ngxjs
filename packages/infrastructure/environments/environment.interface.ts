@@ -4,6 +4,7 @@ interface IBaseEnvironment {
   fontHost: string;
   isDevelopment: boolean;
   isTesting: boolean;
+  isAot: boolean;
   isProduction: boolean;
 }
 

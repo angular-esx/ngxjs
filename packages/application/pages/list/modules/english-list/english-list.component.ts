@@ -15,7 +15,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 class EnglishListComponent implements OnInit {
-  private _dataSource: Array<{ name: string, contents: Array<string> }> = [];
+  dataSource: Array<{ name: string, contents: Array<string> }> = [];
 
   ngOnInit (): void {
     let _content = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ';
@@ -32,7 +32,7 @@ class EnglishListComponent implements OnInit {
       if (i % 2 === 0) { _item.contents.push(_content); }
       if (i % 3 === 0) { _item.contents.push(_content); }
 
-      this._dataSource.push(_item);
+      this.dataSource.push(_item);
     }
   }
 }

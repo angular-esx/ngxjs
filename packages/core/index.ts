@@ -1,4 +1,7 @@
 export {
+  NgxCardComponent,
+  NgxCardModule,
+
   NgxContainerComponent,
   NgxContainerModule,
 
@@ -61,20 +64,17 @@ export {
   NgxPortalHostDirective,
   NgxPortalModule,
 
+  NgxSidenavContainerComponent,
+  NgxSidenavComponent,
+  NgxSidenavItemComponent,
+  NgxSidenavModule,
+
   NgxTypographyConfig,
   NgxTypographyDirective,
   NgxTypographyModule,
 
   NgxViewComponent,
   NgxViewModule,
-
-  NgxCardComponent,
-  NgxCardModule,
-
-  NgxSidenavContainerComponent,
-  NgxSidenavComponent,
-  NgxSidenavItemComponent,
-  NgxSidenavModule,
 
   NgxUIModule,
 } from './modules';
