@@ -11,7 +11,7 @@ import {
   platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
 
-import { environment } from '../packages/infrastructure';
+import { getEnvironment } from '../packages/infrastructure';
 
 
 TestBed.initTestEnvironment(
@@ -19,8 +19,7 @@ TestBed.initTestEnvironment(
   platformBrowserDynamicTesting()
 );
 
-
-if (environment.isCustomMode) {
+if (getEnvironment().isCustomMode) {
   require('./custom');
 }
 else {
