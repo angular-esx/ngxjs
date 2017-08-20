@@ -5,11 +5,9 @@
   "envts": {
     "webpack_config": "./_configs/_webpack/index.ts",
     "webpack_dll_config": "./_configs/_webpack/index.dll.ts",
-    "universal_server": "./_dist/development/server.js",
-    "custom_test_file": "./_tests/custom.js"
+    "universal_server": "./_dist/development/server.js"
   },
   "scripts": {
-    "init": "npm i lerna@2.0.0-beta.31 -g && npm i && lerna bootstrap && touch $npm_package_envts_custom_test_file",
     "build-dll": "cross-env BUILD_ENV=development webpack --config $npm_package_envts_webpack_dll_config --progress",
     "build": "npm run build-dll && cross-env BUILD_ENV=development webpack --config $npm_package_envts_webpack_config --progress",
     "build:universal:browser": "cross-env BUILD_ENV=universal:browser webpack --config $npm_package_envts_webpack_config --progress",

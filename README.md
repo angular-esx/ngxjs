@@ -1,6 +1,14 @@
-### Init
-Run this command `npm run init`.
-It will in install `lerna` in global and necessary node modules then cross link packages under `packages` folder and create a empty file for custom tests in `_tests` folder.
+### Installation
+You need to install `lerna` in global, it's used to cross link packages under `packages` folder.
+```
+npm i lerna@2.0.0-beta.31 -g && npm i
+```
+
+### Bootstrap
+Run this command to cross link packages before working on source code and create a empty file for custom tests in `_tests` folder
+```
+ lerna bootstrap && touch ./_tests/custom.js
+```
 
 ### Lint
 `eslint` && `stylelint` are enabled for the source code.
