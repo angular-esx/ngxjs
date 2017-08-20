@@ -1,14 +1,8 @@
 /* eslint-disable no-param-reassign, import/no-extraneous-dependencies */
-import {
-  removeNgStyles,
-  createNewHosts,
-} from '@angularclass/hmr';
-import {
-  NgModule,
-  ApplicationRef,
-  Inject,
-} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { HttpTransferModule } from '@ngx-universal/state-transfer';
 
 import { NgxServiceModule } from 'ngx-core';
 
@@ -33,6 +27,7 @@ import { NgxApp } from './_app';
 @NgModule({
   imports: [
     BrowserModule,
+    HttpTransferModule.forRoot(),
     NgxServiceModule,
     CardPageModule,
     ContainerPageModule,
@@ -52,24 +47,7 @@ import { NgxApp } from './_app';
   declarations: [NgxApp],
   bootstrap: [NgxApp],
 })
-class NgxAppModule {
-  constructor (@Inject(ApplicationRef) private _appRef: ApplicationRef) {}
-
-  hmrOnInit (store): void { return; }
-
-  hmrOnDestroy (store): void {
-    const cmpLocation = this._appRef.components.map(cmp => cmp.location.nativeElement);
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-
-    removeNgStyles();
-  }
-
-  hmrAfterDestroy (store): void {
-    store.disposeOldHosts();
-
-    delete store.disposeOldHosts;
-  }
-}
+class NgxAppModule {}
 
 
 export { NgxAppModule };
