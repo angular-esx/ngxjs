@@ -5,6 +5,8 @@ interface IBaseEnvironment {
   isDevelopment: boolean;
   isTesting: boolean;
   isAot: boolean;
+  isUniversalBrowser: boolean;
+  isUniversalServer: boolean;
   isProduction: boolean;
 }
 

@@ -14,6 +14,10 @@ abstract class BaseEnvironment implements IBaseEnvironment {
 
   get isAot(): boolean { return false; }
 
+  get isUniversalBrowser(): boolean { return false; }
+
+  get isUniversalServer(): boolean { return false; }
+
   get isProduction(): boolean { return false; }
 }
 
