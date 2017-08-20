@@ -12,15 +12,23 @@ import * as CleanWebpackPlugin from 'clean-webpack-plugin';
 import * as CopyWebpackPlugin from 'copy-webpack-plugin';
 import * as autoprefixer from 'autoprefixer';
 
-import { environment } from '../../packages/infrastructure';
+import {
+  getEnvironment,
+  IBaseEnvironment,
+} from '../../packages/infrastructure';
 
 
 class BaseWebpackConfig {
-  protected readonly _CONTEXT: string = path.resolve(__dirname, '../..');
+  private readonly _ENVIRONMENT = getEnvironment();
 
+  protected readonly _CONTEXT: string = path.resolve(__dirname, '../..');
   protected _CONSTANTS: any;
   protected _POLYFILLS: any;
   protected _VENDORS: any;
+
+  protected get _environment(): IBaseEnvironment {
+    return this._ENVIRONMENT;
+  }
 
   build (): Object {
     return merge(
@@ -87,10 +95,12 @@ class BaseWebpackConfig {
         test: /\.ts$/,
         use: [
           'ts-loader',
-          '@angularclass/hmr-loader',
           'ngx-template-loader',
         ],
-        exclude: EXCLUDE_MODULES,
+        exclude: [
+          ...EXCLUDE_MODULES,
+          /\.spec\.ts$/
+        ],
       },
     ];
 
@@ -123,7 +133,24 @@ class BaseWebpackConfig {
     return { rules };
   }
 
-  protected _getStyleLoader (): Object { return undefined; }
+  protected _getStyleLoader (): Object {
+    const { INCLUDE_STYLES } = this._getConstants();
+
+    const rules = [
+      {
+        test: /\.scss$/,
+        use: [
+          'to-string-loader',
+          'css-loader?sourceMap',
+          'postcss-loader',
+          'sass-loader?sourceMap',
+        ],
+        include: INCLUDE_STYLES,
+      },
+    ];
+
+    return { rules };
+  }
 
   /* ---------------------Plugins---------------------*/
 
@@ -218,9 +245,9 @@ class BaseWebpackConfig {
             data: `
               @import 'themes/default/index.scss';
               $CURRENT_THEME: $ngx-default-theme;
-              $ASSET_HOST: '${environment.assetHost}';
-              $IMAGE_HOST: '${environment.imageHost}';
-              $FONT_HOST: '${environment.fontHost}';
+              $ASSET_HOST: '${this._environment.assetHost}';
+              $IMAGE_HOST: '${this._environment.imageHost}';
+              $FONT_HOST: '${this._environment.fontHost}';
             `,
             includePaths: [
               PATHS.APPLICATION_NODE_MODULES,
@@ -301,9 +328,10 @@ class BaseWebpackConfig {
       const { PATHS } = this._getConstants();
 
       this._POLYFILLS = [
-        this._joinPaths(PATHS.NODE_MODULES, 'zone.js'),
         this._joinPaths(PATHS.NODE_MODULES, 'core-js/es6/reflect'),
         this._joinPaths(PATHS.NODE_MODULES, 'core-js/es7/reflect'),
+        this._joinPaths(PATHS.NODE_MODULES, 'rxjs'),
+        this._joinPaths(PATHS.NODE_MODULES, 'zone.js'),
       ];
     }
 
