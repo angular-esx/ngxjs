@@ -79,8 +79,8 @@ class NgxScrollService {
     if (!this._globalSubscription) {
       this._globalSubscription = this._ngZone.runOutsideAngular(() => {
         return Observable.merge(
-          Observable.fromEvent(window.document, 'scroll'),
-          Observable.fromEvent(window, 'resize')
+          Observable.fromEvent(this._browserPlatformService.document, 'scroll'),
+          Observable.fromEvent(this._browserPlatformService.window, 'resize')
         ).subscribe(() => this._scrollSubject.next());
       });
     }

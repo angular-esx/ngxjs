@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgxOverlayModule } from '../overlay';
 
@@ -14,7 +14,7 @@ import { MenuTriggerDirective } from './menu-trigger.directive';
   imports: [
     CommonModule,
     NgxOverlayModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
   ],
   declarations: [MenuComponent, MenuItemDirective, MenuTriggerDirective],
   exports: [MenuComponent, MenuItemDirective, MenuTriggerDirective],

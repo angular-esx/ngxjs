@@ -154,7 +154,7 @@ class NgxOverlayRef implements INgxPortalHost {
   }
 
   protected _attachBackdrop (): void {
-    this._backdropElement = document.createElement('div');
+    this._backdropElement = this._browserPlatformService.document.createElement('div');
     this._backdropElement.classList.add(NGX_OVERLAY.BACKDROP_CLASS);
     this._backdropElement.classList.add(this._config.backdropClass);
 

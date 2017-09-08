@@ -1,6 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { NgxAppModule } from './_app.module';
+import { NgxHmrAppModule } from './_app.module.hmr';
 
 
-platformBrowserDynamic().bootstrapModule(NgxAppModule);
+platformBrowserDynamic().bootstrapModule(NgxHmrAppModule);

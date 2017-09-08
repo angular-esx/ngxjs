@@ -1,5 +1,3 @@
-import { environment } from '../../packages/infrastructure';
-
 import { BaseWebpackConfig } from './_webpack.base';
 
 
@@ -15,26 +13,23 @@ class TesingWebpackConfig extends BaseWebpackConfig {
 
   /* ---------------------Loaders---------------------*/
 
-  protected _getIndexTemplateLoader (): Object { return undefined; }
-
-  protected _getStyleLoader (): Object {
-    const { INCLUDE_STYLES } = this._getConstants();
-
+  protected _getCompileLoader (): Object {
+    const { EXCLUDE_MODULES } = this._getConstants();
     const rules = [
       {
-        test: /\.scss$/,
+        test: /\.ts$/,
         use: [
-          'to-string-loader',
-          'css-loader?sourceMap',
-          'postcss-loader',
-          'sass-loader?sourceMap',
+          'ts-loader',
+          'ngx-template-loader',
         ],
-        include: INCLUDE_STYLES,
+        exclude: EXCLUDE_MODULES,
       },
     ];
 
     return { rules };
   }
+
+  protected _getIndexTemplateLoader (): Object { return undefined; }
 
   /* ---------------------Plugins---------------------*/
 

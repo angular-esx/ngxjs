@@ -1,9 +1,10 @@
 import {
+  PLATFORM_ID,
   Injectable,
   Inject,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
-
 
 /**
  * Service to detect the current platform by comparing the userAgent strings and
@@ -17,7 +18,7 @@ class NgxBrowserPlatformService {
    */
   protected readonly _hasV8BreakIterator: boolean = (typeof(Intl) !== 'undefined' && (Intl as any).v8BreakIterator);
 
-  readonly isBrowser: boolean = typeof this.document === 'object' && !!this.document;
+  readonly isBrowser = isPlatformBrowser(this._platformId);
 
   readonly isEdge = this.isBrowser && /(edge)/i.test(navigator.userAgent);
 
@@ -52,11 +53,14 @@ class NgxBrowserPlatformService {
   readonly isIOS = this.isBrowser && /iPad|iPhone|iPod/.test(navigator.userAgent) && !this.window.MSStream;
 
   get window(): any {
-    return window;
+    return this.isBrowser ? window : null;
   }
 
 
-  constructor (@Inject(DOCUMENT) public document: any) {}
+  constructor (
+    @Inject(PLATFORM_ID) private _platformId: any,
+    @Inject(DOCUMENT) public document: any
+  ) {}
 }
 
 

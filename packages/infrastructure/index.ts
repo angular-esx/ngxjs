@@ -1,5 +1,5 @@
 export {
-  environment,
+  getEnvironment,
   IBaseEnvironment,
   IDevelopmentEnvironment,
   ITestingEnvironment,

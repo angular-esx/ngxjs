@@ -5,9 +5,9 @@ npm i lerna@2.0.0-beta.31 -g && npm i
 ```
 
 ### Bootstrap
-Run this command to cross link packages before working on source code.
+Run this command to cross link packages before working on source code and create a empty file for custom tests in `_tests` folder
 ```
- lerna bootstrap
+ lerna bootstrap && touch ./_tests/custom.js
 ```
 
 ### Lint
@@ -34,6 +34,8 @@ If you setup as I remcommend, `stylelint` will run every you type, `eslint` will
 - **start:dashboard:** Start `webpack-dev-server` with enabled `HotModuleReplacement` && `WebpackDashboard`. **Recommend you should use this command if you're working on Mac, Linux** to get a nice webpack console.
 
 - **start:aot:** Do building aot then start `webpack-dev-server` to view result in browser. It isn't supported for HMR.
+
+- **start:universal:** Do buiding universal then start `express server` to view result in browser. It isn't supported for HMR.
 
 - **Recommend you should use this command if you're working on Mac, Linux** to get a nice webpack console.
 

@@ -292,6 +292,7 @@ class NgxConnectedPositionStrategy implements INgxPositionStrategy {
     overlayRect: ClientRect,
     overlayPoint: NgxPointType,
     position: NgxConnectionPositionPairType): void {
+    const { document } = this._browserPlatformService;
     /**
      * We want to set either `top` or `bottom` based on whether the overlay wants to appear above
      * or below the origin and the direction in which the element will expand.

@@ -6,7 +6,7 @@ import * as merge from 'webpack-merge';
 import * as DashboardPlugin from 'webpack-dashboard/plugin';
 import * as AddAssetHtmlPlugin from 'add-asset-html-webpack-plugin';
 
-import { environment, IDevelopmentEnvironment } from '../../packages/infrastructure';
+import { IDevelopmentEnvironment } from '../../packages/infrastructure';
 
 import { BaseWebpackConfig } from './_webpack.base';
 
@@ -14,10 +14,6 @@ import { BaseWebpackConfig } from './_webpack.base';
 class DevelopmentWebpackConfig extends BaseWebpackConfig {
   private readonly _SERVER_DEV_HOST: string = 'localhost';
   private readonly _SERVER_DEV_PORT: string = '8080';
-
-  private get _environment(): IDevelopmentEnvironment {
-    return environment as IDevelopmentEnvironment;
-  }
 
   /* ---------------------Configs---------------------*/
 
@@ -54,7 +50,7 @@ class DevelopmentWebpackConfig extends BaseWebpackConfig {
       new NamedModulesPlugin(),
     ];
 
-    if (this._environment.enableDashboard) {
+    if ((this._environment as IDevelopmentEnvironment).enableDashboard) {
       plugins.push(new DashboardPlugin());
     }
 
@@ -101,19 +97,20 @@ class DevelopmentWebpackConfig extends BaseWebpackConfig {
 
   /* ---------------------Loaders---------------------*/
 
-  protected _getStyleLoader (): Object {
-    const { INCLUDE_STYLES } = this._getConstants();
-
+  protected _getCompileLoader (): Object {
+    const { EXCLUDE_MODULES } = this._getConstants();
     const rules = [
       {
-        test: /\.scss$/,
+        test: /\.ts$/,
         use: [
-          'to-string-loader',
-          'css-loader?sourceMap',
-          'postcss-loader',
-          'sass-loader?sourceMap',
+          'ts-loader',
+          '@angularclass/hmr-loader',
+          'ngx-template-loader',
         ],
-        include: INCLUDE_STYLES,
+        exclude: [
+          ...EXCLUDE_MODULES,
+          /\.spec\.ts$/
+        ],
       },
     ];
 
@@ -121,6 +118,7 @@ class DevelopmentWebpackConfig extends BaseWebpackConfig {
   }
 
   /* ---------------------Plugins---------------------*/
+
   protected _getDllPlugin (): Object {
     const { PATHS } = this._getConstants();
 
