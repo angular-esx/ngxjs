@@ -49,7 +49,6 @@ export = (config) => {
       startTunnel: false,
       retryLimit: 1,
       timeout: 600,
-      pollingTimeout: 20000,
       video: false,
     },
     customLaunchers: {

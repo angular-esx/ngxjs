@@ -1,4 +1,7 @@
-import { ComponentRef } from '@angular/core';
+import {
+  ComponentRef,
+  EmbeddedViewRef,
+} from '@angular/core';
 
 import {
   isNull,
@@ -27,7 +30,7 @@ abstract class NgxBasePortalHost implements INgxPortalHost {
     return isNotNull(this._attachedPortal);
   }
 
-  attachTemplate (portal: INgxTemplatePortal): Map<string, any> {
+  attachTemplate<T> (portal: INgxTemplatePortal<T>): EmbeddedViewRef<T> {
     this._attach(portal);
 
     return this._attachTemplatePortal(portal);
@@ -63,6 +66,10 @@ abstract class NgxBasePortalHost implements INgxPortalHost {
     this._isDisposed = true;
   }
 
+  protected abstract _attachComponentPortal<T> (portal: INgxComponentPortal<T>): ComponentRef<T>;
+
+  protected abstract _attachTemplatePortal<T> (portal: INgxTemplatePortal<T>): EmbeddedViewRef<T>;
+
   private _attach (portal: INgxPortal): void {
     if (isNull(portal)) {
       throw new Error('Portal is required');
@@ -83,10 +90,6 @@ abstract class NgxBasePortalHost implements INgxPortalHost {
     portal.attachedByHost(this);
     this._attachedPortal = portal;
   }
-
-  protected abstract _attachComponentPortal<T> (portal: INgxComponentPortal<T>): ComponentRef<T>;
-
-  protected abstract _attachTemplatePortal (portal: INgxTemplatePortal): Map<string, any>;
 }
 
 

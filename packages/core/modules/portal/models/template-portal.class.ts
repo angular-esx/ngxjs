@@ -14,18 +14,10 @@ import {
 import { NgxBasePortal } from './base-portal.class';
 
 
-class NgxTemplatePortal
+class NgxTemplatePortal<T>
   extends NgxBasePortal
-  implements INgxTemplatePortal
+  implements INgxTemplatePortal<T>
 {
-  /**
-   * Additional locals for the instantiated embedded view.
-   * These locals can be seen as "exports" for the template, such as how ngFor has
-   * index / event / odd.
-   * See https://angular.io/docs/ts/latest/api/core/EmbeddedViewRef-class.html
-   */
-  protected _locals: Map<string, any> = new Map<string, any>();
-
   get templateRef(): TemplateRef<any> {
     return this._templateRef;
   }
@@ -34,8 +26,8 @@ class NgxTemplatePortal
     return this._viewContainerRef;
   }
 
-  get locals(): Map<string, any> {
-    return this._locals;
+  get context(): T {
+    return this._context;
   }
 
   /**
@@ -44,19 +36,21 @@ class NgxTemplatePortal
    */
   constructor (
     protected _templateRef: TemplateRef<any>,
-    protected _viewContainerRef: ViewContainerRef
+    protected _viewContainerRef: ViewContainerRef,
+    protected _context?: T
   ) {
     super();
   }
 
-  attach (host: INgxPortalHost, locals?: Map<string, any>): Map<string, any> {
-    this._locals = isNull(locals) ? new Map<string, any>() : locals;
+  attach (host: INgxPortalHost, context?: T | undefined): T {
+    if (context) { this._context = context; }
 
     return super.attach(host);
   }
 
   detach (): void {
-    this._locals = new Map<string, any>();
+    this._context = undefined;
+
     return super.detach();
   }
 

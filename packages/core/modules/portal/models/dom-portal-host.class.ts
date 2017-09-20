@@ -34,31 +34,30 @@ class NgxDomPortalHost extends NgxBasePortalHost {
     }
   }
 
-  protected _attachTemplatePortal (portal: INgxTemplatePortal): Map<string, any> {
+  protected _attachTemplatePortal<T> (portal: INgxTemplatePortal<T>): EmbeddedViewRef<T> {
     const _viewContainerRef = portal.viewContainerRef;
-    const _viewRef = _viewContainerRef.createEmbeddedView(portal.templateRef);
-    _viewRef.detectChanges();
+    const _embeddedViewRef = _viewContainerRef.createEmbeddedView(portal.templateRef, portal.context);
+    _embeddedViewRef.detectChanges();
     /**
      * The method `createEmbeddedView` will add the view as a child of the viewContainer.
-     * But for the NgxDomPortalHost the view can be added everywhere in the DOM (e.g Overlay Container)
+     * But for the NgxDomPortalHost the view can be added everywhere in the DOM
      * To move the view to the specified host element. We just re-append the existing root nodes
      */
-    _viewRef.rootNodes.forEach(rootNode => this._hostDomElement.appendChild(rootNode));
+    _embeddedViewRef.rootNodes.forEach(rootNode => this._hostDomElement.appendChild(rootNode));
 
     this._disposeFunc = () => {
-      const _index = _viewContainerRef.indexOf(_viewRef);
+      const _index = _viewContainerRef.indexOf(_embeddedViewRef);
       if (_index !== -1) {
         _viewContainerRef.remove(_index);
       }
     };
 
-    return new Map<string, any>();
+    return _embeddedViewRef;
   }
 
   protected _attachComponentPortal<T> (portal: INgxComponentPortal<T>): ComponentRef<T> {
     const _componentFactory = this._componentFactoryResolver.resolveComponentFactory(portal.componentType);
     let componentRef: ComponentRef<T>;
-
     /**
      * If the portal specifies a ViewContainerRef, we will use that as the attachment point
      * for the component (in terms of Angular's component tree, not rendering).

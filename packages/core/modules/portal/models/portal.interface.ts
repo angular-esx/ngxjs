@@ -2,6 +2,7 @@ import {
   ComponentRef,
   ElementRef,
   TemplateRef,
+  EmbeddedViewRef,
   ViewContainerRef,
   Injector,
   Type,
@@ -24,7 +25,7 @@ export interface INgxPortal {
 export interface INgxPortalHost {
   readonly hasAttached: boolean;
 
-  attachTemplate (portal: INgxTemplatePortal): Map<string, any>;
+  attachTemplate<T> (portal: INgxTemplatePortal<T>): EmbeddedViewRef<T>;
 
   attachComponent<T> (portal: INgxComponentPortal<T>): ComponentRef<T>;
 
@@ -33,12 +34,12 @@ export interface INgxPortalHost {
   dispose (): void;
 }
 
-export interface INgxTemplatePortal extends INgxPortal {
-  readonly templateRef: TemplateRef<Map<string, any>>;
+export interface INgxTemplatePortal<T> extends INgxPortal {
+  readonly templateRef: TemplateRef<T>;
   readonly viewContainerRef: ViewContainerRef;
-  readonly locals: Map<string, any>;
+  readonly context: T | undefined;
 
-  attach (host: INgxPortalHost, locals?: Map<string, any>): Map<string, any>;
+  attach (host: INgxPortalHost, context?: T | undefined): T;
 }
 
 export interface INgxComponentPortal<T> extends INgxPortal {

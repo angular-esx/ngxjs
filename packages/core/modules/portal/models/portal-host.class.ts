@@ -1,6 +1,7 @@
 import {
   ComponentRef,
   ComponentFactoryResolver,
+  EmbeddedViewRef,
   ViewContainerRef,
 } from '@angular/core';
 
@@ -22,11 +23,10 @@ class NgxPortalHost extends NgxBasePortalHost {
     super();
   }
 
-  protected _attachTemplatePortal (portal: INgxTemplatePortal): Map<string, any> {
-    this._viewContainerRef.createEmbeddedView(portal.templateRef);
+  protected _attachTemplatePortal<T> (portal: INgxTemplatePortal<T>): EmbeddedViewRef<T> {
     this._disposeFunc = () => this._viewContainerRef.clear();
 
-    return new Map<string, any>();
+    return this._viewContainerRef.createEmbeddedView(portal.templateRef);
   }
 
   protected _attachComponentPortal<T> (portal: INgxComponentPortal<T>): ComponentRef<T> {

@@ -15,7 +15,6 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { NgxTemplatePortal } from '../portal';
 import {
-  NGX_OVERLAY,
   NgxHorizontalConnectionPositionType,
   NgxVerticalConnectionPositionType,
   NgxConnectionPositionType,
@@ -23,7 +22,9 @@ import {
   NgxOverlayConfig,
   NgxOverlayRef,
   NgxConnectedPositionStrategy,
+  NgxOverlayContainerService,
   NgxPositionStrategyService,
+  NgxScrollStrategyService,
   NgxOverlayService,
 } from '../overlay';
 
@@ -40,7 +41,7 @@ import { MenuPositionXType, MenuPositionYType } from './models';
 })
 class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   private _menuOpened: boolean = false;
-  private _portal: NgxTemplatePortal;
+  private _portal: NgxTemplatePortal<any>;
   private _overlayRef: NgxOverlayRef;
   private _backdropSubscription: Subscription;
   private _positionSubscription: Subscription;
@@ -56,6 +57,8 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   constructor (
     @Inject(ElementRef) private _elementRef: ElementRef,
     @Inject(ViewContainerRef) private _viewContainerRef: ViewContainerRef,
+    @Inject(NgxOverlayContainerService) private _overlayContainerService: NgxOverlayContainerService,
+    @Inject(NgxScrollStrategyService) private _scrollStrategyService: NgxScrollStrategyService,
     @Inject(NgxPositionStrategyService) private _positionStrategyService: NgxPositionStrategyService,
     @Inject(NgxOverlayService) private _overlayService: NgxOverlayService,
   ) {}
@@ -134,12 +137,14 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   }
 
   private _getOverlayConfig (): NgxOverlayConfig {
-    const overlayState = new NgxOverlayConfig();
-    overlayState.positionStrategy = this._getPosition();
-    overlayState.hasBackdrop = true;
-    overlayState.backdropClass = NGX_OVERLAY.BACKDROP_VARIANT_TRANSPARENT_CLASS;
+    const overlayConfig = new NgxOverlayConfig();
+    overlayConfig.container = this._overlayContainerService.createOverlayContainer();
+    overlayConfig.scrollStrategy = this._scrollStrategyService.createNoopScrollStrategy();
+    overlayConfig.positionStrategy = this._getPosition();
+    overlayConfig.hasBackdrop = true;
+    overlayConfig.backdropClass = 'ngx-OverlayBackdrop_variant_transparent';
 
-    return overlayState;
+    return overlayConfig;
   }
 
   private _getPosition (): NgxConnectedPositionStrategy  {
@@ -157,12 +162,13 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
       _fallbackOriginY = _fallbackOverlayY === 'top' ? 'bottom' : 'top';
     }
 
-    const strategy = this._positionStrategyService.createConnectedPositionStrategy(
+    return this._positionStrategyService
+    .createConnectedPositionStrategy(
       this._elementRef.nativeElement,
       { x: _positionX, y: _originY } as NgxConnectionPositionType,
       { x: _positionX, y: _overlayY }  as NgxConnectionPositionType
-    );
-    strategy.fallbackPositions = [
+    )
+    .addFallbackPositions(
       {
         origin: { x: _fallbackX, y: _originY },
         overlay: { x: _fallbackX, y: _overlayY },
@@ -175,9 +181,7 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
         origin: { x: _fallbackX, y: _fallbackOriginY },
         overlay: { x: _fallbackX, y: _fallbackOverlayY },
       } as NgxConnectionPositionPairType,
-    ];
-
-    return strategy;
+    );
   }
   /*
     Listens to changes in the position of the overlay and sets the correct classes
