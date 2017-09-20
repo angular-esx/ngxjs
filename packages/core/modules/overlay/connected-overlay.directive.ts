@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs/Subscription';
 import {
   parseNumber,
   parseBoolean,
+  unsubscribe,
 } from 'ngx-infrastructure';
 
 import {
@@ -36,6 +37,7 @@ import {
   NgxRepositionScrollStrategy,
 } from './models';
 import {
+  NgxOverlayContainerService,
   NgxPositionStrategyService,
   NgxScrollStrategyService,
   NgxOverlayService,
@@ -51,8 +53,10 @@ import { NgxOriginOverlayDirective } from './origin-overlay.directive';
   exportAs: 'ngxConnectedOverlay',
 })
 class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
+  protected _immutableProperties = ['originOverlay', 'container', 'scrollStrategy'];
+
   protected _overlayRef: NgxOverlayRef;
-  protected _templatePortal: NgxTemplatePortal;
+  protected _templatePortal: NgxTemplatePortal<any>;
   protected _positionStrategy: NgxConnectedPositionStrategy;
   protected _listeners: Array<Function> = [];
 
@@ -69,6 +73,7 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
   constructor (
     @Inject(TemplateRef) templateRef: TemplateRef<any>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
+    @Inject(NgxOverlayContainerService) protected _overlayContainerService: NgxOverlayContainerService,
     @Inject(NgxPositionStrategyService) protected _positionStrategyService: NgxPositionStrategyService,
     @Inject(NgxScrollStrategyService) protected _scrollStrategyService: NgxScrollStrategyService,
     @Inject(NgxOverlayService) protected _overlayService: NgxOverlayService,
@@ -79,30 +84,20 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
   }
 
   ngOnChanges (changes: SimpleChanges): void {
-    const _isFirstChange = changes['config'].isFirstChange;
     const _currentConfig = changes['config'].currentValue as NgxConnectedOverlayConfig;
     const _previousConfig = changes['config'].previousValue as NgxConnectedOverlayConfig;
 
-    if (!_currentConfig) {
-      throw new Error('NgxConnectedOverlay require a config.');
-    }
-    if (!_currentConfig.originOverlay) {
-      throw new Error('NgxConnectedOverlayConfig require originOverlay.');
-    }
+    if (!_currentConfig || !_currentConfig.originOverlay) { return; }
 
-    if (_isFirstChange || _currentConfig.isActive !== _previousConfig.isActive) {
-      _currentConfig.isActive ? this._attachOverlay() : this._detachOverlay();
+    if (_previousConfig) {
+      if (this._immutableProperties.some(prop => _currentConfig[prop] !== _previousConfig[prop])) {
+        this._destroyOverlay();
+      }
+      else if (_previousConfig.isActive) {
+        this._detachOverlay();
+      }
     }
-    else if (
-      !_isFirstChange &&
-      (
-        _currentConfig.offsetX !== _previousConfig.offsetX ||
-        _currentConfig.offsetY !== _previousConfig.offsetY ||
-        _currentConfig.originOverlay !== _previousConfig.originOverlay ||
-        _currentConfig.connectedPositions !== _previousConfig.connectedPositions
-      )
-    ) {
-      this._destroyOverlay();
+    if (_currentConfig.isActive) {
       this._attachOverlay();
     }
   }
@@ -110,15 +105,15 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
   ngOnDestroy (): void {
     this._destroyOverlay();
   }
-  /**
-   * Attaches the overlay and subscribes to backdrop clicks if backdrop exists
-   */
+
   protected _attachOverlay (): void {
     if (!this._overlayRef) {
-      this._createOverlay();
+      this._overlayRef = this._overlayService.create(this._createOverlayConfig());
+    }
+    else if (!this._overlayRef.hasAttached) {
+      this._overlayRef.config = this._createOverlayConfig();
     }
 
-    this._overlayRef.config.direction = this.config.direction;
     this._registerListeners();
 
     if (!this._overlayRef.hasAttached) {
@@ -134,29 +129,12 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
       });
     }
   }
-  /**
-   * Detaches the overlay and unsubscribes to backdrop clicks if backdrop exists
-   */
+
   protected _detachOverlay (): void {
     if (this._overlayRef) {
       this._overlayRef.detach();
 
       if (this.config.onDetach) { this.config.onDetach(); }
-    }
-
-    if (this._backdropSubscription) {
-      this._backdropSubscription.unsubscribe();
-      this._backdropSubscription = null;
-    }
-
-    this._listeners.forEach(func => func());
-  }
-  /**
-   * Destroys the overlay created by this directive.
-   */
-  protected _destroyOverlay () {
-    if (this._overlayRef) {
-      this._overlayRef.dispose();
     }
 
     if (this._backdropSubscription) {
@@ -170,9 +148,32 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
     }
 
     this._listeners.forEach(func => func());
+    this._listeners = [];
   }
 
-  protected _createOverlay () {
+  protected _destroyOverlay (): void {
+    if (this._overlayRef) {
+      this._overlayRef.dispose();
+      this._overlayRef = null;
+
+      if (this.config.onDetach) { this.config.onDetach(); }
+    }
+
+    if (this._backdropSubscription) {
+      this._backdropSubscription.unsubscribe();
+      this._backdropSubscription = null;
+    }
+
+    if (this._positionSubscription) {
+      this._positionSubscription.unsubscribe();
+      this._positionSubscription = null;
+    }
+
+    this._listeners.forEach(func => func());
+    this._listeners = [];
+  }
+
+  protected _createOverlayConfig (): NgxOverlayConfig {
     if (!this.config.connectedPositions || this.config.connectedPositions.length === 0) {
       this.config.connectedPositions = [
         {
@@ -186,16 +187,39 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
       ];
     }
 
+    if (this._overlayRef && !this._overlayRef.hasAttached) {
+      (this.overlayRef.config.positionStrategy as NgxConnectedPositionStrategy)
+      .setDirection(this.config.direction)
+      .setOffsetX(this.config.offsetX)
+      .setOffsetY(this.config.offsetY)
+      .clearFallbackPositions()
+      .addFallbackPositions(...this.config.connectedPositions);
+
+      const _config = {};
+      Object.keys(this.config)
+      .filter(key => this._immutableProperties.indexOf(key) === -1)
+      .forEach(key => _config[key] = this.config[key]);
+
+      return {
+        ...this.overlayRef.config,
+        ..._config,
+      } as NgxOverlayConfig;
+    }
+
+    if (!this.config.container) {
+      this.config.container = this._overlayContainerService.createOverlayContainer();
+    }
+
     if (!this.config.scrollStrategy) {
       this.config.scrollStrategy = this._scrollStrategyService.createRepositionScrollStrategy();
     }
 
     this._positionStrategy = this._createPositionStrategy();
 
-    this._overlayRef = this._overlayService.create({
-        ...(this.config as NgxOverlayConfig),
-        positionStrategy: this._positionStrategy,
-    });
+    return {
+      ...(this.config as NgxOverlayConfig),
+      positionStrategy: this._positionStrategy,
+    };
   }
 
   protected _createPositionStrategy (): NgxConnectedPositionStrategy {
@@ -205,11 +229,11 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
       this.config.originOverlay.nativeElement,
       { x: _position.origin.x, y: _position.origin.y },
       { x: _position.overlay.x, y: _position.overlay.y }
-    );
-    strategy.direction = this.config.direction;
-    strategy.offsetX = this.config.offsetX;
-    strategy.offsetY = this.config.offsetY;
-    strategy.fallbackPositions = this.config.connectedPositions;
+    )
+    .setDirection(this.config.direction)
+    .setOffsetX(this.config.offsetX)
+    .setOffsetY(this.config.offsetY)
+    .addFallbackPositions(...(this.config.connectedPositions).filter((item, index) => index > 0));
 
     this._positionSubscription = strategy.positionChange$
     .subscribe(event => {

@@ -18,10 +18,12 @@ export {
   NgxNoopScrollStrategy,
   NgxRepositionScrollStrategy,
   NgxRepositionScrollStrategyConfig,
-  NGX_OVERLAY,
   NgxOverlayConfig,
   NgxConnectedOverlayConfig,
   NgxOverlayRef,
+  INgxOverlayContainer,
+  NgxOverlayContainer,
+  NgxFullscreenOverlayContainer,
 } from './models';
 
 export {
@@ -30,6 +32,7 @@ export {
   NgxScrollService,
   NgxViewportService,
   NgxOverlayService,
+  NgxOverlayContainerService,
 } from './services';
 
 export { NgxScrollableDirective } from './scrollabe.directive';

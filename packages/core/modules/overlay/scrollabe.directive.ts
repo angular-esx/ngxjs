@@ -43,7 +43,7 @@ class NgxScrollableDirective implements INgxScrollable, OnInit, OnDestroy {
 
 
   constructor (
-    @Inject(ElementRef) protected _elementRef,
+    @Inject(ElementRef) protected _elementRef: ElementRef,
     @Inject(NgZone) protected _ngZone: NgZone,
     @Inject(NgxScrollService) protected _scrollService: NgxScrollService,
     @Inject(NgxRenderService) renderService: NgxRenderService,

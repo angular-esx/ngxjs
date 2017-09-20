@@ -27,20 +27,19 @@ class NgxRepositionScrollStrategy implements INgxScrollStrategy {
   }
 
 
-  attach (overlayRef: NgxOverlayRef): void {
-    if (this._overlayRef) {
-      throw new Error('Scroll strategy has already been attached.');
-    }
-
+  attach (overlayRef: NgxOverlayRef): this {
     this._overlayRef = overlayRef;
+
+    return this;
   }
 
   enable (): void {
     if (!this._subscription) {
       this._subscription = this._scrollService.subscribe(() => {
-        this._overlayRef.updatePosition();
-      },
-      this._config.scrollThrottle);
+          this._overlayRef.config.positionStrategy.apply();
+        },
+        this._config.scrollThrottle
+      );
     }
   }
 

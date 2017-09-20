@@ -12,7 +12,7 @@
 // This makes centering the overlay easy without running into the subpixel rendering
 // problems tied to using `transform` and without interfering with the other position
 // strategies.
-.ngx-OverlayContainer_type_global {
+.ngx-OverlayPositionStrategy_type_global {
   position: absolute;
   display: flex;
 }
@@ -24,7 +24,7 @@
   pointer-events: auto;
 }
 
-.ngx-Overlay__Backdrop {
+.ngx-OverlayBackdrop {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -36,14 +36,27 @@
   opacity: 0;
   pointer-events: auto;
 
-  &.ngx-Overlay__Backdrop_state_active {
+  &.ngx-OverlayBackdrop_state_active {
     opacity: .54;
   }
 
-  &.ngx-Overlay__Backdrop_variant_dark {
+  &.ngx-OverlayBackdrop_variant_dark {
     background-color: map-get($ngx-overlay-theme, backdrop-background-dark);
   }
-  &.ngx-Overlay__Backdrop_variant_transparent {
+  &.ngx-OverlayBackdrop_variant_transparent {
     background-color: none;
   }
+}
+
+// Used when disabling global scrolling.
+.ngx-OverlayScrollStrategy_type_block {
+  position: fixed;
+  // Necessary for the content not to lose its width. Note that we're using 100%, instead of
+  // 100vw, because 100vw includes the width plus the scrollbar, whereas 100% is the width
+  // that the element had before we made it `fixed`.
+  width: 100%;
+  // Note: this will always add a scrollbar to whatever element it is on, which can
+  // potentially result in double scrollbars. It shouldn't be an issue, because we won't
+  // block scrolling on a page that doesn't have a scrollbar in the first place.
+  overflow-y: scroll;
 }

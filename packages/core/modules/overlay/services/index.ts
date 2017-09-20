@@ -13,3 +13,5 @@ export {
 } from './viewport.service';
 
 export { NgxOverlayService } from './overlay.service';
+
+export { NgxOverlayContainerService } from './overlay-container.service';

@@ -1,5 +1,6 @@
 import {
   ComponentRef,
+  EmbeddedViewRef,
   NgZone,
 } from '@angular/core';
 
@@ -14,7 +15,6 @@ import {
   INgxTemplatePortal,
   INgxComponentPortal,
 } from '../../../portal';
-import { NGX_OVERLAY } from '../overlay';
 import { NgxOverlayConfig } from './overlay-config.class';
 
 
@@ -44,36 +44,44 @@ class NgxOverlayRef implements INgxPortalHost {
   }
 
   get overlayElement(): HTMLElement {
-    return this._overlay;
+    return this._overlayElement;
   }
 
   get config(): NgxOverlayConfig {
     return this._config;
   }
+  set config(config: NgxOverlayConfig) {
+    if (!this._overlayElement || !this._overlayElement.parentNode) {
+      throw new Error(`Invalid overlay. Overlay must have 'parentNode'.`);
+    }
+    if (!config || !config.positionStrategy) {
+      throw new Error(`Invalid config. NgxOverlayConfig must have instances of INgxPositionStrategy.`);
+    }
+    if (!config || !config.scrollStrategy) {
+      throw new Error(`Invalid config. NgxOverlayConfig must have instances of INgxScrollStrategy.`);
+    }
+    if (!config || !config.container) {
+      throw new Error(`Invalid config. NgxOverlayConfig must have instances of INgxOverlayContainer.`);
+    }
+
+    this._config = config;
+  }
 
   constructor (
     protected _portalHost: INgxPortalHost,
-    protected _overlay: HTMLElement,
+    protected _overlayElement: HTMLElement,
     config: NgxOverlayConfig,
     protected _ngZone: NgZone,
     protected _browserPlatformService: NgxBrowserPlatformService
   ) {
-    if (!this._overlay || !this._overlay.parentNode) {
-      throw new Error(`Invalid overlay. Overlay must have 'parentNode'.`);
-    }
-    if (!config || !config.positionStrategy || !config.scrollStrategy) {
-      throw new Error(`Invalid config. NgxOverlayConfig must have instances of INgxPositionStrategy and INgxScrollStrategy.`);
-    }
-
-    this._config = { ...(new NgxOverlayConfig()), ...config };
-    this._config.scrollStrategy.attach(this);
+    this.config = { ...(new NgxOverlayConfig()), ...config };
   }
 
   setDisposeFunc (func: () => void) {
     this._disposeFunc = func;
   }
 
-  attachTemplate (portal: INgxTemplatePortal): Map<string, any> {
+  attachTemplate<T> (portal: INgxTemplatePortal<T>): EmbeddedViewRef<T> {
     if (!this._browserPlatformService.isBrowser) { return null; }
 
     const attachResult = this._portalHost.attachTemplate(portal);
@@ -105,8 +113,7 @@ class NgxOverlayRef implements INgxPortalHost {
      */
     this._togglePointerEvents(false);
     this._config.scrollStrategy.disable();
-
-    const detachResult = this._portalHost.detach();
+    this._portalHost.detach();
     /**
      * Only emit after everything is detached.
      */
@@ -114,6 +121,7 @@ class NgxOverlayRef implements INgxPortalHost {
   }
 
   dispose (): void {
+    this._config.container.dispose();
     this._config.positionStrategy.dispose();
     this._config.scrollStrategy.disable();
     this._detachBackdrop();
@@ -123,29 +131,25 @@ class NgxOverlayRef implements INgxPortalHost {
     this._detachSubject.next();
     this._detachSubject.complete();
   }
-  /**
-   * Updates the position of the overlay based on the position strategy.
-   */
-  updatePosition (): void {
-    if (!this._browserPlatformService.isBrowser) { return null; }
-
-    this._config.positionStrategy.apply(this._overlay);
-  }
 
   protected _attachOverlay (): void {
+    this._config.positionStrategy.attach(this);
+    this._config.positionStrategy.apply();
+
+    this._config.scrollStrategy.attach(this);
+    this._config.scrollStrategy.enable();
+
     this._updateStackingOrder();
     this._updateDirection();
     this._updateSize();
-    this._updatePosition();
-    this._config.scrollStrategy.enable();
     this._togglePointerEvents(true);
 
     if (this._config.hasBackdrop) {
       this._attachBackdrop();
     }
 
-    if (this._config.overlayPanelClass) {
-      this._overlay.classList.add(this._config.overlayPanelClass);
+    if (this._config.overlayClasses) {
+      this._overlayElement.classList.add(...this._config.overlayClasses);
     }
     /**
      * Only emit the `attachments` event once all other setup is done.
@@ -155,8 +159,8 @@ class NgxOverlayRef implements INgxPortalHost {
 
   protected _attachBackdrop (): void {
     this._backdropElement = this._browserPlatformService.document.createElement('div');
-    this._backdropElement.classList.add(NGX_OVERLAY.BACKDROP_CLASS);
-    this._backdropElement.classList.add(this._config.backdropClass);
+    this._backdropElement.classList.add('ngx-OverlayBackdrop');
+    this._backdropElement.classList.add(this._config.backdropClass || 'ngx-OverlayBackdrop_variant_dark');
 
     if (this._config.backdropClass) {
       this._backdropElement.classList.add(this._config.backdropClass);
@@ -165,7 +169,7 @@ class NgxOverlayRef implements INgxPortalHost {
      * Insert the backdrop before the pane in the DOM order,
      * in order to handle stacked overlays properly.
      */
-    this._overlay.parentElement.insertBefore(this._backdropElement, this._overlay);
+    this._overlayElement.parentElement.insertBefore(this._backdropElement, this._overlayElement);
     /**
      * Forward backdrop clicks such that the consumer of the overlay can perform whatever
      * action desired when such a click occurs (usually closing the overlay).
@@ -176,7 +180,7 @@ class NgxOverlayRef implements INgxPortalHost {
      */
     requestAnimationFrame(() => {
       if (this._backdropElement) {
-        this._backdropElement.classList.add(NGX_OVERLAY.BACKDROP_STATE_ACTIVE_CLASS);
+        this._backdropElement.classList.add('ngx-OverlayBackdrop_state_active');
       }
     });
   }
@@ -202,7 +206,7 @@ class NgxOverlayRef implements INgxPortalHost {
         }
       };
 
-      _backdropToDetach.classList.remove(NGX_OVERLAY.BACKDROP_STATE_ACTIVE_CLASS);
+      _backdropToDetach.classList.remove('ngx-OverlayBackdrop_state_active');
       _backdropToDetach.classList.remove(this._config.backdropClass);
       _backdropToDetach.addEventListener('transitionend', _finishDetachFunc);
       /**
@@ -228,47 +232,49 @@ class NgxOverlayRef implements INgxPortalHost {
    * in its original DOM position.
    */
   protected _updateStackingOrder () {
-    if (this._overlay.nextSibling && this._overlay.parentNode) {
-      this._overlay.parentNode.appendChild(this._overlay);
+    if (this._overlayElement.nextSibling && this._overlayElement.parentNode) {
+      this._overlayElement.parentNode.appendChild(this._overlayElement);
     }
   }
   /**
    * Toggles the pointer events for the overlay pane element.
    */
   protected _togglePointerEvents (enablePointer: boolean) {
-    this._overlay.style.pointerEvents = enablePointer ? 'auto' : 'none';
+    this._overlayElement.style.pointerEvents = enablePointer ? 'auto' : 'none';
   }
   /**
    * Updates the text direction of the overlay panel.
    */
   protected _updateDirection () {
-    this._overlay.setAttribute('dir', this._config.direction);
+    this._overlayElement.setAttribute('dir', this._config.direction);
   }
   /**
    * Updates the size of the overlay based on the overlay config.
    */
   protected _updateSize (): void {
     if (this._config.width || this._config.width === 0) {
-      this._overlay.style.width = this._formatCssUnit(this._config.width);
+      this._overlayElement.style.width = this._formatCssUnit(this._config.width);
     }
 
     if (this._config.height || this._config.height === 0) {
-      this._overlay.style.height = this._formatCssUnit(this._config.height);
+      this._overlayElement.style.height = this._formatCssUnit(this._config.height);
     }
 
     if (this._config.minWidth || this._config.minWidth === 0) {
-      this._overlay.style.minWidth = this._formatCssUnit(this._config.minWidth);
+      this._overlayElement.style.minWidth = this._formatCssUnit(this._config.minWidth);
     }
 
     if (this._config.minHeight || this._config.minHeight === 0) {
-      this._overlay.style.minHeight = this._formatCssUnit(this._config.minHeight);
+      this._overlayElement.style.minHeight = this._formatCssUnit(this._config.minHeight);
     }
-  }
-  /**
-   * Updates the position of the overlay based on the position strategy.
-   */
-  protected _updatePosition (): void {
-    this._config.positionStrategy.apply(this._overlay);
+
+    if (this._config.maxWidth || this._config.maxWidth === 0) {
+      this._overlayElement.style.maxWidth = this._formatCssUnit(this._config.maxWidth);
+    }
+
+    if (this._config.maxHeight || this._config.maxHeight === 0) {
+      this._overlayElement.style.maxHeight = this._formatCssUnit(this._config.maxHeight);
+    }
   }
 
   protected _formatCssUnit (value: number | string, defaultUnit: string = 'px'): string {

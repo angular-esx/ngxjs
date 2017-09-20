@@ -17,12 +17,10 @@ class NgxCloseScrollStrategy implements INgxScrollStrategy {
   constructor (protected _scrollService: NgxScrollService) {}
 
 
-  attach (overlayRef: NgxOverlayRef): void {
-    if (this._overlayRef) {
-      throw new Error('Scroll strategy has already been attached.');
-    }
-
+  attach (overlayRef: NgxOverlayRef): this {
     this._overlayRef = overlayRef;
+
+    return this;
   }
 
   enable (): void {

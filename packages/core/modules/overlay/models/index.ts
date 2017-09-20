@@ -24,8 +24,13 @@ export {
 } from './scroll';
 
 export {
-  NGX_OVERLAY,
   NgxOverlayConfig,
   NgxConnectedOverlayConfig,
   NgxOverlayRef,
 } from './overlay';
+
+export {
+  INgxOverlayContainer,
+  NgxOverlayContainer,
+  NgxFullscreenOverlayContainer,
+} from './container';

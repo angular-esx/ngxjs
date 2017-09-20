@@ -17,14 +17,17 @@ import {
   NgxOverlayRef,
   NgxOverlayModule,
   NgxOverlayService,
+  NgxOverlayContainerService,
   NgxPositionStrategyService,
   NgxScrollStrategyService,
   NgxScrollService,
 } from '../../../overlay';
 
 
-@Component({template: '<p>TestComponent</p>'})
-class TestComponent { }
+@Component({
+  template: '<p>NgxTestComponent</p>',
+})
+class NgxTestComponent { }
 
 
 @NgModule({
@@ -32,15 +35,15 @@ class TestComponent { }
     NgxServiceModule,
     NgxOverlayModule,
   ],
-  declarations: [TestComponent],
-  entryComponents: [TestComponent],
+  declarations: [NgxTestComponent],
+  entryComponents: [NgxTestComponent],
 })
 class NgxOverlayTestModule { }
 
 
 describe('NgxCloseScrollStrategy', () => {
   let _overlayRef: NgxOverlayRef;
-  let _componentPortal: NgxComponentPortal<TestComponent>;
+  let _componentPortal: NgxComponentPortal<NgxTestComponent>;
   const _scrolledSubject = new Subject();
 
   beforeEach(async(() => {
@@ -60,21 +63,24 @@ describe('NgxCloseScrollStrategy', () => {
   }));
 
   beforeEach(inject([
+    NgxOverlayContainerService,
     NgxPositionStrategyService,
     NgxScrollStrategyService,
     NgxOverlayService,
   ],
-  (positionStrategyService: NgxPositionStrategyService,
+  (overlayContainerServicer: NgxOverlayContainerService,
+    positionStrategyService: NgxPositionStrategyService,
     scrollStrategyService: NgxScrollStrategyService,
     overlayService: NgxOverlayService
   ) => {
     const _overlayConfig = new NgxOverlayConfig();
+    _overlayConfig.container = overlayContainerServicer.createOverlayContainer();
     _overlayConfig.positionStrategy = positionStrategyService.createGlobalPositionStrategy();
     _overlayConfig.scrollStrategy = scrollStrategyService.createCloseScrollStrategy();
 
     _overlayRef = overlayService.create(_overlayConfig);
 
-    _componentPortal = new NgxComponentPortal(TestComponent);
+    _componentPortal = new NgxComponentPortal(NgxTestComponent);
   }));
 
   afterEach(() => {
