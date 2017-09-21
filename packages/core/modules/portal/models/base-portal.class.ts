@@ -26,9 +26,10 @@ abstract class NgxBasePortal implements INgxPortal {
       throw new Error('Portal host is required');
     }
 
+    const result = this._attach(host);
     this._attachedHost = host;
 
-    return this._attach(host);
+    return result;
   }
 
   detach (): void {

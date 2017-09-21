@@ -26,7 +26,7 @@ class NgxPortalHost extends NgxBasePortalHost {
   protected _attachTemplatePortal<T> (portal: INgxTemplatePortal<T>): EmbeddedViewRef<T> {
     this._disposeFunc = () => this._viewContainerRef.clear();
 
-    return this._viewContainerRef.createEmbeddedView(portal.templateRef);
+    return this._viewContainerRef.createEmbeddedView(portal.templateRef, portal.context);
   }
 
   protected _attachComponentPortal<T> (portal: INgxComponentPortal<T>): ComponentRef<T> {
