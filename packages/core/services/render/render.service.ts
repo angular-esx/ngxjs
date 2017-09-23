@@ -2,7 +2,9 @@ import {
   RendererFactory2,
   Renderer2,
   Injectable,
-  Inject
+  Inject,
+  Optional,
+  SkipSelf,
 } from '@angular/core';
 
 import { INgxRenderService } from './render-service.interface';
@@ -32,3 +34,20 @@ export class NgxRenderService implements INgxRenderService {
     return this._renderer.listen(target, eventName, callback);
   }
 }
+
+export function ngxRenderServiceFactory (
+  parentNgxRenderService: INgxRenderService,
+  rendererFactory: RendererFactory2) {
+  return parentNgxRenderService || new NgxRenderService(rendererFactory);
+}
+/**
+ * If there is already a NgxRenderService available, use that. Otherwise, provide a new one.
+ */
+export const ngxRenderServiceProvider = {  
+  provide: NgxRenderService,
+  deps: [
+    [new Optional(), new SkipSelf(), NgxRenderService],
+    RendererFactory2,
+  ],
+  useFactory: ngxRenderServiceFactory,
+};

@@ -1,2 +1,5 @@
 export { INgxOverlayService } from './overlay-service.interface';
-export { NgxOverlayService } from './overlay.service';
+export {
+  NgxOverlayService,
+  ngxOverlayServiceProvider,
+} from './overlay.service';

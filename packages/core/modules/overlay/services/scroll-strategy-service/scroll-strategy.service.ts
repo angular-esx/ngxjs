@@ -1,6 +1,8 @@
 import {
   Injectable,
   Inject,
+  Optional,
+  SkipSelf,
 } from '@angular/core';
 
 import {
@@ -33,7 +35,7 @@ import { INgxScrollStrategyService } from './scroll-strategy-service.interface';
  * A factory is used to create instances of INgxScrollStrategy
  */
 @Injectable()
-class NgxScrollStrategyService implements INgxScrollStrategyService {
+export class NgxScrollStrategyService implements INgxScrollStrategyService {
   constructor (
     @Inject(NgxScrollService) protected _scrollService: INgxScrollService,
     @Inject(NgxViewportService) protected _viewportService: INgxViewportService,
@@ -57,5 +59,27 @@ class NgxScrollStrategyService implements INgxScrollStrategyService {
   }
 }
 
-
-export { NgxScrollStrategyService };
+export function ngxScrollStrategyServiceFactory (
+  parentScrollStrategyService: INgxScrollStrategyService,
+  scrollService: INgxScrollService,
+  viewportService: INgxViewportService,
+  browserPlatformService: INgxBrowserPlatformService) {
+  return parentScrollStrategyService || new NgxScrollStrategyService(
+    scrollService,
+    viewportService,
+    browserPlatformService
+  );
+}
+/**
+ * If there is already a NgxScrollStrategyService available, use that. Otherwise, provide a new one.
+ */
+export const ngxScrollStrategyServiceProvider = {  
+  provide: NgxScrollStrategyService,
+  deps: [
+    [new Optional(), new SkipSelf(), NgxScrollStrategyService],
+    NgxScrollService,
+    NgxViewportService,
+    NgxBrowserPlatformService,
+  ],
+  useFactory: ngxScrollStrategyServiceFactory,
+};

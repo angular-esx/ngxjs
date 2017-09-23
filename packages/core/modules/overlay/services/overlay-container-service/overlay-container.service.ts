@@ -22,7 +22,7 @@ import { INgxOverlayContainerService } from './overlay-container-service.interfa
  * A factory is used to create instances of INgxOverlayContainer
  */
 @Injectable()
-class NgxOverlayContainerService implements INgxOverlayContainerService {
+export class NgxOverlayContainerService implements INgxOverlayContainerService {
   constructor (@Inject(NgxBrowserPlatformService) protected _browserPlatformService: INgxBrowserPlatformService) {}
 
   createOverlayContainer (): INgxOverlayContainer {
@@ -35,22 +35,19 @@ class NgxOverlayContainerService implements INgxOverlayContainerService {
 }
 
 
-function ngxOverlayContainerFactory (
+export function ngxOverlayContainerServiceFactory (
   parentOverlayContainerService: INgxOverlayContainerService,
   browserPlatformService: INgxBrowserPlatformService) {
   return parentOverlayContainerService || new NgxOverlayContainerService(browserPlatformService);
 }
- 
-
-export {
-  NgxOverlayContainerService,
-  ngxOverlayContainerFactory,
-};
 /**
  * If there is already a NgxOverlayContainerService available, use that. Otherwise, provide a new one.
  */
-export const ngxOverlayContainerProvider = {  
+export const ngxOverlayContainerServiceProvider = {  
   provide: NgxOverlayContainerService,
-  deps: [[new Optional(), new SkipSelf(), NgxOverlayContainerService], NgxBrowserPlatformService],
-  useFactory: ngxOverlayContainerFactory,
+  deps: [
+    [new Optional(), new SkipSelf(), NgxOverlayContainerService],
+    NgxBrowserPlatformService,
+  ],
+  useFactory: ngxOverlayContainerServiceFactory,
 };

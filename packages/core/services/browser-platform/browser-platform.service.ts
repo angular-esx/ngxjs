@@ -2,6 +2,8 @@ import {
   PLATFORM_ID,
   Injectable,
   Inject,
+  Optional,
+  SkipSelf,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -64,3 +66,23 @@ export class NgxBrowserPlatformService implements INgxBrowserPlatformService {
     @Inject(DOCUMENT) public readonly document: any
   ) {}
 }
+
+export function ngxBrowserPlatformServiceFactory (
+  parentBrowserPlatformService: INgxBrowserPlatformService,
+  platformId: any,
+  document: any
+) {
+  return parentBrowserPlatformService || new NgxBrowserPlatformService(platformId, document);
+}
+/**
+ * If there is already a NgxBrowserPlatformService available, use that. Otherwise, provide a new one.
+ */
+export const ngxBrowserPlatformServiceProvider = {  
+  provide: NgxBrowserPlatformService,
+  deps: [
+    [new Optional(), new SkipSelf(), NgxBrowserPlatformService],
+    [new Inject(PLATFORM_ID)],
+    [new Inject(DOCUMENT)],
+  ],
+  useFactory: ngxBrowserPlatformServiceFactory,
+};

@@ -1,6 +1,8 @@
 import {
   Injectable,
   Inject,
+  Optional,
+  SkipSelf,
 } from '@angular/core';
 
 import {
@@ -25,7 +27,7 @@ import { INgxPositionStrategyService } from './position-strategy-service.interfa
  * A factory is used to create instances of INgxPositionStrategy
  */
 @Injectable()
-class NgxPositionStrategyService implements INgxPositionStrategyService {
+export class NgxPositionStrategyService implements INgxPositionStrategyService {
   constructor (
     @Inject(NgxViewportService) protected _viewportService: INgxViewportService,
     @Inject(NgxBrowserPlatformService) protected _browserPlatformService: INgxBrowserPlatformService
@@ -51,5 +53,24 @@ class NgxPositionStrategyService implements INgxPositionStrategyService {
   }
 }
 
-
-export { NgxPositionStrategyService };
+export function ngxPositionStrategyServiceFactory (
+  parentPositionStrategyService: INgxPositionStrategyService,
+  viewportService: INgxViewportService,
+  browserPlatformService: INgxBrowserPlatformService) {
+  return parentPositionStrategyService || new NgxPositionStrategyService(
+    viewportService,
+    browserPlatformService
+  );
+}
+/**
+ * If there is already a NgxPositionStrategyService available, use that. Otherwise, provide a new one.
+ */
+export const ngxPositionStrategyServiceProvider = {  
+  provide: NgxPositionStrategyService,
+  deps: [
+    [new Optional(), new SkipSelf(), NgxPositionStrategyService],
+    NgxViewportService,
+    NgxBrowserPlatformService,
+  ],
+  useFactory: ngxPositionStrategyServiceFactory,
+};

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { NgxRenderService } from './render.service';
+import { ngxRenderServiceProvider } from './render.service';
 
 
 @NgModule({
   id: 'ngx-render-service',
-  providers: [NgxRenderService],
+  providers: [ngxRenderServiceProvider],
 })
 export class NgxRenderServiceModule {}

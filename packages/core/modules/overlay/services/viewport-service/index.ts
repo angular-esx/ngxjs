@@ -1,5 +1,5 @@
 export { INgxViewportService } from './viewport-service.interface';
 export {
   NgxViewportService,
-  ngxViewportProvider,
+  ngxViewportServiceProvider,
 } from './viewport.service';

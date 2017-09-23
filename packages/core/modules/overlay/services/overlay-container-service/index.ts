@@ -1,2 +1,5 @@
 export { INgxOverlayContainerService } from './overlay-container-service.interface';
-export { NgxOverlayContainerService } from './overlay-container.service';
+export {
+  NgxOverlayContainerService,
+  ngxOverlayContainerServiceProvider,
+} from './overlay-container.service';

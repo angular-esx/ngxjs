@@ -20,7 +20,7 @@ import { INgxViewportService } from './viewport-service.interface';
  * Simple utility for getting the bounds of the browser viewport.
  */
 @Injectable()
-class NgxViewportService implements INgxViewportService {
+export class NgxViewportService implements INgxViewportService {
   protected _clientRect: ClientRect;
 
 
@@ -100,23 +100,21 @@ class NgxViewportService implements INgxViewportService {
   }
 }
 
-function ngxViewportFactory (
+function ngxViewportServiceFactory (
   parentViewportService: INgxViewportService,
   scrollService: NgxScrollService, browserPlatformService: NgxBrowserPlatformService
 ) {
   return parentViewportService || new NgxViewportService(scrollService, browserPlatformService);
 }
-
-
-export {
-  NgxViewportService,
-  ngxViewportFactory,
-};
 /**
  * If there is already a NgxViewportService available, use that. Otherwise, provide a new one.
  */
-export const ngxViewportProvider = {
+export const ngxViewportServiceProvider = {
   provide: NgxViewportService,
-  deps: [[new Optional(), new SkipSelf(), NgxViewportService], NgxScrollService, NgxBrowserPlatformService],
-  useFactory: ngxViewportFactory,
+  deps: [
+    [new Optional(), new SkipSelf(), NgxViewportService],
+    NgxScrollService,
+    NgxBrowserPlatformService,
+  ],
+  useFactory: ngxViewportServiceFactory,
 };

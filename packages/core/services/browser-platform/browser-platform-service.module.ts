@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { NgxBrowserPlatformService } from './browser-platform.service';
+import { ngxBrowserPlatformServiceProvider } from './browser-platform.service';
 
 
 @NgModule({
   id: 'ngx-browser-platform-service',
-  providers: [NgxBrowserPlatformService],
+  providers: [ngxBrowserPlatformServiceProvider],
 })
 export class NgxBrowserPlatformServiceModule {}

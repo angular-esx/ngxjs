@@ -1,5 +1,5 @@
 export { INgxScrollService } from './scroll-service.interface';
 export {
   NgxScrollService,
-  ngxScrollProvider
+  ngxScrollServiceProvider,
 } from './scroll.service';

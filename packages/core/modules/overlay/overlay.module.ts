@@ -6,12 +6,12 @@ import {
 } from '../../services';
 import { NgxPortalModule } from '../portal';
 import {
-  ngxScrollProvider,
-  ngxViewportProvider,
-  NgxPositionStrategyService,
-  NgxScrollStrategyService,
-  NgxOverlayService,
-  NgxOverlayContainerService,
+  ngxOverlayContainerServiceProvider,
+  ngxOverlayServiceProvider,
+  ngxPositionStrategyServiceProvider,
+  ngxScrollServiceProvider,
+  ngxScrollStrategyServiceProvider,
+  ngxViewportServiceProvider,
 } from './services';
 import { NgxScrollableDirective } from './scrollabe.directive';
 import { NgxOriginOverlayDirective } from './origin-overlay.directive';
@@ -36,12 +36,12 @@ import { NgxConnectedOverlayDirective } from './connected-overlay.directive';
     NgxConnectedOverlayDirective,
   ],
   providers: [
-    ngxScrollProvider,
-    ngxViewportProvider,
-    NgxPositionStrategyService,
-    NgxScrollStrategyService,
-    NgxOverlayService,
-    NgxOverlayContainerService,
+    ngxOverlayContainerServiceProvider,
+    ngxOverlayServiceProvider,
+    ngxPositionStrategyServiceProvider,
+    ngxScrollServiceProvider,
+    ngxScrollStrategyServiceProvider,
+    ngxViewportServiceProvider,
   ],
 })
 class NgxOverlayModule {}

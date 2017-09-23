@@ -7,6 +7,8 @@ import {
   Injector,
   Inject,
   NgZone,
+  Optional,
+  SkipSelf,
 } from '@angular/core';
 
 import {
@@ -19,8 +21,6 @@ import {
   INgxOverlayRef,
   NgxOverlayRef,
 } from '../../models';
-import { ngxViewportProvider } from '../viewport-service';
-import { ngxScrollProvider } from '../scroll-service';
 import { INgxOverlayService } from './overlay-service.interface';
 
 
@@ -37,7 +37,7 @@ let _nextUniqueId = 1;
  * An overlay *is* a PortalHost, so any kind of Portal can be loaded into one.
  */
 @Injectable()
-class NgxOverlayService implements INgxOverlayService {
+export class NgxOverlayService implements INgxOverlayService {
   constructor (
     @Inject(ApplicationRef) protected _appRef: ApplicationRef,
     @Inject(ComponentFactoryResolver) protected _componentFactoryResolver: ComponentFactoryResolver,
@@ -79,5 +79,33 @@ class NgxOverlayService implements INgxOverlayService {
   }
 }
 
-
-export { NgxOverlayService };
+export function ngxOverlayServiceFactory (
+  parentOverlayService: INgxOverlayService,
+  appRef: ApplicationRef,
+  componentFactoryResolver: ComponentFactoryResolver,
+  injector: Injector,
+  ngZone: NgZone,
+  browserPlatformService: INgxBrowserPlatformService) {
+  return parentOverlayService || new NgxOverlayService(
+    appRef,
+    componentFactoryResolver,
+    injector,
+    ngZone,
+    browserPlatformService
+  );
+}
+/**
+ * If there is already a NgxOverlayService available, use that. Otherwise, provide a new one.
+ */
+export const ngxOverlayServiceProvider = {  
+  provide: NgxOverlayService,
+  deps: [
+    [new Optional(), new SkipSelf(), NgxOverlayService],
+    ApplicationRef,
+    ComponentFactoryResolver,
+    Injector,
+    NgZone,
+    NgxBrowserPlatformService,
+  ],
+  useFactory: ngxOverlayServiceFactory,
+};

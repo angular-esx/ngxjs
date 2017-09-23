@@ -27,7 +27,7 @@ import { INgxScrollService } from './scroll-service.interface';
  * Scrollable references emit a scrolled event.
  */
 @Injectable()
-class NgxScrollService implements INgxScrollService {
+export class NgxScrollService implements INgxScrollService {
   /**
    * Keeps track of the amount of subscriptions to `_scrollSubject`. Used for cleaning up afterwards.
    */
@@ -136,24 +136,22 @@ class NgxScrollService implements INgxScrollService {
   }
 }
 
-function ngxScrollFactory (
+function ngxScrollServiceFactory (
   parentScrollService: INgxScrollService,
   ngZone: NgZone,
   browserPlatformService: NgxBrowserPlatformService
 ) {
   return parentScrollService || new NgxScrollService(ngZone, browserPlatformService);
 }
-
-
-export {
-  NgxScrollService,
-  ngxScrollFactory,
-};
 /**
  * If there is already a NgxScrollService available, use that. Otherwise, provide a new one.
  */
-export const ngxScrollProvider = {
+export const ngxScrollServiceProvider = {
   provide: NgxScrollService,
-  deps: [[new Optional(), new SkipSelf(), NgxScrollService], NgZone, NgxBrowserPlatformService],
-  useFactory: ngxScrollFactory,
+  deps: [
+    [new Optional(), new SkipSelf(), NgxScrollService],
+    NgZone,
+    NgxBrowserPlatformService,
+  ],
+  useFactory: ngxScrollServiceFactory,
 };
