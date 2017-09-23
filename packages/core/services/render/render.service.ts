@@ -9,7 +9,7 @@ import { NgxRenderer } from './renderer.class';
 
 
 @Injectable()
-class NgxRenderService {
+export class NgxRenderService {
   protected _renderer: Renderer2;
 
 
@@ -30,6 +30,3 @@ class NgxRenderService {
     return this._renderer.listen(target, eventName, callback);
   }
 }
-
-
-export { NgxRenderService };

@@ -14,7 +14,7 @@ import {
 } from 'ngx-infrastructure';
 
 
-class NgxRenderer {
+export class NgxRenderer {
   constructor (protected _nativeElement: any, protected _renderer: Renderer2) {}
 
 
@@ -185,6 +185,3 @@ class NgxRenderer {
     return this;
   }
 }
-
-
-export { NgxRenderer };
