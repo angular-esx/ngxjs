@@ -13,7 +13,6 @@ import {
   ComponentFixture,
 } from '@angular/core/testing';
 
-import { NgxServiceModule } from '../../services/';
 import {
   NgxOverlayConfig,
   NgxConnectedOverlayConfig,
@@ -90,10 +89,7 @@ describe('Overlay directives', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgxOverlayModule,
-        NgxServiceModule,
-      ],
+      imports: [NgxOverlayModule],
       declarations: [NgxTestConnectedOverlayComponent],
     })
     .compileComponents();

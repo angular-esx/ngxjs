@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 
+import {
+  NgxBrowserPlatformServiceModule,
+  NgxRenderServiceModule,
+} from '../../services';
 import { NgxPortalModule } from '../portal';
-
 import {
   ngxScrollProvider,
   ngxViewportProvider,
@@ -17,7 +20,11 @@ import { NgxConnectedOverlayDirective } from './connected-overlay.directive';
 
 @NgModule({
   id: 'ngx-overlay',
-  imports: [NgxPortalModule],
+  imports: [
+    NgxPortalModule,
+    NgxBrowserPlatformServiceModule,
+    NgxRenderServiceModule,
+  ],
   declarations: [
     NgxScrollableDirective,
     NgxOriginOverlayDirective,

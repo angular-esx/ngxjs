@@ -10,7 +10,6 @@ import {
 
 import { Subject } from 'rxjs/Subject';
 
-import { NgxServiceModule } from '../../../../services';
 import { NgxComponentPortal } from '../../../portal';
 import {
   NgxOverlayConfig,
@@ -31,10 +30,7 @@ class NgxTestComponent { }
 
 
 @NgModule({
-  imports: [
-    NgxServiceModule,
-    NgxOverlayModule,
-  ],
+  imports: [NgxOverlayModule],
   declarations: [NgxTestComponent],
   entryComponents: [NgxTestComponent],
 })

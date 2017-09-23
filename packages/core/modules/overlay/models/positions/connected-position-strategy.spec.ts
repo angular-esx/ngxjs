@@ -13,10 +13,7 @@ import {
 
 import { Subscription } from 'rxjs/Subscription';
 
-import {
-  NgxRenderService,
-  NgxServiceModule,
-} from '../../../../services';
+import { NgxRenderService } from '../../../../services';
 import { NgxComponentPortal } from '../../../portal';
 import {
   NgxOverlayConfig,
@@ -51,10 +48,7 @@ class TestComponent { }
 
 
 @NgModule({
-  imports: [
-    NgxServiceModule,
-    NgxOverlayModule,
-  ],
+  imports: [NgxOverlayModule],
   declarations: [TestComponent],
   entryComponents: [TestComponent],
 })

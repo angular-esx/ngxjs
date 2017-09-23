@@ -12,7 +12,6 @@ import {
   inject,
 } from '@angular/core/testing';
 
-import { NgxServiceModule } from '../../../services/';
 import {
   NgxComponentPortal,
   NgxTemplatePortal,
@@ -90,7 +89,6 @@ class NgxTestTemplatePortalComponent {
   imports: [
     NgxOverlayModule,
     NgxPortalModule,
-    NgxServiceModule,
   ],
   declarations: [NgxTestPortalComponent, NgxTestTemplatePortalComponent],
   entryComponents: [NgxTestPortalComponent, NgxTestTemplatePortalComponent],

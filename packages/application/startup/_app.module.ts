@@ -4,8 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpTransferModule } from '@ngx-universal/state-transfer';
 
-import { NgxServiceModule } from 'ngx-core';
-
 import {
   CardPageModule,
   ContainerPageModule,
@@ -28,7 +26,6 @@ import { NgxApp } from './_app';
   imports: [
     BrowserModule,
     HttpTransferModule.forRoot(),
-    NgxServiceModule,
     CardPageModule,
     ContainerPageModule,
     DetailPageModule,

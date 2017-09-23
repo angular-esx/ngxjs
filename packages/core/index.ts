@@ -82,10 +82,12 @@ export {
 } from './modules';
 
 export {
+  NgxBrowserPlatformService,
+  NgxBrowserPlatformServiceModule,
+
   NgxRenderer,
   NgxRenderService,
-
-  NgxBrowserPlatformService,
+  NgxRenderServiceModule,
 
   NgxServiceModule,
 } from './services';

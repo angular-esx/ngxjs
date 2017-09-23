@@ -17,7 +17,6 @@ import {
   async,
 } from '@angular/core/testing';
 
-import { NgxServiceModule } from '../../services/';
 import {
   INgxPortal,
   NgxComponentPortal,
@@ -50,14 +49,6 @@ class CustomOptionInjector {
 class NgxTestPortalComponent {
   constructor (@Inject(CustomOption) @Optional() public option: CustomOption) { }
 }
-
-// @Component({
-//   selector: 'ngx-test-view-container',
-//   template: '<p>NgxTestViewContainerComponent</p>'
-// })
-// class NgxTestViewContainerComponent {
-//   constructor (public viewContainerRef: ViewContainerRef, public injector: Injector) { }
-// }
 
 @Component({
   selector: 'ngx-test-portal-host',
@@ -112,7 +103,6 @@ const DIRECTIVES = [
   imports: [
     CommonModule,
     NgxPortalModule,
-    NgxServiceModule,
   ],
   declarations: DIRECTIVES,
   providers: [CustomOption],
