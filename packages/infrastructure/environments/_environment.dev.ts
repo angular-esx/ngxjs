@@ -2,7 +2,7 @@ import { BaseEnvironment } from './_environment.base';
 import { IDevelopmentEnvironment } from './environment.interface';
 
 
-class DevelopmentEnvironment
+export class DevelopmentEnvironment
   extends BaseEnvironment
   implements IDevelopmentEnvironment
 {
@@ -15,5 +15,3 @@ class DevelopmentEnvironment
     super();
   }
 }
-
-export { DevelopmentEnvironment };

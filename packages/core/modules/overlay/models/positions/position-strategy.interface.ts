@@ -2,7 +2,7 @@ import { INgxOverlayRef } from '../overlay';
 /**
  * Strategy for setting the position on an overlay.
  */
-interface INgxPositionStrategy {
+export interface INgxPositionStrategy {
   /**
    * Attach overlayRef to the position strategy
    */
@@ -16,6 +16,3 @@ interface INgxPositionStrategy {
    */
   dispose (): void;
 }
-
-
-export { INgxPositionStrategy };

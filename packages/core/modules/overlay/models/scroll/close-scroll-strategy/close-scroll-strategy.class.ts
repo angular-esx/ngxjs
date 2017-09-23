@@ -8,7 +8,7 @@ import { INgxCloseScrollStrategy } from './close-scroll-strategy.interface';
 /**
  * Strategy that will close the overlay as soon as the user starts scrolling.
  */
-class NgxCloseScrollStrategy implements INgxCloseScrollStrategy {
+export class NgxCloseScrollStrategy implements INgxCloseScrollStrategy {
   protected _overlayRef: INgxOverlayRef;
 
   protected _subscription: Subscription;
@@ -42,6 +42,3 @@ class NgxCloseScrollStrategy implements INgxCloseScrollStrategy {
     }
   }
 }
-
-
-export { NgxCloseScrollStrategy };

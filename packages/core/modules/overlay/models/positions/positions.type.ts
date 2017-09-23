@@ -4,7 +4,7 @@ import { NgxScrollableViewType } from '../scroll';
 /**
  * A simple (x, y) coordinate.
  */
-type NgxPointType = {
+export type NgxPointType = {
   x: number;
   y: number;
 };
@@ -13,7 +13,7 @@ type NgxPointType = {
  * element would fit inside the viewport at that position, as well as
  * how much of the element would be visible.
  */
-type NgxOverlayPointType = NgxPointType & {
+export type NgxOverlayPointType = NgxPointType & {
   visibleArea: number;
   fitsInViewport: boolean;
 };
@@ -22,7 +22,7 @@ type NgxOverlayPointType = NgxPointType & {
  * where top and bottom are the y-axis coordinates of the bounding rectangle and left and right are
  * the x-axis coordinates.
  */
-type NgxElementBoundingPositionsType = {
+export type NgxElementBoundingPositionsType = {
   top: number;
   right: number;
   bottom: number;
@@ -31,41 +31,29 @@ type NgxElementBoundingPositionsType = {
 /**
  * Horizontal dimension of a connection point on the perimeter of the origin or overlay element.
  */
-type NgxHorizontalConnectionPositionType = 'start' | 'center' | 'end';
+export type NgxHorizontalConnectionPositionType = 'start' | 'center' | 'end';
 /**
  * Vertical dimension of a connection point on the perimeter of the origin or overlay element.
  */
-type NgxVerticalConnectionPositionType = 'top' | 'center' | 'bottom';
+export type NgxVerticalConnectionPositionType = 'top' | 'center' | 'bottom';
 /**
  * A connection point on the overlay or origin element.
  */
-type NgxConnectionPositionType = {
+export type NgxConnectionPositionType = {
   x: NgxHorizontalConnectionPositionType;
   y: NgxVerticalConnectionPositionType;
 };
 /**
  * The points of the origin element and the overlay element to connect.
  */
-type NgxConnectionPositionPairType = {
+export type NgxConnectionPositionPairType = {
   origin: NgxConnectionPositionType;
   overlay: NgxConnectionPositionType;
 };
 /**
  * The change event emitted by the strategy when a fallback position is used.
  */
-type NgxConnectedOverlayPositionChangedType = {
+export type NgxConnectedOverlayPositionChangedType = {
   connectionPair: NgxConnectionPositionPairType;
   scrollableView: NgxScrollableViewType;
-};
-
-
-export {
-  NgxPointType,
-  NgxOverlayPointType,
-  NgxElementBoundingPositionsType,
-  NgxHorizontalConnectionPositionType,
-  NgxVerticalConnectionPositionType,
-  NgxConnectionPositionType,
-  NgxConnectionPositionPairType,
-  NgxConnectedOverlayPositionChangedType,
 };

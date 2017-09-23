@@ -21,7 +21,7 @@ import {
   selector: 'ng-template[ngxPortalHost]',
   exportAs: 'ngxPortalHost',
 })
-class NgxPortalHostDirective
+export class NgxPortalHostDirective
   extends NgxPortalHost
   implements OnDestroy
 {
@@ -51,6 +51,3 @@ class NgxPortalHostDirective
     this.dispose();
   }
 }
-
-
-export { NgxPortalHostDirective };

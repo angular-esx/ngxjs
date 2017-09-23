@@ -5,7 +5,7 @@ import {
 import { INgxOverlayContainer } from './overlay-container.interface';
 
 
-class NgxOverlayContainer implements INgxOverlayContainer {
+export class NgxOverlayContainer implements INgxOverlayContainer {
   protected _nativeElement: HTMLElement;
 
   get nativeElement(): HTMLElement {
@@ -37,6 +37,3 @@ class NgxOverlayContainer implements INgxOverlayContainer {
     this._browserPlatformService.document.body.appendChild(_element);
   }
 }
-
-
-export { NgxOverlayContainer };

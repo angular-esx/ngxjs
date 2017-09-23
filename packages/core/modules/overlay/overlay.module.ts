@@ -18,6 +18,12 @@ import { NgxOriginOverlayDirective } from './origin-overlay.directive';
 import { NgxConnectedOverlayDirective } from './connected-overlay.directive';
 
 
+const _DIRECTIVES = [
+  NgxScrollableDirective,
+  NgxOriginOverlayDirective,
+  NgxConnectedOverlayDirective,
+];
+
 @NgModule({
   id: 'ngx-overlay',
   imports: [
@@ -25,16 +31,8 @@ import { NgxConnectedOverlayDirective } from './connected-overlay.directive';
     NgxBrowserPlatformServiceModule,
     NgxRenderServiceModule,
   ],
-  declarations: [
-    NgxScrollableDirective,
-    NgxOriginOverlayDirective,
-    NgxConnectedOverlayDirective,
-  ],
-  exports: [
-    NgxScrollableDirective,
-    NgxOriginOverlayDirective,
-    NgxConnectedOverlayDirective,
-  ],
+  declarations: _DIRECTIVES,
+  exports: _DIRECTIVES,
   providers: [
     ngxOverlayContainerServiceProvider,
     ngxOverlayServiceProvider,
@@ -44,7 +42,4 @@ import { NgxConnectedOverlayDirective } from './connected-overlay.directive';
     ngxViewportServiceProvider,
   ],
 })
-class NgxOverlayModule {}
-
-
-export { NgxOverlayModule };
+export class NgxOverlayModule {}

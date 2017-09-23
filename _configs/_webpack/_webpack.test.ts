@@ -1,7 +1,7 @@
 import { BaseWebpackConfig } from './_webpack.base';
 
 
-class TesingWebpackConfig extends BaseWebpackConfig {
+export class TesingWebpackConfig extends BaseWebpackConfig {
 
   /* ---------------------Configs---------------------*/
 
@@ -54,5 +54,3 @@ class TesingWebpackConfig extends BaseWebpackConfig {
     return this._CONSTANTS;
   }
 }
-
-export { TesingWebpackConfig };

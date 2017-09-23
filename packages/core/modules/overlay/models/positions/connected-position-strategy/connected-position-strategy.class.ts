@@ -30,7 +30,7 @@ import { INgxConnectedPositionStrategy } from './connected-position-strategy.int
  * The relative position is defined in terms of a point on the origin element that is connected to a point on the overlay element.
  * For example, a basic dropdown is connecting the bottom-left corner of the origin to the top-left corner of the overlay.
  */
-class NgxConnectedPositionStrategy implements INgxConnectedPositionStrategy {
+export class NgxConnectedPositionStrategy implements INgxConnectedPositionStrategy {
   protected _overlayRef: INgxOverlayRef;
 
   protected _direction: 'ltr' | 'rtl' = 'ltr';
@@ -443,6 +443,3 @@ class NgxConnectedPositionStrategy implements INgxConnectedPositionStrategy {
     });
   }
 }
-
-
-export { NgxConnectedPositionStrategy };

@@ -1,4 +1,4 @@
-interface IBaseEnvironment {
+export interface IBaseEnvironment {
   assetHost: string;
   imageHost: string;
   fontHost: string;
@@ -10,17 +10,10 @@ interface IBaseEnvironment {
   isProduction: boolean;
 }
 
-interface IDevelopmentEnvironment extends IBaseEnvironment {
+export interface IDevelopmentEnvironment extends IBaseEnvironment {
   enableDashboard: boolean;
 }
 
-interface ITestingEnvironment extends IBaseEnvironment {
+export interface ITestingEnvironment extends IBaseEnvironment {
   isCustomMode: boolean;
 }
-
-
-export {
-  IBaseEnvironment,
-  IDevelopmentEnvironment,
-  ITestingEnvironment,
-};

@@ -21,7 +21,7 @@ import { NgxTypographyConfig } from './models';
   selector: '[ngxTypo]',
   exportAs: 'ngxTypo',
 })
-class NgxTypographyDirective implements OnChanges {
+export class NgxTypographyDirective implements OnChanges {
   protected _renderer: INgxRenderer;
 
   @Input('ngxTypo') options: NgxTypographyConfig | string;
@@ -54,6 +54,3 @@ class NgxTypographyDirective implements OnChanges {
     }
   }
 }
-
-
-export { NgxTypographyDirective };

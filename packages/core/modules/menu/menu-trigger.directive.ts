@@ -43,7 +43,7 @@ import { MenuPositionXType, MenuPositionYType } from './models';
 @Directive({
   selector: '[ngxMenuTrigger]',
 })
-class MenuTriggerDirective implements AfterViewInit, OnDestroy {
+export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   private _menuOpened: boolean = false;
   private _portal: NgxTemplatePortal<any>;
   private _overlayRef: INgxOverlayRef;
@@ -216,6 +216,3 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
     });
   }
 }
-
-
-export { MenuTriggerDirective };

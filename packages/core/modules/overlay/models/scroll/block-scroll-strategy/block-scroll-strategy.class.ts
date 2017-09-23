@@ -7,7 +7,7 @@ import { INgxBlockScrollStrategy } from './block-scroll-strategy.interface';
 /**
  * Strategy that will prevent the user from scrolling while the overlay is visible.
  */
-class NgxBlockScrollStrategy implements INgxBlockScrollStrategy {
+export class NgxBlockScrollStrategy implements INgxBlockScrollStrategy {
   protected _previousHTMLStyles = { top: '', left: '' };
   protected _previousScrollPosition: { top: number, left: number };
   protected _isEnabled = false;
@@ -71,6 +71,3 @@ class NgxBlockScrollStrategy implements INgxBlockScrollStrategy {
     }
   }
 }
-
-
-export { NgxBlockScrollStrategy };

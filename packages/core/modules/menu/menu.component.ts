@@ -64,7 +64,7 @@ import { MenuItemDirective } from './menu-item.directive';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-class MenuComponent {
+export class MenuComponent {
   private _positionX: MenuPositionXType = 'after';
   private _positionY: MenuPositionYType = 'below';
 
@@ -115,6 +115,3 @@ class MenuComponent {
     this.closeEmitter.emit();
   }
 }
-
-
-export { MenuComponent };

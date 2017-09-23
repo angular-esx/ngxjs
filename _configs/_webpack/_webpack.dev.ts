@@ -11,7 +11,7 @@ import { IDevelopmentEnvironment } from '../../packages/infrastructure';
 import { BaseWebpackConfig } from './_webpack.base';
 
 
-class DevelopmentWebpackConfig extends BaseWebpackConfig {
+export class DevelopmentWebpackConfig extends BaseWebpackConfig {
   private readonly _SERVER_DEV_HOST: string = 'localhost';
   private readonly _SERVER_DEV_PORT: string = '8080';
 
@@ -188,5 +188,3 @@ class DevelopmentWebpackConfig extends BaseWebpackConfig {
     return this._VENDORS;
   }
 }
-
-export { DevelopmentWebpackConfig };

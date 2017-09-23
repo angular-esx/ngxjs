@@ -16,7 +16,4 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-class NgxGridComponent {}
-
-
-export { NgxGridComponent };
+export class NgxGridComponent {}

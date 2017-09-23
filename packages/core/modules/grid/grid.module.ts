@@ -6,21 +6,16 @@ import { NgxGridRowComponent } from './grid-row.component';
 import { NgxGridComponent } from './grid.component';
 
 
+const _DIRECTIVES = [
+  NgxGridColumnComponent,
+  NgxGridRowComponent,
+  NgxGridComponent,
+];
+
 @NgModule({
   id: 'ngx-grid',
   imports: [NgxRenderServiceModule],
-  declarations: [
-    NgxGridColumnComponent,
-    NgxGridRowComponent,
-    NgxGridComponent,
-  ],
-  exports: [
-    NgxGridColumnComponent,
-    NgxGridRowComponent,
-    NgxGridComponent,
-  ],
+  declarations: _DIRECTIVES,
+  exports: _DIRECTIVES,
 })
-class NgxGridModule {}
-
-
-export { NgxGridModule };
+export class NgxGridModule {}

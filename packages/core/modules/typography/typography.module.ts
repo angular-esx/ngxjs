@@ -13,7 +13,4 @@ const _DIRECTIVES = [
   declarations: _DIRECTIVES,
   exports: _DIRECTIVES,
 })
-class NgxTypographyModule {}
-
-
-export { NgxTypographyModule };
+export class NgxTypographyModule {}

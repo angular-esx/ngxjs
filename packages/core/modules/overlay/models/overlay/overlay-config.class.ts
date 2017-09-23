@@ -6,7 +6,7 @@ import { INgxScrollStrategy } from '../scroll';
 /**
  * A bag of values for either the initial configuration of an overlay.
  */
-class NgxOverlayConfig {
+export class NgxOverlayConfig {
   /**
    * Container for overlay
    */
@@ -70,6 +70,3 @@ class NgxOverlayConfig {
    */
   onDetach?: () => void;
 }
-
-
-export { NgxOverlayConfig };

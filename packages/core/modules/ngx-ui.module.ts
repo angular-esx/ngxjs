@@ -11,7 +11,7 @@ import { NgxTypographyModule } from './typography';
 import { NgxViewModule } from './view';
 
 
-const MODULES = [
+const _MODULES = [
   NgxCardModule,
   NgxContainerModule,
   NgxGridModule,
@@ -24,6 +24,6 @@ const MODULES = [
 ];
 
 @NgModule({
-  imports: MODULES,
+  imports: _MODULES,
 })
 export class NgxUIModule {}

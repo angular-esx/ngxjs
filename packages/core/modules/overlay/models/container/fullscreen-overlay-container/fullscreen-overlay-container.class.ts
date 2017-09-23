@@ -7,7 +7,7 @@ import { NgxOverlayContainer } from '../overlay-container';
  * that supports correct displaying of overlay elements in Fullscreen mode
  * https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen
  */
-class NgxFullscreenOverlayContainer
+export class NgxFullscreenOverlayContainer
   extends NgxOverlayContainer
   implements INgxFullscreenOverlayContainer {
   /**
@@ -56,6 +56,3 @@ class NgxFullscreenOverlayContainer
     }
   }
 }
-
-
-export { NgxFullscreenOverlayContainer };

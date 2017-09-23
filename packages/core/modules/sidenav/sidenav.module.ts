@@ -10,7 +10,7 @@ import { NgxSidenavComponent } from './sidenav.component';
 import { NgxSidenavItemComponent } from './sidenav-item.component';
 
 
-const DIRECTIVES = [
+const _DIRECTIVES = [
   NgxSidenavContainerComponent,
   NgxSidenavComponent,
   NgxSidenavItemComponent,
@@ -23,10 +23,7 @@ const DIRECTIVES = [
     NgxBrowserPlatformServiceModule,
     NgxRenderServiceModule,
   ],
-  declarations: DIRECTIVES,
-  exports: DIRECTIVES,
+  declarations: _DIRECTIVES,
+  exports: _DIRECTIVES,
 })
-class NgxSidenavModule { }
-
-
-export { NgxSidenavModule };
+export class NgxSidenavModule { }

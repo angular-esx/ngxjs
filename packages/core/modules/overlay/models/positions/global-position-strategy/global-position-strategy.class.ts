@@ -8,7 +8,7 @@ import { INgxGlobalPositionStrategy } from './global-position-strategy.interface
  * explicit position relative to the browser's viewport. We use flexbox, instead of transforms,
  * in order to avoid issues with subpixel rendering which can cause the element to become blurry.
  */
-class NgxGlobalPositionStrategy implements INgxGlobalPositionStrategy {
+export class NgxGlobalPositionStrategy implements INgxGlobalPositionStrategy {
   protected _cssPosition: string = 'static';
   protected _topOffset: string = '';
   protected _bottomOffset: string = '';
@@ -156,6 +156,3 @@ class NgxGlobalPositionStrategy implements INgxGlobalPositionStrategy {
     return this;
   }
 }
-
-
-export { NgxGlobalPositionStrategy };

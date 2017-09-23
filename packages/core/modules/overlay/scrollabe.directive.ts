@@ -33,7 +33,7 @@ import {
   selector: '[ngxScrollable]',
   exportAs: 'ngxScrollable',
 })
-class NgxScrollableDirective implements INgxScrollable, OnInit, OnDestroy {
+export class NgxScrollableDirective implements INgxScrollable, OnInit, OnDestroy {
   protected _renderer: INgxRenderer;
   protected _scrollListener: Function | null;
 
@@ -75,6 +75,3 @@ class NgxScrollableDirective implements INgxScrollable, OnInit, OnDestroy {
     }
   }
 }
-
-
-export { NgxScrollableDirective };

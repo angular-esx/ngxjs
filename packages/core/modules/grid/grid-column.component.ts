@@ -25,7 +25,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-class NgxGridColumnComponent implements OnChanges {
+export class NgxGridColumnComponent implements OnChanges {
   private _renderer: INgxRenderer;
 
   @Input() align:
@@ -91,6 +91,3 @@ class NgxGridColumnComponent implements OnChanges {
     return  propName && value ? `ngx-Grid__GridColumn_${propName}_${value}` : '';
   }
 }
-
-
-export { NgxGridColumnComponent };

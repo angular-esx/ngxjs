@@ -23,7 +23,7 @@ import { INgxOverlayRef } from './overlay-ref.interface';
  * Reference to an overlay that has been created with the Overlay service.
  * Used to manipulate or dispose of said overlay.
  */
-class NgxOverlayRef implements INgxOverlayRef {
+export class NgxOverlayRef implements INgxOverlayRef {
   protected _config: NgxOverlayConfig;
   protected _backdropElement: HTMLElement;
   protected _disposeFunc: () => void;
@@ -282,6 +282,3 @@ class NgxOverlayRef implements INgxOverlayRef {
     return typeof value === 'string' ? value as string : `${value}${defaultUnit}`;
   }
 }
-
-
-export { NgxOverlayRef };

@@ -21,12 +21,9 @@
  *  |                        |
  *  --------------------------
  */
-type NgxScrollableViewType = {
+export type NgxScrollableViewType = {
   isOriginClipped: boolean;
   isOriginOutsideView: boolean;
   isOverlayClipped: boolean;
   isOverlayOutsideView: boolean;
 };
-
-
-export { NgxScrollableViewType };

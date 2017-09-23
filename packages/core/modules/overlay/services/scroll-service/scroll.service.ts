@@ -136,7 +136,7 @@ export class NgxScrollService implements INgxScrollService {
   }
 }
 
-function ngxScrollServiceFactory (
+export function ngxScrollServiceFactory (
   parentScrollService: INgxScrollService,
   ngZone: NgZone,
   browserPlatformService: NgxBrowserPlatformService

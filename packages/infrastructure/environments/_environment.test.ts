@@ -2,7 +2,7 @@ import { BaseEnvironment } from './_environment.base';
 import { ITestingEnvironment } from './environment.interface';
 
 
-class TestingEnvironment
+export class TestingEnvironment
   extends BaseEnvironment
   implements ITestingEnvironment
 {
@@ -15,5 +15,3 @@ class TestingEnvironment
     super();
   }
 }
-
-export { TestingEnvironment };

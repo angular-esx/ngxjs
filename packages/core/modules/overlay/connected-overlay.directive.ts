@@ -57,7 +57,7 @@ import { NgxOriginOverlayDirective } from './origin-overlay.directive';
   selector: '[ngxConnectedOverlay]',
   exportAs: 'ngxConnectedOverlay',
 })
-class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
+export class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
   protected _immutableProperties = ['originOverlay', 'container', 'scrollStrategy'];
 
   protected _overlayRef: INgxOverlayRef;
@@ -263,8 +263,3 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
     );
   }
 }
-
-
-export {
-  NgxConnectedOverlayDirective,
-};

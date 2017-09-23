@@ -15,7 +15,4 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-class NgxCardComponent {}
-
-
-export { NgxCardComponent };
+export class NgxCardComponent {}

@@ -11,7 +11,7 @@ import {
     '[class]': '_getClass()',
   },
 })
-class MenuItemDirective {
+export class MenuItemDirective {
   @Input('class') initialClass: string;
   @Input() isDisabled: boolean = false;
 
@@ -38,6 +38,3 @@ class MenuItemDirective {
     }
   }
 }
-
-
-export { MenuItemDirective };

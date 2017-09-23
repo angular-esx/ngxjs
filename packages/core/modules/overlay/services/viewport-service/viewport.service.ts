@@ -100,7 +100,7 @@ export class NgxViewportService implements INgxViewportService {
   }
 }
 
-function ngxViewportServiceFactory (
+export function ngxViewportServiceFactory (
   parentViewportService: INgxViewportService,
   scrollService: NgxScrollService, browserPlatformService: NgxBrowserPlatformService
 ) {

@@ -30,7 +30,7 @@ import {
   },
   exportAs: 'ngxSidenav'
 })
-class NgxSidenavComponent implements OnChanges, OnInit {
+export class NgxSidenavComponent implements OnChanges, OnInit {
   private _renderer: INgxRenderer;
   private _isActive: boolean;
 
@@ -90,6 +90,3 @@ class NgxSidenavComponent implements OnChanges, OnInit {
     return '';
   }
 }
-
-
-export { NgxSidenavComponent };

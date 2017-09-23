@@ -1,7 +1,7 @@
 import { IBaseEnvironment } from './environment.interface';
 
 
-abstract class BaseEnvironment implements IBaseEnvironment {
+export abstract class BaseEnvironment implements IBaseEnvironment {
   get assetHost(): string { return ''; };
 
   get imageHost(): string { return `${this.assetHost}/images`; }
@@ -20,5 +20,3 @@ abstract class BaseEnvironment implements IBaseEnvironment {
 
   get isProduction(): boolean { return false; }
 }
-
-export { BaseEnvironment };

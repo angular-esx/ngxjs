@@ -13,13 +13,10 @@ import {
   selector: '[ngxOverlayOrigin]',
   exportAs: 'ngxOriginOverlay',
 })
-class NgxOriginOverlayDirective {
+export class NgxOriginOverlayDirective {
   get nativeElement(): any {
     return this._elementRef.nativeElement;
   }
 
   constructor (@Inject(ElementRef) protected _elementRef) { }
 }
-
-
-export { NgxOriginOverlayDirective };

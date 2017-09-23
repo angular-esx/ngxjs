@@ -25,7 +25,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-class NgxGridRowComponent implements OnChanges {
+export class NgxGridRowComponent implements OnChanges {
   private _renderer: INgxRenderer;
 
   @Input() type: 'no-gutters' | null;
@@ -65,6 +65,3 @@ class NgxGridRowComponent implements OnChanges {
     return  propName && value ? `ngx-Grid__GridRow_${propName}_${value}` : '';
   }
 }
-
-
-export { NgxGridRowComponent };

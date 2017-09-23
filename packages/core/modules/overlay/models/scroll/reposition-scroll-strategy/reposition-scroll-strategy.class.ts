@@ -5,14 +5,14 @@ import { INgxOverlayRef } from '../../overlay';
 import { INgxRepositionScrollStrategy } from './reposition-scroll-strategy.interface';
 
 
-class NgxRepositionScrollStrategyConfig {
+export class NgxRepositionScrollStrategyConfig {
   scrollThrottle?: number = 0;
 }
 
 /**
  * Strategy that will update the element position as the user is scrolling.
  */
-class NgxRepositionScrollStrategy implements INgxRepositionScrollStrategy {
+export class NgxRepositionScrollStrategy implements INgxRepositionScrollStrategy {
   protected _config: NgxRepositionScrollStrategyConfig;
   protected _overlayRef: INgxOverlayRef;
 
@@ -50,9 +50,3 @@ class NgxRepositionScrollStrategy implements INgxRepositionScrollStrategy {
     }
   }
 }
-
-
-export {
-  NgxRepositionScrollStrategyConfig,
-  NgxRepositionScrollStrategy,
-};
