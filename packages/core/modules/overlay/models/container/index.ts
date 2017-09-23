@@ -1,5 +1,9 @@
-export { INgxOverlayContainer } from './overlay-container.interface';
+export {
+  INgxFullscreenOverlayContainer,
+  NgxFullscreenOverlayContainer,
+} from './fullscreen-overlay-container';
 
-export { NgxOverlayContainer } from './overlay-container.class';
-
-export { NgxFullscreenOverlayContainer } from './fullscreen-overlay-container.class';
+export {
+  INgxOverlayContainer,
+  NgxOverlayContainer,
+} from './overlay-container/';

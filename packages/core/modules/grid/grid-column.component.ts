@@ -9,7 +9,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { NgxRenderService, NgxRenderer } from '../../services';
+import {
+  INgxRenderService,
+  INgxRenderer,
+  NgxRenderService,
+} from '../../services';
 
 
 @Component({
@@ -22,7 +26,7 @@ import { NgxRenderService, NgxRenderer } from '../../services';
   encapsulation: ViewEncapsulation.None,
 })
 class NgxGridColumnComponent implements OnChanges {
-  private _renderer: NgxRenderer;
+  private _renderer: INgxRenderer;
 
   @Input() align:
     'xs-start' | 'xs-center' | 'xs-end' |
@@ -69,7 +73,7 @@ class NgxGridColumnComponent implements OnChanges {
 
   constructor (
     @Inject(ElementRef) elementRef: ElementRef,
-    @Inject(NgxRenderService) rendererService: NgxRenderService
+    @Inject(NgxRenderService) rendererService: INgxRenderService
   ) {
     this._renderer = rendererService.createRenderer(elementRef.nativeElement);
   }

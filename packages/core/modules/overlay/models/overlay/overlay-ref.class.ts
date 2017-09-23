@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/share';
 
-import { NgxBrowserPlatformService } from '../../../../services';
+import { INgxBrowserPlatformService } from '../../../../services';
 import {
   INgxPortal,
   INgxPortalHost,
@@ -16,13 +16,14 @@ import {
   INgxComponentPortal,
 } from '../../../portal';
 import { NgxOverlayConfig } from './overlay-config.class';
+import { INgxOverlayRef } from './overlay-ref.interface';
 
 
 /**
  * Reference to an overlay that has been created with the Overlay service.
  * Used to manipulate or dispose of said overlay.
  */
-class NgxOverlayRef implements INgxPortalHost {
+class NgxOverlayRef implements INgxOverlayRef {
   protected _config: NgxOverlayConfig;
   protected _backdropElement: HTMLElement;
   protected _disposeFunc: () => void;
@@ -72,12 +73,12 @@ class NgxOverlayRef implements INgxPortalHost {
     protected _overlayElement: HTMLElement,
     config: NgxOverlayConfig,
     protected _ngZone: NgZone,
-    protected _browserPlatformService: NgxBrowserPlatformService
+    protected _browserPlatformService: INgxBrowserPlatformService
   ) {
     this.config = { ...(new NgxOverlayConfig()), ...config };
   }
 
-  setDisposeFunc (func: () => void) {
+  setDisposeFunc (func: () => void): void {
     this._disposeFunc = func;
   }
 

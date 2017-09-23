@@ -20,7 +20,6 @@ import {
   inject,
 } from '@angular/core/testing';
 
-import { NgxServiceModule } from '../../../services/';
 import {
   INgxPortal,
   NgxComponentPortal,
@@ -111,7 +110,6 @@ const DIRECTIVES = [
   imports: [
     CommonModule,
     NgxPortalModule,
-    NgxServiceModule,
   ],
   declarations: DIRECTIVES,
   providers: [CustomOption],

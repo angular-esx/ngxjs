@@ -12,7 +12,11 @@ import {
 
 import { parseBoolean } from 'ngx-infrastructure';
 
-import { NgxRenderService, NgxRenderer } from '../../services';
+import {
+  INgxRenderer,
+  INgxRenderService,
+  NgxRenderService,
+} from '../../services';
 
 
 @Component({
@@ -27,7 +31,7 @@ import { NgxRenderService, NgxRenderer } from '../../services';
   exportAs: 'ngxSidenav'
 })
 class NgxSidenavComponent implements OnChanges, OnInit {
-  private _renderer: NgxRenderer;
+  private _renderer: INgxRenderer;
   private _isActive: boolean;
 
   @Input() type: 'over' | 'push' | 'side' = 'side';
@@ -42,7 +46,7 @@ class NgxSidenavComponent implements OnChanges, OnInit {
 
   constructor (
     @Inject(ElementRef) elementRef: ElementRef,
-    @Inject(NgxRenderService) renderService: NgxRenderService,
+    @Inject(NgxRenderService) renderService: INgxRenderService,
   ) {
     this._renderer = renderService.createRenderer(elementRef.nativeElement);
   }

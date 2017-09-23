@@ -11,6 +11,12 @@ export {
 
 export { INgxPositionStrategy } from './position-strategy.interface';
 
-export { NgxConnectedPositionStrategy } from './connected-position-strategy.class';
+export {
+  INgxConnectedPositionStrategy,
+  NgxConnectedPositionStrategy,
+} from './connected-position-strategy';
 
-export { NgxGlobalPositionStrategy } from './global-position-strategy.class';
+export {
+  INgxGlobalPositionStrategy,
+  NgxGlobalPositionStrategy,
+} from './global-position-strategy';

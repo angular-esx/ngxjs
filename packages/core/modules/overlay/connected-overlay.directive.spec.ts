@@ -14,14 +14,16 @@ import {
 } from '@angular/core/testing';
 
 import {
+  NgxConnectedOverlayPositionChangedType,
   NgxOverlayConfig,
   NgxConnectedOverlayConfig,
-  NgxConnectedOverlayPositionChangedType,
-  NgxConnectedPositionStrategy,
+  INgxConnectedPositionStrategy,
+  INgxOverlayContainerService,
+  NgxOverlayContainerService,
+  INgxScrollStrategyService,
+  NgxScrollStrategyService,
   NgxOriginOverlayDirective,
   NgxConnectedOverlayDirective,
-  NgxOverlayContainerService,
-  NgxScrollStrategyService,
   NgxOverlayModule,
 } from '../overlay/';
 
@@ -84,8 +86,8 @@ class NgxTestConnectedOverlayComponent implements AfterContentInit {
 describe('Overlay directives', () => {
   let _connectedOverlayConfig: NgxConnectedOverlayConfig;
   let _connectedOverlayComponent: ComponentFixture<NgxTestConnectedOverlayComponent>;
-  let _overlayContainerService: NgxOverlayContainerService;
-  let _scrollStrategyService: NgxScrollStrategyService;
+  let _overlayContainerService: INgxOverlayContainerService;
+  let _scrollStrategyService: INgxScrollStrategyService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -99,8 +101,8 @@ describe('Overlay directives', () => {
     NgxOverlayContainerService,
     NgxScrollStrategyService,
   ],
-  (overlayContainerService: NgxOverlayContainerService,
-    scrollStrategyService: NgxScrollStrategyService
+  (overlayContainerService: INgxOverlayContainerService,
+    scrollStrategyService: INgxScrollStrategyService
   ) => {
     _overlayContainerService = overlayContainerService;
     _scrollStrategyService = scrollStrategyService;
@@ -188,10 +190,8 @@ describe('Overlay directives', () => {
     };
     _connectedOverlayComponent.detectChanges();
 
-    expect(
-      _connectedOverlayComponent.componentInstance.connectedOverlayDirective.overlayRef.config.positionStrategy
-      instanceof NgxConnectedPositionStrategy
-    ).toBe(true);
+    expect(_isINgxConnectedPositionStrategy(_connectedOverlayComponent.componentInstance.connectedOverlayDirective.overlayRef.config.positionStrategy))
+    .toBe(true);
   });
 
   it('should set and update the `dir` attribute', () => {
@@ -481,5 +481,9 @@ describe('Overlay directives', () => {
     };
 
     return event;
+  }
+
+  function _isINgxConnectedPositionStrategy (object: any): object is INgxConnectedPositionStrategy {
+    return 'recalculateLastPosition' in object;
   }
 });

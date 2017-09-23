@@ -20,11 +20,15 @@ import {
   NgxConnectionPositionType,
   NgxConnectionPositionPairType,
   NgxOverlayConfig,
-  NgxOverlayRef,
-  NgxConnectedPositionStrategy,
+  INgxOverlayRef,
+  INgxConnectedPositionStrategy,
+  INgxOverlayContainerService,
   NgxOverlayContainerService,
+  INgxPositionStrategyService,
   NgxPositionStrategyService,
+  INgxScrollStrategyService,
   NgxScrollStrategyService,
+  INgxOverlayService,
   NgxOverlayService,
 } from '../overlay';
 
@@ -42,7 +46,7 @@ import { MenuPositionXType, MenuPositionYType } from './models';
 class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   private _menuOpened: boolean = false;
   private _portal: NgxTemplatePortal<any>;
-  private _overlayRef: NgxOverlayRef;
+  private _overlayRef: INgxOverlayRef;
   private _backdropSubscription: Subscription;
   private _positionSubscription: Subscription;
 
@@ -57,10 +61,10 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   constructor (
     @Inject(ElementRef) private _elementRef: ElementRef,
     @Inject(ViewContainerRef) private _viewContainerRef: ViewContainerRef,
-    @Inject(NgxOverlayContainerService) private _overlayContainerService: NgxOverlayContainerService,
-    @Inject(NgxScrollStrategyService) private _scrollStrategyService: NgxScrollStrategyService,
-    @Inject(NgxPositionStrategyService) private _positionStrategyService: NgxPositionStrategyService,
-    @Inject(NgxOverlayService) private _overlayService: NgxOverlayService,
+    @Inject(NgxOverlayContainerService) private _overlayContainerService: INgxOverlayContainerService,
+    @Inject(NgxScrollStrategyService) private _scrollStrategyService: INgxScrollStrategyService,
+    @Inject(NgxPositionStrategyService) private _positionStrategyService: INgxPositionStrategyService,
+    @Inject(NgxOverlayService) private _overlayService: INgxOverlayService,
   ) {}
 
   ngAfterViewInit () {
@@ -131,7 +135,7 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
       this._portal = new NgxTemplatePortal(this.menu.templateRef, this._viewContainerRef);
 
       const config = this._getOverlayConfig();
-      this._subscribeToPositions(config.positionStrategy as NgxConnectedPositionStrategy);
+      this._subscribeToPositions(config.positionStrategy as INgxConnectedPositionStrategy);
       this._overlayRef = this._overlayService.create(config);
     }
   }
@@ -147,7 +151,7 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
     return overlayConfig;
   }
 
-  private _getPosition (): NgxConnectedPositionStrategy  {
+  private _getPosition (): INgxConnectedPositionStrategy  {
     const [_positionX, _fallbackX]: NgxHorizontalConnectionPositionType[] =
       this.menu.positionX === 'before' ? ['end', 'start'] : ['start', 'end'];
 
@@ -188,7 +192,7 @@ class MenuTriggerDirective implements AfterViewInit, OnDestroy {
     on the menu based on the new position. This ensures the animation origin is always
     correct, even if a fallback position is used for the overlay.
   */
-  private _subscribeToPositions (position: NgxConnectedPositionStrategy): void {
+  private _subscribeToPositions (position: INgxConnectedPositionStrategy): void {
     this._positionSubscription = position.positionChange$.subscribe((change) => {
       const _positionX: MenuPositionXType = change.connectionPair.origin.x === 'start' ? 'after' : 'before';
       let _positionY: MenuPositionYType = change.connectionPair.origin.y === 'top' ? 'below' : 'above';

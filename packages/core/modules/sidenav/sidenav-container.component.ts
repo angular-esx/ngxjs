@@ -13,7 +13,10 @@ import {
   Inject,
 } from '@angular/core';
 
-import { NgxBrowserPlatformService } from '../../services';
+import {
+  INgxBrowserPlatformService,
+  NgxBrowserPlatformService,
+} from '../../services';
 
 import { NgxSidenavComponent } from './sidenav.component';
 
@@ -41,7 +44,7 @@ class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
 
   constructor (
     @Inject(ChangeDetectorRef) private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(NgxBrowserPlatformService) private _browserPlatformService: NgxBrowserPlatformService
+    @Inject(NgxBrowserPlatformService) private _browserPlatformService: INgxBrowserPlatformService
   ) {}
 
 

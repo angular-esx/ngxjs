@@ -1,4 +1,4 @@
-import { NgxOverlayRef } from '../overlay';
+import { INgxOverlayRef } from '../overlay';
 
 
 /**
@@ -8,7 +8,7 @@ import { NgxOverlayRef } from '../overlay';
 interface INgxScrollStrategy {
   enable: () => void;
   disable: () => void;
-  attach: (overlayRef: NgxOverlayRef) => this;
+  attach: (overlayRef: INgxOverlayRef) => this;
 }
 
 

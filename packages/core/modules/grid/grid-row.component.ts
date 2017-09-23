@@ -9,7 +9,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { NgxRenderService, NgxRenderer } from '../../services';
+import {
+  INgxRenderer,
+  INgxRenderService,
+  NgxRenderService,
+} from '../../services';
 
 
 @Component({
@@ -22,7 +26,7 @@ import { NgxRenderService, NgxRenderer } from '../../services';
   encapsulation: ViewEncapsulation.None
 })
 class NgxGridRowComponent implements OnChanges {
-  private _renderer: NgxRenderer;
+  private _renderer: INgxRenderer;
 
   @Input() type: 'no-gutters' | null;
 
@@ -43,7 +47,7 @@ class NgxGridRowComponent implements OnChanges {
 
   constructor (
     @Inject(ElementRef) elementRef: ElementRef,
-    @Inject(NgxRenderService) rendererService: NgxRenderService
+    @Inject(NgxRenderService) rendererService: INgxRenderService
   ) {
     this._renderer = rendererService.createRenderer(elementRef.nativeElement);
   }

@@ -5,11 +5,13 @@ import {
   Inject
 } from '@angular/core';
 
+import { INgxRenderService } from './render-service.interface';
+import { INgxRenderer } from './renderer.interface';
 import { NgxRenderer } from './renderer.class';
 
 
 @Injectable()
-export class NgxRenderService {
+export class NgxRenderService implements INgxRenderService {
   protected _renderer: Renderer2;
 
 
@@ -18,7 +20,7 @@ export class NgxRenderService {
   }
 
 
-  createRenderer (nativeElement: any): NgxRenderer {
+  createRenderer (nativeElement: any): INgxRenderer {
     return new NgxRenderer(nativeElement, this._renderer);
   }
 

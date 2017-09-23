@@ -21,7 +21,9 @@ import {
 } from 'ngx-infrastructure';
 
 import {
+  INgxRenderService,
   NgxRenderService,
+  INgxBrowserPlatformService,
   NgxBrowserPlatformService,
 } from '../../services';
 import { NgxTemplatePortal } from '../portal';
@@ -29,17 +31,20 @@ import {
   NgxConnectionPositionType,
   NgxConnectionPositionPairType,
   NgxConnectedOverlayPositionChangedType,
-  NgxConnectedPositionStrategy,
+  INgxConnectedPositionStrategy,
   NgxOverlayConfig,
   NgxConnectedOverlayConfig,
-  NgxOverlayRef,
+  INgxOverlayRef,
   INgxScrollStrategy,
-  NgxRepositionScrollStrategy,
 } from './models';
 import {
+  INgxOverlayContainerService,
   NgxOverlayContainerService,
+  INgxPositionStrategyService,
   NgxPositionStrategyService,
+  INgxScrollStrategyService,
   NgxScrollStrategyService,
+  INgxOverlayService,
   NgxOverlayService,
 } from './services';
 import { NgxOriginOverlayDirective } from './origin-overlay.directive';
@@ -55,15 +60,15 @@ import { NgxOriginOverlayDirective } from './origin-overlay.directive';
 class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
   protected _immutableProperties = ['originOverlay', 'container', 'scrollStrategy'];
 
-  protected _overlayRef: NgxOverlayRef;
+  protected _overlayRef: INgxOverlayRef;
   protected _templatePortal: NgxTemplatePortal<any>;
-  protected _positionStrategy: NgxConnectedPositionStrategy;
+  protected _positionStrategy: INgxConnectedPositionStrategy;
   protected _listeners: Array<Function> = [];
 
   protected _backdropSubscription: Subscription;
   protected _positionSubscription: Subscription;
 
-  get overlayRef(): NgxOverlayRef {
+  get overlayRef(): INgxOverlayRef {
     return this._overlayRef;
   }
 
@@ -73,12 +78,12 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
   constructor (
     @Inject(TemplateRef) templateRef: TemplateRef<any>,
     @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(NgxOverlayContainerService) protected _overlayContainerService: NgxOverlayContainerService,
-    @Inject(NgxPositionStrategyService) protected _positionStrategyService: NgxPositionStrategyService,
-    @Inject(NgxScrollStrategyService) protected _scrollStrategyService: NgxScrollStrategyService,
-    @Inject(NgxOverlayService) protected _overlayService: NgxOverlayService,
-    @Inject(NgxRenderService) protected _rendererService: NgxRenderService,
-    @Inject(NgxBrowserPlatformService) protected _browserPlatformService: NgxBrowserPlatformService
+    @Inject(NgxOverlayContainerService) protected _overlayContainerService: INgxOverlayContainerService,
+    @Inject(NgxPositionStrategyService) protected _positionStrategyService: INgxPositionStrategyService,
+    @Inject(NgxScrollStrategyService) protected _scrollStrategyService: INgxScrollStrategyService,
+    @Inject(NgxOverlayService) protected _overlayService: INgxOverlayService,
+    @Inject(NgxRenderService) protected _rendererService: INgxRenderService,
+    @Inject(NgxBrowserPlatformService) protected _browserPlatformService: INgxBrowserPlatformService
   ) {
     this._templatePortal = new NgxTemplatePortal(templateRef, viewContainerRef);
   }
@@ -188,7 +193,7 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
     }
 
     if (this._overlayRef && !this._overlayRef.hasAttached) {
-      (this.overlayRef.config.positionStrategy as NgxConnectedPositionStrategy)
+      (this.overlayRef.config.positionStrategy as INgxConnectedPositionStrategy)
       .setDirection(this.config.direction)
       .setOffsetX(this.config.offsetX)
       .setOffsetY(this.config.offsetY)
@@ -222,7 +227,7 @@ class NgxConnectedOverlayDirective implements OnChanges, OnDestroy {
     };
   }
 
-  protected _createPositionStrategy (): NgxConnectedPositionStrategy {
+  protected _createPositionStrategy (): INgxConnectedPositionStrategy {
     const _position = this.config.connectedPositions[0];
 
     const strategy = this._positionStrategyService.createConnectedPositionStrategy(

@@ -6,12 +6,14 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 
+import { INgxBrowserPlatformService } from './browser-platform-service.interface';
+
 /**
  * Service to detect the current platform by comparing the userAgent strings and
  * checking browser-specific global properties.
  */
 @Injectable()
-export class NgxBrowserPlatformService {
+export class NgxBrowserPlatformService implements INgxBrowserPlatformService {
   /**
    * Whether the current platform supports the V8 Break Iterator.
    * The V8 check is necessary to detect all Blink based browsers.
@@ -22,7 +24,7 @@ export class NgxBrowserPlatformService {
 
   readonly isEdge = this.isBrowser && /(edge)/i.test(navigator.userAgent);
 
-  readonly  isTrident = this.isBrowser && /(msie|trident)/i.test(navigator.userAgent);
+  readonly isTrident = this.isBrowser && /(msie|trident)/i.test(navigator.userAgent);
   /**
    * EdgeHTML and Trident mock Blink specific things and need to be excluded from this check.
    */
@@ -59,6 +61,6 @@ export class NgxBrowserPlatformService {
 
   constructor (
     @Inject(PLATFORM_ID) private _platformId: any,
-    @Inject(DOCUMENT) public document: any
+    @Inject(DOCUMENT) public readonly document: any
   ) {}
 }
