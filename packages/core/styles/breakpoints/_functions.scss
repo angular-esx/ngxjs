@@ -15,7 +15,8 @@
   @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
 
-
+//    >> ngx-min-breakpoint-by-device($ngx-desktop-breakpoints, md)
+//    960
 @function ngx-min-breakpoint-by-device($device-breakpoints, $device-breakpoint-name: null) {
   @if $device-breakpoint-name {
     @return map-get(map-get($device-breakpoints, $device-breakpoint-name), min);
@@ -24,6 +25,8 @@
   @return map-get(map-get($device-breakpoints, ngx-first(map-keys($device-breakpoints))), min);
 }
 
+//    >> ngx-max-breakpoint-by-device($ngx-desktop-breakpoints, md)
+//    1280
 @function ngx-max-breakpoint-by-device($device-breakpoints, $device-breakpoint-name: null) {
   @if $device-breakpoint-name {
     @return map-get(map-get($device-breakpoints, $device-breakpoint-name), max);
