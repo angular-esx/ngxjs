@@ -88,7 +88,7 @@ describe('Overlay directives', () => {
   let _overlayContainerService: NgxOverlayContainerService;
   let _scrollStrategyService: NgxScrollStrategyService;
 
-  beforeEach(async () => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         NgxOverlayModule,
@@ -97,7 +97,7 @@ describe('Overlay directives', () => {
       declarations: [NgxTestConnectedOverlayComponent],
     })
     .compileComponents();
-  });
+  }));
 
   beforeEach(inject([
     NgxOverlayContainerService,
