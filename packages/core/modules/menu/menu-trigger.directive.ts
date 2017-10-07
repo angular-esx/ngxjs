@@ -22,8 +22,6 @@ import {
   NgxOverlayConfig,
   INgxOverlayRef,
   INgxConnectedPositionStrategy,
-  INgxOverlayContainerService,
-  NgxOverlayContainerService,
   INgxPositionStrategyService,
   NgxPositionStrategyService,
   INgxScrollStrategyService,
@@ -61,7 +59,6 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   constructor (
     @Inject(ElementRef) private _elementRef: ElementRef,
     @Inject(ViewContainerRef) private _viewContainerRef: ViewContainerRef,
-    @Inject(NgxOverlayContainerService) private _overlayContainerService: INgxOverlayContainerService,
     @Inject(NgxScrollStrategyService) private _scrollStrategyService: INgxScrollStrategyService,
     @Inject(NgxPositionStrategyService) private _positionStrategyService: INgxPositionStrategyService,
     @Inject(NgxOverlayService) private _overlayService: INgxOverlayService,
@@ -142,8 +139,7 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
 
   private _getOverlayConfig (): NgxOverlayConfig {
     const overlayConfig = new NgxOverlayConfig();
-    overlayConfig.container = this._overlayContainerService.createOverlayContainer();
-    overlayConfig.scrollStrategy = this._scrollStrategyService.createNoopScrollStrategy();
+    overlayConfig.scrollStrategy = this._scrollStrategyService.createRepositionScrollStrategy();
     overlayConfig.positionStrategy = this._getPosition();
     overlayConfig.hasBackdrop = true;
     overlayConfig.backdropClass = 'ngx-OverlayBackdrop_variant_transparent';

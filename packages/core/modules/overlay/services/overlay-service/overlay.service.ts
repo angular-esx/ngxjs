@@ -21,6 +21,18 @@ import {
   INgxOverlayRef,
   NgxOverlayRef,
 } from '../../models';
+import {
+  INgxOverlayContainerService,
+  NgxOverlayContainerService,
+} from '../overlay-container-service';
+import {
+  INgxPositionStrategyService,
+  NgxPositionStrategyService,
+} from '../position-strategy-service';
+import {
+  INgxScrollStrategyService,
+  NgxScrollStrategyService,
+} from '../scroll-strategy-service';
 import { INgxOverlayService } from './overlay-service.interface';
 
 
@@ -43,14 +55,30 @@ export class NgxOverlayService implements INgxOverlayService {
     @Inject(ComponentFactoryResolver) protected _componentFactoryResolver: ComponentFactoryResolver,
     @Inject(Injector) protected _injector: Injector,
     @Inject(NgZone) protected _ngZone: NgZone,
-    @Inject(NgxBrowserPlatformService) protected _browserPlatformService: INgxBrowserPlatformService
+    @Inject(NgxBrowserPlatformService) protected _browserPlatformService: INgxBrowserPlatformService,
+    @Inject(NgxOverlayContainerService) protected _overlayContainerService: INgxOverlayContainerService,
+    @Inject(NgxPositionStrategyService) protected _positionStrategyService: INgxPositionStrategyService,
+    @Inject(NgxScrollStrategyService) protected _scrollStrategyService: INgxScrollStrategyService
   ) {}
 
+  /**
+   * If config has no instances for `container`, `positionStrategy`, `scrollStrategy`,
+   * Instances of INgxOverlayContainer, INgxGlobalPositionStrategy, INgxNoopScrollStrategy are initialized as default.
+   */
   create (config: NgxOverlayConfig): INgxOverlayRef {
     if (!this._browserPlatformService.isBrowser) { return null; }
 
-    if (!config || !config.container) {
-      throw new Error(`Invalid config. NgxOverlayConfig must have instances of INgxOverlayContainer.`);
+    if (!config) {
+      throw new Error(`NgxOverlayConfig is required.`);
+    }
+    if (!config.container) {
+      config.container = this._overlayContainerService.createOverlayContainer();
+    }
+    if (!config.positionStrategy) {
+      config.positionStrategy = this._positionStrategyService.createGlobalPositionStrategy();
+    }
+    if (!config.scrollStrategy) {
+      config.scrollStrategy = this._scrollStrategyService.createNoopScrollStrategy();
     }
 
     const _overlay = this._createOverlayElement(config);
@@ -85,13 +113,20 @@ export function ngxOverlayServiceFactory (
   componentFactoryResolver: ComponentFactoryResolver,
   injector: Injector,
   ngZone: NgZone,
-  browserPlatformService: INgxBrowserPlatformService) {
+  browserPlatformService: INgxBrowserPlatformService,
+  overlayContainerService: INgxOverlayContainerService,
+  positionStrategyService: INgxPositionStrategyService,
+  scrollStrategyService: INgxScrollStrategyService
+) {
   return parentOverlayService || new NgxOverlayService(
     appRef,
     componentFactoryResolver,
     injector,
     ngZone,
-    browserPlatformService
+    browserPlatformService,
+    overlayContainerService,
+    positionStrategyService,
+    scrollStrategyService
   );
 }
 /**
@@ -106,6 +141,9 @@ export const ngxOverlayServiceProvider = {  
     Injector,
     NgZone,
     NgxBrowserPlatformService,
+    NgxOverlayContainerService,
+    NgxPositionStrategyService,
+    NgxScrollStrategyService,
   ],
   useFactory: ngxOverlayServiceFactory,
 };
