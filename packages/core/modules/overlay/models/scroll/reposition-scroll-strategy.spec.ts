@@ -41,7 +41,7 @@ class NgxTestComponent { }
 class NgxOverlayTestModule { }
 
 
-describe('NgxCloseScrollStrategy', () => {
+describe('NgxRepositionScrollStrategy', () => {
   let _overlayRef: NgxOverlayRef;
   let _componentPortal: NgxComponentPortal<NgxTestComponent>;
   const _scrolledSubject = new Subject();
@@ -76,7 +76,7 @@ describe('NgxCloseScrollStrategy', () => {
     const _overlayConfig = new NgxOverlayConfig();
     _overlayConfig.container = overlayContainerServicer.createOverlayContainer();
     _overlayConfig.positionStrategy = positionStrategyService.createGlobalPositionStrategy();
-    _overlayConfig.scrollStrategy = scrollStrategyService.createCloseScrollStrategy();
+    _overlayConfig.scrollStrategy = scrollStrategyService.createRepositionScrollStrategy();
 
     _overlayRef = overlayService.create(_overlayConfig);
 
@@ -87,21 +87,32 @@ describe('NgxCloseScrollStrategy', () => {
     _overlayRef.dispose();
   });
 
-  it('should detach the overlay as soon as the user scrolls', () => {
+  it('should update the overlay position when the page is scrolled', () => {
     _overlayRef.attachComponent(_componentPortal);
-    spyOn(_overlayRef, 'detach');
+    spyOn(_overlayRef.config.positionStrategy, 'apply');
 
     _scrolledSubject.next();
-    expect(_overlayRef.detach).toHaveBeenCalled();
+    expect(_overlayRef.config.positionStrategy.apply).toHaveBeenCalledTimes(1);
+
+    _scrolledSubject.next();
+    expect(_overlayRef.config.positionStrategy.apply).toHaveBeenCalledTimes(2);
   });
 
-  it('should not attempt to detach the overlay after it has been detached', () => {
+  it('should not be updating the position after the overlay is detached', () => {
     _overlayRef.attachComponent(_componentPortal);
+    spyOn(_overlayRef.config.positionStrategy, 'apply');
+
     _overlayRef.detach();
-
-    spyOn(_overlayRef, 'detach');
     _scrolledSubject.next();
+    expect(_overlayRef.config.positionStrategy.apply).not.toHaveBeenCalled();
+  });
 
-    expect(_overlayRef.detach).not.toHaveBeenCalled();
+  it('should not be updating the position after the overlay is destroyed', () => {
+    _overlayRef.attachComponent(_componentPortal);
+    spyOn(_overlayRef.config.positionStrategy, 'apply');
+
+    _overlayRef.dispose();
+    _scrolledSubject.next();
+    expect(_overlayRef.config.positionStrategy.apply).not.toHaveBeenCalled();
   });
 });

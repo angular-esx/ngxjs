@@ -8,6 +8,7 @@ import {
   NgxPositionStrategyService,
   NgxScrollStrategyService,
   NgxOverlayService,
+  NgxOverlayContainerService,
 } from './services';
 import { NgxScrollableDirective } from './scrollabe.directive';
 import { NgxOriginOverlayDirective } from './origin-overlay.directive';
@@ -33,6 +34,7 @@ import { NgxConnectedOverlayDirective } from './connected-overlay.directive';
     NgxPositionStrategyService,
     NgxScrollStrategyService,
     NgxOverlayService,
+    NgxOverlayContainerService,
   ],
 })
 class NgxOverlayModule {}

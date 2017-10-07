@@ -1,9 +1,6 @@
+import { INgxOverlayContainer } from '../container';
 import { INgxPositionStrategy } from '../positions';
-import {
-  INgxScrollStrategy,
-  NgxNoopScrollStrategy,
-} from '../scroll';
-import { NGX_OVERLAY } from './overlay.enum';
+import { INgxScrollStrategy } from '../scroll';
 
 
 /**
@@ -11,23 +8,27 @@ import { NGX_OVERLAY } from './overlay.enum';
  */
 class NgxOverlayConfig {
   /**
+   * Container for overlay
+   */
+  container?: INgxOverlayContainer;
+  /**
    * Strategy with which to position the overlay
    */
   positionStrategy?: INgxPositionStrategy;
   /**
    * Strategy to be used when handling scroll events while the overlay is open
    */
-  scrollStrategy?: INgxScrollStrategy = new NgxNoopScrollStrategy();
+  scrollStrategy?: INgxScrollStrategy;
 
   hasBackdrop?: boolean = false;
   /**
-    * Custom class to add to the overlay panel.
+    * Custom classes to add to the overlay panel.
     */
-  overlayPanelClass?: string = '';
+  overlayClasses?: Array<string>;
   /**
    * Custom class to add to the backdrop
    */
-  backdropClass?: string = NGX_OVERLAY.BACKDROP_VARIANT_DARK_CLASS;
+  backdropClass?: string;
   /**
    * The width of the overlay panel. If a number is provided, pixel units are assumed.
    */
@@ -44,6 +45,14 @@ class NgxOverlayConfig {
    * The min-height of the overlay panel. If a number is provided, pixel units are assumed.
    */
   minHeight?: number | string;
+  /**
+   * The max-width of the overlay panel. If a number is provided, pixel units are assumed.
+   */
+  maxWidth?: number | string;
+  /**
+   * The max-height of the overlay panel. If a number is provided, pixel units are assumed.
+   */
+  maxHeight?: number | string;
   /**
    * The direction of the text in the overlay panel.
    */

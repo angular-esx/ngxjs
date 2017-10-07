@@ -21,7 +21,7 @@ class NgxViewportService {
     @Inject(NgxScrollService) protected _scrollService: NgxScrollService,
     @Inject(NgxBrowserPlatformService) protected _browserPlatformService: NgxBrowserPlatformService
   ) {
-    this._scrollService.subscribe(() => this._cacheViewportGeometry(), 0);
+    this._scrollService.subscribe(() => this.cacheViewportRect(), 0);
   }
 
   /**
@@ -33,7 +33,7 @@ class NgxViewportService {
     let _rect = clientRect || this._clientRect;
 
     if (!_rect) {
-      this._cacheViewportGeometry();
+      this.cacheViewportRect();
       _rect = this._clientRect;
     }
 
@@ -59,7 +59,7 @@ class NgxViewportService {
     let _rect = clientRect || this._clientRect;
 
     if (!_rect) {
-      this._cacheViewportGeometry();
+      this.cacheViewportRect();
       _rect = this._clientRect;
     }
 
@@ -78,7 +78,7 @@ class NgxViewportService {
     };
   }
 
-  protected _cacheViewportGeometry (): void {
+  cacheViewportRect (clientRect?: ClientRect): void {
     /**
      * Use the document element's bounding rect rather than the window scroll properties
      * (e.g. pageYOffset, scrollY) due to in issue in Chrome and IE where window scroll
@@ -89,7 +89,7 @@ class NgxViewportService {
      * We use the documentElement instead of the body because, by default (without a css reset)
      * browsers typically give the document body an 8px margin, which is not included in getBoundingClientRect().
      */
-    this._clientRect = this._browserPlatformService.document.documentElement.getBoundingClientRect();
+    this._clientRect = clientRect || this._browserPlatformService.document.documentElement.getBoundingClientRect();
   }
 }
 

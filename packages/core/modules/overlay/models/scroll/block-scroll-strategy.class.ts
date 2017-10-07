@@ -1,4 +1,5 @@
 import { NgxBrowserPlatformService } from '../../../../services';
+import { NgxOverlayRef } from '../overlay';
 import { NgxViewportService } from '../../services';
 import { INgxScrollStrategy } from './scroll-strategy.interface';
 
@@ -15,9 +16,9 @@ class NgxBlockScrollStrategy implements INgxScrollStrategy {
     const { documentElement, body } = this._browserPlatformService.document;
     /**
      * Since the scroll strategies can't be singletons, we have to use a global CSS class
-     * (`ngx-BlockScrollStrategy`) to make sure that we don't try to disable global scrolling multiple times.
+     * (`ngx-OverlayScrollStrategy_type_block`) to make sure that we don't try to disable global scrolling multiple times.
      */
-    if (documentElement.classList.contains('ngx-BlockScrollStrategy') || this._isEnabled) {
+    if (documentElement.classList.contains('ngx-OverlayScrollStrategy_type_block') || this._isEnabled) {
       return false;
     }
 
@@ -33,7 +34,7 @@ class NgxBlockScrollStrategy implements INgxScrollStrategy {
   ) { }
 
 
-  attach (): void { return; }
+  attach (overlayRef: NgxOverlayRef): this { return this; }
 
   enable (): void {
     if (this._browserPlatformService.isBrowser && this._canBeEnabled) {
@@ -50,7 +51,7 @@ class NgxBlockScrollStrategy implements INgxScrollStrategy {
        */
       documentElement.style.left = `${-this._previousScrollPosition.left}px`;
       documentElement.style.top = `${-this._previousScrollPosition.top}px`;
-      documentElement.classList.add('ngx-BlockScrollStrategy');
+      documentElement.classList.add('ngx-OverlayScrollStrategy_type_block');
 
       this._isEnabled = true;
     }
@@ -64,7 +65,7 @@ class NgxBlockScrollStrategy implements INgxScrollStrategy {
 
       documentElement.style.left = this._previousHTMLStyles.left;
       documentElement.style.top = this._previousHTMLStyles.top;
-      documentElement.classList.remove('ngx-BlockScrollStrategy');
+      documentElement.classList.remove('ngx-OverlayScrollStrategy_type_block');
 
       this._browserPlatformService.window.scroll(this._previousScrollPosition.left, this._previousScrollPosition.top);
     }

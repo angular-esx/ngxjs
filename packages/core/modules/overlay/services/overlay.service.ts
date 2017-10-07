@@ -12,7 +12,6 @@ import {
 import { NgxBrowserPlatformService } from '../../../services';
 import { NgxDomPortalHost } from '../../portal';
 import {
-  NGX_OVERLAY,
   NgxOverlayConfig,
   NgxOverlayRef,
 } from '../models';
@@ -42,10 +41,14 @@ class NgxOverlayService {
     @Inject(NgxBrowserPlatformService) protected _browserPlatformService: NgxBrowserPlatformService
   ) {}
 
-  create (config?: NgxOverlayConfig): NgxOverlayRef {
+  create (config: NgxOverlayConfig): NgxOverlayRef {
     if (!this._browserPlatformService.isBrowser) { return null; }
 
-    const _overlay = this._createOverlayElement();
+    if (!config || !config.container) {
+      throw new Error(`Invalid config. NgxOverlayConfig must have instances of INgxOverlayContainer.`);
+    }
+
+    const _overlay = this._createOverlayElement(config);
 
     return new NgxOverlayRef(
       new NgxDomPortalHost(_overlay, this._componentFactoryResolver, this._appRef, this._injector),
@@ -56,22 +59,16 @@ class NgxOverlayService {
     );
   }
 
-  protected _createOverlayElement (): HTMLElement {
+  protected _createOverlayElement (config: NgxOverlayConfig): HTMLElement {
     const { document } = this._browserPlatformService;
-    /**
-     * Create the overlay container element, which is simply a div on the document body.
-     */
-    const _container = document.createElement('div');
-    _container.classList.add(NGX_OVERLAY.CONTAINER_CLASS);
     /**
      * Creates the DOM element for an overlay and appends it to the overlay container.
      */
     const overlay = document.createElement('div');
     overlay.id = `ngx-Overlay-${_nextUniqueId++}`;
-    overlay.classList.add(NGX_OVERLAY.CLASS);
+    overlay.classList.add('ngx-Overlay');
 
-    _container.appendChild(overlay);
-    document.body.appendChild(_container);
+    config.container.nativeElement.appendChild(overlay);
 
     return overlay;
   }

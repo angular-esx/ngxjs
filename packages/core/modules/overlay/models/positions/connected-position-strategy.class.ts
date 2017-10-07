@@ -4,8 +4,11 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 
+import { parseNumber } from 'ngx-infrastructure';
+
 import { NgxBrowserPlatformService } from '../../../../services';
 import { NgxViewportService } from '../../services';
+import { NgxOverlayRef } from '../overlay';
 import {
   NgxPointType,
   NgxOverlayPointType,
@@ -28,15 +31,14 @@ import {
  * For example, a basic dropdown is connecting the bottom-left corner of the origin to the top-left corner of the overlay.
  */
 class NgxConnectedPositionStrategy implements INgxPositionStrategy {
+  protected _overlayRef: NgxOverlayRef;
+
   protected _direction: 'ltr' | 'rtl' = 'ltr';
   /**
    * The origin element against which the overlay will be positioned.
    */
   protected _origin: HTMLElement;
-  /**
-   * The overlay pane element.
-   */
-  protected _overlay: HTMLElement;
+  protected _nativeElement: HTMLElement;
   /**
    * The offset in pixels for the overlay connection point on the x-axis
    */
@@ -64,36 +66,6 @@ class NgxConnectedPositionStrategy implements INgxPositionStrategy {
 
 
   readonly positionChange$ = this._positionChangeSubject.asObservable().share();
-  /**
-   * Sets the list of INgxScrollables that host the origin element so that
-   * on reposition we can evaluate if it or the overlay has been clipped or outside view.
-   * Every INgxScrollables must be an ancestor element of the strategy's origin element.
-   */
-  set scrollables (scrollables: Array<INgxScrollable>) {
-    this._scrollables = scrollables;
-  }
-
-  set fallbackPositions (positions: Array<NgxConnectionPositionPairType>) {
-    if (positions) { this._preferredPositions.push(...positions); }
-  }
-  /**
-   * Sets the layout direction so the overlay's position can be adjusted to match.
-   */
-  set direction(direction: 'ltr' | 'rtl') {
-    this._direction = direction;
-  }
-  /**
-   * Sets an offset for the overlay's connection point on the x-axis
-   */
-  set offsetX (value: number) {
-    this._overlayX = value;
-  }
-  /**
-   * Sets an offset for the overlay's connection point on the y-axis
-   */
-  set offsetY (value: number) {
-    this._overlayY = value;
-  }
 
 
   constructor (
@@ -105,27 +77,43 @@ class NgxConnectedPositionStrategy implements INgxPositionStrategy {
   ) {
     this._origin = originElement;
 
-    this.fallbackPositions = [
-      {
-        origin: originPosition,
-        overlay: overlayPosition,
-      } as NgxConnectionPositionPairType
-    ];
+    this.addFallbackPositions({
+      origin: originPosition,
+      overlay: overlayPosition,
+    } as NgxConnectionPositionPairType);
+  }
+
+
+  attach (overlayRef: NgxOverlayRef): this {
+    this._overlayRef = overlayRef;
+
+    return this;
   }
   /**
    * Updates the position of the overlay element, using whichever position relative to the origin fits on-screen.
    */
-  apply (overlay: HTMLElement): void {
+  apply (): void {
+    if (!this._overlayRef) {
+      throw new Error('You must attack NgxOverlayRef to NgxGlobalPositionStrategy before calling apply().');
+    }
+
     if (!this._browserPlatformService.isBrowser) { return; }
-    /**
-     * Cache the overlay pane element in case re-calculating position is necessary
-     */
-    this._overlay = overlay;
+
+    const _overlay = this._overlayRef.overlayElement;
+
+    if (!this._nativeElement) {
+      this._nativeElement = this._browserPlatformService.document.createElement('div');
+      this._nativeElement.classList.add('ngx-OverlayPositionStrategy', 'ngx-OverlayPositionStrategy_type_connected');
+    }
+    if (_overlay.parentNode !== this._nativeElement) {
+      _overlay.parentNode.insertBefore(this._nativeElement, _overlay);
+      this._nativeElement.appendChild(_overlay);
+    }
     /**
      * We need the bounding rects for the origin and the overlay to determine how to position the overlay relative to the origin.
      */
     const _originRect = this._origin.getBoundingClientRect();
-    const _overlayRect = overlay.getBoundingClientRect();
+    const _overlayRect = _overlay.getBoundingClientRect();
     /**
      * We use the viewport rect to determine whether a position would go off-screen.
      */
@@ -149,18 +137,11 @@ class NgxConnectedPositionStrategy implements INgxPositionStrategy {
        * If the overlay in the calculated position fits on-screen, put it there and we're done.
        */
       if (_overlayPoint.fitsInViewport) {
-        this._setOverlayPosition(overlay, _overlayRect, _overlayPoint, _position);
+        this._setOverlayPosition(_overlay, _overlayRect, _overlayPoint, _position);
         /**
          * Save the last connected position in case the position needs to be re-calculated.
          */
         this._lastConnectedPosition = _position;
-        /**
-         * Notify that the position has been changed along with its change properties.
-         */
-        this._positionChangeSubject.next({
-          connectionPair: _position,
-          scrollableView: this._getScrollableView(overlay),
-        } as NgxConnectedOverlayPositionChangedType);
 
         return;
       }
@@ -172,10 +153,17 @@ class NgxConnectedPositionStrategy implements INgxPositionStrategy {
     /**
      * If none of the positions were in the viewport, take the one with the largest visible area.
      */
-    this._setOverlayPosition(overlay, _overlayRect, _fallbackPoint, _fallbackPosition);
+    this._setOverlayPosition(_overlay, _overlayRect, _fallbackPoint, _fallbackPosition);
   }
 
-  dispose (): void { return; }
+  dispose (): void {
+    if (!this._browserPlatformService.isBrowser) { return; }
+
+    if (this._nativeElement) {
+      this._nativeElement.parentNode.removeChild(this._nativeElement);
+      this._nativeElement = null;
+    }
+  }
   /**
    * This re-aligns the overlay element with the trigger in its last calculated position,
    * even if a position higher in the "preferred positions" list would now fit.
@@ -185,15 +173,67 @@ class NgxConnectedPositionStrategy implements INgxPositionStrategy {
     if (!this._browserPlatformService.isBrowser) { return; }
 
     const _originRect = this._origin.getBoundingClientRect();
-    const _overlayRect = this._overlay.getBoundingClientRect();
+    const _overlayRect = this._overlayRef.overlayElement.getBoundingClientRect();
     const _viewportRect = this._viewportService.getViewportRect();
     const _lastPosition = this._lastConnectedPosition || this._preferredPositions[0];
 
     const _originPoint = this._getOriginPoint(_originRect, _lastPosition);
     const _overlayPoint = this._getOverlayPoint(_originPoint, _overlayRect, _viewportRect, _lastPosition);
 
-    this._setOverlayPosition(this._overlay, _overlayRect, _overlayPoint, _lastPosition);
+    this._setOverlayPosition(this._overlayRef.overlayElement, _overlayRect, _overlayPoint, _lastPosition);
   }
+  /**
+   * Sets the list of INgxScrollables that host the origin element so that
+   * on reposition we can evaluate if it or the overlay has been clipped or outside view.
+   * Every INgxScrollables must be an ancestor element of the strategy's origin element.
+   */
+  addScrollables (...scrollables: Array<INgxScrollable>): this {
+    if (scrollables && scrollables.length > 0) { this._scrollables.push(...scrollables); }
+
+    return this;
+  }
+  clearScrollables (): this {
+    this._scrollables = [];
+
+    return this;
+  }
+
+  addFallbackPositions (...positions: Array<NgxConnectionPositionPairType>): this {
+    if (positions && positions.length > 0) { this._preferredPositions.push(...positions); }
+
+    return this;
+  }
+  clearFallbackPositions (): this {
+    this._preferredPositions = [];
+
+    return this;
+  }
+  /**
+   * Sets the layout direction so the overlay's position can be adjusted to match.
+   */
+  setDirection (direction: 'ltr' | 'rtl'): this {
+    this._direction = direction;
+
+    return this;
+  }
+  /**
+   * Sets an offset for the overlay's connection point on the x-axis
+   */
+  setOffsetX (value: number): this {
+    this._overlayX = parseNumber(value);
+
+    return this;
+  }
+  /**
+   * Sets an offset for the overlay's connection point on the y-axis
+   */
+  setOffsetY (value: number): this {
+    this._overlayY = parseNumber(value);
+
+    return this;
+  }
+
+
   /**
    * Gets the (x, y) coordinate of a connection point on the origin based on a relative position.
    */
@@ -331,6 +371,13 @@ class NgxConnectedPositionStrategy implements INgxPositionStrategy {
 
     overlay.style[_verticalStyleProperty] = `${_offsetY}px`;
     overlay.style[_horizontalStyleProperty] = `${_offsetX}px`;
+    /**
+     * Notify that the position has been changed along with its change properties.
+     */
+    this._positionChangeSubject.next({
+      connectionPair: position,
+      scrollableView: this._getScrollableView(overlay),
+    } as NgxConnectedOverlayPositionChangedType);
   }
   /**
    * Gets the view properties of the trigger and overlay, including whether they are clipped

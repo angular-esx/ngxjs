@@ -8,9 +8,6 @@ import { NgxOverlayConfig } from './overlay-config.class';
 
 
 class NgxConnectedOverlayConfig extends NgxOverlayConfig {
-  set positionStrategy(strategy: INgxPositionStrategy) {
-    throw new Error('Dont assign anything to positionStrategy, it will be assigned automatically by an instance of NgxConnectedPositionStrategy.');
-  };
   /**
    * Whether the overlay is open.
    */
