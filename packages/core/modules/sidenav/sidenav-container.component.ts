@@ -26,7 +26,7 @@ import { NgxSidenavComponent } from './sidenav.component';
   templateUrl: './templates/sidenav-container.html',
   styleUrls: ['./styles/sidenav-container/index.scss'],
   host: {
-    class: 'ngx-SidenavContainer',
+    '[class.ngx-SidenavContainer]': 'true',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

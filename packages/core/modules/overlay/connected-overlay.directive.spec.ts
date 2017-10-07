@@ -14,7 +14,7 @@ import {
 } from '@angular/core/testing';
 
 import {
-  NgxConnectedOverlayPositionChangedType,
+  NgxChangedConnectedOverlayPositionEventType,
   NgxOverlayConfig,
   NgxConnectedOverlayConfig,
   INgxConnectedPositionStrategy,
@@ -75,7 +75,7 @@ class NgxTestConnectedOverlayComponent implements AfterContentInit {
       ...(new NgxOverlayConfig()),
       originOverlay: this.originOverlayDirective,
       onBackdropClick: () => { this._isClickedbackdrop = true; },
-      onPositionChange: (event: NgxConnectedOverlayPositionChangedType) => { this._positionChangeHandler(event); },
+      onPositionChange: (event: NgxChangedConnectedOverlayPositionEventType) => { this._positionChangeHandler(event); },
       onAttach: () => { this._attachHandler(); },
       onDetach: () => { this._detachHandler(); },
     } as NgxConnectedOverlayConfig;
@@ -389,7 +389,7 @@ describe('Overlay directives', () => {
       expect(_connectedOverlayComponent.componentInstance.isClickedbackdrop).toBe(true);
     });
 
-    it('should emit NgxConnectedOverlayPositionChangedType appropriately', () => {
+    it('should emit NgxChangedConnectedOverlayPositionEventType appropriately', () => {
       expect(_connectedOverlayComponent.componentInstance.positionChangeHandler).not.toHaveBeenCalled();
       _connectedOverlayComponent.componentInstance.config = {
         ..._getConnectedOverlayConfig(),

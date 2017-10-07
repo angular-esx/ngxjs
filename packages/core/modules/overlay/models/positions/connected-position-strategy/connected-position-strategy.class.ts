@@ -15,7 +15,7 @@ import {
   NgxElementBoundingPositionsType,
   NgxConnectionPositionType,
   NgxConnectionPositionPairType,
-  NgxConnectedOverlayPositionChangedType,
+  NgxChangedConnectedOverlayPositionEventType,
 } from '../../positions';
 import {
   NgxScrollableViewType,
@@ -62,7 +62,7 @@ export class NgxConnectedPositionStrategy implements INgxConnectedPositionStrate
   /*
     Emits an event when the connection point changes.
   */
-  protected _positionChangeSubject = new Subject<NgxConnectedOverlayPositionChangedType>();
+  protected _positionChangeSubject = new Subject<NgxChangedConnectedOverlayPositionEventType>();
 
 
   readonly positionChange$ = this._positionChangeSubject.asObservable().share();
@@ -377,7 +377,7 @@ export class NgxConnectedPositionStrategy implements INgxConnectedPositionStrate
     this._positionChangeSubject.next({
       connectionPair: position,
       scrollableView: this._getScrollableView(overlay),
-    } as NgxConnectedOverlayPositionChangedType);
+    } as NgxChangedConnectedOverlayPositionEventType);
   }
   /**
    * Gets the view properties of the trigger and overlay, including whether they are clipped

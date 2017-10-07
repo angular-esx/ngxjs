@@ -6,7 +6,7 @@ export {
   NgxVerticalConnectionPositionType,
   NgxConnectionPositionType,
   NgxConnectionPositionPairType,
-  NgxConnectedOverlayPositionChangedType,
+  NgxChangedConnectedOverlayPositionEventType,
 } from './positions.type';
 
 export { INgxPositionStrategy } from './position-strategy.interface';

@@ -2,7 +2,7 @@ import { NgxOriginOverlayDirective } from '../../origin-overlay.directive';
 import {
   INgxPositionStrategy,
   NgxConnectionPositionPairType,
-  NgxConnectedOverlayPositionChangedType,
+  NgxChangedConnectedOverlayPositionEventType,
 } from '../positions';
 import { NgxOverlayConfig } from './overlay-config.class';
 
@@ -31,5 +31,5 @@ export class NgxConnectedOverlayConfig extends NgxOverlayConfig {
   /**
    * A callback is executed when the position has changed.
    */
-  onPositionChange?: (event: NgxConnectedOverlayPositionChangedType) => void;
+  onPositionChange?: (event: NgxChangedConnectedOverlayPositionEventType) => void;
 }

@@ -32,7 +32,7 @@ export {
   NgxVerticalConnectionPositionType,
   NgxConnectionPositionType,
   NgxConnectionPositionPairType,
-  NgxConnectedOverlayPositionChangedType,
+  NgxChangedConnectedOverlayPositionEventType,
   INgxPositionStrategy,
   INgxConnectedPositionStrategy,
   NgxConnectedPositionStrategy,

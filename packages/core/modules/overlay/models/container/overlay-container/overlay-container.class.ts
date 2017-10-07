@@ -1,7 +1,4 @@
-import {
-  INgxBrowserPlatformService,
-  NgxBrowserPlatformService,
-} from '../../../../../services';
+import { INgxBrowserPlatformService } from '../../../../../services';
 import { INgxOverlayContainer } from './overlay-container.interface';
 
 

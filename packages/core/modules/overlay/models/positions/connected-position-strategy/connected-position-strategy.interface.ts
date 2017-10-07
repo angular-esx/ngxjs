@@ -3,14 +3,14 @@ import { Observable } from 'rxjs/Observable';
 import { INgxScrollable } from '../../scroll';
 import { INgxPositionStrategy } from '../position-strategy.interface';
 import {
-  NgxConnectedOverlayPositionChangedType,
+  NgxChangedConnectedOverlayPositionEventType,
   NgxConnectionPositionPairType,
 } from '../positions.type';
 
 
 
 export interface INgxConnectedPositionStrategy extends INgxPositionStrategy {
-  readonly positionChange$: Observable<NgxConnectedOverlayPositionChangedType>;
+  readonly positionChange$: Observable<NgxChangedConnectedOverlayPositionEventType>;
 
   recalculateLastPosition (): void;
 

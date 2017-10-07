@@ -30,7 +30,7 @@ import { NgxTemplatePortal } from '../portal';
 import {
   NgxConnectionPositionType,
   NgxConnectionPositionPairType,
-  NgxConnectedOverlayPositionChangedType,
+  NgxChangedConnectedOverlayPositionEventType,
   INgxConnectedPositionStrategy,
   NgxOverlayConfig,
   NgxConnectedOverlayConfig,

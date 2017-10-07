@@ -20,7 +20,7 @@ import {
  * Partial implementation of NgxPortalHost that only deals with attaching either a
  * NgxComponentPortal or a NgxTemplatePortal.
  */
-abstract class NgxBasePortalHost implements INgxPortalHost {
+export abstract class NgxBasePortalHost implements INgxPortalHost {
   protected _isDisposed: boolean = false;
   protected _disposeFunc: () => void;
 
@@ -91,6 +91,3 @@ abstract class NgxBasePortalHost implements INgxPortalHost {
     this._attachedPortal = portal;
   }
 }
-
-
-export { NgxBasePortalHost };

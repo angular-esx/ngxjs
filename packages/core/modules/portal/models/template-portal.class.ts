@@ -14,7 +14,7 @@ import {
 import { NgxBasePortal } from './base-portal.class';
 
 
-class NgxTemplatePortal<T>
+export class NgxTemplatePortal<T>
   extends NgxBasePortal
   implements INgxTemplatePortal<T>
 {
@@ -58,6 +58,3 @@ class NgxTemplatePortal<T>
     return host.attachTemplate(this);
   }
 }
-
-
-export { NgxTemplatePortal };
