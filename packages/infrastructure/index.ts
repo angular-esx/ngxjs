@@ -22,6 +22,7 @@ export {
   parseBoolean,
   parseDate,
   padNumber,
+  camelToSnakeCase,
   getPropertyValue,
   sortArray,
 } from './utils';

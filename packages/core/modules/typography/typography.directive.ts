@@ -7,7 +7,10 @@ import {
   Inject,
 } from '@angular/core';
 
-import { isObject } from 'ngx-infrastructure';
+import {
+  isObject,
+  camelToSnakeCase,
+} from 'ngx-infrastructure';
 
 import {
   INgxRenderer,
@@ -47,7 +50,7 @@ export class NgxTypographyDirective implements OnChanges {
     if (isObject(options)) {
       const _propName = propName.split('.').pop();
 
-      return `ngx-Typography_${_propName}_${options[_propName]}`;
+      return `ngx-Typography_${_propName === 'fontWeight' ? camelToSnakeCase(_propName, '-') : _propName}_${options[_propName]}`;
     }
     else {
       return `ngx-Typography_type_${options}`;

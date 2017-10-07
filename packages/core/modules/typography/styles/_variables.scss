@@ -1,6 +1,16 @@
+$ngx-typography-font-weights: ('light', 'regular', 'medium', 'bold');
 $ngx-typography-aligns: ('left', 'right', 'center', 'justify');
 $ngx-typography-decorators: ('underline', 'overline', 'line-through');
 $ngx-typography-transforms: ('capitalize', 'uppercase', 'lowercase');
 $ngx-typography-overflows: ('clip', 'ellipsis', 'string');
 $ngx-typography-white-spaces: ('nowrap', 'pre', 'pre-line', 'pre-wrap');
 $ngx-typography-word-breaks: ('break-all', 'keep-all');
+$ngx-typography-colors: (
+  'black', 'black-87', 'black-54', 'black-38', 'black-12',
+  'white', 'white-87', 'white-54', 'white-38', 'white-12',
+  'primary', 'primary-light', 'primary-dark',
+  'accent', 'accent-light', 'accent-dark',
+  'success', 'success-light', 'success-dark',
+  'warn', 'warn-light', 'warn-dark',
+  'danger', 'danger-light', 'danger-dark',
+);
