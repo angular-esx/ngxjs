@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import {
+  NgxBrowserPlatformServiceModule,
+  NgxRenderServiceModule,
+} from '../../services';
 import { NgxSidenavContainerComponent } from './sidenav-container.component';
 import { NgxSidenavComponent } from './sidenav.component';
 import { NgxSidenavItemComponent } from './sidenav-item.component';
 
 
-const DIRECTIVES = [
+const _DIRECTIVES = [
   NgxSidenavContainerComponent,
   NgxSidenavComponent,
   NgxSidenavItemComponent,
@@ -14,11 +18,12 @@ const DIRECTIVES = [
 
 @NgModule({
   id: 'ngx-sidenav',
-  imports: [CommonModule],
-  declarations: DIRECTIVES,
-  exports: DIRECTIVES,
+  imports: [
+    CommonModule,
+    NgxBrowserPlatformServiceModule,
+    NgxRenderServiceModule,
+  ],
+  declarations: _DIRECTIVES,
+  exports: _DIRECTIVES,
 })
-class NgxSidenavModule { }
-
-
-export { NgxSidenavModule };
+export class NgxSidenavModule { }

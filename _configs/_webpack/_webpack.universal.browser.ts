@@ -4,7 +4,7 @@ import * as CleanWebpackPlugin from 'clean-webpack-plugin';
 import { BaseWebpackConfig } from './_webpack.base';
 
 
-class UniversalBrowserWebpackConfig extends BaseWebpackConfig {
+export class UniversalBrowserWebpackConfig extends BaseWebpackConfig {
 
   /* ---------------------Configs---------------------*/
 
@@ -54,5 +54,3 @@ class UniversalBrowserWebpackConfig extends BaseWebpackConfig {
     return this._CONSTANTS;
   }
 }
-
-export { UniversalBrowserWebpackConfig };

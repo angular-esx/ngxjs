@@ -10,7 +10,8 @@ import {
 import { isObject } from 'ngx-infrastructure';
 
 import {
-  NgxRenderer,
+  INgxRenderer,
+  INgxRenderService,
   NgxRenderService,
 } from '../../services';
 import { NgxTypographyConfig } from './models';
@@ -20,14 +21,14 @@ import { NgxTypographyConfig } from './models';
   selector: '[ngxTypo]',
   exportAs: 'ngxTypo',
 })
-class NgxTypographyDirective implements OnChanges {
-  protected _renderer: NgxRenderer;
+export class NgxTypographyDirective implements OnChanges {
+  protected _renderer: INgxRenderer;
 
   @Input('ngxTypo') options: NgxTypographyConfig | string;
 
   constructor (
     @Inject(ElementRef) elementRef: ElementRef,
-    @Inject(NgxRenderService) rendererService: NgxRenderService
+    @Inject(NgxRenderService) rendererService: INgxRenderService
   ) {
     this._renderer = rendererService.createRenderer(elementRef.nativeElement);
   }
@@ -53,6 +54,3 @@ class NgxTypographyDirective implements OnChanges {
     }
   }
 }
-
-
-export { NgxTypographyDirective };

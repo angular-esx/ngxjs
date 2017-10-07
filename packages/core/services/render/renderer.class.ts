@@ -13,12 +13,22 @@ import {
   isObject,
 } from 'ngx-infrastructure';
 
+import { INgxRenderer } from './renderer.interface';
 
-class NgxRenderer {
+
+export class NgxRenderer implements INgxRenderer {
+  get data(): { [key: string]: any } {
+    return this._renderer.data;
+  }
+
+  get destroyNode(): ((node: any) => void) | null {
+    return this._renderer.destroyNode;
+  }
+
   constructor (protected _nativeElement: any, protected _renderer: Renderer2) {}
 
 
-  addClass (className: string | Array<string>): NgxRenderer {
+  addClass (className: string | Array<string>): this {
     if (!className) { return; }
 
     if (isArray(className)) {
@@ -33,7 +43,7 @@ class NgxRenderer {
     return this;
   }
 
-  removeClass (className: string | Array<string>): NgxRenderer {
+  removeClass (className: string | Array<string>): this {
     if (!className) { return; }
 
     if (isArray(className)) {
@@ -52,7 +62,7 @@ class NgxRenderer {
     changes: SimpleChanges,
     onRemoveClass: (propName: string, change: SimpleChange) => (string | Array<string>),
     onAddCLass: (propName: string, change: SimpleChange) => (string | Array<string>)
-  ): NgxRenderer {
+  ): this {
     if (!changes) { return; }
 
     let _simpleChange: SimpleChange;
@@ -95,10 +105,6 @@ class NgxRenderer {
   /**
    * Enhance Renderer2
    */
-  get data(): {[key: string]: any} {
-    return this._renderer.data;
-  }
-
   destroy (): void {
     return this._renderer.destroy();
   }
@@ -115,23 +121,19 @@ class NgxRenderer {
     return this._renderer.createText(value);
   }
 
-  get destroyNode(): ((node: any) => void) | null {
-    return this._renderer.destroyNode;
-  }
-
-  appendChild (parent: any, newChild: any): NgxRenderer {
+  appendChild (parent: any, newChild: any): this {
     this._renderer.appendChild(parent, newChild);
 
     return this;
   }
 
-  insertBefore (parent: any, newChild: any, refChild: any): NgxRenderer {
+  insertBefore (parent: any, newChild: any, refChild: any): this {
     this._renderer.insertBefore(parent, newChild, refChild);
 
     return this;
   }
 
-  removeChild (parent: any, oldChild: any): NgxRenderer {
+  removeChild (parent: any, oldChild: any): this {
     this._renderer.removeChild(parent, oldChild);
 
     return this;
@@ -149,42 +151,39 @@ class NgxRenderer {
     return this._renderer.nextSibling(node);
   }
 
-  setAttribute (name: string, value: string, namespace?: string | null): NgxRenderer {
+  setAttribute (name: string, value: string, namespace?: string | null): this {
     this._renderer.setAttribute(this._nativeElement, name, value, namespace);
 
     return this;
   }
 
-  removeAttribute (name: string, namespace?: string | null): NgxRenderer {
+  removeAttribute (name: string, namespace?: string | null): this {
     this._renderer.removeAttribute(this._nativeElement, name, namespace);
 
     return this;
   }
 
-  setStyle (style: string, value: any, flags?: RendererStyleFlags2): NgxRenderer {
+  setStyle (style: string, value: any, flags?: RendererStyleFlags2): this {
     this._renderer.setStyle(this._nativeElement, style, value, flags);
 
     return this;
   }
 
-  removeStyle (style: string, flags?: RendererStyleFlags2): NgxRenderer {
+  removeStyle (style: string, flags?: RendererStyleFlags2): this {
     this._renderer.removeStyle(this._nativeElement, style, flags);
 
     return this;
   }
 
-  setProperty (name: string, value: any): NgxRenderer {
+  setProperty (name: string, value: any): this {
     this._renderer.setProperty(this._nativeElement, name, value);
 
     return this;
   }
 
-  setValue (node: any, value: string): NgxRenderer {
+  setValue (node: any, value: string): this {
     this._renderer.setValue(node, value);
 
     return this;
   }
 }
-
-
-export { NgxRenderer };

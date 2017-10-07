@@ -3,12 +3,11 @@ import { NgModule } from '@angular/core';
 import { NgxContainerComponent } from './container.component';
 
 
+const _DIRECTIVES = [NgxContainerComponent];
+
 @NgModule({
   id: 'ngx-container',
-  declarations: [NgxContainerComponent],
-  exports: [NgxContainerComponent],
+  declarations: _DIRECTIVES,
+  exports: _DIRECTIVES,
 })
-class NgxContainerModule {}
-
-
-export { NgxContainerModule };
+export class NgxContainerModule {}

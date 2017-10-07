@@ -1,8 +1,15 @@
 export {
+  INgxBrowserPlatformService,
+  NgxBrowserPlatformService,
+  NgxBrowserPlatformServiceModule,
+} from './browser-platform';
+
+export {
+  INgxRenderService,
+  INgxRenderer,
   NgxRenderer,
   NgxRenderService,
+  NgxRenderServiceModule,
 } from './render';
 
-export { NgxBrowserPlatformService } from './platform';
-
-export { NgxServiceModule } from './ngx.service.module';
+export { NgxServiceModule } from './ngx-service.module';

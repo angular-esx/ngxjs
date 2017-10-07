@@ -9,6 +9,11 @@ import { MenuItemDirective } from './menu-item.directive';
 import { MenuTriggerDirective } from './menu-trigger.directive';
 
 
+const _DIRECTIVES = [
+  MenuComponent,
+  MenuItemDirective,
+  MenuTriggerDirective,
+];
 @NgModule({
   id: 'ngx-menu',
   imports: [
@@ -16,10 +21,7 @@ import { MenuTriggerDirective } from './menu-trigger.directive';
     NgxOverlayModule,
     // BrowserAnimationsModule,
   ],
-  declarations: [MenuComponent, MenuItemDirective, MenuTriggerDirective],
-  exports: [MenuComponent, MenuItemDirective, MenuTriggerDirective],
+  declarations: _DIRECTIVES,
+  exports: _DIRECTIVES,
 })
-class MenuModule {}
-
-
-export { MenuModule };
+export class MenuModule {}

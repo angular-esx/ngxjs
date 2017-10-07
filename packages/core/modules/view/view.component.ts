@@ -16,7 +16,4 @@ import {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngxView',
 })
-class NgxViewComponent {}
-
-
-export { NgxViewComponent };
+export class NgxViewComponent {}

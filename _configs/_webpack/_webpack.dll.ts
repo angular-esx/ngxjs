@@ -4,7 +4,7 @@ import * as merge from 'webpack-merge';
 import { BaseWebpackConfig } from './_webpack.base';
 
 
-class DllWebpackConfig extends BaseWebpackConfig {
+export class DllWebpackConfig extends BaseWebpackConfig {
   build () {
     return merge(
       this._getEntryConfig(),
@@ -78,5 +78,3 @@ class DllWebpackConfig extends BaseWebpackConfig {
     return this._CONSTANTS;
   }
 }
-
-export { DllWebpackConfig };

@@ -16,7 +16,4 @@ import {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngxSidenavItem',
 })
-class NgxSidenavItemComponent {}
-
-
-export { NgxSidenavItemComponent };
+export class NgxSidenavItemComponent {}

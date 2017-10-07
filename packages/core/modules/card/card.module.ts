@@ -14,7 +14,4 @@ const _DIRECTIVES = [NgxCardComponent];
   schemas: [NO_ERRORS_SCHEMA],
   exports: _DIRECTIVES,
 })
-class NgxCardModule {}
-
-
-export { NgxCardModule };
+export class NgxCardModule {}

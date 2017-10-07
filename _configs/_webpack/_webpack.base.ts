@@ -18,7 +18,7 @@ import {
 } from '../../packages/infrastructure';
 
 
-class BaseWebpackConfig {
+export class BaseWebpackConfig {
   private readonly _ENVIRONMENT = getEnvironment();
 
   protected readonly _CONTEXT: string = path.resolve(__dirname, '../..');
@@ -377,5 +377,3 @@ class BaseWebpackConfig {
     return relativePath;
   }
 }
-
-export { BaseWebpackConfig };

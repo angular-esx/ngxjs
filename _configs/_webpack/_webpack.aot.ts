@@ -4,7 +4,7 @@ import { AotPlugin } from '@ngtools/webpack';
 import { DevelopmentWebpackConfig } from './_webpack.dev';
 
 
-class AotWebpackConfig extends DevelopmentWebpackConfig {
+export class AotWebpackConfig extends DevelopmentWebpackConfig {
 
   /* ---------------------Configs---------------------*/
 
@@ -45,5 +45,3 @@ class AotWebpackConfig extends DevelopmentWebpackConfig {
     return { plugins };
   }
 }
-
-export { AotWebpackConfig };

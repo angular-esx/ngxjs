@@ -3,12 +3,11 @@ import { NgModule } from '@angular/core';
 import { NgxViewComponent } from './view.component';
 
 
+const _DIRECTIVES = [NgxViewComponent];
+
 @NgModule({
   id: 'ngx-view',
-  declarations: [NgxViewComponent],
-  exports: [NgxViewComponent],
+  declarations: _DIRECTIVES,
+  exports: _DIRECTIVES,
 })
-class NgxViewModule {}
-
-
-export { NgxViewModule };
+export class NgxViewModule {}

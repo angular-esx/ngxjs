@@ -5,10 +5,15 @@ import { NgxTemplatePortalDirective } from './template-portal.directive';
 import { NgxPortalHostDirective } from './portal-host.directive';
 
 
+const _DIRECTIVES = [
+  NgxTemplatePortalDirective,
+  NgxPortalHostDirective,
+];
+
 @NgModule({
   id: 'ngx-portal',
-  declarations: [NgxTemplatePortalDirective, NgxPortalHostDirective],
-  exports: [NgxTemplatePortalDirective, NgxPortalHostDirective],
+  declarations: _DIRECTIVES,
+  exports: _DIRECTIVES,
 })
 class NgxPortalModule {}
 

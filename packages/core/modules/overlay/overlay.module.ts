@@ -1,43 +1,45 @@
 import { NgModule } from '@angular/core';
 
-import { NgxPortalModule } from '../portal';
-
 import {
-  ngxScrollProvider,
-  ngxViewportProvider,
-  NgxPositionStrategyService,
-  NgxScrollStrategyService,
-  NgxOverlayService,
-  NgxOverlayContainerService,
+  NgxBrowserPlatformServiceModule,
+  NgxRenderServiceModule,
+} from '../../services';
+import { NgxPortalModule } from '../portal';
+import {
+  ngxOverlayContainerServiceProvider,
+  ngxOverlayServiceProvider,
+  ngxPositionStrategyServiceProvider,
+  ngxScrollServiceProvider,
+  ngxScrollStrategyServiceProvider,
+  ngxViewportServiceProvider,
 } from './services';
 import { NgxScrollableDirective } from './scrollabe.directive';
 import { NgxOriginOverlayDirective } from './origin-overlay.directive';
 import { NgxConnectedOverlayDirective } from './connected-overlay.directive';
 
 
+const _DIRECTIVES = [
+  NgxScrollableDirective,
+  NgxOriginOverlayDirective,
+  NgxConnectedOverlayDirective,
+];
+
 @NgModule({
   id: 'ngx-overlay',
-  imports: [NgxPortalModule],
-  declarations: [
-    NgxScrollableDirective,
-    NgxOriginOverlayDirective,
-    NgxConnectedOverlayDirective,
+  imports: [
+    NgxPortalModule,
+    NgxBrowserPlatformServiceModule,
+    NgxRenderServiceModule,
   ],
-  exports: [
-    NgxScrollableDirective,
-    NgxOriginOverlayDirective,
-    NgxConnectedOverlayDirective,
-  ],
+  declarations: _DIRECTIVES,
+  exports: _DIRECTIVES,
   providers: [
-    ngxScrollProvider,
-    ngxViewportProvider,
-    NgxPositionStrategyService,
-    NgxScrollStrategyService,
-    NgxOverlayService,
-    NgxOverlayContainerService,
+    ngxOverlayContainerServiceProvider,
+    ngxOverlayServiceProvider,
+    ngxPositionStrategyServiceProvider,
+    ngxScrollServiceProvider,
+    ngxScrollStrategyServiceProvider,
+    ngxViewportServiceProvider,
   ],
 })
-class NgxOverlayModule {}
-
-
-export { NgxOverlayModule };
+export class NgxOverlayModule {}

@@ -13,11 +13,15 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/share';
 
 import {
-  NgxRenderer,
+  INgxRenderer,
+  INgxRenderService,
   NgxRenderService,
  } from '../../services';
 import { INgxScrollable } from './models';
-import { NgxScrollService } from './services';
+import {
+  INgxScrollService,
+  NgxScrollService,
+} from './services';
 
 
 /**
@@ -29,8 +33,8 @@ import { NgxScrollService } from './services';
   selector: '[ngxScrollable]',
   exportAs: 'ngxScrollable',
 })
-class NgxScrollableDirective implements INgxScrollable, OnInit, OnDestroy {
-  protected _renderer: NgxRenderer;
+export class NgxScrollableDirective implements INgxScrollable, OnInit, OnDestroy {
+  protected _renderer: INgxRenderer;
   protected _scrollListener: Function | null;
 
   protected _scrollSubject = new Subject<Event>();
@@ -45,8 +49,8 @@ class NgxScrollableDirective implements INgxScrollable, OnInit, OnDestroy {
   constructor (
     @Inject(ElementRef) protected _elementRef: ElementRef,
     @Inject(NgZone) protected _ngZone: NgZone,
-    @Inject(NgxScrollService) protected _scrollService: NgxScrollService,
-    @Inject(NgxRenderService) renderService: NgxRenderService,
+    @Inject(NgxScrollService) protected _scrollService: INgxScrollService,
+    @Inject(NgxRenderService) renderService: INgxRenderService,
   ) {
     this._renderer = renderService.createRenderer(this.nativeElement);
   }
@@ -71,6 +75,3 @@ class NgxScrollableDirective implements INgxScrollable, OnInit, OnDestroy {
     }
   }
 }
-
-
-export { NgxScrollableDirective };

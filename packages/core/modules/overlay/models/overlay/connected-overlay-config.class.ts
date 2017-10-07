@@ -7,7 +7,7 @@ import {
 import { NgxOverlayConfig } from './overlay-config.class';
 
 
-class NgxConnectedOverlayConfig extends NgxOverlayConfig {
+export class NgxConnectedOverlayConfig extends NgxOverlayConfig {
   /**
    * Whether the overlay is open.
    */
@@ -33,6 +33,3 @@ class NgxConnectedOverlayConfig extends NgxOverlayConfig {
    */
   onPositionChange?: (event: NgxConnectedOverlayPositionChangedType) => void;
 }
-
-
-export { NgxConnectedOverlayConfig };

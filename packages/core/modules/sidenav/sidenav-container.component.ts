@@ -13,7 +13,10 @@ import {
   Inject,
 } from '@angular/core';
 
-import { NgxBrowserPlatformService } from '../../services';
+import {
+  INgxBrowserPlatformService,
+  NgxBrowserPlatformService,
+} from '../../services';
 
 import { NgxSidenavComponent } from './sidenav.component';
 
@@ -29,7 +32,7 @@ import { NgxSidenavComponent } from './sidenav.component';
   encapsulation: ViewEncapsulation.None,
   exportAs: 'ngxSidenavContainer',
 })
-class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
+export class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
   @ContentChildren(NgxSidenavComponent)
   private _sidenavs: QueryList<NgxSidenavComponent>;
 
@@ -41,7 +44,7 @@ class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
 
   constructor (
     @Inject(ChangeDetectorRef) private _changeDetectorRef: ChangeDetectorRef,
-    @Inject(NgxBrowserPlatformService) private _browserPlatformService: NgxBrowserPlatformService
+    @Inject(NgxBrowserPlatformService) private _browserPlatformService: INgxBrowserPlatformService
   ) {}
 
 
@@ -115,6 +118,3 @@ class NgxSidenavContainerComponent implements OnInit, AfterContentChecked {
     return result;
   }
 }
-
-
-export { NgxSidenavContainerComponent };

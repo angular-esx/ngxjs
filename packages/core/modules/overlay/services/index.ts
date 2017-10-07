@@ -1,17 +1,35 @@
-export { NgxPositionStrategyService } from './position-strategy.service';
-
-export { NgxScrollStrategyService } from './scroll-strategy.service';
+export {
+  INgxOverlayContainerService,
+  NgxOverlayContainerService,
+  ngxOverlayContainerServiceProvider,
+} from './overlay-container-service';
 
 export {
+  INgxOverlayService,
+  NgxOverlayService,
+  ngxOverlayServiceProvider,
+} from './overlay-service';
+
+export {
+  INgxPositionStrategyService,
+  NgxPositionStrategyService,
+  ngxPositionStrategyServiceProvider,
+} from './position-strategy-service';
+
+export {
+  INgxScrollService,
   NgxScrollService,
-  ngxScrollProvider
-} from './scroll.service';
+  ngxScrollServiceProvider,
+} from './scroll-service';
 
 export {
+  INgxScrollStrategyService,
+  NgxScrollStrategyService,
+  ngxScrollStrategyServiceProvider,
+} from './scroll-strategy-service';
+
+export {
+  INgxViewportService,
   NgxViewportService,
-  ngxViewportProvider,
-} from './viewport.service';
-
-export { NgxOverlayService } from './overlay.service';
-
-export { NgxOverlayContainerService } from './overlay-container.service';
+  ngxViewportServiceProvider,
+} from './viewport-service';

@@ -3,7 +3,7 @@ import * as merge from 'webpack-merge';
 import { BaseWebpackConfig } from './_webpack.base';
 
 
-class UniversalServerWebpackConfig extends BaseWebpackConfig {
+export class UniversalServerWebpackConfig extends BaseWebpackConfig {
 
   /* ---------------------Configs---------------------*/
 
@@ -86,5 +86,3 @@ class UniversalServerWebpackConfig extends BaseWebpackConfig {
     return this._CONSTANTS;
   }
 }
-
-export { UniversalServerWebpackConfig };
