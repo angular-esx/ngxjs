@@ -40,7 +40,6 @@ export class DllWebpackConfig extends BaseWebpackConfig {
   protected _getPluginsConfig (): Object {
     return merge(
       this._getCleanPlugin(),
-      this._getNoEmitOnErrorsPlugin(),
       this._getContextReplacementPlugin(),
       this._getDllPlugin(),
     );

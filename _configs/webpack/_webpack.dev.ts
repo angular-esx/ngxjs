@@ -1,12 +1,12 @@
 import {
+  Configuration,
   DllReferencePlugin,
   NamedModulesPlugin,
+  HotModuleReplacementPlugin,
 } from 'webpack';
 import * as merge from 'webpack-merge';
 import * as DashboardPlugin from 'webpack-dashboard/plugin';
 import * as AddAssetHtmlPlugin from 'add-asset-html-webpack-plugin';
-
-import { IDevelopmentEnvironment } from '../../packages/infrastructure';
 
 import { BaseWebpackConfig } from './_webpack.base';
 
@@ -17,40 +17,43 @@ export class DevelopmentWebpackConfig extends BaseWebpackConfig {
 
   /* ---------------------Configs---------------------*/
 
-  protected _getEntryConfig (): Object {
+  protected _getEntryConfig (): Configuration {
     const { PATHS } = this._getConstants();
 
     const entry = [
       ...this._getPolyfills(),
-      PATHS.APPLICATION_STARTUP_MAIN,
+      this._options.enableAot
+        ? PATHS.APPLICATION_STARTUP_MAIN_AOT
+        : PATHS.APPLICATION_STARTUP_MAIN,
     ];
 
     return { entry };
   }
 
-  protected _getOutputConfig (): Object {
+  protected _getOutputConfig (): Configuration {
     const { PATHS } = this._getConstants();
 
     return {
       output: {
         path: PATHS.DIST_OUTPUT,
-        filename: 'index.js',
+        filename: `main.js`,
       },
     };
   }
 
-  protected _getDevToolConfig (): Object {
-    return {
-      devtool: 'source-map',
-    };
+  protected _getDevToolConfig (): Configuration {
+    return { devtool: 'source-map' };
   }
 
-  protected _getPluginsConfig (): Object {
+  protected _getPluginsConfig (): Configuration {
     const plugins = [
       new NamedModulesPlugin(),
     ];
 
-    if ((this._environment as IDevelopmentEnvironment).enableDashboard) {
+    if (!this._options.enableAot) {
+      plugins.push(new HotModuleReplacementPlugin());
+    }
+    if (this._options && this._options.enableDashboard) {
       plugins.push(new DashboardPlugin());
     }
 
@@ -62,14 +65,16 @@ export class DevelopmentWebpackConfig extends BaseWebpackConfig {
     );
   }
 
-  protected _getOtherConfig (): Object {
+  protected _getOtherConfig (): Configuration {
     return merge(
       super._getOtherConfig(),
-      this._getDevServerConfig(),
+      !this._options.enableAot
+        ? this._getDevServerConfig()
+        : undefined,
     );
   }
 
-  protected _getDevServerConfig (): Object {
+  protected _getDevServerConfig (): Configuration {
     const { PATHS } = this._getConstants();
 
     return {
@@ -82,6 +87,8 @@ export class DevelopmentWebpackConfig extends BaseWebpackConfig {
         poll: 1 * 1000,
       },
       devServer: {
+        open: true,
+        hot: true,
         historyApiFallback: true,
         quiet: false,
         noInfo: true,
@@ -90,36 +97,18 @@ export class DevelopmentWebpackConfig extends BaseWebpackConfig {
         port: this._SERVER_DEV_PORT,
         contentBase: PATHS.DIST_OUTPUT,
         publicPath: `http://${this._SERVER_DEV_HOST}:${this._SERVER_DEV_PORT}/`,
-        stats: { colors: true },
+        stats: {
+          colors: true,
+          errors: true,
+          errorDetails: true,
+        },
       },
     };
   }
 
-  /* ---------------------Loaders---------------------*/
-
-  protected _getCompileLoader (): Object {
-    const { EXCLUDE_MODULES } = this._getConstants();
-    const rules = [
-      {
-        test: /\.ts$/,
-        use: [
-          'ts-loader',
-          '@angularclass/hmr-loader',
-          'ngx-template-loader',
-        ],
-        exclude: [
-          ...EXCLUDE_MODULES,
-          /\.spec\.ts$/
-        ],
-      },
-    ];
-
-    return { rules };
-  }
-
   /* ---------------------Plugins---------------------*/
 
-  protected _getDllPlugin (): Object {
+  protected _getDllPlugin (): Configuration {
     const { PATHS } = this._getConstants();
 
     const plugins = [
@@ -138,7 +127,7 @@ export class DevelopmentWebpackConfig extends BaseWebpackConfig {
     return { plugins };
   }
 
-  protected _getAddAssetHtmlPlugin (): Object {
+  protected _getAddAssetHtmlPlugin (): Configuration {
     const { PATHS } = this._getConstants();
 
     const plugins = [
@@ -174,17 +163,5 @@ export class DevelopmentWebpackConfig extends BaseWebpackConfig {
     }
 
     return this._CONSTANTS;
-  }
-
-  protected _getVendors (): any {
-    if (!this._VENDORS) {
-      const { PATHS } = this._getConstants();
-
-      super._getVendors().concat([
-        this._joinPaths(PATHS.NODE_MODULES, '@angularclass/hmr'),
-      ]);
-    }
-
-    return this._VENDORS;
   }
 }
