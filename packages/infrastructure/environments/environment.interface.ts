@@ -1,19 +1,10 @@
-export interface IBaseEnvironment {
+export interface IEnvironment {
   assetHost: string;
-  imageHost: string;
-  fontHost: string;
   isDevelopment: boolean;
   isTesting: boolean;
-  isAot: boolean;
+  isCustomTesting: boolean;
   isUniversalBrowser: boolean;
   isUniversalServer: boolean;
   isProduction: boolean;
-}
-
-export interface IDevelopmentEnvironment extends IBaseEnvironment {
-  enableDashboard: boolean;
-}
-
-export interface ITestingEnvironment extends IBaseEnvironment {
-  isCustomMode: boolean;
+  toString (): string;
 }

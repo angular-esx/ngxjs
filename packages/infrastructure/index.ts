@@ -1,8 +1,6 @@
 export {
-  getEnvironment,
-  IBaseEnvironment,
-  IDevelopmentEnvironment,
-  ITestingEnvironment,
+  IEnvironment,
+  environment,
 } from './environments';
 
 export {
