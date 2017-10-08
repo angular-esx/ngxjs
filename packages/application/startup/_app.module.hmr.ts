@@ -1,14 +1,15 @@
 /* eslint-disable no-param-reassign, import/no-extraneous-dependencies */
 import {
-  removeNgStyles,
-  createNewHosts,
-} from '@angularclass/hmr';
-import {
   NgModule,
   ApplicationRef,
   Inject,
 } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {
+  removeNgStyles,
+  createNewHosts,
+} from '@angularclass/hmr';
 
 import { NgxApp } from './_app';
 import { NgxAppModule } from './_app.module';
