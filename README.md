@@ -1,13 +1,12 @@
 ### Installation
-You need to install `lerna` in global, it's used to cross link packages under `packages` folder.
+Run yarn command to instal node modules then cross link packages by using `lerna` automatically.
 ```
-npm i lerna@2.0.0-beta.31 -g && npm i
+yarn install
 ```
 
-### Bootstrap
-Run this command to cross link packages before working on source code and create a empty file for custom tests in `_tests` folder
+When you start write unit test, make sure `custom.js` is created in `./_tests` folder.
 ```
- lerna bootstrap && touch ./_tests/custom.js
+touch ./_tests/custom.js
 ```
 
 ### Lint
@@ -29,15 +28,11 @@ If you setup as I remcommend, `stylelint` will run every you type, `eslint` will
 ### Npm Scripts
 - **build:** Build source code for develop environment without starting `webpack-dev-server`. It's useful to review code  in built files.
 
-- **start:** Start `webpack-dev-server` with enabled `HotModuleReplacement` without `WebpackDashboard`. You have no other choice to start `webpack-dev-server` if you're working on windows :)
+- **start:** Start `webpack-dev-server` with enabled `HotModuleReplacement` with `WebpackDashboard`.
 
-- **start:dashboard:** Start `webpack-dev-server` with enabled `HotModuleReplacement` && `WebpackDashboard`. **Recommend you should use this command if you're working on Mac, Linux** to get a nice webpack console.
-
-- **start:aot:** Do building aot then start `webpack-dev-server` to view result in browser. It isn't supported for HMR.
+- **start:aot:** Do building aot then start `lite-server` to view result in browser. It isn't supported for HMR.
 
 - **start:universal:** Do buiding universal then start `express server` to view result in browser. It isn't supported for HMR.
-
-- **Recommend you should use this command if you're working on Mac, Linux** to get a nice webpack console.
 
 - **test** Start `karma` for all files `spec.ts`
 

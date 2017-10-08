@@ -1,4 +1,4 @@
-import webpackConfig from './_configs/_webpack';
+import webpackConfig from './_configs/webpack';
 
 
 export = (config) => {

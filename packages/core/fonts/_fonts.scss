@@ -2,7 +2,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(ngx-font-url('roboto/cyrillic-ext.light.woff2')) format('woff2');
+  src: local('Roboto Light'), local('Roboto-Light'), url('./roboto/cyrillic-ext.light.woff2') format('woff2');
   unicode-range: u+0460-052f, u+20b4, u+2de0-2dff, u+a640-a69f;
 }
 
@@ -10,7 +10,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(ngx-font-url('roboto/cyrillic.light.woff2')) format('woff2');
+  src: local('Roboto Light'), local('Roboto-Light'), url('./roboto/cyrillic.light.woff2') format('woff2');
   unicode-range: u+0400-045f, u+0490-0491, u+04b0-04b1, u+2116;
 }
 
@@ -18,7 +18,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(ngx-font-url('roboto/greek-ext.light.woff2')) format('woff2');
+  src: local('Roboto Light'), local('Roboto-Light'), url('./roboto/greek-ext.light.woff2') format('woff2');
   unicode-range: u+1f00-1fff;
 }
 /* greek */
@@ -26,7 +26,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(ngx-font-url('roboto/greek.light.woff2')) format('woff2');
+  src: local('Roboto Light'), local('Roboto-Light'), url('./roboto/greek.light.woff2') format('woff2');
   unicode-range: u+0370-03ff;
 }
 
@@ -34,7 +34,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(ngx-font-url('roboto/vietnamese.light.woff2')) format('woff2');
+  src: local('Roboto Light'), local('Roboto-Light'), url('./roboto/vietnamese.light.woff2') format('woff2');
   unicode-range: u+0102-0103, u+1ea0-1ef9, u+20ab;
 }
 
@@ -42,7 +42,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(ngx-font-url('roboto/latin-ext.light.woff2')) format('woff2');
+  src: local('Roboto Light'), local('Roboto-Light'), url('./roboto/latin-ext.light.woff2') format('woff2');
   unicode-range: u+0100-024f, u+1e00-1ef, u+20a0-20ab, u+20ad-20cf, u+2c60-2c7f, u+a720-a7ff;
 }
 
@@ -50,7 +50,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(ngx-font-url('roboto/latin.light.woff2')) format('woff2');
+  src: local('Roboto Light'), local('Roboto-Light'), url('./roboto/latin.light.woff2') format('woff2');
   unicode-range: u+0000-00ff, u+0131, u+0152-0153, u+02c6, u+02da, u+02dc, u+2000-206f, u+2074, u+20ac, u+2212, u+2215;
 }
 
@@ -58,7 +58,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(ngx-font-url('roboto/cyrillic-ext.regular.woff2')) format('woff2');
+  src: local('Roboto'), local('Roboto-Regular'), url('./roboto/cyrillic-ext.regular.woff2') format('woff2');
   unicode-range: u+0460-052f, u+20b4, u+2de0-2dff, u+a640-a69f;
 }
 
@@ -66,7 +66,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(ngx-font-url('roboto/cyrillic.regular.woff2')) format('woff2');
+  src: local('Roboto'), local('Roboto-Regular'), url('./roboto/cyrillic.regular.woff2') format('woff2');
   unicode-range: u+0400-045f, u+0490-0491, u+04b0-04b1, u+2116;
 }
 
@@ -74,7 +74,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(ngx-font-url('roboto/greek-ext.regular.woff2')) format('woff2');
+  src: local('Roboto'), local('Roboto-Regular'), url('./roboto/greek-ext.regular.woff2') format('woff2');
   unicode-range: u+1f00-1fff;
 }
 
@@ -82,7 +82,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(ngx-font-url('roboto/greek.regular.woff2')) format('woff2');
+  src: local('Roboto'), local('Roboto-Regular'), url('./roboto/greek.regular.woff2') format('woff2');
   unicode-range: u+0370-03ff;
 }
 
@@ -90,7 +90,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(ngx-font-url('roboto/vietnamese.regular.woff2')) format('woff2');
+  src: local('Roboto'), local('Roboto-Regular'), url('./roboto/vietnamese.regular.woff2') format('woff2');
   unicode-range: u+0102-0103, u+1ea0-1ef9, u+20ab;
 }
 
@@ -98,7 +98,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(ngx-font-url('roboto/latin-ext.regular.woff2')) format('woff2');
+  src: local('Roboto'), local('Roboto-Regular'), url('./roboto/latin-ext.regular.woff2') format('woff2');
   unicode-range: u+0100-024f, u+1e00-1eff, u+20a0-20ab, u+20ad-20cf, u+2c60-2c7f, u+a720-a7ff;
 }
 
@@ -106,7 +106,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(ngx-font-url('roboto/latin.regular.woff2')) format('woff2');
+  src: local('Roboto'), local('Roboto-Regular'), url('./roboto/latin.regular.woff2') format('woff2');
   unicode-range: u+0000-00ff, u+0131, u+0152-0153, u+02c6, u+02da, u+02dc, u+2000-206f, u+2074, u+20ac, u+2212, u+2215;
 }
 
@@ -114,7 +114,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(ngx-font-url('roboto/cyrillic-ex.medium.woff2')) format('woff2');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('./roboto/cyrillic-ext.medium.woff2') format('woff2');
   unicode-range: u+0460-052f, u+20b4, u+2de0-2dff, u+a640-a69f;
 }
 
@@ -122,7 +122,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(ngx-font-url('roboto/cyrillic.medium.woff2')) format('woff2');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('./roboto/cyrillic.medium.woff2') format('woff2');
   unicode-range: u+0400-045f, u+0490-0491, u+04b0-04b1, u+2116;
 }
 
@@ -130,7 +130,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(ngx-font-url('roboto/greek-ext.medium.woff2')) format('woff2');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('./roboto/greek-ext.medium.woff2') format('woff2');
   unicode-range: u+1f00-1fff;
 }
 
@@ -138,7 +138,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(ngx-font-url('roboto/greek.medium.woff2')) format('woff2');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('./roboto/greek.medium.woff2') format('woff2');
   unicode-range: u+0370-03ff;
 }
 
@@ -146,7 +146,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(ngx-font-url('roboto/vietnamese.medium.woff2')) format('woff2');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('./roboto/vietnamese.medium.woff2') format('woff2');
   unicode-range: u+0102-0103, u+1ea0-1ef9, u+20ab;
 }
 
@@ -154,7 +154,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(ngx-font-url('roboto/latin-ext.medium.woff2')) format('woff2');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('./roboto/latin-ext.medium.woff2') format('woff2');
   unicode-range: u+0100-024f, u+1e00-1eff, u+20a0-20ab, u+20ad-20cf, u+2c60-2c7f, u+a720-a7ff;
 }
 
@@ -162,7 +162,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(ngx-font-url('roboto/latin.medium.woff2')) format('woff2');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url('./roboto/latin.medium.woff2') format('woff2');
   unicode-range: u+0000-00ff, u+0131, u+0152-0153, u+02c6, u+02da, u+02dc, u+2000-206f, u+2074, u+20ac, u+2212, u+2215;
 }
 
@@ -170,7 +170,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(ngx-font-url('roboto/cyrillic-ext.bold.woff2')) format('woff2');
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('./roboto/cyrillic-ext.bold.woff2') format('woff2');
   unicode-range: u+0460-052f, u+20b4, u+2de0-2dff, u+a640-a69f;
 }
 
@@ -178,7 +178,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(ngx-font-url('roboto/cyrillic.bold.woff2')) format('woff2');
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('./roboto/cyrillic.bold.woff2') format('woff2');
   unicode-range: u+0400-045f, u+0490-0491, u+04b0-04b1, u+2116;
 }
 
@@ -186,7 +186,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(ngx-font-url('roboto/greek-ext.bold.woff2')) format('woff2');
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('./roboto/greek-ext.bold.woff2') format('woff2');
   unicode-range: u+1f00-1fff;
 }
 
@@ -194,7 +194,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(ngx-font-url('roboto/greek.bold.woff2')) format('woff2');
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('./roboto/greek.bold.woff2') format('woff2');
   unicode-range: u+0370-03ff;
 }
 
@@ -202,7 +202,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(ngx-font-url('roboto/vietnamese.bold.woff2')) format('woff2');
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('./roboto/vietnamese.bold.woff2') format('woff2');
   unicode-range: u+0102-0103, u+1ea0-1ef9, u+20ab;
 }
 
@@ -210,7 +210,7 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(ngx-font-url('roboto/latin-ext.bold.woff2')) format('woff2');
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('./roboto/latin-ext.bold.woff2') format('woff2');
   unicode-range: u+0100-024f, u+1e00-1eff, u+20a0-20ab, u+20ad-20cf, u+2c60-2c7f, u+a720-a7ff;
 }
 
@@ -218,6 +218,6 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: 700;
-  src: local('Roboto Bold'), local('Roboto-Bold'), url(ngx-font-url('roboto/latin.bold.woff2')) format('woff2');
+  src: local('Roboto Bold'), local('Roboto-Bold'), url('./roboto/latin.bold.woff2') format('woff2');
   unicode-range: u+0000-00ff, u+0131, u+0152-0153, u+02c6, u+02da, u+02dc, u+2000-206f, u+2074, u+20ac, u+2212, u+2215;
 }

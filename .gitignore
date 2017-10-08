@@ -1,6 +1,7 @@
 node_modules
+_compiled
 _dist
+_tests/custom.js
 *.log
 *.DS_Store
 package-lock.json
-_tests/custom.js

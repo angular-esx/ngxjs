@@ -48,7 +48,7 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   private _backdropSubscription: Subscription;
   private _positionSubscription: Subscription;
 
-  get menuOpened(): boolean { return this._menuOpened; }
+  get menuOpened (): boolean { return this._menuOpened; }
 
   @Input('ngxMenuTrigger') menu: MenuComponent;
 
@@ -116,7 +116,7 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
 
   private _initMenu (): void {
     this._setIsMenuOpen(true);
-  };
+  }
 
   private _resetMenu (): void {
     this._setIsMenuOpen(false);
@@ -190,14 +190,14 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   */
   private _subscribeToPositions (position: INgxConnectedPositionStrategy): void {
     this._positionSubscription = position.positionChange$.subscribe((change) => {
-      const _positionX: MenuPositionXType = change.connectionPair.origin.x === 'start' ? 'after' : 'before';
-      let _positionY: MenuPositionYType = change.connectionPair.origin.y === 'top' ? 'below' : 'above';
+      const positionX: MenuPositionXType = change.connectionPair.origin.x === 'start' ? 'after' : 'before';
+      let positionY: MenuPositionYType = change.connectionPair.origin.y === 'top' ? 'below' : 'above';
 
       if (!this.menu.isOverlapped) {
-        _positionY = _positionY === 'below' ? 'above' : 'below';
+        positionY = positionY === 'below' ? 'above' : 'below';
       }
 
-      this.menu.setPositionClasses(_positionX, _positionY);
+      this.menu.setPositionClasses({ positionX, positionY });
     });
   }
   /*

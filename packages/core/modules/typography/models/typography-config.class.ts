@@ -1,4 +1,4 @@
-export type _ColorType = 'black' | 'black-87' | 'black-54' | 'black-38' | 'black-12'
+export type NgxTypographyColorType = 'black' | 'black-87' | 'black-54' | 'black-38' | 'black-12'
   | 'white' | 'white-87' | 'white-54' | 'white-38' | 'white-12'
   | 'primary' | 'primary-light' | 'primary-dark'
   | 'accent' | 'accent-light' | 'accent-dark'
@@ -17,6 +17,6 @@ export class NgxTypographyConfig {
   whiteSpace?: 'nowrap' | 'pre' | 'pre-line' | 'pre-wrap';
   wordBreak?: 'break-all' | 'keep-all';
   wordWrap?: 'break-word';
-  backgroundColor?: _ColorType;
-  color?: _ColorType;
-};
+  backgroundColor?: NgxTypographyColorType;
+  color?: NgxTypographyColorType;
+}

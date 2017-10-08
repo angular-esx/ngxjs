@@ -70,8 +70,17 @@ export class MenuComponent {
 
   cssClass: Object;
 
-  get positionX() { return  this._positionX; }
-  get positionY() { return  this._positionY; }
+  @Input()
+  set positionX (positionX: MenuPositionXType) {
+    this.setPositionClasses({ positionX });
+  }
+  get positionX () { return  this._positionX; }
+
+  @Input()
+  set positionY (positionY: MenuPositionYType) {
+    this.setPositionClasses({ positionY });
+  }
+  get positionY () { return  this._positionY; }
 
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
   @ContentChildren(MenuItemDirective) items: QueryList<MenuItemDirective>;
@@ -81,18 +90,14 @@ export class MenuComponent {
 
   @Output('onClose') closeEmitter: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor (
-    @Attribute('positionX') positionX: MenuPositionXType,
-    @Attribute('positionY') positionY: MenuPositionYType
-  ) {
-    this.setPositionClasses(positionX, positionY);
-  }
-
-  setPositionClasses (positionX: MenuPositionXType, positionY: MenuPositionYType): void {
+  setPositionClasses (postions: {
+    positionX?: MenuPositionXType,
+    positionY?: MenuPositionYType,
+  }): void {
     const cssClass: any = {};
 
-    if (positionX) { this._positionX = positionX; }
-    if (positionY) { this._positionY = positionY; }
+    if (postions.positionX) { this._positionX = postions.positionX; }
+    if (postions.positionY) { this._positionY = postions.positionY; }
 
     if (this.initialClass) {
       this.initialClass
