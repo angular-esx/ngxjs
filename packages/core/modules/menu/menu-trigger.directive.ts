@@ -22,8 +22,6 @@ import {
   NgxOverlayConfig,
   INgxOverlayRef,
   INgxConnectedPositionStrategy,
-  INgxOverlayContainerService,
-  NgxOverlayContainerService,
   INgxPositionStrategyService,
   NgxPositionStrategyService,
   INgxScrollStrategyService,
@@ -50,7 +48,7 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   private _backdropSubscription: Subscription;
   private _positionSubscription: Subscription;
 
-  get menuOpened(): boolean { return this._menuOpened; }
+  get menuOpened (): boolean { return this._menuOpened; }
 
   @Input('ngxMenuTrigger') menu: MenuComponent;
 
@@ -61,7 +59,6 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   constructor (
     @Inject(ElementRef) private _elementRef: ElementRef,
     @Inject(ViewContainerRef) private _viewContainerRef: ViewContainerRef,
-    @Inject(NgxOverlayContainerService) private _overlayContainerService: INgxOverlayContainerService,
     @Inject(NgxScrollStrategyService) private _scrollStrategyService: INgxScrollStrategyService,
     @Inject(NgxPositionStrategyService) private _positionStrategyService: INgxPositionStrategyService,
     @Inject(NgxOverlayService) private _overlayService: INgxOverlayService,
@@ -119,7 +116,7 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
 
   private _initMenu (): void {
     this._setIsMenuOpen(true);
-  };
+  }
 
   private _resetMenu (): void {
     this._setIsMenuOpen(false);
@@ -142,8 +139,7 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
 
   private _getOverlayConfig (): NgxOverlayConfig {
     const overlayConfig = new NgxOverlayConfig();
-    overlayConfig.container = this._overlayContainerService.createOverlayContainer();
-    overlayConfig.scrollStrategy = this._scrollStrategyService.createNoopScrollStrategy();
+    overlayConfig.scrollStrategy = this._scrollStrategyService.createRepositionScrollStrategy();
     overlayConfig.positionStrategy = this._getPosition();
     overlayConfig.hasBackdrop = true;
     overlayConfig.backdropClass = 'ngx-OverlayBackdrop_variant_transparent';
@@ -194,14 +190,14 @@ export class MenuTriggerDirective implements AfterViewInit, OnDestroy {
   */
   private _subscribeToPositions (position: INgxConnectedPositionStrategy): void {
     this._positionSubscription = position.positionChange$.subscribe((change) => {
-      const _positionX: MenuPositionXType = change.connectionPair.origin.x === 'start' ? 'after' : 'before';
-      let _positionY: MenuPositionYType = change.connectionPair.origin.y === 'top' ? 'below' : 'above';
+      const positionX: MenuPositionXType = change.connectionPair.origin.x === 'start' ? 'after' : 'before';
+      let positionY: MenuPositionYType = change.connectionPair.origin.y === 'top' ? 'below' : 'above';
 
       if (!this.menu.isOverlapped) {
-        _positionY = _positionY === 'below' ? 'above' : 'below';
+        positionY = positionY === 'below' ? 'above' : 'below';
       }
 
-      this.menu.setPositionClasses(_positionX, _positionY);
+      this.menu.setPositionClasses({ positionX, positionY });
     });
   }
   /*

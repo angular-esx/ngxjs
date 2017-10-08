@@ -12,7 +12,7 @@ import {
 import { NgxBasePortal } from './base-portal.class';
 
 
-class NgxComponentPortal<T>
+export class NgxComponentPortal<T>
   extends NgxBasePortal
   implements INgxComponentPortal<T>
 {
@@ -46,6 +46,3 @@ class NgxComponentPortal<T>
     return host.attachComponent(this);
   }
 }
-
-
-export { NgxComponentPortal };

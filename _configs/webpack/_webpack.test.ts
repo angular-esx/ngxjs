@@ -1,3 +1,5 @@
+import { Configuration } from 'webpack';
+
 import { BaseWebpackConfig } from './_webpack.base';
 
 
@@ -13,29 +15,36 @@ export class TesingWebpackConfig extends BaseWebpackConfig {
 
   /* ---------------------Loaders---------------------*/
 
-  protected _getCompileLoader (): Object {
+  protected _getCompileLoader (): Configuration {
     const { EXCLUDE_MODULES } = this._getConstants();
+
     const rules = [
       {
         test: /\.ts$/,
         use: [
-          'ts-loader',
+          {
+            loader: 'ts-loader?id=happypack-ts',
+            options: {
+              transpileOnly: true,
+              logLevel: 'error',
+            },
+          },
           'ngx-template-loader',
         ],
         exclude: EXCLUDE_MODULES,
       },
     ];
 
-    return { rules };
+    return { module: { rules } };
   }
 
-  protected _getIndexTemplateLoader (): Object { return undefined; }
+  protected _getIndexTemplateLoader (): Configuration { return undefined; }
 
   /* ---------------------Plugins---------------------*/
 
-  protected _getCopyPlugin (): Object { return undefined; }
+  protected _getCopyPlugin (): Configuration { return undefined; }
 
-  protected _getIndexPagePlugin (): Object { return undefined; }
+  protected _getIndexPagePlugin (): Configuration { return undefined; }
 
   /* ---------------------Others---------------------*/
 

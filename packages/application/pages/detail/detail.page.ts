@@ -1,7 +1,7 @@
 /* tslint:disable: component-class-suffix */
 import {
   Component,
-  AfterViewInit,
+  AfterContentInit,
   ViewChild,
   ViewContainerRef,
   ComponentRef,
@@ -26,7 +26,7 @@ import {
   },
   encapsulation: ViewEncapsulation.None,
 })
-class DetailPage implements AfterViewInit {
+class DetailPage implements AfterContentInit {
   private _detailComponentRef: ComponentRef<any>;
 
   activeDetail: string;
@@ -37,7 +37,7 @@ class DetailPage implements AfterViewInit {
 
   constructor (@Inject(ComponentFactoryResolver) private _componentResolver: ComponentFactoryResolver) {}
 
-  ngAfterViewInit (): void {
+  ngAfterContentInit (): void {
     this._display('english-detail');
   }
 

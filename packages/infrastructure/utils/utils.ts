@@ -81,6 +81,21 @@ export function padNumber (value: number): string {
     return '';
   }
 }
+export function camelToSnakeCase (target: string, dilimeter: string): string {
+  const _upperChars = target.match(/([A-Z])/g);
+  if (!_upperChars || !dilimeter) { return target; }
+
+  let result = target;
+  for (let i = 0; i < _upperChars.length; i++) {
+    result = result.replace(new RegExp(_upperChars[i]), `${dilimeter}${_upperChars[i].toLowerCase()}`);
+  }
+
+  if (result.slice(0, 1) === dilimeter) {
+    result = result.slice(1);
+  }
+
+  return result;
+}
 
 export function newGUID (): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (char) {

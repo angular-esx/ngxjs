@@ -23,7 +23,7 @@ import {
   INgxOverlayRef,
   NgxConnectionPositionType,
   NgxConnectionPositionPairType,
-  NgxConnectedOverlayPositionChangedType,
+  NgxChangedConnectedOverlayPositionEventType,
   INgxConnectedPositionStrategy,
   INgxScrollable,
   INgxOverlayService,
@@ -566,7 +566,7 @@ describe('NgxConnectedPositionStrategy', () => {
     let _scrollableElement: HTMLElement;
     let _positionChangeHandler: jasmine.Spy;
     let _onPositionChangeSubscription: Subscription;
-    let _positionChange: NgxConnectedOverlayPositionChangedType;
+    let _positionChange: NgxChangedConnectedOverlayPositionEventType;
 
     beforeEach(inject([
       NgZone,

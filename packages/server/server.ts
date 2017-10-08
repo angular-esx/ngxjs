@@ -36,7 +36,7 @@ server.get('*', (req, res) => {
 /**
  * Port & host settings
  */
-const PORT = 8000;
+const PORT = 8080;
 const baseUrl = `http://localhost:${PORT}`;
 server.set('port', PORT);
 /**

@@ -1,3 +1,8 @@
+import {
+  Configuration,
+  LoaderOptionsPlugin,
+} from 'webpack';
+
 import * as merge from 'webpack-merge';
 
 import { BaseWebpackConfig } from './_webpack.base';
@@ -7,18 +12,19 @@ export class UniversalServerWebpackConfig extends BaseWebpackConfig {
 
   /* ---------------------Configs---------------------*/
 
-  protected _getEntryConfig (): Object {
+  protected _getEntryConfig (): Configuration {
     const { PATHS } = this._getConstants();
 
     const entry = [
       ...this._getPolyfills(),
+      this._joinPaths(PATHS.NODE_MODULES, 'rxjs'),
       PATHS.SERVER,
     ];
 
     return { entry };
   }
 
-  protected _getOutputConfig (): Object {
+  protected _getOutputConfig (): Configuration {
     const { PATHS } = this._getConstants();
 
     return {
@@ -29,44 +35,40 @@ export class UniversalServerWebpackConfig extends BaseWebpackConfig {
     };
   }
 
-  protected _getDevToolConfig (): Object {
+  protected _getDevToolConfig (): Configuration {
     return {
       devtool: 'inline-source-map',
     };
   }
 
-  protected _getOtherConfig (): Object {
+  protected _getOtherConfig (): Configuration {
     return merge(
       super._getOtherConfig(),
-      this._getNodeConfig(),
-    );
-  }
-
-  protected _getNodeConfig (): Object {
-    return {
-      target: 'node',
-      node: {
-        global: true,
-        crypto: true,
-        __dirname: true,
-        __filename: true,
-        process: true,
-        Buffer: true
+      {
+        target: 'node',
+        node: {
+          global: true,
+          crypto: true,
+          __dirname: true,
+          __filename: true,
+          process: true,
+          Buffer: true,
+        },
       },
-    };
+    );
   }
 
   /* ---------------------Loaders---------------------*/
 
-  protected _getIndexTemplateLoader (): Object { return undefined; }
+  protected _getIndexTemplateLoader (): Configuration { return undefined; }
 
   /* ---------------------Plugins---------------------*/
 
-  protected _getCleanPlugin (): Object { return undefined; }
+  protected _getCleanPlugin (): Configuration { return undefined; }
 
-  protected _getCopyPlugin (): Object { return undefined; }
+  protected _getCopyPlugin (): Configuration { return undefined; }
 
-  protected _getIndexPagePlugin (): Object { return undefined; }
+  protected _getIndexPagePlugin (): Configuration { return undefined; }
 
   /* ---------------------Others---------------------*/
 

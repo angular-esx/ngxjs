@@ -8,7 +8,28 @@
     @media (min-width: $min) {
       @content;
     }
-  } @else {
+  }
+  @else {
+    @content;
+  }
+}
+//    >> ngx-media-breakpoint-up-by-device($ngx-desktop-breakpoints, md, min)
+//    @media (min-width: 960px) { }
+@mixin ngx-media-breakpoint-up-by-device($device-breakpoints, $device-breakpoint-name, $breakpoint-bound-name) {
+  $value: 0;
+  @if $breakpoint-bound-name == 'max' {
+    $value: ngx-max-breakpoint-by-device($device-breakpoints, $device-breakpoint-name);
+  }
+  @else {
+    $value: ngx-min-breakpoint-by-device($device-breakpoints, $device-breakpoint-name);
+  }
+
+  @if $value and ngx-strip-unit($value) > 0 {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+  @else {
     @content;
   }
 }
@@ -19,11 +40,32 @@
 //    @media (max-width: 479px) { }
 @mixin ngx-media-breakpoint-down($name, $breakpoints: $ngx-breakpoints) {
   $max: ngx-breakpoint($name, $breakpoints);
-  @if $max {
+  @if $max and ngx-strip-unit($max) > 0 {
     @media (max-width: $max - 1) {
       @content;
     }
-  } @else {
+  }
+  @else {
+    @content;
+  }
+}
+//    >> ngx-media-breakpoint-down-by-device($ngx-desktop-breakpoints, md, min)
+//    @media (max-width: 959px) { }
+@mixin ngx-media-breakpoint-down-by-device($device-breakpoints, $device-breakpoint-name, $breakpoint-bound-name) {
+  $value: 0;
+  @if $breakpoint-bound-name == 'max' {
+    $value: ngx-max-breakpoint-by-device($device-breakpoints, $device-breakpoint-name);
+  }
+  @else {
+    $value: ngx-min-breakpoint-by-device($device-breakpoints, $device-breakpoint-name);
+  }
+
+  @if $value and ngx-strip-unit($value) > 0 {
+    @media (max-width: $value - 1) {
+      @content;
+    }
+  }
+  @else {
     @content;
   }
 }
@@ -35,6 +77,15 @@
 @mixin ngx-media-breakpoint-between($lower, $upper, $breakpoints: $ngx-breakpoints) {
   @include ngx-media-breakpoint-up($lower, $breakpoints) {
     @include ngx-media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+//    >> ngx-media-breakpoint-between-by-device($ngx-desktop-breakpoints, md)
+//    @media (min-width: 960px) and @media (max-width: 1279px) { }
+@mixin ngx-media-breakpoint-between-by-device($device-breakpoints, $device-breakpoint-name) {
+  @include ngx-media-breakpoint-up-by-device($device-breakpoints, $device-breakpoint-name, min) {
+    @include ngx-media-breakpoint-down-by-device($device-breakpoints, $device-breakpoint-name, max) {
       @content;
     }
   }

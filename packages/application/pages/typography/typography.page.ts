@@ -1,7 +1,7 @@
 /* tslint:disable: component-class-suffix */
 import {
   Component,
-  AfterViewInit,
+  AfterContentInit,
   ViewContainerRef,
   ViewChild,
   ComponentFactoryResolver,
@@ -25,7 +25,7 @@ import {
   },
   encapsulation: ViewEncapsulation.None,
 })
-class TypographyPage implements AfterViewInit {
+class TypographyPage implements AfterContentInit {
   private _scriptComponentRef: any;
 
   @ViewChild('scriptContainer', { read: ViewContainerRef })
@@ -35,7 +35,7 @@ class TypographyPage implements AfterViewInit {
 
   constructor (@Inject(ComponentFactoryResolver) private _componentResolver: ComponentFactoryResolver) {}
 
-  ngAfterViewInit (): void {
+  ngAfterContentInit (): void {
     this._display('english-script');
   }
 

@@ -1,8 +1,6 @@
 export {
-  getEnvironment,
-  IBaseEnvironment,
-  IDevelopmentEnvironment,
-  ITestingEnvironment,
+  IEnvironment,
+  environment,
 } from './environments';
 
 export {
@@ -22,6 +20,7 @@ export {
   parseBoolean,
   parseDate,
   padNumber,
+  camelToSnakeCase,
   getPropertyValue,
   sortArray,
 } from './utils';

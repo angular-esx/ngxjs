@@ -1,7 +1,7 @@
 /* tslint:disable: component-class-suffix */
 import {
   Component,
-  AfterViewInit,
+  AfterContentInit,
   ViewChild,
   ViewContainerRef,
   ComponentRef,
@@ -26,7 +26,7 @@ import {
   },
   encapsulation: ViewEncapsulation.None,
 })
-class ListPage implements AfterViewInit {
+class ListPage implements AfterContentInit {
   private _listComponentRef: ComponentRef<any>;
 
   activeList: string;
@@ -37,7 +37,7 @@ class ListPage implements AfterViewInit {
 
   constructor (@Inject(ComponentFactoryResolver) private _componentResolver: ComponentFactoryResolver) {}
 
-  ngAfterViewInit (): void {
+  ngAfterContentInit (): void {
     this._display('english-list');
   }
 

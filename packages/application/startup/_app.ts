@@ -1,6 +1,7 @@
 /* tslint:disable: component-class-suffix */
 import {
   Component,
+  ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
 
@@ -12,6 +13,7 @@ import {
   host: {
     '[class.ngx-App]': 'true',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 class NgxApp {}

@@ -14,7 +14,7 @@ import {
 /**
  * Partial implementation of NgxBasePortal that you want to render somewhere else.
  */
-abstract class NgxBasePortal implements INgxPortal {
+export abstract class NgxBasePortal implements INgxPortal {
   protected _attachedHost: INgxPortalHost;
 
   get isAttached(): boolean {
@@ -65,6 +65,3 @@ abstract class NgxBasePortal implements INgxPortal {
 
   protected abstract _attach (host: INgxPortalHost): any;
 }
-
-
-export { NgxBasePortal };

@@ -26,6 +26,7 @@ import { NgxApp } from './_app';
   imports: [
     BrowserModule,
     HttpTransferModule.forRoot(),
+
     CardPageModule,
     ContainerPageModule,
     DetailPageModule,

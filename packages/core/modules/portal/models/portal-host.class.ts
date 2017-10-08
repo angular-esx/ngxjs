@@ -15,7 +15,7 @@ import {
 import { NgxBasePortalHost } from './base-portal-host.class';
 
 
-class NgxPortalHost extends NgxBasePortalHost {
+export class NgxPortalHost extends NgxBasePortalHost {
   constructor (
     protected _componentFactoryResolver: ComponentFactoryResolver,
     protected _viewContainerRef: ViewContainerRef
@@ -49,6 +49,3 @@ class NgxPortalHost extends NgxBasePortalHost {
     return componentRef;
   }
 }
-
-
-export { NgxPortalHost };

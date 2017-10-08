@@ -53,7 +53,7 @@ export type NgxConnectionPositionPairType = {
 /**
  * The change event emitted by the strategy when a fallback position is used.
  */
-export type NgxConnectedOverlayPositionChangedType = {
+export type NgxChangedConnectedOverlayPositionEventType = {
   connectionPair: NgxConnectionPositionPairType;
   scrollableView: NgxScrollableViewType;
 };

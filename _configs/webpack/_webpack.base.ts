@@ -1,8 +1,8 @@
 import * as path from 'path';
 
 import {
+  Configuration,
   DefinePlugin,
-  NoEmitOnErrorsPlugin,
   LoaderOptionsPlugin,
   ContextReplacementPlugin,
 } from 'webpack';
@@ -10,27 +10,30 @@ import * as merge from 'webpack-merge';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as CleanWebpackPlugin from 'clean-webpack-plugin';
 import * as CopyWebpackPlugin from 'copy-webpack-plugin';
+import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import * as HappyPack from 'happypack';
+import { NgcWebpackPlugin } from 'ngc-webpack';
 import * as autoprefixer from 'autoprefixer';
 
-import {
-  getEnvironment,
-  IBaseEnvironment,
-} from '../../packages/infrastructure';
+import { IEnvironment } from '../environments';
+import { WebpackOptionsType } from './_webpack-options.type';
 
 
 export class BaseWebpackConfig {
-  private readonly _ENVIRONMENT = getEnvironment();
-
   protected readonly _CONTEXT: string = path.resolve(__dirname, '../..');
+
   protected _CONSTANTS: any;
   protected _POLYFILLS: any;
   protected _VENDORS: any;
 
-  protected get _environment(): IBaseEnvironment {
-    return this._ENVIRONMENT;
-  }
 
-  build (): Object {
+  constructor (
+    protected readonly _environment: IEnvironment,
+    protected readonly _options: WebpackOptionsType
+  ){}
+
+
+  build (): Configuration {
     return merge(
       this._getEntryConfig(),
       this._getOutputConfig(),
@@ -44,11 +47,11 @@ export class BaseWebpackConfig {
 
   /* ---------------------Configs---------------------*/
 
-  protected _getEntryConfig (): Object { return undefined; }
+  protected _getEntryConfig (): Configuration { return undefined; }
 
-  protected _getOutputConfig (): Object { return undefined; }
+  protected _getOutputConfig (): Configuration { return undefined; }
 
-  protected _getResolveConfig (): Object {
+  protected _getResolveConfig (): Configuration {
     const resolve = {
       extensions: ['*', '.js', '.ts'],
     };
@@ -56,45 +59,66 @@ export class BaseWebpackConfig {
     return { resolve };
   }
 
-  protected _getDevToolConfig (): Object { return undefined; }
+  protected _getDevToolConfig (): Configuration { return undefined; }
 
-  protected _getLoadersConfig (): Object {
-    const rules = merge.smart(
+  protected _getLoadersConfig (): Configuration {
+    const config = merge.smart(
+      { module: { noParse: /zone/ } } as Configuration,
       this._getCompileLoader(),
       this._getIndexTemplateLoader(),
+      this._getFileLoader(),
       this._getHtmlLoader(),
       this._getStyleLoader(),
     );
 
-    return { module: rules };
+    return config;
   }
 
-  protected _getPluginsConfig (): Object {
+  protected _getPluginsConfig (): Configuration {
     return merge(
-      this._getNoEmitOnErrorsPlugin(),
+      this._getEnvironmentPlugin(),
+      this._getLoaderOptionsPlugin(),
       this._getContextReplacementPlugin(),
       this._getChunkPlugin(),
-      this._getEnvironmentPlugin(),
+      this._getNgcWebpackPlugin(),
+      this._getTsCheckerPlugin(),
+      this._getHappyPackPlugin(),
       this._getCleanPlugin(),
       this._getCopyPlugin(),
       this._getIndexPagePlugin(),
-      this._getLoaderOptionsPlugin(),
       this._getUglifyJsPlugin(),
-      this._getPurifyCSSPlugin(),
     );
   }
 
-  protected _getOtherConfig (): Object { return undefined; }
+  protected _getOtherConfig (): Configuration {
+    return {
+      context: this._CONTEXT,
+      bail: true,
+    };
+  }
 
   /* ---------------------Loaders---------------------*/
 
-  protected _getCompileLoader (): Object {
+  protected _getCompileLoader (): Configuration {
     const { EXCLUDE_MODULES } = this._getConstants();
+
     const rules = [
       {
         test: /\.ts$/,
         use: [
-          'ts-loader',
+          {
+            loader: 'ts-loader?id=happypack-ts',
+            options: {
+              transpileOnly: true,
+              logLevel: 'error',
+            },
+          },
+          {
+            loader: 'ngc-webpack',
+            options: {
+              disable: !this._options.enableAot,
+            }
+          },
           'ngx-template-loader',
         ],
         exclude: [
@@ -104,11 +128,12 @@ export class BaseWebpackConfig {
       },
     ];
 
-    return { rules };
+    return { module: { rules } };
   }
 
-  protected _getIndexTemplateLoader (): Object {
+  protected _getIndexTemplateLoader (): Configuration {
     const { PATHS } = this._getConstants();
+
     const rules = [
       {
         test: /\.hbs$/,
@@ -117,23 +142,61 @@ export class BaseWebpackConfig {
       },
     ];
 
-    return { rules };
+    return { module: { rules } };
   }
 
-  protected _getHtmlLoader (): Object {
+  protected _getFileLoader (): Configuration {
+    const { PATHS } = this._getConstants();
+
+    const rules = [
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: this._joinPaths(`${this._getRelativePath(PATHS.DIST_IMAGES, PATHS.DIST_OUTPUT)}`, '/'),
+              publicPath: this._environment.assetHost,
+            },
+          },
+        ],
+        include: PATHS.CORE_IMAGES
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: this._joinPaths(`${this._getRelativePath(PATHS.DIST_FONTS, PATHS.DIST_OUTPUT)}`, '/'),
+              publicPath: this._environment.assetHost,
+            },
+          },
+        ],
+        include: PATHS.CORE_FONTS,
+      },
+    ];
+
+    return { module: { rules } };
+  }
+
+  protected _getHtmlLoader (): Configuration {
     const { INCLUDE_HTML } = this._getConstants();
+
     const rules = [
       {
         test: /\.html$/,
-        use: ['raw-loader'],
+        use: ['html-loader'],
         include: INCLUDE_HTML,
       },
     ];
 
-    return { rules };
+    return { module: { rules } };
   }
 
-  protected _getStyleLoader (): Object {
+  protected _getStyleLoader (): Configuration {
     const { INCLUDE_STYLES } = this._getConstants();
 
     const rules = [
@@ -141,113 +204,53 @@ export class BaseWebpackConfig {
         test: /\.scss$/,
         use: [
           'to-string-loader',
-          'css-loader?sourceMap',
-          'postcss-loader',
-          'sass-loader?sourceMap',
+          {
+            loader: 'css-loader?id=happypack-styles',
+            options: {sourceMap: true },
+          },
+          {
+            loader: 'postcss-loader?id=happypack-styles',
+            options: {
+              plugins: [autoprefixer],
+              sourceMap: true,
+            },
+          },
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader?id=happypack-styles',
+            options: { sourceMap: true },
+          },
         ],
         include: INCLUDE_STYLES,
       },
     ];
 
-    return { rules };
+    return { module: { rules } };
   }
 
   /* ---------------------Plugins---------------------*/
 
-  protected _getNoEmitOnErrorsPlugin (): Object {
-    const plugins = [new NoEmitOnErrorsPlugin()];
-
-    return { plugins };
-  }
-
-  protected _getContextReplacementPlugin (): Object {
-    const plugins = [
-      /*
-        This plugin is used temporarily to solve the issue:
-        WARNING in /~/@angular/core/@angular/core.es5.js
-        Critical dependency: the request of a dependency is an expression
-      */
-      new ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/, __dirname),
-    ];
-
-    return { plugins };
-  }
-
-  protected _getChunkPlugin (): Object { return undefined; }
-
-  protected _getEnvironmentPlugin (): Object {
+  protected _getEnvironmentPlugin (): Configuration {
     const plugins = [
       new DefinePlugin({
-        'process.env.BUILD_ENV': JSON.stringify(process.env.BUILD_ENV),
+        'process.env.APP_ENVIRONMENT': this._environment.toString(),
       }),
     ];
 
     return { plugins };
   }
 
-  protected _getCleanPlugin (): Object {
-    const { PATHS } = this._getConstants();
-    const plugins = [
-      new CleanWebpackPlugin([PATHS.DIST_OUTPUT], {
-        root: process.cwd(),
-      }),
-    ];
-
-    return { plugins };
-  }
-
-  protected _getCopyPlugin (): Object {
-    const { PATHS } = this._getConstants();
-    const plugins = [
-      new CopyWebpackPlugin([
-        {
-          from: PATHS.CORE_IMAGES,
-          to: this._joinPaths(PATHS.DIST_IMAGES, '[name].[ext]'),
-        },
-        {
-          from: PATHS.CORE_FONTS,
-          to: PATHS.DIST_FONTS,
-          toType: 'dir',
-          ignore: ['*.scss'],
-        },
-        {
-          from: PATHS.APPLICATION_FAVICON,
-          to: this._joinPaths(PATHS.DIST_OUTPUT, '[name].[ext]'),
-        },
-      ]),
-    ];
-
-    return { plugins };
-  }
-
-  protected _getIndexPagePlugin (): Object {
-    const { PATHS } = this._getConstants();
-    const plugins = [
-      new HtmlWebpackPlugin({
-        title: 'ngxjs',
-        filename: `index.html`,
-        template: PATHS.APPLICATION_STARTUP_TEMPLATE,
-      }),
-    ];
-
-    return { plugins };
-  }
-
-  protected _getLoaderOptionsPlugin (): Object {
+  protected _getLoaderOptionsPlugin (): Configuration {
     const { PATHS } = this._getConstants();
 
     const plugins = [
       new LoaderOptionsPlugin({
         options: {
           context: this._CONTEXT,
-          postcss: [autoprefixer],
           sassLoader: {
             data: `
               @import 'themes/default/index.scss';
               $CURRENT_THEME: $ngx-default-theme;
-              $ASSET_HOST: '${this._environment.assetHost}';
-              $IMAGE_HOST: '${this._environment.imageHost}';
-              $FONT_HOST: '${this._environment.fontHost}';
             `,
             includePaths: [
               PATHS.APPLICATION_NODE_MODULES,
@@ -261,9 +264,131 @@ export class BaseWebpackConfig {
     return { plugins };
   }
 
-  protected _getUglifyJsPlugin (): Object { return undefined; }
+  protected _getContextReplacementPlugin (): Configuration {
+    const plugins = [
+      /*
+        This plugin is used temporarily to solve the issue:
+        WARNING in /~/@angular/core/@angular/core.es5.js
+        Critical dependency: the request of a dependency is an expression
+      */
+      new ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/, __dirname),
+    ];
 
-  protected _getPurifyCSSPlugin (): Object { return undefined; }
+    return { plugins };
+  }
+
+  protected _getChunkPlugin (): Configuration { return undefined; }
+
+  protected _getNgcWebpackPlugin (): Configuration {
+    const plugins = [
+      new NgcWebpackPlugin({
+        disabled: !this._options.enableAot,
+        tsConfig: this._getAbsolutePath('tsconfig.aot.json'),
+      }),
+    ];
+
+    return { plugins };
+  }
+
+  protected _getTsCheckerPlugin (): Configuration {
+    const plugins = [
+      new ForkTsCheckerWebpackPlugin({
+        checkSyntacticErrors: true,
+        workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
+      }),
+    ];
+
+    return { plugins };
+  }
+
+  protected _getHappyPackPlugin (): Configuration {
+    const threadPool = HappyPack.ThreadPool({
+      id: 'compile-thread-pool',
+      size: 6,
+    });
+
+    const plugins = [
+      new HappyPack({
+        id: 'happypack-ts',
+        threadPool,
+        threads: 4,
+        loaders: [
+          {
+            path: 'ts-loader',
+            query: { happyPackMode: true },
+          },
+        ],
+      }),
+      new HappyPack({
+        id: 'happypack-styles',
+        threadPool,
+        threads: 2,
+        loaders: [
+          {
+            path: 'style-loader',
+            query: { happyPackMode: true },
+          },
+          {
+            path: 'css-loader',
+            query: { happyPackMode: true },
+          },
+          {
+            path: 'postcss-loader',
+            query: { happyPackMode: true },
+          },
+          {
+            path: 'sass-loader',
+            query: { happyPackMode: true },
+          },
+        ],
+      }),
+    ];
+
+    return { plugins };
+  }
+
+  protected _getCleanPlugin (): Configuration {
+    const { PATHS } = this._getConstants();
+
+    const plugins = [
+      new CleanWebpackPlugin([PATHS.DIST_OUTPUT], {
+        root: process.cwd(),
+      }),
+    ];
+
+    return { plugins };
+  }
+
+  protected _getCopyPlugin (): Configuration {
+    const { PATHS } = this._getConstants();
+
+    const plugins = [
+      new CopyWebpackPlugin([
+        {
+          from: PATHS.APPLICATION_FAVICON,
+          to: this._joinPaths(PATHS.DIST_OUTPUT, '[name].[ext]'),
+        },
+      ]),
+    ];
+
+    return { plugins };
+  }
+
+  protected _getIndexPagePlugin (): Configuration {
+    const { PATHS } = this._getConstants();
+
+    const plugins = [
+      new HtmlWebpackPlugin({
+        title: 'ngxjs',
+        filename: `index.html`,
+        template: PATHS.APPLICATION_STARTUP_TEMPLATE,
+      }),
+    ];
+
+    return { plugins };
+  }
+
+  protected _getUglifyJsPlugin (): Configuration { return undefined; }
 
   /* ---------------------Others---------------------*/
 
@@ -286,6 +411,7 @@ export class BaseWebpackConfig {
           APPLICATION_STARTUP: this._getAbsolutePath('packages/application/startup'),
           APPLICATION_STARTUP_TEMPLATE: this._getAbsolutePath('packages/application/startup/_index.hbs'),
           APPLICATION_STARTUP_MAIN: this._getAbsolutePath('packages/application/startup/_main.ts'),
+          APPLICATION_STARTUP_MAIN_AOT: this._getAbsolutePath('packages/application/startup/_main.aot.ts'),
 
           DIST: this._getAbsolutePath('_dist'),
           DIST_OUTPUT: this._getAbsolutePath('_dist'),
@@ -328,10 +454,10 @@ export class BaseWebpackConfig {
       const { PATHS } = this._getConstants();
 
       this._POLYFILLS = [
+        this._joinPaths(PATHS.NODE_MODULES, 'zone.js'),
+        this._joinPaths(PATHS.NODE_MODULES, 'core-js/es6/object'),
         this._joinPaths(PATHS.NODE_MODULES, 'core-js/es6/reflect'),
         this._joinPaths(PATHS.NODE_MODULES, 'core-js/es7/reflect'),
-        this._joinPaths(PATHS.NODE_MODULES, 'rxjs'),
-        this._joinPaths(PATHS.NODE_MODULES, 'zone.js'),
       ];
     }
 
@@ -353,6 +479,7 @@ export class BaseWebpackConfig {
         this._joinPaths(PATHS.NODE_MODULES, '@angular/platform-browser'),
         this._joinPaths(PATHS.NODE_MODULES, '@angular/platform-browser-dynamic'),
         this._joinPaths(PATHS.NODE_MODULES, '@angular/router'),
+        this._joinPaths(PATHS.NODE_MODULES, '@angularclass/hmr'),
       ];
     }
 
